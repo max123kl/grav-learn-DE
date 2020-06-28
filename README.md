@@ -11,3 +11,9 @@ Um Ihre eigene Version der Website zu installieren, folgen Sie einfach diesen Sc
 4. Führen Sie `bin/grav install` auf der Root aus (z.B. `~/www/grav-learn/`)
 
 Jetzt sollten die erforderlichen Plugins und Vendor-Libraries installiert sein, und Ihre Doku-Website sollte voll funktionsfähig sein.
+
+Zur Zeit sind erst einige Seiten übersetzt.
+Dort, wo die Übersetzung noch nicht fertiggestellt ist, wird der englische Originaltext angezeigt.
+
+Sie können gerne bei der Übersetzung mithelfen.
+Dazu einfach ein [Issue](https://github.com/max123kl/grav-learn-DE/issues) starten und mitteilen, welche Quelldatei Sie bearbeiten wollen.
