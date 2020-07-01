@@ -1,6 +1,6 @@
 # Deutsche Grav Dokumentation
 
-Dieses Repository enthält die Quelldateien für das vollständige [deutsche Grav-Handbuch](WiP). Die englische Originalversion finden Sie unter https://learn.getgrav.org.
+Dieses Repository enthält die Quelldateien für das (vollständige) [deutsche Grav-Handbuch](WiP). Die englische Originalversion finden Sie unter https://learn.getgrav.org.
 Es ist das,was man bei Grav als **skeleton** bezeichnet. Dieses Repository ersetzt den Inhalt des Ordners `user/` einer vorhandenen Grav-Installation.
 
 Um Ihre eigene Version der Website zu installieren, folgen Sie einfach diesen Schritten:
