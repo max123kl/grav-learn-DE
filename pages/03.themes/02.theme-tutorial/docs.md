@@ -1,66 +1,66 @@
 ---
-title: Theme Tutorial
+title: Theme-Tutorial
 page-toc:
   active: true
 taxonomy:
     category: docs
 ---
 
-Often, the best way to learn a new thing is to use an example, and then try to build your own creation from it. We are going to use this same methodology for creating a new Grav theme.
+Der beste Weg, etwas Neues zu lernen, ist oft ein konkretes Beispiel. Dann versucht man, seine eigene Entwicklung darauf aufzubauen. Wir werden dieselbe Technik bei der Gestaltung eines neuen Grav-Themes anwenden.
 
 ## Quark
 
-Grav comes with a clean and modern theme called **Quark** which uses the [Spectre.css framework](https://picturepan2.github.io/spectre/).
+Grav wird mit dem einfachen und modernen Theme **Quark** ausgeliefert, das das [Spectre.css-Framework](https://picturepan2.github.io/spectre/) verwendet.
 
-Spectre.css is a lightweight, responsive and modern CSS framework for faster and extensible development.
+Spectre.css ist ein schlankes, responsives und modernes CSS-Framework für eine zügige und erweiterbare Programmierung.
 
-Spectre provides basic styles for typography and elements, flexbox based responsive layout system, pure CSS components and utilities with best practice coding and consistent design language.
+Spectre bietet elementare Styles für Typografie und Elemente, ein auf Flexbox basierendes responsives Layoutsystem, reine CSS-Komponenten und Hilfsprogramme mit Best-Practice-Codierung und konsistenter Formensprache.
 
-However, it's often better to start from something even simpler.
+Oft ist es jedoch besser, von etwas noch einfacherem auszugehen.
 
 ## Pure.css
 
-For the sake of this tutorial, we will create a theme that utilizes the popular [Pure.css framework](http://purecss.io/)  developed by Yahoo!
+Für dieses Tutorial werden wir ein Thema erstellen, das auf dem beliebten [Pure.css-Framework](http://purecss.io/) basiert, das von Yahoo entwickelt wurde.
 
-Pure is a small, fast, and responsive CSS framework that contains the basics to get you developing your site without the overhead of larger frameworks such as [Bootstrap](http://getbootstrap.com/css/) or [Foundation](http://foundation.zurb.com/). It contains several modules that can be used independently, but all together the resulting package is only **4.0KB minified and gzipped**!
+Pure ist ein kleines, schnelles und responsives CSS-Framework, das die Grundlagen für die Weiterentwicklung einer Website enthält, ohne den Overhead größerer Frameworks wie [Bootstrap](http://getbootstrap.com/css/) oder [Foundation](http://foundation.zurb.com/). Es enthält mehrere Module, die unabhängig voneinander verwendet werden können, aber alles zusammen ist das daraus entstandene Paket **gezippt nur 4,0KB klein**!
 
-You can read up on all the features Pure brings to the table on the [Pure.css project site](http://purecss.io/).
+Sie können sich auf der [Pure.css Projekt-Site](http://purecss.io/) über alle Funktionen informieren, die Pure mitbringt.
 
-Also, you should read the [Important Theme Updates](https://getgrav.org/blog/important-theme-updates) blog article that outlines some key changes in Grav themes to provide the best plugin support going forward.
+Außerdem sollten Sie den Blog-Artikel [Wichtige Themes-Updates](https://getgrav.org/blog/important-theme-updates) lesen, der einige wichtige Änderungen der Grav-Themes beschreibt, um die optimale Plugin-Unterstützung für die Zukunft zu sichern.
 
-## Step 1 - Install DevTools Plugin
+## Stufe 1 – Installieren des Plugins DevTools
 
-!! Previous versions of this tutorial required creating a base theme by default.  This whole process can be skipped thanks to our new **DevTools Plugin**
+!! Frühere Versionen dieses Tutorials erforderten zunächst die Einrichtung eines Basis-Themes.  Dieser ganze Prozess kann dank unseres neuen **DevTools Plugin** übersprungen werden.
 
-The first step in creating a new theme is to **install the DevTools Plugin**.  This can be done in two ways.
+Der erste Schritt bei der Erstellung eines neuen Themes ist die **Installation des Plugin DevTools**. Das kann man auf zwei verschiedenen Wegen erledigen.
 
-#### Install via CLI GPM
+#### Installation über CLI GPM
 
-* Navigate in the command line to the root of your Grav installation.
+* Wechseln Sie in der Kommandozeile zum Stammverzeichnis Ihrer Grav-Installation.
 
 [prism classes="language-bash command-line"]
 bin/gpm install devtools
 [/prism]
 
-#### Install via Admin Plugin
+#### Installation über das Admin-Plugin
 
-* After logging in, simply navigate to the **Plugins** section from the sidebar.
-* Click the <i class="fa fa-plus"></i> **Add** button in the top right.
+* Nach dem Login, in der Seitenleiste, zum Bereich **Plugins** gehen
+* Oben rechts auf die Schaltfläche <i class="fa fa-plus"></i> **Hinzufügen** klicken
 * Find **DevTools** in the list and click the <i class="fa fa-plus"></i> **Install** button.
 
-## Step 2 - Create Base Theme
+## Stufe 2 – Das Basis-Theme anlegen
 
-For this next step you really do need to be in the [command line](/cli-console/command-line-intro) as the DevTools provide a couple of CLI commands to make the process of creating a new theme much easier!
+Im nächsten Schritt müssen Sie unbedingt auf der [Kommandozeile](/cli-console/command-line-intro) sein, da die DevTools eine Reihe von CLI-Befehle enthalten, die den Prozess der Erstellung eines neuen Themes erheblich erleichtern!
 
-From the root of your Grav installation enter the following command:
+Geben Sie im Stammverzeichnis Ihrer Grav-Installation den folgenden Befehl ein:
 
 [prism classes="language-bash command-line"]
 bin/plugin devtools new-theme
 [/prism]
 
-This process will ask you a few questions that are required to create the new theme:
+In der Folge werden Ihnen einige Fragen gestellt, die zur Erstellung des neuen Themes erforderlich sind:
 
-! We're going to use **pure-blank** to create a new theme, but you can create a simple **inheritance** style template that inherits from another base theme
+! Wir werden **pure-blank** verwenden, um ein neues Theme zu erstellen. Sie können aber auch ein schlichtes Template im **inheritance** Style erstellen, das von einem anderen Basis-Theme abgeleitet ist.
 
 [prism classes="language-bash command-line" cl-output="2-15"]
 bin/plugin devtools new-theme
@@ -80,9 +80,9 @@ SUCCESS theme mytheme -> Created Successfully
 Path: /www/user/themes/my-theme
 [/prism]
 
-The DevTools command tells you where this new template was created. This created template is fully functional but also very simple.  You will want to modify this to suit your needs.
+Der DevTools-Befehl zeigt Ihnen an, wo dieses neue Template erstellt wurde. Das neue Template ist voll funktionsfähig, aber auch sehr einfach.  Sie werden es an Ihre Anforderungen anpassen wollen.
 
-In order to see your new theme in action, you will need to change the default theme from `quark` to `my-theme`, so edit your `user/config/system.yaml` and change it:
+Um Ihr neues Thema in Aktion zu sehen, müssen Sie das Standardthema von `quark` zu `my-theme` ändern. Bearbeiten Sie also Ihre Datei `user/config/system.yaml` und schreiben Sie:
 
 [prism classes="language-yaml line-numbers"]
 ...
@@ -91,11 +91,11 @@ pages:
 ...
 [/prism]
 
-Reload your site in your browser and you should see the theme has now changed.
+Laden Sie Ihre Website im Browser neu – Sie müssten jetzt erkennen, dass sich das Theme geändert hat.
 
-## Step 3 - Theme Basics
+## Stufe 3 – Theme Basics
 
-Now we've created a new basic theme that can be modified and developed, let's break it down and have a look at what makes up a theme.  If you look in the `user/themes/my-theme` folder you will see:
+Jetzt haben wir ein neues Basis-Theme geschaffen, das modifiziert und weiterentwickelt werden kann. Schauen wir uns doch einmal an, was ein Theme umfasst.  Wenn Sie in den Ordner `user/themes/my-theme` hineinschauen, sehen Sie folgendes:
 
 [prism classes="language-text"]
 .
@@ -123,33 +123,33 @@ Now we've created a new basic theme that can be modified and developed, let's br
 └── thumbnail.jpg
 [/prism]
 
-This is a sample structure but some things are required:
+Dies ist eine Beispielstruktur, aber es sind noch einige Dinge erforderlich:
 
-### Required Items to Function
+### Zum Funktionieren notwendige Elemente
 
-These items are critical and your theme will not function reliably unless you include these in your theme.
+Diese Elemente sind entscheidend und Ihr Theme wird nicht zuverlässig arbeiten, wenn Sie diese Elemente nicht in Ihr Theme aufnehmen.
 
-* **`blueprints.yaml`** - The configuration file used by Grav to get information on your theme. It can also define a form that the admin can display when viewing the theme details.  This form will let you save settings for the theme. [This file is documented in the Forms chapter](/forms/blueprints).
-* **`my-theme.php`** - This file will be named according to your theme, but can be used to house any logic your theme needs.  You can use any [plugin event hook](/plugins/event-hooks) except `onPluginsInitialized()`, however there is a theme specific `onThemeInitialized()` hook specific for themes that you can use instead.
-* **`my-theme.yaml`** - This is the configuration used by the plugin to set options the theme might use.
-* **`templates/`** - This is a folder that contains the Twig templates to render your pages.
+* **`blueprints.yaml`** – Die Konfigurationsdatei, die Grav nutzt, um Informationen zu Ihrem Theme zu erhalten. Dort kann auch ein Formular definiert werden, das im Adminbereich angezeigt werden kann, wenn die Theme-Details angezeigt werden. In diesem Formular können Sie die Einstellungen für das Thema speichern. [Diese Datei ist im Kapitel Formulare dokumentiert](/forms/blueprints).
+* **`my-theme.php`** – Die Benennung dieser Datei folgt dem Theme-Namen. Darin kann jede Logik enthalten sein, die Ihr Theme benötigt. Sie können jeden beliebigen [Plugin Ereignis-Hook](/plugins/event-hooks) verwenden, mit Ausnahme von `onPluginsInitialized()`. Es gibt auch den spezifischen Hook `onThemeInitialized()` für Themes, den Sie stattdessen verwenden können.
+* **`my-theme.yaml`** – Diese Konfiguration wird vom Plugin verwendet, um Optionen zu setzen, die das Theme verwenden könnte.
+* **`templates/`** – Dieses Verzeichnis enthält die Twig-Templates zum Rendern der Seiten.
 
-### Required Items for Release
+### Für die Freigabe erforderliche Elemente
 
-These items are required if you wish to release your theme via GPM.
+Diese Elemente sind erforderlich, wenn Sie Ihr Theme über GPM veröffentlichen möchten.
 
-* **`CHANGELOG.md`** - A file that follows the [Grav Changelog Format](/advanced/grav-development#changelog-format) to show changes in releases.
-* **`LICENSE`** - a license file, should probably be MIT unless you have a specific need for something else.
-* **`README.md`** - A 'Readme' that should contain any documentation for the theme.  How to install it, configure it, and use it.
-* **`screenshot.jpg`** - 1009px x 1009px screenshot of the theme.
-* **`thumbnail.jpg`** - 300px x 300px screenshot of the theme.
+* **`CHANGELOG.md`** - Eine Datei, die dem [Grav Changelog Format](/advanced/grav-development#changelog-format) entspricht, um Änderungen in den Versionen anzuzeigen.
+* **`LICENSE`** - Eine Lizenzdatei, vermutlich MIT, es sei denn, Sie benötigen ausdrücklich etwas anderes.
+* **`README.md`** - Ein „Readme“, das die Dokumentation zum Theme enthalten sollte.  Wie man es installiert, konfiguriert und benutzt.
+* **`screenshot.jpg`** - 1009px x 1009px Screenshot zum Theme.
+* **`thumbnail.jpg`** - 300px x 300px Screenshot zum Theme.
 
 
-## Step 4 - Base Template
+## Stufe 4 – Basis-Template
 
-As you know from the [previous chapter](../theme-basics), each item of content in Grav has a particular filename, e.g. `default.md`, which instructs Grav to look for a rendering Twig template called `default.html.twig`.  It is possible to put everything you need to display a page in this one file, and it would work fine. However, there is a better solution.
+Wie Sie aus dem [letzten Kapitel](../theme-basics) wissen, hat jedes Inhaltselement in Grav einen bestimmten Dateinamen, z.B. `default.md`, das Grav anweist, nach einem Twig-Template, hier `default.html.twig`, zu suchen, das für das Rendering zuständig ist. Alles, was Sie zum Anzeigen einer Seite benötigen, können Sie in diese eine Datei packen und es würde gut laufen. Es gibt allerdings eine bessere Lösung.
 
-Utilizing the Twig [Extends](http://twig.sensiolabs.org/doc/tags/extends.html) tag you can define a base layout with [blocks](http://twig.sensiolabs.org/doc/tags/block.html) that you define. This enables any twig template to **extend** the base template, and provides definitions for any **block** defined in the base.  So look at the `templates/default.html.twig` file and examine its content:
+Mit dem Tag Twig [Extends](http://twig.sensiolabs.org/doc/tags/extends.html) können Sie ein Basis-Layout mit von Ihnen definierten [Blocks](http://twig.sensiolabs.org/doc/tags/block.html) erstellen. So kann jedes Twig-Template das Basis-Template **erweitern** und stellt Definitionen für jeden, der in der Basis erstellten **Blocks** zur Verfügung. Sehen Sie sich die Datei `templates/default.html.twig` an und untersuchen Sie ihren Inhalt:
 
 [prism classes="language-twig line-numbers"]
 {% extends 'partials/base.html.twig' %}
@@ -159,17 +159,17 @@ Utilizing the Twig [Extends](http://twig.sensiolabs.org/doc/tags/extends.html) t
 {% endblock %}
 [/prism]
 
-There are really two things going on here.
+Hier gehen eigentlich zwei Dinge vor sich.
 
-First, the template extends a template located in `partials/base.html.twig`.
+Zunächst erweitert das Template ein anderes Template, das sich in `partials/base.html.twig` befindet.
 
-! You don't need to include `templates/` within Twig templates as Twig is already looking in `templates/` as the root level for any template.
+! Sie brauchen `templates/` nicht in Twig-Templates einzubinden, da Twig bereits selbst in `templates/` sucht, welches die oberste Ebene für jedes Template ist.
 
-Second, the block `content` is overridden from the base template, and the page's content is output in its place.
+Zum anderen wird der Block `content` aus dem Basis-Template überschrieben und an seiner Stelle der Inhalt der Seite ausgegeben.
 
-!! For consistency, it's a good idea to use the `templates/partials` folder to contain Twig templates that represent either little chunks of HTML, or are shared. We also use `templates/modular` for modular templates, and `templates/forms` for any forms.  You can create any sub-folders you like if you prefer to organize your templates differently.
+!! Es ist empfehlenswert und konsistent, den Ordner `templates/partials` zu verwenden, der Twig-Vorlagen enthält, die entweder kleine HTML-Blöcke abbilden oder gemeinsam genutzt werden. Die Ordner `templates/modular` werden für modulare Templates und `templates/forms` für beliebige Formulare verwendet.  Sie können jederzeit eigene Unterverzeichnisse erstellen, wenn Sie Ihre Templates anders organisieren möchten.
 
-If you look at the `templates/partials/base.html.twig` you will see the meat of the HTML layout:
+Wenn Sie sich die `templates/partials/base.html.twig` anschauen, sehen Sie die Kernstruktur des HTML-Layouts:
 
 [prism classes="language-twig line-numbers"]
 {% set theme_config = attribute(config.themes, config.system.pages.theme) %}
@@ -245,25 +245,25 @@ If you look at the `templates/partials/base.html.twig` you will see the meat of 
 </body>
 [/prism]
 
-## Step 5 - Breaking it Down
+## Stufe 5 – Auf den Punkt gebracht
 
-Please read over the code in the `base.html.twig` file to try to understand what is going on.  There are several key things to note:
+Bitte lesen Sie sich den Code in der Datei `base.html.twig` durch. So können Sie verstehen, was eigentlich passiert.  Sie sollten einige wichtige Punkte beachten:
 
-1. A `theme_config` variable is set with the theme configuration.  Because Twig doesn't work well with dashes, to retrieve variables with dashes (e.g. `config.themes.my-theme`), we use the `attribute()` Twig function to dynamically retrieve the `my-theme` data from `config.themes`.
+1. Die Variable `theme_config` wird in der Konfiguration des Themes gesetzt.  Da Twig nicht gut mit Bindestrichen umgehen kann, verwenden wir zum Abfragen von Variablen mit Bindestrichen (z.B. `config.themes.my-theme`) die Twig-Funktion `attribute()`, die Daten dynamisch aus `config.themes` für `my-theme` abruft.
 
-1. The `<html lang=...` item is set based on Grav's active language if enabled, else it uses the `default_lang` as set in the `theme_config`.
+1. Das Element `<html lang=...` wird auf die aktive Sprache in Grav gesetzt. Falls es aktiviert ist, ansonsten verwendet es die `default_lang`, wie in der `theme_config` eingestellt.
 
-1. The `{% block head %}{% endblock head %}` syntax defines an area in the base Twig template. Note that the use of `head` in the `{% endblock head %}` tag is not required, but is used here for readability. In this block we put things that are typically located in the HTML `<head>` tag.
+1. Die Syntax `{% Blockkopf %}{% Endblockkopf %}` definiert einen Bereich in dem Basis-Twig-Template. Beachten Sie, dass die Verwendung von `head` im Tag `{% endblock head %}` nicht erforderlich ist, aber hier aus Gründen der besseren Lesbarkeit verwendet wird. In diesen Block fügen wir alles ein, was sich typischerweise im HTML-Tag `<head>` befindet.
 
-1. The `<title>` tag is dynamically set based on the page's `title` variable as set in the page header.  The `header.title` is a shortcut method but is equivalent to `page.header.title`.
+1. Der Tag `<title>` wird dynamisch auf der Grundlage der Variablen `title` der Seite gesetzt, wie sie im Header der Seite steht.  Der `header.title` ist eine Kurzform von `page.header.title`.
 
-1. After a couple of standard meta tags are set, there is a reference to include `partials/metadata.html.twig`.  This file contains a loop that loops over the page's metadata.  This is actually a merge of metadata from `site.yaml` and any page-specific overrides.
+1. Nachdem ein paar Standard-Meta-Tags gesetzt sind, gibt es eine Referenz zum Einbinden von `partials/metadata.html.twig`. Diese Datei enthält einen Loop, der die Metadaten der Seite durchläuft. Sie ist (eigentlich) eine Zusammenführung von Metadaten aus `site.yaml` und allen seitenspezifischen Overrides.
 
-1. The `<link rel="icon"...` entry is set by pointing to a theme-specific image.  In this case it's located in theme directory under `images/logo.png`.  The syntax for this is `{{ url('theme://images/logo.png') }}`.
+1. Der Punkt `<link rel="icon"...` wird durch den Verweis auf ein spezifisches Bild des Themes gesetzt.  In diesem Fall befindet es sich im Theme-Verzeichnis unter `images/logo.png`.  Die Syntax hierfür lautet `{{ url('theme://images/logo.png') }}`.
 
-1. The `<link rel="canonical"...` entry sets a canonical URL for the page that is always set to the full URL of the page via `{{ page.url(true, true) }}`.
+1. Der Punkt `<link rel="canonical"...` legt eine kanonische URL für die Seite fest, die über `{{ page.url(true, true) }}` immer auf die volle URL der Seite umgesetzt wird.
 
-1. Now we define a block called `stylesheets`, and in here we use the [Asset Manager](/themes/asset-manager) to add several assets.  The first one loads the Pure.css framework.  The second one loads [FontAwesome](http://fontawesome.io/) to provide useful icons.  The last entry points to a `custom.css` file in the theme's `css/` folder.  In here are a few useful styles to get you started, but you can add more here.  Also you can add other CSS file entries as needed.
+1. Jetzt definieren wir den Block `stylesheets` und fügen mit dem [Asset Manager](/themes/asset-manager) mehrere Assets hinzu. Das erste lädt das Pure.css-Framework. Mit dem zweiten wird [FontAwesome](http://fontawesome.io/) geladen, um nützliche Symbole zur Verfügung zu stellen. Der letzte Eintrag verweist auf die Datei `custom.css` im Ordner `css/` des Themes. Hier sind einige nützliche Stile für den Anfang, Sie können aber hier noch weitere hinzufügen. Außerdem können Sie bei Bedarf weitere CSS-Datei-Einträge hinzufügen.
 
 1. The `{{ assets.css()|raw }}` call is what triggers the template to render all the CSS link tags.
 
@@ -286,7 +286,7 @@ Please read over the code in the `base.html.twig` file to try to understand what
 1. Similar to the content block, the `{% block bottom %}{% endblock %}` is intended as a placeholder for templates to add custom JavaScript initialization or analytic codes. In this example, we output any JavaScript that was added to the `bottom` Asset Group.  Read more about this in the [Asset Manager](/themes/asset-manager) documentation.
 
 
-## Step 6 - Theme CSS
+## Stufe 6 - Theme CSS
 
 You might have noticed that in the `partials/base.html.twig` file we made reference to a custom theme css via Asset Manager: `do assets.add('theme://css/custom.css', 98)`.  This file will house any custom CSS we need to fill in the gaps not provided by the Pure.css framework.  As Pure is a very minimal framework, it provides the essentials but almost no styling.
 
@@ -473,7 +473,7 @@ blockquote {
 
 This is pretty standard CSS stuff and sets some basic margins, fonts, colors, and utility classes. There is some basic content styling and some more extensive styling required to render the drop-down menu.  Feel free to modify this file as you need, or even add new CSS files (just ensure you add a reference in the `head` block by following the example for `custom.css`).
 
-## Step 7 - Testing
+## Stufe 7 - Testing
 
 To see your theme in action, open your browser, and point it to your Grav site.  You should see something like this:
 
