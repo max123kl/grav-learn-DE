@@ -20,7 +20,7 @@ Oft ist es jedoch besser, von etwas noch einfacherem auszugehen.
 
 ## Pure.css
 
-Für dieses Tutorial werden wir ein Thema erstellen, das auf dem beliebten [Pure.css-Framework](http://purecss.io/) basiert, das von Yahoo entwickelt wurde.
+Für dieses Tutorial werden wir ein Theme erstellen, das auf dem beliebten [Pure.css-Framework](http://purecss.io/) basiert, das von Yahoo entwickelt wurde.
 
 Pure ist ein kleines, schnelles und responsives CSS-Framework, das die Grundlagen für die Weiterentwicklung einer Website enthält, ohne den Overhead größerer Frameworks wie [Bootstrap](http://getbootstrap.com/css/) oder [Foundation](http://foundation.zurb.com/). Es enthält mehrere Module, die unabhängig voneinander verwendet werden können, aber alles zusammen ist das daraus entstandene Paket **gezippt nur 4,0KB klein**!
 
@@ -82,7 +82,7 @@ Path: /www/user/themes/my-theme
 
 Der DevTools-Befehl zeigt Ihnen an, wo dieses neue Template erstellt wurde. Das neue Template ist voll funktionsfähig, aber auch sehr einfach.  Sie werden es an Ihre Anforderungen anpassen wollen.
 
-Um Ihr neues Thema in Aktion zu sehen, müssen Sie das Standardthema von `quark` zu `my-theme` ändern. Bearbeiten Sie also Ihre Datei `user/config/system.yaml` und schreiben Sie:
+Um Ihr neues Theme in Aktion zu sehen, müssen Sie das Standardthema von `quark` zu `my-theme` ändern. Bearbeiten Sie also Ihre Datei `user/config/system.yaml` und schreiben Sie:
 
 [prism classes="language-yaml line-numbers"]
 ...
@@ -129,7 +129,7 @@ Dies ist eine Beispielstruktur, aber es sind noch einige Dinge erforderlich:
 
 Diese Elemente sind entscheidend und Ihr Theme wird nicht zuverlässig arbeiten, wenn Sie diese Elemente nicht in Ihr Theme aufnehmen.
 
-* **`blueprints.yaml`** – Die Konfigurationsdatei, die Grav nutzt, um Informationen zu Ihrem Theme zu erhalten. Dort kann auch ein Formular definiert werden, das im Adminbereich angezeigt werden kann, wenn die Theme-Details angezeigt werden. In diesem Formular können Sie die Einstellungen für das Thema speichern. [Diese Datei ist im Kapitel Formulare dokumentiert](/forms/blueprints).
+* **`blueprints.yaml`** – Die Konfigurationsdatei, die Grav nutzt, um Informationen zu Ihrem Theme zu erhalten. Dort kann auch ein Formular definiert werden, das im Adminbereich angezeigt werden kann, wenn die Theme-Details angezeigt werden. In diesem Formular können Sie die Einstellungen für das Theme speichern. [Diese Datei ist im Kapitel Formulare dokumentiert](/forms/blueprints).
 * **`my-theme.php`** – Die Benennung dieser Datei folgt dem Theme-Namen. Darin kann jede Logik enthalten sein, die Ihr Theme benötigt. Sie können jeden beliebigen [Plugin Ereignis-Hook](/plugins/event-hooks) verwenden, mit Ausnahme von `onPluginsInitialized()`. Es gibt auch den spezifischen Hook `onThemeInitialized()` für Themes, den Sie stattdessen verwenden können.
 * **`my-theme.yaml`** – Diese Konfiguration wird vom Plugin verwendet, um Optionen zu setzen, die das Theme verwenden könnte.
 * **`templates/`** – Dieses Verzeichnis enthält die Twig-Templates zum Rendern der Seiten.
@@ -247,50 +247,50 @@ Wenn Sie sich die `templates/partials/base.html.twig` anschauen, sehen Sie die K
 
 ## Stufe 5 – Auf den Punkt gebracht
 
-Bitte lesen Sie sich den Code in der Datei `base.html.twig` durch. So können Sie verstehen, was eigentlich passiert.  Sie sollten einige wichtige Punkte beachten:
+Bitte lesen Sie sich den Code in der Datei `base.html.twig` (siehe oben) durch. So können Sie verstehen, was eigentlich passiert.  Sie sollten einige wichtige Punkte beachten:
 
-1. Die Variable `theme_config` wird in der Konfiguration des Themes gesetzt.  Da Twig nicht gut mit Bindestrichen umgehen kann, verwenden wir zum Abfragen von Variablen mit Bindestrichen (z.B. `config.themes.my-theme`) die Twig-Funktion `attribute()`, die Daten dynamisch aus `config.themes` für `my-theme` abruft.
+1. Die Variable `theme_config` (Zeile 1) wird in der Konfiguration des Themes gesetzt.  Da Twig nicht gut mit Bindestrichen umgehen kann, verwenden wir zum Abfragen von Variablen mit Bindestrichen (z.B. `config.themes.my-theme`) die Twig-Funktion `attribute()`, die Daten dynamisch aus `config.themes` für `my-theme` abruft.
 
-1. Das Element `<html lang=...` wird auf die aktive Sprache in Grav gesetzt. Falls es aktiviert ist, ansonsten verwendet es die `default_lang`, wie in der `theme_config` eingestellt.
+1. Das Element `<html lang=...` (Zeile 3) wird auf die aktive Sprache in Grav gesetzt. Falls es aktiviert ist, ansonsten verwendet es die `default_lang`, wie in der `theme_config` eingestellt.
 
-1. Die Syntax `{% Blockkopf %}{% Endblockkopf %}` definiert einen Bereich in dem Basis-Twig-Template. Beachten Sie, dass die Verwendung von `head` im Tag `{% endblock head %}` nicht erforderlich ist, aber hier aus Gründen der besseren Lesbarkeit verwendet wird. In diesen Block fügen wir alles ein, was sich typischerweise im HTML-Tag `<head>` befindet.
+1. Die Syntax `{% block head %}{% endblock head %}` (Zeile 5-15) definiert einen Bereich in dem Basis-Twig-Template. Beachten Sie, dass die Verwendung von `head` im Tag `{% endblock head %}` nicht erforderlich ist, aber hier aus Gründen der besseren Lesbarkeit verwendet wird. In diesen Block fügen wir alles ein, was sich typischerweise im HTML-Tag `<head>` befindet.
 
-1. Der Tag `<title>` wird dynamisch auf der Grundlage der Variablen `title` der Seite gesetzt, wie sie im Header der Seite steht.  Der `header.title` ist eine Kurzform von `page.header.title`.
+1. Der Tag `<title>` (Zeile 7) wird dynamisch auf der Grundlage der Variablen `title` der Seite gesetzt, wie sie im Header der Seite steht.  Der `header.title` ist eine Kurzform von `page.header.title`.
 
-1. Nachdem ein paar Standard-Meta-Tags gesetzt sind, gibt es eine Referenz zum Einbinden von `partials/metadata.html.twig`. Diese Datei enthält einen Loop, der die Metadaten der Seite durchläuft. Sie ist (eigentlich) eine Zusammenführung von Metadaten aus `site.yaml` und allen seitenspezifischen Overrides.
+1. Nachdem ein paar Standard-Meta-Tags gesetzt sind, gibt es eine Referenz zum Einbinden von `partials/metadata.html.twig` (Zeile 11). Diese Datei enthält einen Loop, der die Metadaten der Seite durchläuft. Sie ist (eigentlich) eine Zusammenführung von Metadaten aus `site.yaml` und allen seitenspezifischen Overrides.
 
-1. Der Punkt `<link rel="icon"...` wird durch den Verweis auf ein spezifisches Bild des Themes gesetzt.  In diesem Fall befindet es sich im Theme-Verzeichnis unter `images/logo.png`.  Die Syntax hierfür lautet `{{ url('theme://images/logo.png') }}`.
+1. Der Punkt `<link rel="icon"...` (Zeile 13) wird durch den Verweis auf ein spezifisches Bild des Themes gesetzt. In diesem Fall befindet es sich im Theme-Verzeichnis unter `images/logo.png`. Die Syntax hierfür lautet `{{ url('theme://images/logo.png') }}`.
 
-1. Der Punkt `<link rel="canonical"...` legt eine kanonische URL für die Seite fest, die über `{{ page.url(true, true) }}` immer auf die volle URL der Seite umgesetzt wird.
+1. Der Punkt `<link rel="canonical"...` (Zeile 14) legt eine kanonische URL für die Seite fest, die über `{{ page.url(true, true) }}` immer auf die volle URL der Seite umgesetzt wird.
 
-1. Jetzt definieren wir den Block `stylesheets` und fügen mit dem [Asset Manager](/themes/asset-manager) mehrere Assets hinzu. Das erste lädt das Pure.css-Framework. Mit dem zweiten wird [FontAwesome](http://fontawesome.io/) geladen, um nützliche Symbole zur Verfügung zu stellen. Der letzte Eintrag verweist auf die Datei `custom.css` im Ordner `css/` des Themes. Hier sind einige nützliche Stile für den Anfang, Sie können aber hier noch weitere hinzufügen. Außerdem können Sie bei Bedarf weitere CSS-Datei-Einträge hinzufügen.
+1. Jetzt definieren wir den Block `stylesheets` (Zeile 17-21) und fügen mit dem [Asset Manager](/themes/asset-manager) mehrere Assets hinzu. Das erste lädt das Pure.css-Framework. Mit dem zweiten wird [FontAwesome](http://fontawesome.io/) geladen, um nützliche Symbole zur Verfügung zu stellen. Der letzte Eintrag verweist auf die Datei `custom.css` im Ordner `css/` des Themes. Hier sind einige nützliche Stile für den Anfang, Sie können aber hier noch weitere hinzufügen. Außerdem können Sie bei Bedarf weitere CSS-Datei-Einträge hinzufügen.
 
-1. Der Aufruf `{{ assets.css()|raw }}}` ist der Auslöser für das Template, alle CSS-Link-Tags darzustellen.
+1. Der Aufruf `{{ assets.css()|raw }}}` (Zeile 28) ist der Trigger, der das Template veranlasst, alle CSS-Link-Tags zu rendern.
 
-1. Der `javascripts` Block, wie auch der `stylesheets` Block ist ein guter Ort, um Ihre JavaScript-Dateien unterzubringen.  In diesem Beispiel fügen wir nur die 'jquery'-Bibliothek hinzu, die bereits mit Grav gebündelt ist, so dass Sie keinen Pfad zu ihr angeben müssen.
+1. Der `javascripts` Block (Zeile 23-25), wie auch der `stylesheets` Block (Zeile 17-21) ist eine gute Stelle, um Ihre JavaScript-Dateien unterzubringen. In diesem Beispiel fügen wir nur die 'jquery'-Bibliothek hinzu, die bereits mit Grav gebundelt, sodass Sie dafür keinen Pfad angeben müssen.
 
-1. Die Funktion `{{ assets.js()|raw }}` wird alle JavaScript-Tags rendern.
+1. Die Funktion `{{ assets.js()|raw }}` (Zeile 29) wird alle JavaScript-Tags rendern.
 
-1. The `<body>` tag has a class attribute that will output anything you set in the `body_classes` variable of the page's frontmatter.
+1. Das Tag `<body>` (Zeile 33) hat ein class-Attribut, das alles anzeigt, was Sie in der Variablen `body_classes` in der Frontmatter der Seite setzen.
 
-1. The `header` block has a few things that output the HTML header of the page.  One important thing to note is the logo is hyperlinked to the `base_url` with the logic: `{{ base_url == '' ? '/' : base_url }}`.  This is to ensure that if there is no subdirectory, the link is just `/`.
+1. Der Block `header` (Zeile 35-49) enthält ein paar Elemente, die den HTML-Header der Seite ausgeben.  Besonders zu beachten ist, dass das Logo mit dem  Argument `{{ base_url == '' ? '/' : base_url }}}` auf die `base_url` verlinkt ist. Damit wird verhindert, dass der Link nur aus `/` besteht, falls es kein Unterverzeichnis gibt.
 
-1. The title of the site is output as the logo in this example theme with `{{ config.site.title }}` but you could just replace this with a `<img>` tag to a logo if you wanted.
+1. In diesem Beispieltheme wird der Titel der Site mit `{{{ config.site.title }}}` (Zeile 40) als Logo ausgegeben. Sie könnten, wenn Sie wollen, diese Variable einfach durch einen `<img>` Tag zu einer Logo-Datei ersetzen.
 
-1. The `<nav>` tag actually contains a link to `partials/navigation.html.twig` that contains the logic to loop over any **visible** pages and display them as a menu.  By default it supports dropdown menus for nested pages, but this can be turned off via the theme's configuration.  Have a look in this navigation file to get an idea of how the menu is generated.
+1. Der Tag `<nav>` (Zeile 43+44) enthält aktuell einen Link zu der Datei `partials/navigation.html.twig`. Sie enthält die Anweisung alle **sichtbaren** Seiten in einer Schleife zu auszulesen und sie als Menü anzuzeigen.  Standardmäßig werden Dropdown-Menüs für verschachtelte Seiten unterstützt. Dies kann jedoch über die Konfiguration des Themes abgeschaltet werden. Schauen Sie sich diese Navigationsdatei an, um einen Eindruck davon zu bekommen, wie das Menü generiert wird.
 
-1. The use of `{% block content %}{% endblock %}` provides a placeholder that allows us to provide content from a template that extends this one. Remember we overrode this in `default.html.twig` to output the page's content.
+1. Die Verwendung von `{% block content %}{% endblock %}` (Zeile 54) erstellt einen Platzhalter, der es erlaubt, Inhalte aus einem anderen Template darzustellen, das dieses hier erweitert. Vergessen Sie nicht, dass wir es aber in `default.html.twig` überschrieben haben, um den Inhalt der Seite auszugeben.
 
-1. The `footer` block contains a simple footer, you can easily modify this for your needs.
+1. Der Block `footer` (Zeile 59-65) enthält einen einfachen Footer, den Sie leicht an Ihre Wünsche anpassen können.
 
-1. Similar to the content block, the `{% block bottom %}{% endblock %}` is intended as a placeholder for templates to add custom JavaScript initialization or analytic codes. In this example, we output any JavaScript that was added to the `bottom` Asset Group.  Read more about this in the [Asset Manager](/themes/asset-manager) documentation.
+1. Ähnlich wie der Inhaltsblock ist der Block `{% block bottom %}{% endblock %}` (Zeile 67-69) als Platzhalter für Templates gedacht, um benutzerdefinierte JavaScript-Initialisierung oder analytische Codes einzufügen. In diesem Beispiel geben wir jedes JavaScript aus, das zu der Asset-Gruppe `bottom` hinzugefügt wurde.  Lesen Sie mehr darüber in der [Asset Manager](/themes/asset-manager) Dokumentation.
 
 
-## Stufe 6 - Theme CSS
+## Stufe 6 – Theme-CSS
 
-You might have noticed that in the `partials/base.html.twig` file we made reference to a custom theme css via Asset Manager: `do assets.add('theme://css/custom.css', 98)`.  This file will house any custom CSS we need to fill in the gaps not provided by the Pure.css framework.  As Pure is a very minimal framework, it provides the essentials but almost no styling.
+Vielleicht ist Ihnen aufgefallen, dass wir in der Datei `partials/base.html.twig` über den Asset Manager auf ein benutzerdefiniertes Theme-CSS verweisen: `do assets.add('theme://css/custom.css', 98)`. Diese Datei enthält sämtliches benutzerdefiniertes CSS, das wir benötigen, um die Lücken zu füllen, welches das Pure.css-Framework nicht vorsieht.  Da Pure ein sehr minimalistisches Framework ist, bietet es das Wesentliche, aber fast keine Gestaltung.
 
-1. In your `user/themes/my-theme/css` folder, view the `custom.css`:
+1. Sehen Sie sich in Ihrem Verzeichnis `user/themes/my-theme/css` die Datei `custom.css` an:
 
 [prism classes="language-css line-numbers"]
 /* Core Stuff */
@@ -471,12 +471,12 @@ blockquote {
 
 [/prism]
 
-This is pretty standard CSS stuff and sets some basic margins, fonts, colors, and utility classes. There is some basic content styling and some more extensive styling required to render the drop-down menu.  Feel free to modify this file as you need, or even add new CSS files (just ensure you add a reference in the `head` block by following the example for `custom.css`).
+Das ist ziemlich gewöhnlicher CSS-Kram, der einige Basiswerte für Ränder, Schriftarten, Farben und Hilfsklassen festlegt. Für die Darstellung des Dropdown-Menüs sind einige einfache Inhalts-Stylings und teilweise umfangreichere Stylings erforderlich. Sie können diese Datei je nach Bedarf modifizieren oder sogar neue CSS-Dateien hinzufügen (passen Sie einfach auf, dass Sie eine Referenz im Block `head` einfügen, indem Sie dem Beispiel für `custom. css` folgen).
 
-## Stufe 7 - Testing
+## Stufe 7 – Testen
 
-To see your theme in action, open your browser, and point it to your Grav site.  You should see something like this:
+Um Ihr Theme in Aktion zu sehen, öffnen Sie Ihren Browser und rufen Sie Ihre Grav-Website auf.  Sie sollten etwa folgendes sehen:
 
 ![](pure-theme.png?lightbox&resize=800,600)
 
-Congratulations, you have created your first theme!
+Gratulation, Sie haben Ihr erstes Theme erstellt!
