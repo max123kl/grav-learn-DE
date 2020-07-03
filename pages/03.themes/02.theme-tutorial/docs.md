@@ -265,11 +265,11 @@ Bitte lesen Sie sich den Code in der Datei `base.html.twig` durch. So können Si
 
 1. Jetzt definieren wir den Block `stylesheets` und fügen mit dem [Asset Manager](/themes/asset-manager) mehrere Assets hinzu. Das erste lädt das Pure.css-Framework. Mit dem zweiten wird [FontAwesome](http://fontawesome.io/) geladen, um nützliche Symbole zur Verfügung zu stellen. Der letzte Eintrag verweist auf die Datei `custom.css` im Ordner `css/` des Themes. Hier sind einige nützliche Stile für den Anfang, Sie können aber hier noch weitere hinzufügen. Außerdem können Sie bei Bedarf weitere CSS-Datei-Einträge hinzufügen.
 
-1. The `{{ assets.css()|raw }}` call is what triggers the template to render all the CSS link tags.
+1. Der Aufruf `{{ assets.css()|raw }}}` ist der Auslöser für das Template, alle CSS-Link-Tags darzustellen.
 
-1. The `javascripts` block, like the `stylesheets` block is a good place to put your JavaScript files.  In this example, we only add the 'jquery' library which is already bundled with Grav, so you don't need to provide a path to it.
+1. Der `javascripts` Block, wie auch der `stylesheets` Block ist ein guter Ort, um Ihre JavaScript-Dateien unterzubringen.  In diesem Beispiel fügen wir nur die 'jquery'-Bibliothek hinzu, die bereits mit Grav gebündelt ist, so dass Sie keinen Pfad zu ihr angeben müssen.
 
-1. The `{{ assets.js()|raw }}` will render all the JavaScript tags.
+1. Die Funktion `{{ assets.js()|raw }}` wird alle JavaScript-Tags rendern.
 
 1. The `<body>` tag has a class attribute that will output anything you set in the `body_classes` variable of the page's frontmatter.
 
