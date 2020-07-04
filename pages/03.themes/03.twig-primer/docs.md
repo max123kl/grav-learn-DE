@@ -4,32 +4,32 @@ taxonomy:
     category: docs
 ---
 
-Twig is a quick, optimized template engine for PHP. It is designed from the ground up to make creating templates easier on both the developer and the designer.
+Twig ist eine einfache, effiziente Template-Engine für PHP. Sie ist von vornherein auf die Erstellung von Templates ausgelegt. Das erleichtert sowohl dem Entwickler als auch dem Designer die Arbeit.
 
-Its easy-to-follow syntax and straightforward processes make it a natural fit for anyone familiar with Smarty, Django, Jinja, Liquid, or Stencil.
+Dank seiner leicht verständlichen Syntax und seiner unkomplizierten Prozeduren eignet es sich für jeden, der mit Smarty, Django, Jinja, Liquid oder Stencil vertraut ist.
 
-We use it for our Grav templates in part because of its flexibility and inherent security. The fact that it is also one of the fastest template engines for PHP out there made choosing it for use in Grav a no brainer.
+Wir verwenden Twig für unsere Grav-Templates unter anderem wegen seiner Flexibilität und der enthaltenen Sicherheitsfunktionen. Die Tatsache, dass es gleichzeitig eine der schnellsten Template-Engines für PHP ist, machte die Entscheidung für den Einsatz in Grav zu einem Kinderspiel.
 
-Twig compiles templates down to plain PHP. This cuts the amount of PHP overhead down to a minimum, resulting in a faster, more streamlined user experience.
+Twig kompiliert Templates bis hinunter zu purem PHP. Dadurch wird der PHP-Overhead auf ein Minimum reduziert, was zu einer noch schnelleren und effektiveren Arbeitsweise führt.
 
-It is also a very flexible engine thanks to its *lexer* and *parser*. This enables the developer to create their own custom tags and filters. It also enables it to create its own [domain-specific language](http://en.wikipedia.org/wiki/Domain-specific_language) (DSL).
+Dank seines **Lexers** und **Parsers** ist es auch eine sehr flexible Engine. Der Entwickler kann somit seine eigenen benutzerdefinierten Tags und Filter erstellen. Darüber hinaus ermöglicht es ihm, seine eigene [domänenspezifische Sprache](https://de.wikipedia.org/wiki/Dom%C3%A4nenspezifische_Sprache) (DSL) zu entwickeln.
 
-When it comes to security, Twig doesn't cut any corners. It gives the developer a sandbox mode that enables them to examine any untrusted code. This gives you the ability to use Twig as a template language for applications while giving users the ability to modify the template design.
+Wenn es um die Sicherheit geht, macht Twig keine Abstriche. Es bietet dem Entwickler einen Sandbox-Modus, der ihm ermöglicht, jeden nicht vertrauenswürdigen Code zu untersuchen. So können Sie Twig als Template-Sprache für Applikationen verwenden und gleichzeitig den Benutzern die Möglichkeit geben, das Template-Design zu modifizieren.
 
-Basically, it is a powerful engine that gives you control over the user interface. When combined with YAML for configuration, it makes for a powerful and simple system for any developer or site manager to work with.
+Im Prinzip ist es ein leistungsstarker Motor, der Ihnen die Kontrolle über die Benutzeroberfläche gibt. In Kombination mit YAML zur Konfiguration ergibt sich ein leistungsfähiges und einfaches System, mit dem jeder Entwickler oder Site-Manager arbeiten kann.
 
-## How Does Twig Work?
+## Wie funktioniert Twig?
 
-Twig works by taking all the hocus pocus out of template design. Templates are basically just text files that contain *variables* or *expressions* that are replaced by values as the template is evaluated.
+Twig arbeitet, indem es auf den ganzen Hokuspokus aus dem Vorlagen-Design verzichtet. Templates sind hier nur Textdateien, die *Variablen* oder *Ausdrücke* enthalten, die bei der Ausführung des Templates durch Werte ersetzt werden.
 
-*Tags* are also an important part of a template file, as these control the logic of the template itself.
+*Tags* sind auch ein entscheidender Teil einer Template-Datei, da sie die Funktionalität des Templates selbst steuern.
 
-Twig has two primary language constraints.
+Twig hat zwei wesentliche sprachliche Einschränkungen.
 
-* `{{ }}` prints the result of an expression evaluation;
-* `{% %}` executes statements.
+* `{{ }}` gibt das Resultat einer Auswertung eines Ausdrucks aus
+* `{% %}` führt Anweisungen aus
 
-Here is a basic template created using Twig:
+Hier ist ein Basis-Template, das mit Twig erstellt wurde:
 
 [prism classes="language-html line-numbers"]
 <!DOCTYPE html>
@@ -50,96 +50,96 @@ Here is a basic template created using Twig:
 </html>
 [/prism]
 
-In this example, we set the title of the site up as you would with any standard Web page. The difference is that we were able to use simple Twig syntax to present the author's name and create a dynamic list of types of items.
+In diesem Beispiel richten wir den Titel der Website so ein, wie Sie es von jeder Standard-Webseite gewohnt sind. Der Unterschied besteht darin, dass wir die einfache Twig-Syntax verwenden konnten, um den Namen des Autors zu präsentieren und eine dynamische Liste von Elementtypen zu erstellen.
 
-A template is first loaded, then passed through the **lexer** where its source code is tokenized and broken up into small pieces. At this point, the **parser** takes the tokens and turns them into the abstract syntax tree.
+Ein Template wird zuerst geladen, dann durch den **Lexer** geleitet, wo sein Quellcode in Tokens umgewandelt und in kleine Stücke zerlegt wird. An diesem Punkt übernimmt der **Parser** die Tokens und wandelt sie in den abstrakten Syntaxbaum um.
 
-Once this is done, the compiler turns this into PHP code that can then be evaluated and displayed to the user.
+Sobald dies geschehen ist, konvertiert der Compiler den Quellcode in PHP-Code, der dann ausgewertet und dem User angezeigt werden kann.
 
-Twig can also be extended to add additional tags, filters, tests, operators, global variables, and functions. More information about extending Twig can be found in its [official documentation](http://twig.sensiolabs.org/doc/advanced.html).
+Twig kann auch erweitert werden, um zusätzliche Tags, Filter, Tests, Operatoren, globale Variablen und Funktionen hinzuzufügen. Nähere Informationen zur Erweiterung von Twig finden Sie in der [offiziellen Dokumentation](http://twig.sensiolabs.org/doc/advanced.html).
 
 ## Twig Syntax
 
-A Twig template has several key components that help it to understand what it is you would like to do. These include tags, filters, functions, and variables.
+Ein Twig-Template hat mehrere Schlüsselkomponenten, die analysieren was Sie gerne tun möchten. Dazu gehören Tags, Filter, Funktionen und Variablen.
 
-Let's take a closer look at these important tools and how they can help you build an incredible template.
+Werfen wir einen genaueren Blick auf diese wichtigen Hilfsmittel und wie sie Ihnen helfen können, ein erstaunliches Template zu gestalten.
 
 ### Tags
 
-Tags tell Twig what it needs to do. It allows you to set which code Twig should handle, and which code it should ignore during evaluation.
+Tags weisen Twig an, was es zu machen hat. Damit können Sie festlegen, welchen Code Twig verarbeiten soll und welchen Code es bei der Evaluierung ignorieren soll.
 
-There are several different kinds of tags, and each has its own specific syntax that sets them apart.
+Es gibt diverse unterschiedliche Typen von Tags und jeder hat seine eigene spezifische Syntax, die sie voneinander unterscheidet.
 
-#### Comment Tags
+#### Kommentar-Tags
 
-Comment tags (`{# Insert Comment Here #}`) are used to set comments that exist within the Twig template file, but aren't actually seen by the end user. They are removed during evaluation, and are neither parsed nor output.
+Kommentar-Tags (`{# hier Kommentar einfügen #}`) werden verwendet, um Kommentare zu setzen, die in der Twig Template-Datei enthalten sind, aber vom Enduser nicht sichtbar sind. Sie werden während der Evaluierung entfernt und weder geparst noch ausgegeben.
 
-A good use of these tags is to explain what a specific line of code or command does so that another developer or designer on your team can quickly read and understand.
+Eine sinnvolle Anwendung dieser Tags ist die Beschreibung einer bestimmten Codezeile oder eines Befehls. So kann ein anderer Entwickler oder Designer in Ihrem Team diese Tags schnell lesen und verstehen.
 
-Here is an example of a comment tag as you would find it in a Twig template file:
-
-[prism classes="language-twig"]
-{# Chocolate Chip Cookies are great! Don't tell anyone! #}
-[/prism]
-
-#### Output Tags
-
-Output tags (`{{ Insert Output Here }}`) will be evaluated and added to the generated output. This is where you would put anything you want to appear on the front end, or in some other generated content.
-
-Here is an example of output tags being used in a Twig template:
+Hier ist ein Beispiel für einen Kommentar-Tag, wie Sie ihn in einer Twig Template-Datei vorfinden könnten:
 
 [prism classes="language-twig"]
-My name is {{ name }} and I love cookies.
+{# Schokokekse sind großartig! Nicht weitersagen! #}
 [/prism]
 
-The variable `name` has been inserted into this line and will appear to the end user as `My name is Jake and I love cookies.` as `Jake` was the value of the name variable.
+#### Output-Tags
 
-#### Action Tags
+Output-Tags (`{{ hier Output einfügen }}`) werden analysiert und dem generierten Output hinzugefügt. Hier würden Sie alles einfügen, was Sie auf dem Frontend oder in anderen generierten Inhalten erscheinen lassen wollen.
 
-Action tags are the go-getters of the Twig world. These tags actually do something, as opposed to the others which either pass something along or sit idly in the source code waiting for a designer to read it.
+Hier folgt ein Beispiel für die Verwendung von Ausgabe-Tags in einem Twig-Template:
 
-Action tags set variables, loop through arrays, and test conditionals. Your `for` and `if` statements are made using these tags.
+[prism classes="language-twig"]
+Mein Name ist {{ name }} und ich liebe Cookies.
+[/prism]
 
-This is what an action tag might look like in a Twig template:
+Die Variable `name` wurde in diese Zeile eingefügt und erscheint dem Endbenutzer als `Mein Name ist Jake und ich liebe Cookies.`, denn der Wert der Variable „name“ war `Jake`.
+
+#### Action-Tags
+
+Action Tags sind die Leistungsträger in der Twig-Welt. Im Gegensatz zu den anderen Tags, die entweder etwas weitergeben oder untätig im Quellcode sitzen und darauf warten, dass ein Designer sie liest, tun diese Tags tatsächlich etwas.
+
+Aktions-Tags setzen Variablen, Schleifen durch Arrays und Testkonditionen. Ihre `for` und `if` Statements werden mit Hilfe dieser Tags gemacht.
+
+So könnte ein Action-Tag in einer Twig-Vorlage aussehen:
 
 [prism classes="language-twig line-numbers"]
 {% set hour = now | date("G") %}
 {% if hour >= 9 and hour < 17 %}
-    <p>Time for cookies!</p>
+    <p>Zeit für Cookies!</p>
 {% else %}
-    <p>Time to bake more cookies!</p>
+    <p>Zeit, mehr Kekse zu backen!</p>
 {% endif %}
 [/prism]
 
-The initial action tag sets the hour as the current hour in a 24-hour clock. That value is then used to gauge whether it is between 9am and 5pm. If it is, `Time for cookies!` is displayed. If it isn't, `Time to bake more cookies!` is displayed, instead.
+Das initiale Action-Tag setzt die Stunde als die aktuelle Stunde in einer 24-Stunden-Uhr. Dieser Wert wird dann dazu verwendet, um festzustellen, ob sie zwischen 9 und 17 Uhr liegt. Wenn ja, dann wird `Zeit für Cookies!` angezeigt. Ist dies nicht der Fall, wird stattdessen `Zeit, mehr Kekse zu backen!` angezeigt.
 
-It is very important that tags not overlap one another. You can't put an output tag inside of an action tag, or vice versa.
+Es ist sehr wichtig, dass sich die Tags nicht überlappen. Es ist nicht möglich, einen Output-Tag innerhalb eines Action-Tags zu platzieren oder umgekehrt.
 
-### Filters
+### Filter
 
-Filters are useful, especially when you are using the output tags to display data that might not be formatted the way you want it.
+Filter sind nützlich, vor allem wenn Sie die Output-Tags verwenden, um Daten anzuzeigen, die möglicherweise nicht so formatiert sind, wie Sie es wünschen.
 
-Let's say the value of the `name` variable might include unwanted SGML/XML tags. You can filter them out using the code below:
+Nehmen wir an, der Wert der Variablen `name` würde unerwünschte SGML/XML-Tags enthalten. Sie könnten diese mit Hilfe des folgenden Codes herausfiltern:
 
 [prism classes="language-twig"]
 {{ name|striptags }}
 [/prism]
 
-### Functions
+### Funktionen
 
-Functions can generate content. They are typically followed by arguments, which appear within parenthesis placed directly after the function call. Even if no argument is present, the function will still have a `()` parenthesis placed directly after it.
+Funktionen können Inhalte generieren. Normalerweise schließen sich Argumente an, die in Klammern direkt nach dem Funktionsaufruf stehen. Selbst wenn kein Argument vorhanden ist, wird die Funktion immer noch eine Klammer `()` aufweisen, die direkt nach dem Funktionsaufruf steht.
 
 [prism classes="language-twig line-numbers"]
 {% if date(cookie.created_at) < date('-2days') %}
-    {# Eat it! #}
+    {# Cookies essen! #}
 {% endif %}
 [/prism]
 
-## Resources
+## weitere Quellen
 
-* [Official Twig Documentation](http://twig.sensiolabs.org/documentation)
+* [Offizielle Twig Dokumentation](http://twig.sensiolabs.org/documentation)
 * [Twig for Template Designers](http://twig.sensiolabs.org/doc/templates.html)
 * [Twig for Developers](http://twig.sensiolabs.org/doc/api.html)
 * [6 Minute Video Introduction to Twig](http://www.dev-metal.com/6min-video-introduction-twig-php-templating-engine/)
 * [Introduction to Twig](http://www.slideshare.net/markstory/introduction-to-twig)
-* [Twig: The Basics (free intro to paid course)](https://knpuniversity.com/screencast/twig/basics)
+* [Twig: The Basics (kostenlose Einführung zu einem kostenpflichtigen Kurs)](https://knpuniversity.com/screencast/twig/basics)
