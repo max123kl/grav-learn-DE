@@ -6,33 +6,33 @@ taxonomy:
 
 ![](grav-server-error.png?classes=center)
 
-Server errors are almost always caused by misconfiguration of Grav. Something unexpected happened and because of that Grav is unable to recover and serve the page.
+Serverfehler werden fast immer durch eine Fehlkonfiguration von Grav verursacht. Etwas Unerwartetes ist passiert und aus diesem Grund ist Grav nicht in der Lage, die Seite zu sichern und zu aktualisieren.
 
-When you see this message it means your server is running in `Production` mode to hide potentially sensitive information from displaying to your users.  The error itself will be stored in the `logs/grav.log` file.  Please examine this file to determine the exact nature of the error.
+Wenn Sie diese Meldung sehen, bedeutet das, dass Ihr Server im `Produktionsmodus` läuft, um potentiell sensible Informationen vor der Veröffentlichung gegenüber Ihren Benutzern zu verbergen.  Der Fehler selbst wird in der Datei `logs/grav.log` aufgezeichnet.  Bitte untersuchen Sie diese Datei, um die genaue Art des Fehlers festzustellen.
 
-Possible reasons include:
+Mögliche Gründe sind unter anderem:
 
-* Server errors are caused by out-of-date configuration
-* Incorrect file permissions which prevents Grav from writing data
-* Changes in the file-system that Grav is not yet aware about
-* Errors in parsing configuration due to invalidly formatted configuration files
+* Eine veraltete Konfiguration verursacht Server-Fehler
+* Falsche Dateiberechtigungen hindern Grav daran, Daten zu speichern
+* Grav kennt Änderungen am Dateisystem noch nicht
+* Fehler beim Parsen der Konfiguration wegen inkorrekter Konfigurationsdateien
 
 
-!!! If you have the **Grav Administration** plugin installed, you can browse the Server Errors from there. By clicking the individual errors you can see the debug pages even if the debugger was turned off.
+!!! Wenn Sie das **Grav-Admin** Plugin installiert haben, können Sie die Server-Fehler von dort aus einsehen. Durch Anklicken der einzelnen Fehler können Sie die Debug-Seiten sehen, auch wenn der Debugger ausgeschaltet war.
 
-## Out-of-date configuration
+## Veraltete Konfiguration
 
-The first thing you should do is flush the cache to ensure that the configuration is up to date:
+Als erstes sollten Sie den Cache leeren, um sicherzustellen, dass die Konfiguration auf dem aktuellen Stand ist:
 
 [prism classes="language-bash command-line"]
 bin/grav clear-cache
 [/prism]
 
-!! Before moving on, make sure that you do not have other file permission issues like this.
+!! Bevor Sie weitermachen, vergewissern Sie sich, dass Sie keine anderen Probleme mit den Dateiberechtigungen, wie die folgenden haben.
 
-## Installation and configuration issues
+## Mögliche Installations- und Konfigurationsfehler
 
-- system requirements
-- file permissions
-- installation issues
-- configuration issues
+- Systemanforderungen nicht erfüllt
+- Dateiberechtigungen falsch gesetzt
+- Installationsprobleme
+- Konfigurationsprobleme
