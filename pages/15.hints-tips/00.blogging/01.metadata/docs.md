@@ -8,40 +8,40 @@ taxonomy:
     category: docs
 ---
 
-When you use Grav as your blogging platform you will want to include metadata that helps to populate descriptions and images when people share your post on Social Media such as Facebook, Twitter, etc. 
+Wenn Sie Grav als Blogging-Plattform einsetzen, werden Sie Metadaten einbinden wollen, die helfen, Beschreibungen und Bilder zu ergänzen, wenn andere Ihren Beitrag in sozialen Medien wie Facebook, Twitter usw. teilen wollen.
 
-You would add this information into the [Header](/content/headers) section of your Grav page. 
+Sie sollten diese Informationen in den Bereich [Header](/content/headers) Ihrer Grav-Seite einfügen.
 
-Within the documentation there is reference to the meta data that you need to add within the header section, under [Meta Page Headers](/content/headers#meta-page-headers).  However, if you have transitioned from a platform such as WordPress where you use a plugin for this you might not realise the importance of the Metadata. 
+Innerhalb der Dokumentation gibt es einen Verweis auf die Metadaten, die Sie im Header unter [Meta Page Headers](/content/headers#meta-page-headers) hinzufügen müssen. Wenn Sie jedoch von einer Plattform wie WordPress umgestiegen sind, auf der Sie ein Plugin dafür einsetzen, erkennen Sie möglicherweise nicht die Bedeutung der Metadaten.
 
-At the start of each of your blog posts you will want to have the following: 
+Am Anfang jeder Ihrer Blog-Beiträge werden Sie vermutlich folgende Informationen sehen wollen:
 
 [prism classes="language-yaml line-numbers"]
 ---
-title: Blog Post Title
-publish_date: Date the blog post will go live
-date: Date the blog post was written
+title: Blog Post Titel
+publish_date: Datum der Freischaltung des Blog-Eintrags
+date: Erstellungsdatum des Blog-Eintrags
 metadata:
-    'og:title': Blog Post Title
+    'og:title': Blog Post Titel
     'og:type': article
-    'og:description': Description of what your blog post is covering.  This will be visible when people share your post on social media.
-    'og:url': The URL of the blog post
-    'og:site_name': The name of the overall site the blog post belongs to. 
-    'og:locale': The language your blog post is written in
-    'og:image': The image you reference here will be visible when shared on social media. 
-    'twitter:card' : The type of Twitter card that should be used. 
-    'twitter:site' : Your Twitter handle
-    'twitter:title' : Blog Post Title
-    'twitter:description' : Description of what your blog post is covering.  This will be visible when people share your post on social media.
-    'twitter:image' : The image you reference here will be visible when shared on social media. 
-    'twitter:creator': The twitter handle of the blog post author. 
+    'og:description': Beschreibung des in Ihrem Blog-Eintrag behandelten Themas.  Das wird sichtbar, wenn jemand Ihren Beitrag in sozialen Medien veröffentlicht.
+    'og:url': Die URL des Blogbeitrags
+    'og:site_name': Der Name der gesamten Website, zu der der Blog-Beitrag gehört.
+    'og:locale': Die Sprache, in der Ihr Blog-Beitrag geschrieben ist
+    'og:image': Das Bild, auf das Sie hier verweisen, wird sichtbar, wenn es in sozialen Medien freigegeben wird.
+    'twitter:card' : Der Typ der Twitter-Karte, die zu verwenden ist.
+    'twitter:site' : Ihr Twitter-Handle
+    'twitter:title' : Blog Post Titel
+    'twitter:description' : Beschreibung des in Ihrem Blog-Eintrag behandelten Themas. Das wird sichtbar, wenn jemand Ihren Beitrag in sozialen Medien veröffentlicht.
+    'twitter:image' : Das Bild, auf das Sie hier verweisen, wird sichtbar, wenn es in sozialen Medien freigegeben wird.
+    'twitter:creator': Der Twitter-Handle des Blog-Post-Autors
 taxonomy:
-    category: [Blog post category]
+    category: [Kategorie des Blog-Beitrags]
     tag: [Tag 1, Tag 2, Tag 3, Tag 4]
-    author: Author's name
+    author: Name das Autors
 ---
 [/prism]
 
-Read more about [Twitter Cards](https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started.html)
+Mehr Informationen über [Twitter Cards](https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started.html) finden
 
-Read more about [The Open Graph Protocol](https://ogp.me/)
+Weitere Informationen zu dem [Open Graph Protokoll](https://ogp.me/)

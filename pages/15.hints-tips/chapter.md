@@ -4,8 +4,8 @@ taxonomy:
     category: docs
 ---
 
-### Chapter 15
+### Kapitel 15
 
-# Hints and Tips
+# Hinweise und Tipps
 
-Discover hints and tips from Grav users. 
+Tipps und Hinweise von Grav-Anwendern entdecken
