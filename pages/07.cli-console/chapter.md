@@ -1,11 +1,13 @@
 ---
-title: CLI Console
+title: CLI-Konsole
 taxonomy:
     category: docs
 ---
 
-### Chapter 7
+### Kapitel 7
 
-# CLI Console
+# CLI-Konsole
 
-**Grav** is developer friendly and provides many useful **command line tools and features** to make things as simple and as scriptable as possible.
+### Die Befehlszeile
+
+**Grav** ist entwicklerfreundlich und bietet viele nützliche **Befehlszeilen-Tools und -Funktionen**, um die Arbeit so einfach und skriptfähig wie möglich zu machen.
