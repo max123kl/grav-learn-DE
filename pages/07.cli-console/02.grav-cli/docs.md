@@ -1,24 +1,24 @@
 ---
-title: Grav command
+title: Grav-Befehle
 page-toc:
   active: true
 taxonomy:
     category: docs
 ---
 
-Grav comes with a built-in command-line interface (CLI) which can be found at `bin/grav`. The CLI is extremely useful for running recurring tasks such as **clearing the cache**, making **backups**, and more.
+Grav verfügt über ein eingebautes Kommandozeilen-Interface (CLI), das unter `bin/grav` zu finden ist. Die CLI ist äußerst praktisch für das Ausführen von wiederkehrenden Aufgaben wie **Leeren des Caches**, Erstellen von **Sicherungen** und mehr.
 
-Accessing the CLI is a simple process but you need to use a **terminal**.  On a mac this is called `Terminal`, on windows, it's called `cmd` and on Linux, it's just a shell. UNIX style commands are not natively available in Windows cmd. Installing the [msysgit](http://msysgit.github.io/) package on a Windows machine adds [Git](https://git-scm.com/) and Git BASH, which is an alternative command prompt that makes UNIX commands available.  If you are accessing your server remotely, you most likely will use **SSH** to remotely log in to your server.  Check out this [great tutorial for more information on SSH](http://code.tutsplus.com/tutorials/ssh-what-and-how--net-25138).
+Der Zugriff auf die CLI ist ein einfacher Vorgang, aber Sie müssen ein **Terminal** verwenden. Auf einem Mac heißt das `Terminal`, unter Windows heißt es `cmd` und unter Linux ist es eine `Shell`. Befehle im UNIX-Stil sind in Windows cmd nicht nativ verfügbar. Durch die Installation des Pakets [msysgit](http://msysgit.github.io/) auf einem Windows-Rechner werden [Git](https://git-scm.com/) und Git BASH hinzugefügt, eine alternative Eingabeaufforderung, die UNIX-Befehle verfügbar macht. Wenn Sie Ihren Server per Fernzugriff erreichen, werden Sie höchstwahrscheinlich **SSH** verwenden, um sich per Fern-Anmeldung bei Ihrem Server einzuloggen. Schauen Sie sich dieses hervorragende [Tutorial zum Thema SSH](http://code.tutsplus.com/tutorials/ssh-what-and-how--net-25138) an, um genauere Informationen über SSH zu erhalten.
 
-Although some operations can be performed manually, by _relying_ on the CLI, these tasks could be automated via _cronjobs_ that run daily.
+Obwohl einige Operationen manuell ausgeführt werden können, indem man sich auf die CLI _verlässt_. Diese Aufgaben könnten allerdings über _cronjobs_ automatisiert werden, die täglich ausgeführt werden.
 
-To get a list of all the commands available in Grav, you can run the command:
+Um eine Liste aller in Grav verfügbaren Befehle zu erhalten, können Sie diesen Befehl ausführen:
 
 [prism classes="language-bash command-line"]
 bin/grav list
 [/prism]
 
-This should display something like:
+Das dürfte dann ungefähr so aussehen:
 
 [version=15]
 [prism classes="language-text"]
@@ -54,7 +54,7 @@ Available commands:
 [/prism]
 [/version]
 
-To get help for a specific command, you can prepend help to the command:
+Um Hilfe zu einem bestimmten Befehl zu erhalten, können Sie dem Befehl `help` voranstellen:
 
 [prism classes="language-bash command-line"]
 bin/grav help install
@@ -63,22 +63,22 @@ bin/grav help install
 ## Backup
 
 [version=15]
-Backing up your project is nothing more than creating an archive of the _ROOT_ of Grav. No Database, no complications.
+Die Sicherung Ihres Projekts ist nichts anderes als die Erstellung eines Archivs der _ROOT_ von Grav. Keine Datenbank, keine Komplikationen.
 
-Of course, you can simplify this even more by just using the Grav CLI. Supposing we have our `~/workspace/portfolio` project and that we want to create a backup of it, here's what we will do:
+Natürlich können Sie diese Aufgabe noch weiter vereinfachen, indem Sie einfach die Grav-CLI verwenden. Angenommen, wir haben unser `~/workspace/portfolio` Projekt und wollen ein Backup davon erstellen, dann werden wir folgendes tun:
 
 [prism classes="language-bash command-line"]
 cd ~/workspace/portfolio
 bin/grav backup
 [/prism]
 
-A new backup `portfolio-20140812174352.zip` file has been created at the `backup/` folder of the project. The long number after the name is just the date in the format of _year month day hour minute second_.
+Eine neue Sicherungsdatei `portfolio-20140812174352.zip` wurde im Ordner `backup/` des Projekts erstellt. Die lange Zahl hinter dem Namen ist nur das Datum im Format _Jahr Monat Tag Stunde Minute Sekunde_.
 
 [/version]
 [version=16]
-The Grav backup system has been completely revamped in Grav 1.6 to support multiple backup profiles.  These profiles are configures in the `user/config/backups.yaml`.  If you don't have a custom configuration file, Grav will use the default one provided in `system/config/backups.yaml`.
+Das Grav-Backup-System wurde in Grav 1.6 vollständig überarbeitet, um mehrere Backup-Profile zu unterstützen.  Diese Profile werden in der Datei `user/config/backups.yaml` konfiguriert.  Wenn Sie keine benutzerdefinierte Konfigurationsdatei haben, verwendet Grav die Standardkonfigurationsdatei aus `system/config/backups.yaml`.
 
-If Grav detects multiple backup profiles, the CLI command will prompt you to choose the one you wish to backup with the CLI command.
+Wenn Grav mehrere Sicherungsprofile erkennt, werden Sie vom CLI-Befehl gefragt, welches Sie mit dem CLI-Befehl sichern möchten.
 
 [prism classes="language-bash command-line" cl-output="2-10"]
 cd ~/workspace/portfolio
@@ -92,7 +92,7 @@ Choose a backup?
   [1] Pages Backup
 [/prism]
 
-Alternatively you can pass an index of the profile directly:
+Alternativ können Sie einen Profil-Index direkt mitgeben:
 
 [prism classes="language-bash command-line" cl-output="2-10"]
 $ cd ~/workspace/portfolio
@@ -103,12 +103,12 @@ Archiving 36 files [===================================================] 100% < 
  [OK] Backup Successfully Created: /users/joe/workspace/portfolio/backup/pages_backup--20190227120510.zip
 [/prism]
 
-More information on the backup functionality can be found in the [Advanced -> Backups](/advanced/backups) section.
+Weiterführende Informationen über die Backup-Funktion finden Sie im Abschnitt [Erweitert -> Backups](/advanced/backups).
 [/version]
 
 ## Clean
 
-This CLI command is primarily used during the package building process, as it removes extraneous files and folders from Grav.  It is strongly recommended you **do not use this** yourself unless you are using it build your own Grav packages.
+Dieser CLI-Befehl wird in erster Linie während des Erstellens von Paketen verwendet, da er überflüssige Dateien und Ordner aus Grav entfernt.  Es wird dringend empfohlen, diesen Befehl **nicht selbst zu benutzen**, es sei denn, Sie verwenden ihn zum Generieren Ihrer eigenen Grav-Pakete.
 
 [prism classes="language-bash command-line"]
 bin/grav clean
@@ -116,9 +116,9 @@ bin/grav clean
 
 ## Clear-Cache
 
-You can clear the cache by deleting all the files and folders under `cache/`.
+Sie können den Cache löschen, indem Sie alle Dateien und Ordner unterhalb von `cache/` löschen.
 
-The equivalent CLI command is:
+Der entsprechende CLI-Befehl lautet:
 
 [version=15]
 [prism classes="language-bash command-line"]
@@ -126,16 +126,16 @@ $ cd ~/webroot/my-grav-project
 bin/grav clear-cache
 [/prism]
 
-There are several aliases for compatibility (`clear-cache`, `clearcache`, `clear`).
+Die Kompatibilität ist anhand mehrerer Aliasnamen gewährleistet (`clear-cache`, `clearcache`, `clear`).
 
-The default option is the standard cache clearing process however, you can control this further with these options:
+Die Voreinstellung ist der normale Cache-Löschvorgang, Sie können diesen Prozess mit folgenden Optionen weiter steuern:
 
 [prism classes="language-text"]
---all             If set will remove all including compiled, twig, doctrine caches
---assets-only     If set will remove only assets/*
---images-only     If set will remove only images/*
---cache-only      If set will remove only cache/*
---tmp-only        If set will remove only tmp/*
+--all             Falls angegeben, werden alle, einschließlich kompilierter, Twig- und Doktrin-Caches, entfernt.
+--assets-only     Falls angegeben, wird nur assets/* entfernt.
+--images-only     Falls angegeben, wird nur images/* entfernt.
+--cache-only      Falls angegeben, wird nur cache/* entfernt.
+--tmp-only        Falls angegeben, wird nur /* entfernt.
 [/prism]
 [/version]
 
@@ -145,52 +145,52 @@ $ cd ~/webroot/my-grav-project
 bin/grav cache
 [/prism]
 
-There are several aliases for compatibility (`cache`, `cache-clear`, `clearcache`, `clear`).
+Die Kompatibilität ist anhand mehrerer Aliasnamen gewährleistet (`cache`, `cache-clear`, `clearcache`, `clear`).
 
-The default option is the standard cache clearing process however, you can control this further with these options:
+Die Voreinstellung ist der normale Cache-Löschvorgang, Sie können diesen Prozess mit folgenden Optionen weiter steuern:
 
 [prism classes="language-text"]
---purge           If set purge old caches
---all             If set will remove all including compiled, twig, doctrine caches
---assets-only     If set will remove only assets/*
---images-only     If set will remove only images/*
---cache-only      If set will remove only cache/*
---tmp-only        If set will remove only tmp/*
+--purge           Falls angegeben, werden alte Caches gelöscht
+--all             Falls angegeben, werden alle, einschließlich kompilierter, Twig- und Doktrin-Caches, entfernt.
+--assets-only     Falls angegeben, wird nur assets/* entfernt.
+--images-only     Falls angegeben, wird nur images/* entfernt.
+--cache-only      Falls angegeben, wird nur cache/* entfernt.
+--tmp-only        Falls angegeben, wird nur tmp/* entfernt.
 [/prism]
 [/version]
 
 ## Composer
 
-If you installed Grav via GitHub and have manually installed composer-based vendor packages, you can easily update with:
+Wenn Sie Grav über GitHub installiert haben und manuell composer-basierte Anbieterpakete eingespielt haben, können Sie problemlos so updaten:
 
 [prism classes="language-bash command-line"]
 bin/grav composer
 [/prism]
 
-You can also pass composer options such as `install`:
+Sie können auch Composer-Optionen wie `install` übergeben:
 
 [prism classes="language-bash command-line"]
 bin/grav composer --install
 [/prism]
 
-or
+oder
 
 [prism classes="language-bash command-line"]
 bin/grav composer --update
 [/prism]
 
-!! These all use the `--no-dev` composer option, so to be able to perform testing you should use composer directly: `bin/composer.phar`
+!! Diese Befehle verwenden alle die `--no-dev` Composer-Option. Um also Tests durchführen zu können, sollten Sie den composer direkt verwenden: `bin/composer.phar`
 
 ## Install
 
-To install the dependencies Grav relies on (**error** plugin, **problems** plugin, **antimatter** theme), launch a **terminal** or **console** and navigate to the grav folder where you want to install the dependencies and run the CLI command.
+Um die Abhängigkeiten zu installieren, auf die Grav angewiesen ist (**error**-Plugin, **problems**-Plugin, **antimatter**-Theme), starten Sie ein **Terminal** oder eine **Konsole** und navigieren Sie zu dem Ordner grav, in dem Sie die Abhängigkeiten installieren möchten, und führen Sie den folgenden CLI-Befehl aus:
 
 [prism classes="language-bash command-line"]
 $ cd ~/webroot/my-grav-project
 bin/grav install
 [/prism]
 
-You should now have the dependencies installed under:
+Die Abhängigkeiten sollten nun installiert sein unter:
 * `~/webroot/my-grav-project/user/plugins/error`
 * `~/webroot/my-grav-project/user/plugins/problems`
 * `~/webroot/my-grav-project/user/themes/antimatter`
@@ -198,24 +198,24 @@ You should now have the dependencies installed under:
 [version=16]
 ## Log Viewer
 
-As part of Grav 1.6, a new logviewer CLI command was created to allow for quick viewing of Grav logs.
+Als Teil von Grav 1.6 wurde ein neuer CLI-Befehl zur schnellen Anzeige von Grav-Protokollen entwickelt.
 
-The simplest way to use this command is to simply type:
+Der einfachste Weg, diesen Befehl zu verwenden, ist die direkte Eingabe:
 
 [prism classes="language-bash command-line"]
 cd ~/webroot/my-grav-project
 bin/grav logviewer
 [/prism]
 
-This will output the last 20 log entries of the `logs/grav.log` file.  There are a few options:
+Dadurch werden die letzten 20 Logbuch-Einträge der Datei `logs/grav.log` ausgegeben.  Dafür existieren einige Optionen:
 
 [prism classes="language-text line-numbers"]
--f, --file[=FILE]     custom log file location (default = grav.log)
--l, --lines[=LINES]   number of lines (default = 10)
--v, --verbose         verbose output including a stack trace if available
+-f, --file[=FILE]     benutzerdefinierte Log-Datei (default = grav.log)
+-l, --lines[=LINES]   Anzahl der Zeilen (default = 10)
+-v, --verbose         ausführlichere Darstellung einschließlich einer Stack-Auswertung, falls verfügbar
 [/prism]
 
-e.g.
+z.B.
 
 [prism classes="language-bash command-line" cl-output="2-11"]
 bin/grav logviewer --lines=4                                                                           [12:27:20]
@@ -232,7 +232,7 @@ viewing last 4 entries in grav.log
 [/prism]
 [/version]
 
-And verbose output with stack traces:
+Und hier eine ausführliche Ausgabe mit Stack-Auswertung:
 
 [prism classes="language-bash command-line" cl-output="2-22"]
 bin/grav logviewer -v                                                                                                       [16:12:12]
@@ -261,46 +261,46 @@ viewing last 20 entries in grav.log
 
 ## New Project
 
-Every time you want to start a new project with Grav, you need to start with a clean Grav instance. Through the CLI, this process is super easy and takes only a few seconds.
+Jedes Mal, wenn Sie ein neues Projekt mit Grav starten möchten, müssen Sie mit einer sauberen Grav-Instanz beginnen. Durch die CLI ist dieser Vorgang supereinfach und dauert nur wenige Sekunden.
 
-1. Launch a **terminal** or **console** and navigate to the _grav_ folder (for the sake of this document we will assume it resides under  `~/Projects/grav`)
+1. Starten Sie ein **Terminal** oder eine **Konsole** und navigieren Sie zum Ordner _grav_ (für dieses Dokument nehmen wir an, dass es sich unter `~/Projekte/grav` befindet)
 
 [prism classes="language-bash command-line"]
 cd ~/Projects/grav
 [/prism]
 
-2. Run the Grav CLI to create a new project, with the destination being the location where your project will reside in (usually the [webroot](http://en.wikipedia.org/wiki/Webroot) of your Web server). Let us assume we are creating a **portfolio** and we want it at `~/Webroot/portfolio`.
+2. Führen Sie die Grav-CLI aus, um ein neues Projekt zu erstellen, wobei das Ziel der Ort ist, an dem sich Ihr Projekt befinden wird (normalerweise die [Webroot](http://en.wikipedia.org/wiki/Webroot) Ihres Webservers). Nehmen wir an, wir erstellen ein **portfolio** und wollen es unter `~/Webroot/portfolio` erstellen.
 
 [prism classes="language-bash command-line"]
 bin/grav new-project ~/webroot/portfolio
 [/prism]
 
-This will create a new Grav instance and download all the dependencies required.
+Dadurch wird eine neue Grav-Instanz erstellt und alle erforderlichen Abhängigkeiten heruntergeladen.
 
 ## Sandbox
 
-Grav has a nifty utility called `sandbox`, which can quickly create a [symlinked](/cli-console/command-line-intro#symbolic-links) copy of the Grav-installation. Simply put, running `bin/grav sandbox -s DESTINATION` - where "DESTINATION" is the path to the folder where you want the copied installation - recreates the Grav-installation in another folder.
+Grav verfügt über ein raffiniertes Dienstprogramm namens `sandbox`, mit dem schnell eine mit [Symlinks](/cli-console/command-line-intro#symbolic-links) versehene Kopie der Grav-Installation erstellt werden kann. Einfach ausgedrückt: Wenn Sie `bin/grav sandbox -s ZIEL` aufrufen, wobei „ZIEL“ der Pfad zu dem Ordner ist, in dem Sie die kopierte Installation haben möchten, wird die Grav-Installation in dem anderen Ordner neu erstellt.
 
-For example, running:
+Beispielsweise der Aufruf:
 
 [prism classes="language-bash command-line"]
 bin/grav sandbox -s ../copy
 [/prism]
 
-From your current Grav-folder creates a sibling-folder named `copy`, where the following folders are virtual copies: `/bin, /system, /vendor, /webserver-configs`, as well as standard files that typically reside in Grav's root-folder. All content in /user will be carbon copies, not virtual, so you can easily get started with customizing the new installation without having created overhead from core files.
+Erstellt von Ihrem aktuellen Grav-Ordner ein Schwesterverzeichnis namens `copy`, wobei die folgenden Verzeichnisse virtuelle Kopien sind: `/bin, /system, /vendor, /webserver-configs`. Dazu kommen die Standard-Dateien, die sich typischerweise im Wurzelverzeichnis von Grav befinden. Alle Inhalte in /user sind nicht virtuelle, sondern Carbon-Kopien, so dass Sie einfach mit der Anpassung der neuen Installation beginnen können, ohne einen Overhead von Core-Dateien erzeugt zu haben.
 
 [version=16]
 ## Scheduler
 
-As outlined in the [Advanced -> Scheduler](/advanced/scheduler) section, The scheduler can be monitored via the CLI command.
+Wie im Abschnitt [Erweitert -> Scheduler](/advanced/scheduler) beschrieben, kann der Scheduler über den CLI-Befehl überwacht werden.
 
-The base command will manually run the scheduler tasks that are due:
+Der Basisbefehl führt die fälligen Scheduler-Aufgaben manuell aus:
 
 [prism classes="language-bash command-line"]
 bin/grav scheduler
 [/prism]
 
-To get some more detail you can run with the optional `-v` option:
+Um mehr Details zu erhalten, können Sie die Option `-v` verwenden:
 
 [prism classes="language-bash command-line" cl-output="2-10"]
 bin/grav scheduler -v
@@ -313,7 +313,7 @@ Running Scheduled Jobs
 [2019-02-27T12:34:07-07:00] Success: ls -lah
 [/prism]
 
-Other options include:
+Weitere Optionen sind:
 
 [prism classes="language-text line-numbers"]
 -i, --install         Show Install Command
@@ -321,7 +321,7 @@ Other options include:
 -d, --details         Show Job Details
 [/prism]
 
-Please refer to the [Advanced -> Scheduler](/advanced/scheduler) section, for more detailed information on these options.
+Ausführlichere Informationen zu diesen Optionen finden Sie im Abschnitt [Erweitert -> Scheduler](/advanced/scheduler).
 [/version]
 
 ## Security
@@ -341,7 +341,7 @@ Scanning 11 pages [===================================================] 100% < 1
 
 #### PHP CGI-FCGI Information
 
-To determine if your server is running `cgi-fcgi` on the command line, type the following:
+Um festzustellen, ob Ihr Server `cgi-fcgi` auf der Kommandozeile ausführt, geben Sie Folgendes ein:
 
 [prism classes="language-bash command-line" cl-output="2-5"]
 $ php -v
@@ -351,10 +351,4 @@ Zend Engine v2.5.0, Copyright (c) 1998-2014 Zend Technologies
     with the ionCube PHP Loader v4.6.1, Copyright (c) 2002-2014, by ionCube Ltd.
 [/prism]
 
-If you see a reference to `(cgi-fcgi)` you will need to prefix all `bin/grav` commands with `php-cli`. Alternatively, you can set up an alias in your shell with something like: `alias php="php-cli"` which will ensure the **CLI** version of PHP runs from the command line.
-
-
-
-
-
-
+Wenn Sie einen Verweis auf `(cgi-fcgi)` sehen, müssen Sie allen `bin/grav`-Befehlen `php-cli` voranstellen. Alternativ können Sie einen Alias in Ihrer Shell einrichten, ungefähr wie folgt: `alias php="php-cli"`. Dadurch wird sichergestellt, dass die **CLI** PHP-Version auf der Kommandozeile läuft.
