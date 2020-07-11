@@ -1,38 +1,38 @@
 ---
-title: Basic Tutorial
+title: Erste Schritte
 taxonomy:
     category: docs
 ---
 
-Assuming you successfully [installed Grav](../installation) with the instructions listed in the previous chapter, we can continue and play around with Grav a little to get you more comfortable.
+Angenommen, Sie haben [Grav installiert](../installation) und die im vorherigen Kapitel genannten Anweisungen befolgt, dann können wir fortfahren und ein wenig mit Grav herumspielen, um es besser kennenzulernen.
 
-Because Grav does not require a database, it is pretty easy to work with, without having to worry about causing issues between your Grav installation and any other significant data source. If something goes awry, you can generally recover very easily.
+Da Grav keine Datenbank benötigt, ist es ziemlich einfach, damit zu arbeiten, ohne sich Sorgen machen zu müssen, Probleme zwischen Ihrer Grav-Installation und einer anderen wichtigen Datenquelle zu verursachen. Wenn etwas schief geht, können Sie normalerweise die Daten sehr leicht wiederherstellen.
 
-## Content Basics
+## Grundsätzliches zu den Inhalten
 
-First, let us familiarize ourselves with where Grav stores content.  We will go into more depth in a [future chapter](../folder-structure), but for the time being, you need to be aware that all our user content, is stored in the `user/pages/` folder of your Grav install.
+Machen wir uns zunächst damit vertraut, wo Grav die Inhalte ablegt. Wir werden in einem [späteren Kapitel](../folder-structure) ausführlicher darauf eingehen, aber bis auf weiteres müssen Sie sich darüber im Klaren sein, dass alle unsere Benutzerdaten im Ordner `user/pages/` der Grav-Installation gespeichert sind.
 
-Currently, there are two folders in the pages folder, the first one is called `01.home` and the second is `02.typography`.  The `01.` portion of the folder is optional but provides a couple of things that can be handy.
+Zur Zeit befinden sich zwei Ordner im pages-Ordner, der erste heißt `01.home` und der zweite ist `02.typography`.  Der Teil `01.` des Ordnernamens ist optional, bietet aber ein paar praktische Möglichkeiten.
 
-Firstly, it lets you expressly define the order of your pages.  For example, `01` will come before `02`, but `00` will come before `01`.
+Erstens können Sie damit die Reihenfolge Ihrer Seiten ausdrücklich festlegen.  Zum Beispiel wird `01` vor `02` stehen, aber `00` wird vor `01` stehen.
 
-The other thing that the numeric portion of the folder name does is explicitly inform Grav this page should be visible in the menu.  It is important to note that the numeric portion up to and including the `.` will be removed from URLs.
+Die andere Funktion des numerischen Teils im Ordnernamen besteht darin, Grav explizit darauf hinzuweisen, dass diese Seite im Menü sichtbar sein sollte.  Es ist wichtig darauf zu achten, dass der numerische Teil bis einschließlich des `.` aus den URLs entfernt wird.
 
-## Home Page Configuration
+## Konfiguration der Homepage (Startseite)
 
-There is an option in the `user/config/system.yaml` file that sets the location of the __home page__, in other words, where Grav points to when you reference the root of your site: `http://yoursite.com`.
+Es gibt eine Option in der Datei `user/config/system.yaml`, die den Speicherort der __home page__ festlegt. Mit anderen Worten heißt das, dass Grav auf diese Position zeigt, wenn Sie auf die Startseite Ihrer Site verweisen: `https://Ihre_Site.de`.
 
-If you examine this configuration file in your install, you will see that it already points to the alias for `/home`.  We can leave it like this in this example.
+Wenn Sie diese Konfigurationsdatei in der Installation überprüfen, werden Sie sehen, dass sie bereits auf den Alias für `/home` verweist.  In diesem Beispiel können wir es so beibehalten.
 
-## Page Editing
+## Bearbeitung der Seiten
 
-Pages in **Grav** are composed in **Markdown** syntax.  Markdown is a plain text formatting syntax that a computer can readily parse and convert to HTML. It uses basic text symbols to indicate presentation (e.g. **bold**, _italics_, headings, lists, etc.), making it easy to write without needing to know the complexities of HTML. Benefits of Markdown include lower error rate, readability, ease of learning and use, etc.
+Die Seiten in **Grav** sind nach der **Markdown**-Syntax aufgebaut.  Markdown ist eine einfache Textformatierungs-Syntax, die ein Computer leicht analysieren und nach HTML konvertieren kann. Sie verwendet einfache Textsymbole zur Markierung der Darstellung (z.B. **fett**, _kursiv_, Überschriften, Listen usw.). Das erleichtert das Verfassen von Texten, ohne dass man die Komplexität von HTML kennen muss. Zu den Vorteilen von Markdown gehören eine niedrige Fehlerquote, gute Lesbarkeit, einfache Erlernbarkeit und Verwendung usw.
 
-You can read an [extensive write-up of available syntax](../../content/markdown) with examples in the documentation, but for now, follow along.
+Sie können eine ausführliche [Syntax-Beschreibung](../../content/markdown) mit Beispielen in der Dokumentation lesen. Folgen Sie aber vorerst den Beispielen.
 
-Open the home page in your text editor. The file that controls the homepage is located in the `user/pages/01.home/` folder and is called `default.md`. All of the content you create will be created in the `user/pages/` folder in your Grav installation.
+Öffnen Sie die Startseite in Ihrem Texteditor. Die Datei, welche die Homepage steuert, befindet sich im Ordner `user/pages/01.home/` und heißt `default.md`. Der gesamte von Ihnen erstellte Inhalt wird im Ordner `user/pages/` Ihrer Grav-Installation abgelegt.
 
-When you edit the page in a text editor, the content will look something like this:
+Wenn Sie die Seite in einem Texteditor öffnen, sieht der Text so ungefähr so aus:
 
 [div class="no-margin-bottom"]
 [prism classes="language-yaml line-numbers"]
@@ -53,49 +53,49 @@ Congratulations! You have installed the **Base Grav Package** that provides a **
 [/prism]
 [/div]
 
-Let us break this down a little so you can see how easy it is to write in Markdown. The stuff between the `---` indicators are the [Page Headers](../../content/headers), and these are written in a straightforward format called [YAML](../../advanced/yaml). This configuration block that sits in the `.md` file is commonly known as **YAML Front Matter**.
+Lassen Sie uns das ein wenig aufschlüsseln, damit Sie sehen können, wie einfach es ist, mit Markdown zu schreiben. Das „Gerümpel“ zwischen den `---` Markierungen sind die [Kopfzeilen (Headers)](../../content/headers) der Seite. Diese werden in einem einfachen Format namens [YAML](../../advanced/yaml) geschrieben. Dieser Konfigurationsblock, der sich in der `.md` Datei befindet, ist allgemein als **YAML Front Matter** bekannt.
 
 [prism classes="language-bash line-numbers"]
 title: Home
 body_classes: title-center title-h1h2
 [/prism]
 
-This block sets the HTML title tag for the page (the text you see in the browser tab).  You can also access this from your themes via the `page.title` attribute.  There are a [few standard headers](../../content/headers) that let you configure a variety of options for this page. Another example is `menu: Something` that lets you override the text used to display the name of the page in a menu.  By default, Grav will use the title for the menu value.
+Dieser Block setzt das HTML-Titel-Tag für die Seite (der Text, den Sie im Browser-Tab sehen). Sie können auch von Ihren Themen aus über das Attribut `page.title` darauf zugreifen. Es gibt ein paar [Standard-Kopfzeilen](../../content/headers), mit denen Sie eine Reihe von Optionen für diese Seite konfigurieren können. Ein weiteres Beispiel ist `menu: Irgendwas`. Hiermit können Sie den Text überschreiben, der zur Darstellung des Seitennamens in einem Menü verwendet wird. Standardmäßig verwendet Grav den Titel für den Menüwert.
 
 [prism classes="language-markdown line-numbers"]
 # Say Hello to Grav!
 ## installation successful...
 [/prism]
 
-The `#` or `hashes` syntax in markdown indicates a title.  A single `#` with a space and then text converts into an `<h1>` header in HTML. `##` or double hash would convert into an `<h2>` tag.  Of course, this goes all the way up to the HTML valid `<h6>` tag which of course, would be six hashes: `###### My H6 Level Header`.
+Die Syntax `#` oder `Hashes` in Markdown bezeichnet eine Überschrift.  Ein einzelnes `#` mit einem Leerzeichen und dann Text wird in eine `<h1>` Titelzeile in HTML umgewandelt. Ein `##` oder doppelte Hashes würden sich in einen `<h2>` Tag umwandeln.  Das geht natürlich bis zum gültigen HTML-Tag `<h6>` hin, der dann aus sechs Hashes bestehen würde: `######## Mein H6 Level Header`.
 
 [prism classes="language-markdown line-numbers"]
 Congratulations! You have installed the **Base Grav Package** that provides a **simple page** and the default **Quark** theme to get you started.
 [/prism]
 
-This is a simple paragraph that would have been wrapped in regular `<p>` tags when converted to HTML.  The `**` markers indicate bold text or `<strong>`, formerly `<b>`, in HTML.  Italic text is indicated by wrapping text in `_` markers.
+Dies ist ein einfacher Absatz, der bei der Konvertierung in HTML in reguläre `<p>` Tags eingebettet worden wäre.  Die Markierungen `**` zeigen fetten Text oder `<strong>`, früher `<b>`, in HTML an.  Kursiver Text wird gekennzeichnet, indem Text in `_`-Markierungen eingeschlossen wird.
 
 [prism classes="language-markdown line-numbers"]
 !! If you see a **404 Error** when you click `Typography` in the menu, please refer to the [troubleshooting guide](https://learn.getgrav.org/troubleshooting/page-not-found).
 [/prism]
 
-This section uses a custom markdown feature that is provided by the included `markdown-notices` plugin.  This allows you to create simple notices by prefix a paragraph of text with a number of `!` (exclamation mark) symbols, from `!` to `!!!!`.
+Dieser Abschnitt verwendet eine benutzerdefinierte Kennzeichnung, die vom integrierten Plugin `markdown-notices` zur Verfügung gestellt wird.  Damit können Sie einfache Hinweise erzeugen, wenn Sie einem Absatz des Textes eine Reihe von `!` Symbolen (Ausrufezeichen) voranstellen, von `!` bis `!!!!`.
 
-This overview should provide you with a few key pointers for writing Markdown, but you should check out our more [detailed explanation](../../content/markdown) to get a thorough understanding.
+Diese Übersicht sollte Ihnen einige wichtige Hinweise zum Schreiben von Markdown geben, aber Sie sollten sich unsere [ausführlichere Beschreibung](../../content/markdown) ansehen, um ein tieferes Verständnis zu erlangen.
 
-!! Ensure you save your `.md` files as `UTF8` files.  This will ensure they work with language-specific special characters.
+!! Achten Sie darauf, dass Ihre `.md`-Dateien im Format `UTF8` kodiert werden. Dadurch wird die Verwendung von sprachspezifischen Sonderzeichen ermöglicht.
 
-## Adding a New Page
+## Eine neue Seite hinzufügen
 
-Creating a new page is a simple affair in **Grav**.  Just follow these simple steps:
+Das Erstellen einer neuen Seite ist eine einfache Angelegenheit in **Grav**.  Folgen Sie einfach diesen wenigen Schritten:
 
-1. Navigate to your pages folder: `user/pages/` and create a new folder.  In this example, we will use [explicit default ordering](https://learn.getgrav.org/content/content-pages) and call the folder `03.mypage`.
-2. Launch your text editor, create a new file, and paste in the following sample code:
+1. Wechseln Sie zu Ihrem Pages-Ordner: `user/pages/` und erstellen Sie einen neuen Ordner. In diesem Beispiel werden wir ausdrücklich die [Standardreihenfolge](https://learn.getgrav.org/content/content-pages) verwenden und den Ordner `03.mypage` benennen.
+2. Starten Sie Ihren Texteditor, erzeugen Sie eine neue Datei und fügen Sie den folgenden Beispielcode ein:
 
 [div class="no-margin-bottom"]
 [prism classes="language-yaml line-numbers"]
 ---
-title: My New Page
+title: Meine neue Seite
 ---
 [/prism]
 [/div]
@@ -103,15 +103,15 @@ title: My New Page
 [prism classes="language-markdown line-numbers" ln-start="4"]
 # My New Page!
 
-This is the body of **my new page** and I can easily use _Markdown_ syntax here.
+Das ist der Hauptteil (body) **meiner neuen Seite** und ich kann hier leicht die _Markdown_-Syntax verwenden.
 [/prism]
 [/div]
 
-3. Save this file in the `user/pages/03.mypage/` folder as `default.md`. This will tell **Grav** to render the page using the **default** template in the current theme: `user/themes/quark/templates/default.html.twig`.
-4. That's it! Reload your browser to see your new page in the menu at the top.
+3. Speichern Sie diese Datei im Ordner `user/pages/03.mypage/` als `default.md`. Dadurch wird **Grav** angewiesen, die Seite unter Verwendung des Templates **default** im jeweiligen Theme zu rendern, hier: `user/themes/quark/templates/default.html.twig`.
+4. Das war’s schon! Aktualisieren Sie die Site in Ihrem Browser, um Ihre neue Seite oben im Menü zu sehen.
 
-The page will automatically show up in the menu after the **"Typography"** menu item. If you wish to change the name that shows up in the menu, add: `menu: My Page` between the dashes in the page content.
+Die Seite erscheint automatisch im Menü nach dem Menüpunkt **„Typographie“**. Wenn Sie den Anzeige-Namen im Menü  ändern möchten, fügen Sie `menu: Meine Seite` zwischen den Bindestrichen im Seiten-Header hinzu.
 
-**Congratulations**, you have now successfully created a new page in Grav.  There is much more you can do with Grav, so please continue reading to find out about more advanced capabilities and in-depth features.
+**Gratulation:** Sie haben jetzt erfolgreich eine neue Seite in Grav erstellt.  Es gibt noch viel mehr, was Sie mit Grav noch machen können. Lesen Sie also bitte weiter, um mehr über die fortgeschrittenen Fähigkeiten und tiefer gehenden Funktionen zu erfahren.
 
-!! If you have any issues accessing this new page, you are either missing an `.htaccess` file (Apache web server only) or you may need to edit the `RewriteBase` command in the `.htaccess` file. Please consult the [Troubleshooting](../../troubleshooting) chapter for more information.
+!! Wenn Sie Schwierigkeiten beim Abrufen dieser neuen Seite haben, fehlt entweder eine `.htaccess` Datei (nur Apache-Webserver) oder Sie müssen den Befehl `RewriteBase` in der `.htaccess` Datei bearbeiten. Bitte lesen Sie das Kapitel [Fehlerbehebung](../../troubleshooting) für weitergehende Informationen.

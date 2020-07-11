@@ -1,24 +1,24 @@
 ---
-title: Configuration
+title: Konfiguration
 page-toc:
   active: true
 taxonomy:
     category: docs
 ---
 
-All Grav configuration files are written in [YAML syntax](../../advanced/yaml) with a `.yaml` file extension.  YAML is very intuitive which makes it very easy to both read and write, however, you can check out the [YAML page in the Advanced chapter](../../advanced/yaml) to get a complete understanding of the syntax available.
+Alle Grav-Konfigurationsdateien sind mit der [YAML-Syntax](../../advanced/yaml) geschrieben und haben die Dateierweiterung `.yaml`. YAML ist sehr intuitiv, was sowohl das Lesen als auch das Schreiben sehr einfach macht. Sie können jedoch die [YAML-Seite im Kapitel Erweitert](../../advanced/yaml) durchlesen, um ein besseres Gefühl für die zur Auswahl stehende YAML-Syntax zu bekommen.
 
-## System Configuration
+## System-Konfiguration
 
-Grav focuses on making things as easy as possible for the user, and the same goes for configuration.  Grav comes with some sensible default options, and these are contained in a file that resides in the `system/config/system.yaml` file.
+Grav legt großen Wert darauf, es dem Benutzer so einfach wie möglich zu machen. Das gilt auch für die Konfiguration. Grav kommt mit einigen vernünftigen Standard-Optionen. Diese sind in der Datei `system/config/system.yaml` zusammengefasst.
 
-However, **you should never change this file**, instead any configuration changes you need to make should be stored in a file called `user/config/system.yaml`.  Any setting in this file with the same structure and naming will override the setting provided in the default system configuration file.
+Allerdings sollten Sie **diese Datei niemals ändern**, stattdessen sollten alle Konfigurationsänderungen, die Sie vornehmen müssen, in der Datei namens `user/config/system.yaml` gespeichert werden.  Jede Einstellung in dieser Datei, mit der gleichen Struktur und Benennung, überschreibt die Einstellung in der Konfigurationsdatei des Standardsystems.
 
-!!!! Generally speaking you should **NEVER** change anything in the `system/` folder.  All things the user does (creating content, installing plugins, editing configuration, etc.) should be done in the `user/` folder.  This way it allows simpler upgrading and also keeps your changes all in one location for backing up, synchronizing, etc.
+!!!! Grundsätzlich sollten Sie **NIEMALS** irgendetwas im Ordner `system/` ändern.  Alle Handlungen die der Benutzer vornimmt (Inhalte erstellen, Plugins installieren, Konfiguration bearbeiten, usw.) sollten im Ordner `user/` erfolgen.  So können Sie leichter ein Upgrade durchführen und Ihre Modifikationen an einem einzigen Platz ablegen, um sie zu sichern, zu synchronisieren usw.
 
-Here are the variables found in the default `system/config/system.yaml` file:
+Nachfolgend sind die Variablen aufgelistet, die sich in der standardmäßigen Datei `system/config/system.yaml` befinden:
 
-### Basic Options
+### Allgemeine Optionen
 
 [prism classes="language-yaml line-numbers"]
 absolute_urls: false
@@ -35,26 +35,26 @@ pwd_regex: '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'
 intl_enabled: true
 [/prism]
 
-These configuration options do not appear within their own child sections. They're general options that affect the way the site operates, its timezone, and base URL. 
+Diese Optionen der Konfiguration erscheinen nicht innerhalb ihrer eigenen untergeordneten Abschnitte. Es handelt sich um allgemeine Optionen, die sich auf die Funktionsweise der Site, ihre Zeitzone und die Ursprungs-URL auswirken.
 
 [div class="table-keycol"]
-| Property | Description |
+| Eigenschaft | Beschreibung |
 | -------- | ----------- |
-| **absolute_urls:** | Absolute or relative URLs for `base_url` |
-| **timezone:** | Valid values can be found [here](https://php.net/manual/en/timezones.php) |
-| **default_locale:** | Default locale (defaults to system) |
-| **param_sep:** | This is used for Grav parameters in the URL.  Don't change this unless you know what you are doing.  Grav > `1.1.16` automatically sets this to `;` for users running Apache web server on Windows |
-| **wrapped_site:** | For themes/plugins to know if Grav is wrapped by another platform. Can be `true` or `false` |
-| **reverse_proxy_setup:** | Running in a reverse proxy scenario with different webserver ports than proxy. Can be `true` or `false` |
-| **force_ssl:** | If enabled, Grav forces to be accessed via HTTPS (NOTE: Not an ideal solution). Can be `true` or `false` |
-| **force_lowercase_urls:** |If you want to support mixed cased URLs set this to `false` |
-| **custom_base_url:** | Manually set the base_url here |
-| **username_regex:** | Only lowercase chars, digits, dashes, underscores. 3 - 16 chars |
-| **pwd_regex:** | At least one number, one uppercase and lowercase letter, and be at least 8+ chars |
-| **intl_enabled:** | Special logic for PHP International Extension (mod_intl) |
+| **absolute_urls:** | absolute oder relative URLs für `base_url` |
+| **timezone:** | gültige Werte können [hier](https://php.net/manual/en/timezones.php) gefunden werden. |
+| **default_locale:** | Standard-Lokalisierung (Standard-Einstellung des Systems) |
+| **param_sep:** | Diese Option wird für Grav-Parameter in der URL verwendet.  Ändern Sie das nicht, es sei denn Sie wissen genau, was Sie tun.  Grav > `1.1.16` setzt das automatisch auf den Wert `;` (für Anwender, die den Apache-Webserver unter Windows betreiben). |
+| **wrapped_site:** | Für Themes/Plugins, um zu erkennen, ob Grav von einer anderen Plattform eingebunden wird. Der Wert kann `true` oder `false` sein. |
+| **reverse_proxy_setup:** | Wird in einem Reverse-Proxy-Szenario mit anderen Webserver-Ports als Proxy verwendet. Kann den Wert `true` oder `false` annehmen. |
+| **force_ssl:** | Falls aktiviert, kann damit der Zugang zu Grav über HTTPS erzwungen werden (HINWEIS: Keine ideale Lösung). Der Wert kann `true` oder `false` sein. |
+| **force_lowercase_urls:** | Wenn Sie URLs mit gemischter Schreibweise (groß und klein) unterstützen möchten, setzen Sie dies auf `false`. |
+| **custom_base_url:** | Hier wird die base_url manuell gesetzt |
+| **username_regex:** | erlaubt sind nur Kleinbuchstaben, Ziffern, Bindestriche und Unterstriche, 3 - 16 Zeichen |
+| **pwd_regex:** | muss mindestens eine Zahl, einen Groß- und Kleinbuchstaben und mindestens 8+ Zeichen enthalten |
+| **intl_enabled:** | Spezielle Algorithmen für die internationale PHP-Erweiterung (mod_intl) |
 [/div]
 
-### Languages
+### Sprachen
 
 [prism classes="language-yaml line-numbers"]
 languages:

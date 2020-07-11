@@ -1,5 +1,5 @@
 ---
-title: Requirements
+title: System-Anforderungen
 taxonomy:
     category: docs
 ---
@@ -162,5 +162,3 @@ Although there are many ways to deploy **Grav**, the simplest is to copy your lo
 2. [FileZilla](https://filezilla-project.org/) - MacOS/Windows/Linux - Probably the best option for Windows and Linux users. Free and very powerful (but very ugly on the Mac!).
 3. [Cyberduck](http://cyberduck.io/) - MacOS/Windows - A decent free option for both MacOS and Windows users. Not as full-featured as the others.
 4. [ForkLift](http://www.binarynights.com/forklift/) - MacOS - A solid alternative to Transmit, and slightly cheaper to boot.
-
-

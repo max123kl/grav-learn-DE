@@ -1,5 +1,5 @@
 ---
-title: What is Grav?
+title: Was ist Grav?
 taxonomy:
     category: docs
 ---

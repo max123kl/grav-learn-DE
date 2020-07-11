@@ -1,5 +1,5 @@
 ---
-title: Basics
+title: Grundlagen
 taxonomy:
     category: docs
 ---
@@ -8,7 +8,7 @@ taxonomy:
 
 # Grundlagen
 
-Entdecken Sie, was hinter **Grav** steckt und welche Grundkonzepte dahinter stehen.
+Entdecken Sie, was hinter **Grav** steckt und welche elementare Konzepte dahinter stehen.
 
  <p>&nbsp;</p>
 
