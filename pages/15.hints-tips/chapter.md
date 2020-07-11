@@ -8,4 +8,4 @@ taxonomy:
 
 # Hinweise und Tipps
 
-Tipps und Hinweise von Grav-Anwendern entdecken
+Tipps und Hinweise von Grav-Anwendern
