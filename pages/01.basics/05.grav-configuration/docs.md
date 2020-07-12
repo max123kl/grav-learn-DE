@@ -54,7 +54,7 @@ Diese Optionen der Konfiguration erscheinen nicht innerhalb ihrer eigenen unterg
 | **intl_enabled:** | Spezielle Algorithmen für die internationale PHP-Erweiterung (mod_intl) |
 [/div]
 
-### Sprachen
+### Languages
 
 [prism classes="language-yaml line-numbers"]
 languages:
@@ -68,19 +68,19 @@ languages:
   override_locale: false
 [/prism]
 
-The **Languages** area of the file establishes the site's language settings. This includes which language(s) are supported, designation of the default language in the URLs, and translations. Here is the breakdown for the **Languages** area of the system configuration file:
+Der Abschnitt **Languages** der Datei legt die Spracheinstellungen der Site fest. Dazu gehört, welche Sprache(n) unterstützt werden, die Bezeichnung der Standardsprache in den URLs und die Übersetzungen. Hier folgt die Übersicht für den **Languages**-Abschnitt der System-Konfigurationsdatei:
 
 [div class="table-keycol"]
-| Property | Description |
+| Eigenschaft | Beschreibung |
 | -------- | ----------- |
-| **supported:** | List of languages supported. eg: `[en, fr, de]` |
-| **include_default_lang:** | Include the default lang prefix in all URLs. Can be `true` or `false` |
-| **pages_fallback_only:** | Only fallback to find page content through supported languages. Can be `true` or `false` |
-| **translations:** | Enable translations by default. Can be `true` or `false` |
-| **translations_fallback:** | Fallback through supported translations if active lang doesn't exist. Can be `true` or `false` |
-| **session_store_active:** | Store active language in session. Can be `true` or `false` |
-| **http_accept_language:** | Attempt to set the language based on http_accept_language header in the browser. Can be `true` or `false` |
-| **override_locale:** | Override the default or system locale with language specific one. Can be `true` or `false` |
+| **supported:** | Liste der unterstützten Sprachen, z.B: `[en, fr, de]` |
+| **include_default_lang:** | Fügt das Präfix für die Standardsprache in alle URLs ein, kann `true` oder `false` sein. |
+| **pages_fallback_only:** | Nur Fallback zum Auffinden von Seiteninhalten durch unterstützte Sprachen, kann `true` oder `false` sein. |
+| **translations:** | Übersetzungen standardmäßig aktivieren, kann `true` oder `false` sein. |
+| **translations_fallback:** | Fallback mit Hilfe von unterstützten Übersetzungen, wenn active lang nicht existiert, kann `true` oder `false` sein. |
+| **session_store_active:** | Aktive Sprache in der Sitzung speichern, kann `true` oder `false` sein. |
+| **http_accept_language:** | Versucht die Sprache, basierend auf dem Header http_accept_language im Browser, einzustellen, kann `true` oder `false` sein. |
+| **override_locale:** | Überschreibt die Standard- oder System-Locales mit einer sprachspezifischen Version, kann `true` oder `false` sein. |
 [/div]
 
 ### Home
@@ -91,13 +91,13 @@ home:
   hide_in_urls: false
 [/prism]
 
-The **Home** section is where you set the default path for the site's homepage. You can also choose to hide the home route in URLs.
+Im Abschnitt **Home** legen Sie den Standardpfad für die Homepage der Site fest. Sie können auch die Home-Route in den URLs ausblenden.
 
 [div class="table-keycol"]
-| Property | Description |
+| Eigenschaft | Beschreibung |
 | -------- | ----------- |
-| **alias:** | Default path for home, ie: `/home` or `/` |
-| **hide_in_urls:** | Hide the home route in URLs. Can be `true` or `false` |
+| **alias:** | Standardpfad zur Homepage, d.h.: `/home` oder `/` |
+| **hide_in_urls:** | Ausblenden der Home-Route in URLs, kann `true` oder `false` sein. |
 [/div]
 
 ### Pages
@@ -151,53 +151,53 @@ pages:
     ignore_fields: ['form','forms']
 [/prism]
 
-The **Pages** section of the `system/config/system.yaml` file is where you set a lot of the main theme-related settings. For example, this is where you set the theme used to render the site, page ordering, twig and markdown processing defaults, and more. This is where most of the decisions that affect the way your pages are rendered are made.
+Im Abschnitt **Pages** der Datei `system/config/system.yaml` legen Sie viele der wichtigsten Einstellungen zum Theme fest. Hier legen Sie z.B. das Theme fest, das zum Rendern der Site verwendet wird, die Seitenreihenfolge, die Voreinstellungen für die Verarbeitung von Twig und Markdown und vieles mehr. HHier werden die meisten Einstellungen vorgenommen, die sich auf die Art und Weise auswirken, wie Ihre Seiten gerendert werden.
 
 [div class="table-keycol"]
-| Property | Description |
+| Eigenschaft | Beschreibung |
 | -------- | ----------- |
-| **theme:** | This is where you set the default theme. This defaults to `quark` |
+| **theme:** | Hier wird das Standard Theme festgelegt. Voreingestellt ist `quark` |
 | **order:** | |
-| ... **by:** | Order pages by `default`, `alpha` or `date` |
-| ... **dir:** | Default ordering direction, `asc` or `desc` |
+| ... **by:** | Seiten sortieren nach `default`, `alpha` oder `date` |
+| ... **dir:** | Voreingestellte Reihenfolge, `asc` oder `desc` (auf- oder absteigend) |
 | **list:** | |
-| ... **count:** | Default item count per page |
+| ... **count:** | Voreingestellte Anzahl von Elementen pro Seite |
 | **dateformat:** | |
-| ... **default:** | The default date format Grav expects in the `date: ` field |
-| ... **short:** | Short date format. Example: `'jS M Y'` |
-| ... **long:** | Long date format. Example: `'F jS \a\t g:ia'` |
-| **publish_dates:** | Automatically publish/unpublish based on dates. Can be set `true` or `false` |
+| ... **default:** | Das von Grav erwartete, voreingestellte Datumsformat im Feld `date: |
+| ... **short:** | Kurzes Datumsformat; zum Beispiel: `'jS M Y'` |
+| ... **long:** | Langes Datumsformat; zum Beispiel: `'F jS \a\t g:ia'` |
+| **publish_dates:** | Automatische Veröffentlichung/Nichtveröffentlichung auf der Basis vom Datum. Kann `true` oder `false` sein. |
 | **process:** | |
-| ... **markdown:** | Enable or disable the processing of markdown on the front end. Can be set `true` or `false` |
-| ... **twig:** | Enable or disable the processing of twig on the front end. Can be set `true` or `false` |
-| **twig_first:** | Process Twig before markdown when processing both on a page. Can be set `true` or `false` |
-| **never_cache_twig:** | Enabling this will allow you to add a processing logic that can change dynamically on each page load, rather than caching the results and storing it for each page load. This can be enabled/disabled site-wide in the **system.yaml**, or on a specific page. Can be set `true` or `false` |
+| ... **markdown:** | Aktivieren oder deaktivieren der Verarbeitung von Markdown im Frontend. Kann `true` oder `false` sein. |
+| ... **twig:** | Aktiviert oder deaktiviert die Verarbeitung von Twig im Frontend. Kann `true` oder `false` sein. |
+| **twig_first:** | Verarbeitung von Twig vor Markdown, wenn beide auf einer Seite verwendet werden. Kann `true` oder `false` sein. |
+| **never_cache_twig:** | Wenn Sie diese Option aktivieren, können Sie eine Verarbeitungslogik hinzufügen, die sich bei jedem Seitenaufruf dynamisch ändern kann, anstatt die Ergebnisse zwischenzuspeichern und für jeden Seitenaufruf zu speichern. Dies kann Site-weit in der **system.yaml** oder auf einer bestimmten Seite aktiviert/deaktiviert werden. Kann `true` oder `false` sein. |
 | **events:** | |
-| ... **page:** | Enable page-level events. Can be set `true` or `false` |
-| ... **twig:** | Enable Twig-level events. Can be set `true` or `false` |
+| ... **page:** | Aktiviert Events auf Seitenebene. Kann `true` oder `false` sein. |
+| ... **twig:** | Aktiviert Ereignisse auf Twig-Ebene. Kann `true` oder `false` sein. |
 | **markdown:** | |
-| ... **extra:** | Enable support for Markdown Extra support (GitHub-flavored Markdown (GFM) by default). Can be set `true` or `false` |
-| ... **auto_line_breaks:** | Enable automatic line breaks. Can be set `true` or `false` |
-| ... **auto_url_links:** | Enable automatic HTML links. Can be set `true` or `false` |
-| ... **escape_markup:** | Escape markup tags into entities. Can be set `true` or `false` |
+| ... **extra:** | Aktiviert die Unterstützung für Markdown Extra (standardmäßig GitHub-flavored Markdown (GFM)). Kann `true` oder `false` sein. |
+| ... **auto_line_breaks:** | Aktiviert automatische Zeilenumbrüche. Kann `true` oder `false` sein. |
+| ... **auto_url_links:** | Aktiviert automatische HTML-Links. Kann `true` oder `false` sein. |
+| ... **escape_markup:** | Umgehen von Markup-Tags in Entitäten. Kann `true` oder `false` sein. |
 | ... **special_chars:** | List of special characters to automatically convert to entities. Each character consumes a line below this variable. Example: `'>': 'gt'` |
 | **types:** | List of valid page types. For example: `[txt,xml,html,htm,json,rss,atom]` |
 | **append_url_extension:** | Append page's extension in Page URLs (e.g. `.html` results in **/path/page.html**) |
 | **expires:** | Page expires time in seconds (604800 seconds = 7 days) (`no cache` is also possible) |
 | **cache_control:** | Can be blank for no setting, or a [valid](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control) `cache-control` text value |
-| **last_modified:** | Set the last modified date header based on file modification timestamp. Can be set `true` or `false` |
-| **etag:** | Set the etag header tag. Can be set to `true` or `false` |
-| **vary_accept_encoding:** | Add `Vary: Accept-Encoding` header. Can be set to `true` or `false` |
-| **redirect_default_route:** | Automatically redirect to a page's default route. Can be set to `true` or `false` |
+| **last_modified:** | Set the last modified date header based on file modification timestamp. Kann `true` oder `false` sein. |
+| **etag:** | Set the etag header tag. Kann `true` oder `false` sein. |
+| **vary_accept_encoding:** | Add `Vary: Accept-Encoding` header. Kann `true` oder `false` sein. |
+| **redirect_default_route:** | Automatically redirect to a page's default route. Kann `true` oder `false` sein. |
 | **redirect_default_code:** | Default code to use for redirects. For example: `302` |
 | **redirect_trailing_slash:** | Handle automatically or 302 redirect a trailing / URL |
 | **ignore_files:** | Files to ignore in Pages. Example: `[.DS_Store] ` |
 | **ignore_folders:** | Folders to ignore in Pages. Example: `[.git, .idea]` |
-| **ignore_hidden:** | Ignore all Hidden files and folders. Can be set to `true` or `false` |
-| **hide_empty_folders:** | If folder has no .md file, should it be hidden. Can be set to `true` or `false` |
-| **url_taxonomy_filters:** | Enable auto-magic URL-based taxonomy filters for page collections. Can be set to `true` or `false` |
+| **ignore_hidden:** | Ignore all Hidden files and folders. Kann `true` oder `false` sein. |
+| **hide_empty_folders:** | If folder has no .md file, should it be hidden. Kann `true` oder `false` sein. |
+| **url_taxonomy_filters:** | Enable auto-magic URL-based taxonomy filters for page collections. Kann `true` oder `false` sein. |
 | **frontmatter:** | |
-| ... **process_twig:** | Should the frontmatter be processed to replace Twig variables? Can be set to `true` or `false` |
+| ... **process_twig:** | Should the frontmatter be processed to replace Twig variables? Kann `true` oder `false` sein. |
 | ... **ignore_fields:** | Fields that might contain Twig variables and should not be processed. Example: `['form','forms']` |
 [/div]
 
