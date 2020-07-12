@@ -110,7 +110,7 @@ Das ist der Hauptteil (body) **meiner neuen Seite** und ich kann hier leicht die
 3. Speichern Sie diese Datei im Ordner `user/pages/03.mypage/` als `default.md`. Dadurch wird **Grav** angewiesen, die Seite unter Verwendung des Templates **default** im jeweiligen Theme zu rendern, hier: `user/themes/quark/templates/default.html.twig`.
 4. Das war’s schon! Aktualisieren Sie die Site in Ihrem Browser, um Ihre neue Seite oben im Menü zu sehen.
 
-Die Seite erscheint automatisch im Menü nach dem Menüpunkt **„Typographie“**. Wenn Sie den Anzeige-Namen im Menü  ändern möchten, fügen Sie `menu: Meine Seite` zwischen den Bindestrichen im Seiten-Header hinzu.
+Die Seite erscheint automatisch im Menü nach dem Menüpunkt **„Typographie“**. Wenn Sie den Anzeige-Namen im Menü  ändern möchten, fügen Sie `menu: Meine Seite` zwischen den Bindestrichen im Frontmatter hinzu.
 
 **Gratulation:** Sie haben jetzt erfolgreich eine neue Seite in Grav erstellt.  Es gibt noch viel mehr, was Sie mit Grav noch machen können. Lesen Sie also bitte weiter, um mehr über die fortgeschrittenen Fähigkeiten und tiefer gehenden Funktionen zu erfahren.
 
