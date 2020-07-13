@@ -6,38 +6,38 @@ taxonomy:
     category: docs
 ---
 
-Introduction
+Einführung
 -----
 
-YAML stands for _"YAML Ain't Markup Language"_ and it is used extensively in Grav for its configuration files, blueprints, and also in page settings. 
+YAML steht für _"YAML Ain't Markup Language"_ und wird in Grav für seine Konfigurationsdateien, Blueprints und auch in den Seiteneinstellungen ausgiebig genutzt.
 
-YAML is to configuration what markdown is to markup. It’s basically a human-readable structured data format. It is less complex and ungainly than XML or JSON, but provides similar capabilities. It essentially allows you to provide powerful configuration settings, without having to learn a more complex code type like CSS, JavaScript, and PHP.
+Mit YAML wird konfiguriert, welcher Markdown zum Auszeichnen verwendet werden soll. Es ist im Grunde ein vom Menschen lesbares, strukturiertes Datenformat. Es ist weniger komplex und unhandlicher als XML oder JSON, bietet aber ähnliche Funktionalitäten. Es ermöglicht im Wesentlichen die Einrichtung mächtiger Konfigurationseinstellungen, ohne dass Sie einen komplexeren Code-Typ wie CSS, JavaScript oder PHP erlernen müssen.
 
-YAML is built from the ground up to be simple to use. At its core, a YAML file is used to describe data. One of the benefits of using YAML is that the information in a single YAML file can be easily translated to multiple language types.
+YAML ist von Grund auf so aufgebaut, dass es einfach zu bedienen ist. Im Kern wird eine YAML-Datei zur Beschreibung von Daten verwendet. Einer der Vorteile von YAML besteht darin, dass die Informationen in einer einzigen YAML-Datei leicht in mehrere Sprachtypen übersetzt werden können.
 
-Basically, the data you enter in a YAML file is used in conjunction with a library to create the pages you see within Grav.
+Im Wesentlichen werden die Daten, die Sie in eine YAML-Datei eingeben, in Verbindung mit einer Bibliothek verwendet, um die Seiten zu erstellen, die Sie in Grav sehen.
 
-YAML Basic Rules
+Grundlegende YAML-Regeln
 -----
 
-There are some rules that YAML has in place to avoid issues related to ambiguity in relation to various languages and editing programs. These rules make it possible for a single YAML file to be interpreted consistently, regardless of which application and/or library is being used to interpret it.
+Es gibt einige Regeln, die in YAML festgelegt sind, um Probleme im Zusammenhang mit Mehrdeutigkeiten im Hinblick auf unterschiedliche Programmiersprachen und Editorprogramme zu vermeiden. Diese Regeln ermöglichen es, eine einzelne YAML-Datei konsistent zu interpretieren, unabhängig davon, mit welcher Anwendung und/oder Bibliothek sie ausgewertet wird.
 
-* YAML files should end in `.yaml` whenever possible in Grav.
-* YAML is case sensitive.
-* YAML does not allow the use of tabs. Spaces are used instead as tabs are not universally supported.
+* YAML-Dateien sollten, wann immer möglich, in Grav auf `.yaml` enden.
+* In YAML wird zwischen Groß- und Kleinschreibung unterschieden.
+* YAML lässt die Verwendung von Tabulatoren nicht zu. Stattdessen werden Leerzeichen verwendet, da Tabulatoren nicht universell unterstützt werden.
 
-Basic Data Types
+Basisdaten-Typen
 -----
 
-YAML excels at working with **mappings** (hashes / dictionaries), **sequences** (arrays / lists), and **scalars** (strings / numbers). While it can be used with most programming languages, it works best with languages that are built around these data structure types. This includes: PHP, Python, Perl, JavaScript, and Ruby.
+YAML eignet sich hervorragend für die Arbeit mit **mappings** (Hashes / Wörterbücher), **sequences** (Arrays / Listen) und **scalars** (Zeichenketten / Zahlen). Während es mit den meisten Programmiersprachen verwendet werden kann, funktioniert es am besten mit Sprachen, die um diese Datenstrukturtypen herum aufgebaut sind. Dazu gehören: PHP, Python, Perl, JavaScript und Ruby.
 
 ## Scalars
 
-Scalars are a pretty basic concept. They are the strings and numbers that make up the data on the page. A scalar could be a boolean property, like `Yes`, integer (number) such as `5`, or a string of text, like a sentence or the title of your website.
+Scalars sind ein ziemlich einfaches Konzept. Das sind die Zeichenfolgen und Zahlen, aus denen sich die Daten auf der Seite zusammensetzen. Ein Skalar könnte eine boolesche Eigenschaft wie `Yes`, eine Ganzzahl (Zahl) wie `5` oder eine Zeichenkette, wie ein Satz oder der Titel Ihrer Website, sein.
 
-Scalars are often called variables in programming. If you were making a list of types of animals, they would be the names given to those animals.
+Scalars werden in der Programmierung oft als Variablen bezeichnet. Wenn Sie eine Liste von Tierarten erstellen würden, wären dies die Namen, die diesen Tieren gegeben werden.
 
-Most scalars are unquoted, but if you are typing a string that uses punctuation and other elements that can be confused with YAML syntax (dashes, colons, etc.) you may want to quote this data using single `'` or double `"` quotation marks. Double quotation marks allow you to use escapings to represent ASCII and Unicode characters.
+Die meisten Scalars werden nicht in Anführungszeichen gesetzt, aber wenn Sie eine Zeichenkette eingeben, die Interpunktion und andere Elemente verwendet, die mit der YAML-Syntax verwechselt werden könnten (Bindestriche, Doppelpunkte usw.), sollten Sie diese Daten mit einfachen `'` oder doppelten `"` Anführungszeichen umschließen. Doppelte Anführungszeichen ermöglichen Ihnen die Verwendung von Escapezeichen zur Darstellung von ASCII- und Unicode-Zeichen.
 
 [prism classes="language-yaml line-numbers"]
 integer: 25
@@ -48,7 +48,7 @@ boolean: Yes
 
 ## Sequences
 
-Here is a simple sequence you might find in Grav. It is a basic list with each item in the list placed in its own line with an opening dash.
+Hier sehen Sie eine einfache Sequenz, die Sie in Grav finden könnten. Es handelt sich um eine einfache Liste, bei der jeder Punkt in der Liste in einer eigenen Zeile mit einem einleitenden Bindestrich steht.
 
 [prism classes="language-yaml line-numbers"]
 - Cat
@@ -56,7 +56,7 @@ Here is a simple sequence you might find in Grav. It is a basic list with each i
 - Goldfish
 [/prism]
 
-This sequence places each item in the list at the same level. If you want to create a nested sequence with items and sub-items, you can do so by placing a single space before each dash in the sub-items. YAML uses spaces, **NOT** tabs, for indentation. You can see an example of this below.
+Durch diese Reihenfolge wird jedes Element in der Liste auf die gleiche Ebene gestellt. Wenn Sie eine verschachtelte Folge mit Positionen und Unterpositionen erstellen möchten, können Sie dies tun, indem Sie in den Unterpositionen vor jedem Bindestrich ein einzelnes Leerzeichen setzen. YAML verwendet Leerzeichen und **keine** Tabulatoren zum Einrücken. Nachfolgend sehen Sie hierfür ein Beispiel.
 
 [prism classes="language-yaml line-numbers"]
 -
@@ -69,7 +69,7 @@ This sequence places each item in the list at the same level. If you want to cre
  - Tiger
 [/prism]
 
-If you wish to nest your sequences even deeper, you just need to add more levels.
+Wenn Sie Ihre Sequenzen noch tiefer verschachteln möchten, brauchen Sie nur weitere Ebenen hinzuzufügen.
 
 [prism classes="language-yaml line-numbers"]
 -
@@ -79,17 +79,17 @@ If you wish to nest your sequences even deeper, you just need to add more levels
   - Goldfish
 [/prism]
 
-Sequences can be added to other data structure types, such as mappings or scalars.
+Sequenzen können zu anderen Datenstrukturtypen, wie Mappings oder Scalars, hinzugefügt werden.
 
 ## Mappings
 
-Mapping gives you the ability to list keys with values. This is useful in cases where you are assigning a name or a property to a specific element.
+Mapping gibt Ihnen die Möglichkeit, Schlüssel mit Werten aufzulisten. Das ist in den Fällen sinnvoll, in denen Sie einem bestimmten Element einen Namen oder eine Eigenschaft zuweisen.
 
 [prism classes="language-yaml line-numbers"]
 animal: pets
 [/prism]
 
-This example maps the value of `pets` to the `animal` key. When used in conjunction with a sequence, you can see that you are starting to build a list of `pets`. In the following example, the dash used to label each item counts as indentation, making the line items the child and the mapping line `pets` the parent.
+Dieses Beispiel mappt den Wert `pets` auf den Schlüssel `animal`. In Verbindung mit einer Sequenz können Sie sehen, dass damit eine Liste von `pets` erstellt wird. Im folgenden Beispiel dient der Bindestrich, der zur Kennzeichnung der einzelnen Elemente verwendet wird, zusammen mit der Einrückung, dazu, dass die Zeilen als untergeordnete Elemente und die Mappingzeile `pets` als übergeordnetes Element gilt.
 
 [prism classes="language-yaml line-numbers"]
 pets:
@@ -98,10 +98,10 @@ pets:
  - Goldfish
 [/prism]
 
-Resources and Further Documentation
+Quellen und weiterführende Dokumentationen
 -----
 
-For more information about YAML, including detailed documentation about how it works, check out the resources linked below.
+Weitere Informationen zu YAML, einschließlich einer ausführlichen Dokumentation zur Funktionsweise, finden Sie in den unten verlinkten Ressourcen.
 
 * [Dave's YAML Primer](https://github.com/darvid/trine/wiki/YAML-Primer)
 * [Official YAML 1.2 Documentation](https://yaml.org/spec/1.2/spec.html)
