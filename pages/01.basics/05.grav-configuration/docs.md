@@ -180,25 +180,25 @@ Im Abschnitt **Pages** der Datei `system/config/system.yaml` legen Sie viele der
 | ... **auto_line_breaks:** | Aktiviert automatische Zeilenumbrüche. Kann `true` oder `false` sein. |
 | ... **auto_url_links:** | Aktiviert automatische HTML-Links. Kann `true` oder `false` sein. |
 | ... **escape_markup:** | Umgehen von Markup-Tags in Entitäten. Kann `true` oder `false` sein. |
-| ... **special_chars:** | List of special characters to automatically convert to entities. Each character consumes a line below this variable. Example: `'>': 'gt'` |
-| **types:** | List of valid page types. For example: `[txt,xml,html,htm,json,rss,atom]` |
-| **append_url_extension:** | Append page's extension in Page URLs (e.g. `.html` results in **/path/page.html**) |
-| **expires:** | Page expires time in seconds (604800 seconds = 7 days) (`no cache` is also possible) |
-| **cache_control:** | Can be blank for no setting, or a [valid](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control) `cache-control` text value |
-| **last_modified:** | Set the last modified date header based on file modification timestamp. Kann `true` oder `false` sein. |
-| **etag:** | Set the etag header tag. Kann `true` oder `false` sein. |
-| **vary_accept_encoding:** | Add `Vary: Accept-Encoding` header. Kann `true` oder `false` sein. |
-| **redirect_default_route:** | Automatically redirect to a page's default route. Kann `true` oder `false` sein. |
-| **redirect_default_code:** | Default code to use for redirects. For example: `302` |
-| **redirect_trailing_slash:** | Handle automatically or 302 redirect a trailing / URL |
-| **ignore_files:** | Files to ignore in Pages. Example: `[.DS_Store] ` |
-| **ignore_folders:** | Folders to ignore in Pages. Example: `[.git, .idea]` |
-| **ignore_hidden:** | Ignore all Hidden files and folders. Kann `true` oder `false` sein. |
-| **hide_empty_folders:** | If folder has no .md file, should it be hidden. Kann `true` oder `false` sein. |
-| **url_taxonomy_filters:** | Enable auto-magic URL-based taxonomy filters for page collections. Kann `true` oder `false` sein. |
+| ... **special_chars:** | Liste der Sonderzeichen, die automatisch in Entitäten umgewandelt werden sollen. Jedes Zeichen beansprucht eine eigene Zeile unterhalb dieser Variable. Zum Beispiel: `'>': 'gt'` |
+| **types:** | Liste der zulässigen Page-Typen. Zum Beispiel: `[txt,xml,html,htm,json,rss,atom]` |
+| **append_url_extension:** | Anhängen der Endung in Seiten-URLs (z.B. `.html` ergibt **/pfad/seite.html**) |
+| **expires:** | Laufzeit der Seite in Sekunden (604800 Sekunden = 7 Tage) (`no cache` ist auch möglich) |
+| **cache_control:** | Kann leer sein für keine Einstellung oder einen [gültigen Cache-Kontrolltextwert](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control) `cache-control` enthalten. |
+| **last_modified:** | Legt den Header für das zuletzt geänderte Datum basierend auf dem Zeitstempel der Veränderung der Datei fest. Kann `true` oder `false` sein. |
+| **etag:** | Setzt den etag-Header-Tag. Kann `true` oder `false` sein. |
+| **vary_accept_encoding:** | Hinzufügen des `Vary: Accept-Encoding` Headers. Kann `true` oder `false` sein. |
+| **redirect_default_route:** | Automatische Umleitung auf die Standardroute der Seite. Kann `true` oder `false` sein. |
+| **redirect_default_code:** | Standardcode, der für Weiterleitungen zu verwenden ist. Zum Beispiel: `302` |
+| **redirect_trailing_slash:** | Automatisches Handling oder 302 Umleitung eines an die URL angehängten / |
+| **ignore_files:** | Bei Pages zu ignorierende Dateien. Zum Beispiel: `[.DS_Store] ` |
+| **ignore_folders:** | Bei Pages zu ignorierende Ordner. Zum Beispiel: `[.git, .idea]` |
+| **ignore_hidden:** | Ignoriert alle versteckten Dateien und Ordner. Kann `true` oder `false` sein. |
+| **hide_empty_folders:** | Wenn der Ordner keine .md-Datei enthält, sollte er versteckt werden. Kann `true` oder `false` sein. |
+| **url_taxonomy_filters:** | Aktiviert auto-magische URL-basierte Taxonomiefilter für Seitenkollektionen. Kann `true` oder `false` sein. |
 | **frontmatter:** | |
-| ... **process_twig:** | Should the frontmatter be processed to replace Twig variables? Kann `true` oder `false` sein. |
-| ... **ignore_fields:** | Fields that might contain Twig variables and should not be processed. Example: `['form','forms']` |
+| ... **process_twig:** | Soll der Frontmatter verarbeitet werden, um die Twig-Variablen zu ersetzen? Kann `true` oder `false` sein. |
+| ... **ignore_fields:** | Felder, die Twig-Variablen enthalten könnten, sollten nicht verarbeitet werden. Zum Beispiel: `['form','forms']` |
 [/div]
 
 ### Cache
@@ -242,46 +242,46 @@ cache:
 [/prism]
 [/version]
 
-The **Cache** section is where you can configure the site's caching settings. You can enable, disable, choose the method, and more.
+Im Abschnitt **Cache** können Sie die Cache-Einstellungen der Website konfigurieren. Sie können sie aktivieren, deaktivieren, die Methode wählen und noch einiges mehr.
 
 [version=15]
 [div class="table-keycol"]
-| Property | Description |
+| Eigenschaft | Beschreibung |
 | -------- | ----------- |
-| **enabled:** | Set to `true` to enable caching. Can be set to `true` or `false` |
+| **enabled:** |Zum Aktivieren der Caching-Funktion auf `true` setzen. Kann auf `true` oder `false` gesetzt werden. |
 | **check:** | |
-| ... **method:** | Method to check for updates in pages. Options: `file`, `folder`, `hash` and `none`. [more details](../../advanced/performance-and-caching#grav-core-caching) |
-| **driver:** | Select a cache driver. Options are: `auto`, `file`, `apcu`, `redis`, `memcache`, and `wincache` |
-| **prefix:** | Cache prefix string (prevents cache conflicts). Example: `g` |
-| **clear_images_by_default:** | By default grav will include processed images when cache clears, this can be disabled by setting this to `false` |
-| **cli_compatibility:** | Ensures only non-volatile drivers are used (file, redis, memcache, etc.) |
-| **lifetime:** | Lifetime of cached data in seconds (`0` = infinite). `604800` is 7 days |
-| **gzip:** | GZip compress the page output. Can be set to `true` or `false` |
-| **allow_webserver_gzip:** | This option will change the header to `Content-Encoding: identity` allowing gzip to be more reliably set by the webserver although this usually breaks the out-of-process `onShutDown()` capability.  The event will still run, but it won't be out of process, and may hold up the page until the event is complete |
+| ... **method:** | Prüfmethode zum Suchen nach Updates in Pages. Optionen: `file`, `folder`, `hash` und `none`. [Weitere Details](../../advanced/performance-and-caching#grav-core-caching) |
+| **driver:** | Einen Cache-Treiber auswählen. Optionen sind: `auto`, `file`, `apcu`, `redis`, `memcache` und `wincache` |
+| **prefix:** | Cache-Präfix-String (verhindert Cache-Konflikte). Zum Beispiel: `g` |
+| **clear_images_by_default:** | Standardmäßig bindet Grav verarbeitete Bilder mit ein, wenn der Cache gelöscht wird; kann deaktiviert werden, durch Einstellen auf `false`. |
+| **cli_compatibility:** | Stellt sicher, dass nur nicht permanente Treiber verwendet werden (file, redis, memcache, usw.) |
+| **lifetime:** | Lebensdauer der zwischengespeicherten Daten in Sekunden (`0` = unendlich). `604800` entspricht 7 Tagen |
+| **gzip:** | GZip komprimiert die Seitenausgabe. Kann auf `true` oder `false` gesetzt werden. |
+| **allow_webserver_gzip:** | Diese Option ändert den Header zu `Content-Encoding: identity`, wodurch gzip vom Webserver zuverlässiger eingerichtet werden kann, obwohl dies normalerweise die Out-of-Process Fähigkeit `onShutDown()` unterbricht.  Das Event wird immer noch abgearbeitet, aber es wird nicht außer Funktion sein und kann die Seite anhalten, bis das Event abgeschlossen ist. |
 | **redis:** | |
-| **... socket:** | The path to the redis socket file |
+| **... socket:** | Der Pfad zur Redis-Socket-Datei |
 [/div]
 [/version]
 
 [version=16]
 [div class="table-keycol"]
-| Property | Description |
+| Eigenschaft | Beschreibung |
 | -------- | ----------- |
-| **enabled:** | Set to `true` to enable caching. Can be set to `true` or `false` |
+| **enabled:** |Zum Aktivieren der Caching-Funktion auf `true` setzen. Kann auf `true` oder `false` gesetzt werden. |
 | **check:** | |
-| ... **method:** | Method to check for updates in pages. Options: `file`, `folder`, `hash` and `none`. [more details](../../advanced/performance-and-caching#grav-core-caching) |
-| **driver:** | Select a cache driver. Options are: `auto`, `file`, `apcu`, `redis`, `memcache`, and `wincache` |
-| **prefix:** | Cache prefix string (prevents cache conflicts). Example: `g` |
-| **purge_at:** | Scheduler: How often to purge old cache using cron `at` syntax |
-| **clear_at:** | Scheduler: How often to clear the cache using cron `at` syntax |
-| **clear_job_type:** | Type to clear when processing the scheduled clear job. Options: `standard` \| `all` |
-| **clear_images_by_default:** | By default grav will include processed images when cache clears, this can be disabled by setting this to `false` |
-| **cli_compatibility:** | Ensures only non-volatile drivers are used (file, redis, memcache, etc.) |
-| **lifetime:** | Lifetime of cached data in seconds (`0` = infinite). `604800` is 7 days |
-| **gzip:** | GZip compress the page output. Can be set to `true` or `false` |
-| **allow_webserver_gzip:** | This option will change the header to `Content-Encoding: identity` allowing gzip to be more reliably set by the webserver although this usually breaks the out-of-process `onShutDown()` capability.  The event will still run, but it won't be out of process, and may hold up the page until the event is complete |
+| ... **method:** | Prüfmethode zum Suchen nach Updates in Pages. Optionen: `file`, `folder`, `hash` und `none`. [Weitere Details](../../advanced/performance-and-caching#grav-core-caching) |
+| **driver:** | Einen Cache-Treiber auswählen. Optionen sind: `auto`, `file`, `apcu`, `redis`, `memcache` und `wincache` |
+| **prefix:** | Cache-Präfix-String (verhindert Cache-Konflikte). Zum Beispiel: `g` |
+| **purge_at:** | Scheduler: Wie oft soll der alte Cache unter Verwendung der Cron-Syntax `at` entleert werden? |
+| **clear_at:** | Scheduler: Wie oft soll der Cache unter Verwendung der Cron-Syntax `at` entleert werden? |
+| **clear_job_type:** | Der Typ, der bei der Verarbeitung des geplanten Löschjobs gelöscht werden soll. Optionen: `standard` \| `all` |
+| **clear_images_by_default:** | Standardmäßig bindet Grav verarbeitete Bilder mit ein, wenn der Cache gelöscht wird; kann deaktiviert werden, durch Einstellen auf `false`. |
+| **cli_compatibility:** | Stellt sicher, dass nur nicht permanente Treiber verwendet werden (file, redis, memcache, usw.) |
+| **lifetime:** | Lebensdauer der zwischengespeicherten Daten in Sekunden (`0` = unendlich). `604800` entspricht 7 Tagen |
+| **gzip:** | GZip komprimiert die Seitenausgabe. Kann auf `true` oder `false` gesetzt werden. |
+| **allow_webserver_gzip:** | Diese Option ändert den Header zu `Content-Encoding: identity`, wodurch gzip vom Webserver zuverlässiger eingerichtet werden kann, obwohl dies normalerweise die Out-of-Process Fähigkeit `onShutDown()` unterbricht.  Das Event wird immer noch abgearbeitet, aber es wird nicht außer Funktion sein und kann die Seite anhalten, bis das Event abgeschlossen ist. |
 | **redis:** | |
-| **... socket:** | The path to the redis socket file |
+| **... socket:** | Der Pfad zur Redis-Socket-Datei |
 [/div]
 [/version]
 
@@ -298,18 +298,18 @@ twig:
   umask_fix: false
 [/prism]
 
-The **Twig** section gives you a quick set of tools with which to configure Twig on your site for debugging, caching, and optimization.
+Der Abschnitt **Twig** gibt Ihnen einen kurzen Überblick über die Tools, mit denen Sie Twig auf Ihrer Website für Debugging, Caching und Optimierung konfigurieren können.
 
 [div class="table-keycol"]
-| Property | Description |
+| Eigenschaft | Beschreibung |
 | -------- | ----------- |
-| **cache:** | Set to `true` to enable Twig caching. Can be set to `true` or `false` |
-| **debug:** | Enable Twig debug. Can be set to `true` or `false` |
-| **auto_reload:** | Refresh cache on changes. Can be set to `true` or `false` |
-| **autoescape:** | Autoescape Twig vars. Can be set to `true` or `false` |
-| **undefined_functions:** | Allow undefined functions. Can be set to `true` or `false` |
-| **undefined_filters:** | Allow undefined filters. Can be set to `true` or `false` |
-| **umask_fix:** | By default Twig creates cached files as 755, fix switches this to 775. Can be set to `true` or `false` |
+| **cache:** | Setzt man auf `true`, wird das Twig-Caching aktiviert. Kann auf `true` oder `false` gesetzt werden. |
+| **debug:** | Twig-Debug aktivieren. Kann auf `true` oder `false` gesetzt werden. |
+| **auto_reload:** | Bei Änderungen den Cache aktualisieren. Kann auf `true` oder `false` gesetzt werden. |
+| **autoescape:** | Autoescape Twig vars. Kann auf `true` oder `false` gesetzt werden. |
+| **undefined_functions:** | Nicht definierte Funktionen zulassen. Kann auf `true` oder `false` gesetzt werden. |
+| **undefined_filters:** | Zulassen von undefinierten Filtern. Kann auf `true` oder `false` gesetzt werden. |
+| **umask_fix:** | Standardmäßig erstellt Twig Datei-Rechte im Cache mit 755, fix ändert diesen Wert auf 775. Kann auf `true` oder `false` gesetzt werden. |
 [/div]
 
 ### Assets
@@ -331,23 +331,23 @@ assets:
     jquery: system://assets/jquery/jquery-2.x.min.js
 [/prism]
 
-The **Assets** section enables you to configure options related to the Assets Manager (JS, CSS).
+Der Abschnitt **Assets** ermöglicht es Ihnen, Optionen in Verbindung mit dem Asset Manager (JS, CSS) zu konfigurieren.
 
 [div class="table-keycol"]
-| Property | Description |
+| Eigenschaft | Beschreibung |
 | -------- | ----------- |
-| **css_pipeline:** | The CSS pipeline is the unification of multiple CSS resources into one file. Can be set to `true` or `false` |
-| **css_pipeline_include_externals:** | Include external URLs in the pipeline by default. Can be set to `true` or `false` |
-| **css_pipeline_before_excludes:** | Render the pipeline before any excluded files. Can be set to `true` or `false` |
-| **css_minify:** | Minify the CSS during pipelining. Can be set to `true` or `false` |
-| **css_minify_windows:** | Minify Override for Windows platforms. `false` by default due to ThreadStackSize. Can be set to `true` or `false` |
-| **css_rewrite:** | Rewrite any CSS relative URLs during pipelining. Can be set to `true` or `false` |
-| **js_pipeline:** | The JS pipeline is the unification of multiple JS resources into one file. Can be set to `true` or `false` |
-| **js_pipeline_include_externals:** | Include external URLs in the pipeline by default. Can be set to `true` or `false` |
-| **js_pipeline_before_excludes:** | Render the pipeline before any excluded files. Can be set to `true` or `false` |
-| **js_minify:** | Minify the JS during pipelining. Can be set to `true` or `false` |
-| **enable_asset_timestamp:** | Enable asset timestamps. Can be set to `true` or `false` |
-| **collections:** | This contains collections, designated as sub-items. For example: `jquery: system://assets/jquery/jquery-3.x.min.js` |
+| **css_pipeline:** | Die CSS-Pipeline ist die Zusammenführung mehrerer CSS-Ressourcen in einer Datei. Kann auf `true` oder `false` gesetzt werden. |
+| **css_pipeline_include_externals:** | Externe URLs standardmäßig in die Pipeline einbinden. Kann auf `true` oder `false` gesetzt werden. |
+| **css_pipeline_before_excludes:** | Die Pipeline wird gerendert, bevor Dateien ausgeschlossen werden. Kann auf `true` oder `false` gesetzt werden. |
+| **css_minify:** | Das CSS während des Pipelinings verkleinern. Kann auf `true` oder `false` gesetzt werden. |
+| **css_minify_windows:** | Überschreiben für Windows-Plattformen minimieren. Standardmäßig `false` aufgrund der ThreadStackSize. Kann auf `true` oder `false` gesetzt werden. |
+| **css_rewrite:** | Beim Pipelining werden alle relativen CSS-URLs umgeschrieben. Kann auf `true` oder `false` gesetzt werden. |
+| **js_pipeline:** | Die JS-Pipeline ist die Zusammenfassung mehrerer JS-Ressourcen in einer Datei. Kann auf `true` oder `false` gesetzt werden. |
+| **js_pipeline_include_externals:** | Externe URLs standardmäßig in die Pipeline einbinden. Kann auf `true` oder `false` gesetzt werden. |
+| **js_pipeline_before_excludes:** | Die Pipeline vor den ausgeschlossenen Dateien rendern. Kann auf `true` oder `false` gesetzt werden. |
+| **js_minify:** | JS während des Pipelining minimieren. Kann auf `true` oder `false` gesetzt werden. |
+| **enable_asset_timestamp:** | Assets Zeitstempel aktivieren. Kann auf `true` oder `false` gesetzt werden. |
+| **collections:** | Darin sind Sammlungen enthalten, die als Sub-Items bezeichnet werden. Zum Beispiel: `jquery: system://assets/jquery/jquery-3.x.min.js` |
 [/div]
 
 ### Errors
@@ -358,13 +358,13 @@ errors:
   log: true
 [/prism]
 
-The **Errors** section determines how Grav handles error display and logging.
+Der Abschnitt **Errors** bestimmt, wie Grav die Fehleranzeige und -protokollierung verarbeitet.
 
 [div class="table-keycol"]
-| Property | Description |
+| Eigenschaft | Beschreibung |
 | -------- | ----------- |
-| **display:** | Determines how errors are displayed. Enter either `1` for the full backtrace, `0` for Simple Error, or `-1` for System Error |
-| **log:** | Log errors to `/logs` folder. Can be set to `true` or `false` |
+| **display:** | Bestimmt, wie Fehler angezeigt werden. Geben Sie entweder `1` für eine komplette Rückverfolgung, `0` für einen einfachen Fehler oder `-1` für einen Systemfehler ein. |
+| **log:** | Fehler im Ordner `/logs` aufzeichnen. Kann auf `true` oder `false` gesetzt werden. |
 [/div]
 
 ### Log
@@ -376,14 +376,14 @@ log:
     facility: local6
 [/prism]
 
-The **Log** section allows you to configure alternate logging capabilities for Grav.
+Der Abschnitt **Log** ermöglicht die Konfiguration wechselnder Protokollfunktionen für Grav.
 
 [div class="table-keycol"]
-| Property | Description |
+| Eigenschaft | Beschreibung |
 | -------- | ----------- |
-| **handler:** | Log handler. Currently supported: `file` \| `syslog` |
+| **handler:** | Log-Handler. Derzeit wird unterstützt: `file` \| `syslog` |
 | **syslog:** | |
-| ... **facility:** | Syslog facilities output |
+| ... **facility:** | Ausgabe der Syslog-Facilities |
 [/div]
 
 ### Debugger
@@ -395,14 +395,14 @@ debugger:
     close_connection: true
 [/prism]
 
-The **Debugger** section gives you the ability to activate Grav's debugger. A useful tool during development.
+Der Abschnitt **Debugger** gibt Ihnen die Möglichkeit, den Grav-Debugger zu aktivieren. Ein hilfreiches Werkzeug während der Entwicklungsphase.
 
 [div class="table-keycol"]
-| Property | Description |
+| Eigenschaft | Beschreibung |
 | -------- | ----------- |
-| **enabled:** | Enable Grav debugger and following settings. Can be set to `true` or `false` |
+| **enabled:** | Enable Grav debugger and following settings. Kann auf `true` oder `false` gesetzt werden. |
 | **shutdown:** | |
-| ... **close_connection:** | Close the connection before calling `onShutdown()`. `false` for debugging |
+| ... **close_connection:** | Die Verbindung vor dem Aufruf von `onShutdown()` schließen. `false` zum Debuggen |
 [/div]
 
 ### Images
@@ -417,17 +417,17 @@ images:
   seofriendly: false
 [/prism]
 
-The **Images** section gives you the ability to set the default image quality images are resampled to, as well as to control image caching and debugging features.
+Der Abschnitt **Images** gibt Ihnen die Möglichkeit, die Standard-Bildqualität einzustellen, mit der Bilder erneut gesamplet werden, sowie die Bildspeicher- und Debugging-Funktionen zu steuern.
 
 [div class="table-keycol"]
-| Property | Description |
+| Eigenschaft | Beschreibung |
 | -------- | ----------- |
-| **default_image_quality:** | Default image quality to use when resampling images. For example: `85` = 85% |
-| **cache_all:** | Cache all images by default. Can be set to `true` or `false` |
-| **cache_perms:** | **Must be in quotes!** Default cache folder perms. Usually `'0755'` or `'0775'` |
-| **debug:** | Show an overlay over images indicating the pixel depth of the image when working with retina, for example. Can be set to `true` or `false` |
-| **auto_fix_orientation:** | Try to automatically fix images uploaded with non-standard rotation |
-| **seofriendly:** | SEO-friendly processed image names |
+| **default_image_quality:** | Standard-Bildqualität, die beim Resampling von Bildern angewandt wird. Zum Beispiel: `85` = 85% |
+| **cache_all:** | Alle Bilder standardmäßig in den Cache stellen. Kann auf `true` oder `false` gesetzt werden. |
+| **cache_perms:** | ** Muss in Anführungszeichen stehen!** Standardmäßige Zugriffsrechte für Cache-Ordner. Normalerweise `'0755'` or `'0775'` |
+| **debug:** | Beim Arbeiten mit Retina eine Einblendung über den Bildern zeigen, die z.B. die Auflösung des Bildes anzeigt. Kann auf `true` oder `false` gesetzt werden. |
+| **auto_fix_orientation:** | Versucht automatisch Bilder zu korrigieren, die mit einer nicht-standardmäßigen Drehung hochgeladen wurden. |
+| **seofriendly:** | SEO-freundlich aufbereitete Namen von Bildern |
 [/div]
 
 
@@ -441,15 +441,15 @@ media:
   auto_metadata_exif: false
 [/prism]
 
-The **Media** section handles the configuration options for settings related to the handling of media files. This includes timestamp display, upload size, and more.
+Der Abschnitt **Media** behandelt die Konfigurationsoptionen für Einstellungen im Zusammenhang mit dem Umgang mit Mediendateien. Dazu gehören die Anzeige von Zeitstempeln, Upload-Größe und mehr.
 
 [div class="table-keycol"]
-| Property | Description |
+| Eigenschaft | Beschreibung |
 | -------- | ----------- |
-| **enable_media_timestamp:** | Enable media timetsamps |
-| **unsupported_inline_types:** | Array of supported media types to try to display inline. These file types are placed within `[]` brackets |
-| **allowed_fallback_types:** | Array of allowed media types of files found if accessed via Page route. These file types are placed within `[]` brackets |
-| **auto_metadata_exif:** | Automatically create metadata files from Exif data where possible |
+| **enable_media_timestamp:** | Aktivieren der Medienzeitstempel |
+| **unsupported_inline_types:** | Array der unterstützten Medientypen, um zu versuchen sie Inline anzuzeigen. Diese Dateitypen werden in `[]` eckige Klammern gesetzt. |
+| **allowed_fallback_types:** | Array der erlaubten Datei-Medientypen, die gefunden werden, wenn auf sie über die Page-Route zugegriffen wird. Diese Dateitypen werden in `[]` eckige Klammern gesetzt. |
+| **auto_metadata_exif:** | Automatische Erstellung von Metadatendateien aus Exif-Daten, wo es möglich ist. |
 [/div]
 
 ### Session
@@ -467,19 +467,19 @@ session:
   path:
 [/prism]
 
-These options determine session properties for your site.
+Diese Optionen bestimmen die Eigenschaften der Sitzung für Ihre Website.
 
 [div class="table-keycol"]
-| Property | Description |
+| Eigenschaft | Beschreibung |
 | -------- | ----------- |
-| **enabled:** | Enable Session support. Can be set to `true` or `false` |
-| **initialize:** | Initialize session from Grav (if `false`, plugin needs to start the session) |
-| **timeout:** | Timeout in seconds. For example: `1800` |
-| **name:** | Name prefix of the session cookie. Use alphanumeric, dashes or underscores only. Do not use dots in the session name. For example: `grav-site` |
-| **uniqueness:** | Should sessions be `path` based or `security.salt` based |
-| **secure:** | Set session secure. If `true`, indicates that communication for this cookie must be over an encrypted transmission. Enable this only on sites that run exclusively on HTTPS. Can be set to `true` or `false` |
-| **httponly:** | Set session HTTP only. If `true`, indicates that cookies should be used only over HTTP, and JavaScript modification is not allowed. Can be set to `true` or `false` |
-| **path:** | The path where sessions are stored |
+| **enabled:** | Unterstützung für Sitzungen aktivieren. Kann auf `true` oder `false` gesetzt werden. |
+| **initialize:** | Sitzung von Grav aus initialisieren (wenn `false`, muss das Plugin die Sitzung starten). |
+| **timeout:** | Timeout in Sekunden. Zum Beispiel: `1800` |
+| **name:** | Namenspräfix des Session-Cookies. Verwenden Sie nur alphanumerische Zeichen, Bindestriche oder Unterstriche. Verwenden Sie keine Punkte im Sitzungsnamen. Zum Beispiel: `grav-site` |
+| **uniqueness:** | Sollen die Sitzungen auf `path` based oder `security.salt` basieren? |
+| **secure:** | Sitzungs-Sicherheit einstellen. Wenn `true`, bedeutet dies, dass die Kommunikation für dieses Cookie über eine verschlüsselte Übertragung erfolgen muss. Aktivieren Sie dies nur für Seiten, die ausschließlich über HTTPS laufen. Kann auf `true` oder `false` gesetzt werden. |
+| **httponly:** | Ausschließlich HTTP-Sitzung aktivieren. `true` bedeutet, dass Cookies nur über HTTP verwendet werden sollen und eine JavaScript-Modifikation nicht erlaubt ist. Kann auf `true` oder `false` gesetzt werden. |
+| **path:** | Speicherpfad für Sitzungen |
 [/div]
 
 ### GPM
@@ -493,16 +493,16 @@ gpm:
   official_gpm_only: true
 [/prism]
 
-Options in the **GPM** section control Grav's GPM (Grav Package Manager). For example, you can restrict GPM to using official sources and select the method GPM uses to retrieve packages. You can also choose between stable and testing releases, as well as set up a proxy URL.
+Optionen im Abschnitt **GPM** steuern den Grav GPM (Grav Package Manager). Beispielsweise können Sie GPM auf die Verwendung offizieller Quellen beschränken und die Methode auswählen, die GPM zum Herunterladen von Paketen verwendet. Sie können auch zwischen stabilen und Testversionen wählen und eine Proxy-URL einrichten.
 
 [div class="table-keycol"]
-| Property | Description |
+| Eigenschaft | Beschreibung |
 | -------- | ----------- |
-| **releases:** | Set to either `stable` or `testing` to determine if you want to update to the latest stable or testing build |
-| **proxy_url:** | Configure a manual proxy URL for GPM. For example: `127.0.0.1:3128` |
-| **method:** | Either `'curl'`, `'fopen'` or `'auto'`. `'auto'` will try fopen first and if not available cURL |
-| **verify_peer:** | On some systems (Windows mostly) GPM is unable to connect because the SSL certificate cannot be verified. Disabling this setting might help |
-| **official_gpm_only:** | By default GPM direct-install will only allow URLs via the official GPM proxy to ensure security, disable this to allow other sources |
+| **releases:** | Entweder auf `stable` oder `testing` setzen, um festzulegen, ob Sie auf den neuesten Stable- oder Testing-Build updaten wollen. |
+| **proxy_url:** | Eine manuelle Proxy-URL für GPM konfigurieren. Zum Beispiel: `127.0.0.1:3128` |
+| **method:** | Wahlweise `'curl'`, `'fopen'` oder `'auto'`. `'auto'` versucht zuerst fopen und falls nicht verfügbar cURL. |
+| **verify_peer:** | Auf einigen Systemen (meistens Windows) ist GPM nicht in der Lage, eine Verbindung herzustellen, da das SSL-Zertifikat nicht verifiziert werden kann. Die Deaktivierung dieser Option könnte helfen. |
+| **official_gpm_only:** | Erlaubt URLs für die GPM-Direktinstallation standardmäßig nur über den offiziellen GPM-Proxy, damit die Sicherheit gewährleistet ist; deaktivieren Sie dies, um andere Quellen zuzulassen. |
 [/div]
 
 ### Strict Mode
@@ -513,17 +513,17 @@ strict_mode:
   twig_compat: true
 [/prism]
 
-Strict mode allows for a cleaner migration to future versions of Grav by moving to the newer versions of YAML and Twig processors.  These may not be compatible with all 3rd party extensions.
+Der Strict-Modus ermöglicht eine sauberere Migration zu zukünftigen Versionen von Grav, indem auf die neueren Versionen von YAML- und Twig-Prozessoren umgestellt wird.  Diese sind möglicherweise nicht mit allen Erweiterungen von Drittanbietern kompatibel.
 
 [div class="table-keycol"]
-| Property | Description |
+| Eigenschaft | Beschreibung |
 | -------- | ----------- |
-| **yaml_compat:** | Enables YAML backwards compatibility |
-| **twig_compat:** | Enables deprecated Twig autoescape setting |
+| **yaml_compat:** | Ermöglicht die YAML-Rückwärtskompatibilität |
+| **twig_compat:** | Ermöglicht die veraltete Twig-Autoescape-Einstellung. |
 [/div]
 
 [version=16]
-### Accounts
+### Accounts (Konten)
 
 [prism classes="language-yaml line-numbers"]
 accounts:
@@ -531,55 +531,55 @@ accounts:
   storage: file
 [/prism]
 
-Accounts is a new setting for 1.6 that allows you to try out the new experimental Flex Users.  This basically means that Users are stored as Flex objects allowing more power and performance.
+Konten ist eine neue Einstellung für Version 1.6, die es Ihnen ermöglicht, die neuen experimentellen Flex-Benutzer auszuprobieren.  Das bedeutet im Wesentlichen, dass die Benutzer als Flex-Objekte gespeichert werden, was mehr Leistung und Performance ermöglicht.
 
 [div class="table-keycol"]
-| Property | Description |
+| Eigenschaft | Beschreibung |
 | -------- | ----------- |
-| **type:** | Account type: `data` or `flex` |
-| **storage:** | Flex storage type: `file` or `folder` |
+| **type:** | Account-Typ: `data` oder `flex` |
+| **storage:** | Flex-Speichertyp: `file` oder `folder` |
 [/div]
 
-!! You do not need to copy the **entire** configuration file to override it, you can override as little or as much as you like.  Just ensure you have the **exact same naming structure** for the particular setting you want to override.
+!! Sie brauchen nicht die **vollständige** Konfigurationsdatei zu kopieren, um sie zu überschreiben. Sie können so wenig oder so viel überschreiben, wie Sie möchten.  Achten Sie nur darauf, dass Sie die **exakte gleiche Struktur zur Benennung** für die jeweilige Einstellung haben, die Sie überschreiben wollen.
 [/version]
 
-## Site Configuration
+## Site-Konfiguration
 
-As well as the `system.yaml` file, Grav also provides a default `site.yaml` configuration file that is used to set some front-end specific configuration such as author name, author email, as well as some key taxonomy settings.  You can override these in the same way as you would the system.yaml by providing your own configuration file in `user/config/site.yaml`. You can also use this file to put in arbitrary configuration options that you may want to reference from your content or templates.
+Neben der Datei `system.yaml` bietet Grav auch eine Standardkonfigurationsdatei `site.yaml`, die verwendet wird, um einige spezifische Frontend-Konfigurationen wie Autorenname, Autoren-E-Mail sowie einige wichtige Taxonomie-Einstellungen festzulegen.  Sie können diese auf die gleiche Weise wie in der system.yaml überschreiben, indem Sie Ihre eigene Konfigurationsdatei in `user/config/site.yaml` erstellen. Sie können diese Datei auch dazu verwenden, beliebige eigene Konfigurations-Optionen einzufügen, auf die Sie von Ihrem Inhalt oder Ihren Templates aus verweisen möchten.
 
-The default `system/config/site.yaml` file that ships with Grav looks something like this:
+Die Standarddatei `system/config/site.yaml`, die mit Grav ausgeliefert wird, sieht in etwa so aus:
 
 [prism classes="language-yaml line-numbers"]
-title: Grav                                 # Name of the site
-default_lang: en                            # Default language for site (potentially used by theme)
+title: Grav                                 # der Site-Name
+default_lang: en                            # Standardsprache für die Website (wird möglicherweise auch vom Theme verwendet).
 
 author:
-  name: John Appleseed                      # Default author name
-  email: 'john@example.com'                 # Default author email
+  name: John Appleseed                      # Autorenname (voreingestellt)
+  email: 'john@example.com'                 # E-Mail des Autors (voreingestellt)
 
-taxonomies: [category,tag]                  # Arbitrary list of taxonomy types
+taxonomies: [category,tag]                  # Beliebige Liste von Taxonomie-Typen
 
 metadata:
-  description: 'My Grav Site'               # Site description
+  description: 'My Grav Site'               # Beschreibung der Website
 
 summary:
-  enabled: true                             # enable or disable summary of page
-  format: short                             # long = summary delimiter will be ignored; short = use the first occurrence of delimiter or size
-  size: 300                                 # Maximum length of summary (characters)
-  delimiter: ===                            # The summary delimiter
+  enabled: true                             # Zusammenfassung der Seite aktivieren oder deaktivieren
+  format: short                             # long = das summarische Trennzeichen wird ignoriert; short = das erste vorkommnende Trennzeichen oder die Größenbegrenzung verwenden
+  size: 300                                 # Maximale Länge der Zusammenfassung (Buchstaben/Zeichen)
+  delimiter: ===                            # Das summarische Trennzeichen
 
 redirects:
-#  '/redirect-test': '/'                    # Redirect test goes to home page
-#  '/old/(.*)': '/new/$1'                   # Would redirect /old/my-page to /new/my-page
+#  '/redirect-test': '/'                    # redirect-test wird zur Startseite umgeleitet
+#  '/old/(.*)': '/new/$1'                   # Würde /old/my-page zu /new/my-page umleiten
 
 routes:
-#  '/something/else': '/blog/sample-3'      # Alias for /blog/sample-3
-#  '/new/(.*)': '/blog/$1'                  # Regex any /new/my-page URL to /blog/my-page Route
+#  '/something/else': '/blog/sample-3'      # Alias für /blog/sample-3
+#  '/new/(.*)': '/blog/$1'                  # Jede Regex /neue/meine_Seite_URL wird zu /blog/meine_Seite weitergeleitet
 
 blog:
-  route: '/blog'                            # Custom value added (accessible via site.blog.route)
+  route: '/blog'                            # Individuellen Wert hinzufügen (verfügbar über site. blog. route)
 
-#menu:                                      # Menu Example
+#menu:                                      # Menu-Beispiel
 #    - text: Source
 #      icon: github
 #      url: https://github.com/getgrav/grav
@@ -587,30 +587,29 @@ blog:
 #      url: http://twitter.com/getgrav
 [/prism]
 
-Let's break down the elements of this sample file:
+Lassen Sie uns die Elemente dieser Beispieldatei analysieren:
 
 [div class="table-keycol"]
-| Property | Description |
+| Eigenschaft | Beschreibung |
 | -------- | ----------- |
-| **title:** | The title is a simple string variable that can be referenced whenever you want to display the name of this site |
+| **title:** | Der Titel ist eine einfache String-Variable, auf die immer dann verwiesen werden kann, wenn Sie den Namen dieser Website anzeigen möchten. |
 | **author:** | |
-| ... **name:** | The name of the author of the site, that can be referenced whenever you need it |
-| ... **email:** | A default email for use in your site |
-| **taxonomies:** | An arbitrary list of high-level types that you can use to organize your content.  You can assign content to specific taxonomy types, for example, categories or tags. Feel free to edit, or add your own |
-| **metadata:** | Set default metadata for all your pages, see the [content page headers](../../content/headers) section for more details |
+| ... **name:** | Der Name des Autors der Website, auf den bei Bedarf verwiesen werden kann. |
+| ... **email:** | Eine Standard-E-Mail zur Verwendung auf Ihrer Website. |
+| **taxonomies:** | Eine beliebige Liste von High-Level-Typen, die Sie zum Organisieren Ihrer Inhalte verwenden können. Sie können Inhalte bestimmten Taxonomietypen zuordnen, z.B. Kategorien oder Tags. Sie können die Einträge bearbeiten oder Ihre eigenen hinzufügen. |
+| **metadata:** | Festlegen von Standard-Metadaten für alle Ihre Seiten, siehe Abschnitt [Inhalt Seiten-Headers](../../content/headers) für weitere Einzelheiten. |
 | **summary:** | |
-| ... **size:** | A variable to override the default number of characters that can be used to set the summary size when displaying a portion of content |
-| **routes:** | This is a basic map that can provide simple URL alias capabilities in Grav.  If you browse to `/something/else` you will actually be sent to `/blog/sample-3`. Feel free to edit, or add your own as needed. **Regex Replacements** (`(.*) - $1`) are now supported at the end of route aliases.  You should put these at the bottom of the list for optimal performance |
-| **(custom options)** | You can create any option you like in this file and a good example is the `blog: route: '/blog'` option that is accessible in your Twig templates with `site.blog.route` |
+| ... **size:** | Das ist ein einfaches URL-Mapping in Grav und bietet simple URL-Alias-Funktionen.  Wenn Sie zu `/etwas/irgendwo` browsen, werden Sie tatsächlich zu `/blog/Muster-3` geschickt.  Bei Bedarf können Sie dieses Mapping bearbeiten oder Ihr eigenes hinzufügen. **Regex-Ersetzungen** (`(.*) - $1`) am Ende von Route-Aliases werden jetzt unterstützt. Für eine optimale Performance sollten diese an das Ende der Liste gesetzt werden. |
+| **(custom options)** | Sie können in dieser Datei jede beliebige Option erstellen. Ein gutes Beispiel ist die Option `blog: route: '/blog'`, die in Ihren Twig-Templates mit `site.blog.route` abrufbar ist. |
 [/div]
 
-!! For most people, the most important element of this file is the `Taxonomy` list.  The taxonomies in this list **must** be defined here if you wish to use them in your content.
+!! Für die meisten Leute ist das wichtigste Element dieser Datei die `Taxonomie`-Liste.  Die Taxonomien in dieser Liste **müssen** hier definiert werden, wenn Sie sie in Ihren Inhalten verwenden wollen.
 
 ## Security
 
-In Grav 1.5 we introduced a new `system/config/security.yaml` file that sets some sensible defaults and is used by the Admin plugin when **Saving** content[version=16], as well in the new **Reports** section of **Tools**[/version].
+In Grav 1.5 haben wir eine neue Datei `system/config/security.yaml` eingeführt, die einige sinnvolle Standardeinstellungen festlegt und vom Admin-Plugin beim **Speichern** von Inhalten[version=16] verwendet wird, sowie im neuen Abschnitt **Berichte** unter **Werkzeuge**[/version].
 
-The default configuration looks like this:
+Die Voreinstellung für die Konfiguration sieht wie folgt aus:
 
 [prism classes="language-yaml line-numbers"]
 xss_whitelist: [admin.super]
@@ -653,63 +652,63 @@ uploads_dangerous_extensions:
     - exe
 [/prism]
 
-If you wish to make any changes to these settings, you should copy this file to `user/config/security.yaml` and make edits there.
+Wenn Sie Änderungen an diesen Einstellungen vornehmen möchten, sollten Sie diese Datei nach `user/config/security.yaml` kopieren und **dort** die Änderungen vornehmen.
 
-## Other Configuration Settings and Files
+## Andere Einstellungen und Dateien für die Konfiguration
 
-User configuration is completely optional. You can override as little or as much of the default settings as you need. This applies to both the system, site, and any plugin configurations in your site.
+Die Benutzerkonfiguration ist vollkommen optional. Die Standardeinstellungen können beliebig oft oder so wenig wie nötig verändert werden. Dies gilt sowohl für das System, die Site als auch für alle Plugin-Konfigurationen auf Ihrer Site.
 
-You are also not limited to the `user/config/system.yaml` or the `user/config/site.yaml` files as described above. You can create any arbitrary `.yaml` configuration file in the `user/config` folder you wish and it will get picked up by Grav automatically.
+Sie sind auch nicht, wie oben beschrieben, auf die Dateien `user/config/system.yaml` oder `user/config/site.yaml` beschränkt. Sie können jede beliebige `. yaml` Konfigurations-Datei im Ordner `user/config` erstellen, die Sie wünschen. Sie wird dann automatisch von Grav erkannt.
 
-As an example if the new configuration file is named `user/config/data.yaml` and a yaml variable in this file is called count:
+So könnte zum Beispiel die neue Konfigurationsdatei `user/config/data.yaml` heißen und eine yaml-Variable in dieser Datei count heißen:
 
 ```
 count: 39
 ```
 
-The variable would be accessed in your Twig template by using the following syntax:
+Auf die Variable würde in Ihrem Twig-Template mit Hilfe der folgenden Syntax zugegriffen werden:
 
 ```
 {{ config.data.count }}
 ```
 
-It would also be accessible via PHP from any plugin with the code:
+Es wäre auch über PHP aus jedem Plugin mit dem dazugehörigen Code zugänglich:
 
 ```
 $count_var = Grav::instance()['config']->get('data.count');
 ```
 
-! You can also provide a custom blueprint to enable your custom file to be editable in the admin plugin. Check out the relevant [recipe in the Admin Cookbook section](/cookbook/admin-recipes#add-a-custom-yaml-file).
+! Sie können auch ein benutzerdefiniertes Blueprint erstellen, damit Ihre angepasste Datei im Admin-Plugin bearbeitet werden kann. Sehen Sie sich das entsprechende [Rezept im Abschnitt Admin-Kochbuch](/cookbook/admin-recipes#add-a-custom-yaml-file) an.
 
-### Config Variable Namespacing
+### Namensraum von Variablen konfigurieren
 
-Paths to the configuration files will be used as a **namespace** for your configuration options.
+Die Pfade zu den Konfigurationsdateien werden als **Namensraum** für Ihre Einstellmöglichkeiten verwendet.
 
-Alternatively, you can put all the options into one file and use YAML structures to specify the hierarchy for your configuration options. This namespacing is built from a combination of the **path + filename + option name**.
+Alternativ können Sie alle Optionen in einer Datei zusammenfassen und mit Hilfe von YAML-Strukturen die Hierarchie für Ihre Konfigurationsparameter festlegen. Dieser Namensraum wird aus einer Kombination aus **Pfad + Dateiname + Optionsname** gebildet.
 
-For example: An option such as `author: Frank Smith` in file `plugins/myplugin.yaml` could be accessible via: `plugins.myplugin.author`. However, you could also have a `plugins.yaml` file and in that file have an option name called `myplugin: author: Frank Smith` and it would still be reachable by the same `plugins.myplugin.author` namespace.
+Ein Beispiel: Die Option, wie z.B. `author: Frank Smith` in der Datei `plugins/myplugin.yaml` könnte über `plugins.myplugin.autor` aufgerufen werden. Sie könnten jedoch auch eine Datei `plugins.yaml` verwenden und in dieser Datei eine Option namens `myplugin: author: Frank Smith` haben und sie wäre immer noch über den gleichen Namensraum `plugins.myplugin.author` erreichbar.
 
-Some example configuration files could be structured:
+Einige Konfigurationsdateien könnten beispielsweise so strukturiert sein:
 
 [div class="table-keycol"]
-| File | Description |
+| Datei | Beschreibung |
 | -------- | ----------- |
-| **user/config/system.yaml**           | Global system configuration file                  |
-| **user/config/site.yaml**             | A site-specific configuration file                |
-| **user/config/plugins/myplugin.yaml** | Individual configuration file for myplugin plugin |
-| **user/config/themes/mytheme.yaml**   | Individual configuration file for mytheme theme   |
+| **user/config/system.yaml**           | Globale Konfigurationsdatei für das System                |
+| **user/config/site.yaml**             | Eine Konfigurationsdatei für die spezifische Website      |
+| **user/config/plugins/myplugin.yaml** | Individuelle Konfigurationsdatei für das Plugin myplugin  |
+| **user/config/themes/mytheme.yaml**   | Individuelle Konfigurationsdatei für das Theme Mytheme    |
 [/div]
 
-!! Having a namespaced configuration file will override or mask all options having the same path in the default configuration files
+!! Eine Konfigurationsdatei im Namensraum überschreibt oder maskiert alle Optionen, die den gleichen Pfad in den Standard-Konfigurationsdateien angegeben haben.
 
-### Plugins Configuration
+### Plugins-Konfiguration
 
-Most **plugins** will come with their own YAML configuration file. We recommend copying this file to the `user/config/plugins/` directory rather than editing configuration options directly to the file located in the plugin's directory. Doing this will ensure that an update to the plugin will not overwrite your settings, and keep all of your configurable options in one, convenient place.
+Die meisten **Plugins** werden mit einer eigenen YAML-Konfigurationsdatei installiert. Wir empfehlen, diese Datei in das Verzeichnis `user/config/plugins/` zu kopieren, anstatt die Konfigurationsoptionen direkt in der Datei im Verzeichnis des Plugins zu editieren. Auf diese Weise stellen Sie sicher, dass ein Update des Plugins Ihre Einstellungen nicht überschreibt, und behalten alle Ihre konfigurierbaren Optionen an einem geeigneten Speicherort.
 
-If you have a plugin called `user/plugins/myplugin` that has a configuration file called `user/plugins/myplugin/myplugin.yaml` then you would copy this file to `user/config/plugins/myplugin.yaml` and edit the file there.
+Wenn Sie ein Plugin namens `user/plugins/myplugin` haben, das eine Konfigurationsdatei namens `user/plugins/myplugin/myplugin.yaml` hat, dann würden Sie diese Datei nach `user/config/plugins/myplugin.yaml` kopieren und die Datei dort bearbeiten.
 
-The YAML file that exists within the plugin's primary directory will act as a fallback. Any settings listed there and not in the User folder's copy will be picked up and used by Grav.
+Als Fallback dient die im Primärverzeichnis des Plugins vorhandene YAML-Datei. Alle Einstellungen, die dort und nicht in der Kopie des User-Ordners aufgeführt sind, werden von Grav übernommen und verwendet.
 
-### Themes Configuration
+### Themes-Konfiguration
 
-The same rules for **themes** apply as they did for plugins.  So if you have a theme called `user/themes/mytheme` that has a configuration file called `user/themes/mytheme/mytheme.yaml` then you would copy this file to `user/config/themes/mytheme.yaml` and edit the file there.
+Für **Themes** gelten die gleichen Regeln wie für Plugins.  Wenn Sie also ein Theme mit dem Namen `user/themes/mytheme` haben, das eine Konfigurationsdatei mit Namen `user/themes/mytheme/mytheme.yaml` hat, dann würden Sie diese Datei nach `user/config/themes/mytheme.yaml` kopieren und die Datei dort editieren.
