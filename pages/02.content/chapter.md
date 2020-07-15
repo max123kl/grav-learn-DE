@@ -1,11 +1,11 @@
 ---
-title: Content
+title: Inhalte
 taxonomy:
     category: docs
 ---
 
-### Chapter 2
+### Kapitel 2
 
-# Content
+# Inhalte
 
-In **Grav**, content is priority **#1**.  Find out how to create and organize your content quickly and intuitively.
+In **Grav** hat der Inhalt **erste** Priorität. Entdecken Sie, wie Sie Ihren Inhalt schnell und intuitiv erstellen und organisieren können.
