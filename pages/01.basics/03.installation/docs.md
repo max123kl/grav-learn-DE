@@ -26,7 +26,7 @@ Am einfachsten lässt sich Grav installieren, indem man das ZIP-Paket herunterl�
 1. Laden Sie das neueste und leistungsfähigste **[Grav](https://getgrav.org/download/core/grav/latest)** oder **[Grav + Admin](https://getgrav.org/download/core/grav-admin/latest)** Paket herunter.
 2. Extract the ZIP file in the [webroot](https://www.wordnik.com/words/webroot) of your web server, e.g. `~/webroot/grav`
 
-!!! There are [Skeleton](https://getgrav.org/downloads/skeletons)-packages available, which include the core Grav system, sample pages, plugins, and configuration. They are a great way to get started; all you have to do is [download the Skeleton](https://getgrav.org/downloads/skeletons)-package you prefer, and follow the steps above.
+!!! Es stehen [Skeleton-Pakete](https://getgrav.org/downloads/skeletons) zur Verfügung, die das Grav-Kernsystem, Beispielseiten, Plugins und die Konfiguration enthalten. Sie sind eine großartige Möglichkeit, um zu beginnen. Alles, was Sie tun müssen, ist das [Skeleton-Paket herunterladen](https://getgrav.org/downloads/skeletons), das Sie bevorzugen und den oben genannten Schritten folgen.
 
 !!!! Wenn Sie die ZIP-Datei heruntergeladen haben und dann planen, sie in Ihr Webroot zu verschieben, verschieben Sie bitte den **vollständigen Ordner**, da er mehrere versteckte Dateien (wie .htaccess) enthält, die nicht automatisch ausgewählt werden. Das Weglassen dieser versteckten Dateien kann Probleme beim Ausführen von Grav verursachen.
 
