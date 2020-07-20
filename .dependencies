@@ -80,6 +80,10 @@ links:
         src: grav-plugin-highlight
         path: user/plugins/highlight
         scm: github
+    langswitcher:
+        src: grav-plugin-langswitcher
+        path: user/plugins/langswitcher
+        scm: github
     markdown-notices:
         src: grav-plugin-markdown-notices
         path: user/plugins/markdown-notices
@@ -87,6 +91,10 @@ links:
     page-inject:
         src: grav-plugin-page-inject
         path: user/plugins/page-inject
+        scm: github
+    page-toc:
+        src: grav-plugin-page-toc
+        path: user/plugins/page-toc
         scm: github
     tntsearch:
         src: grav-plugin-tntsearch
