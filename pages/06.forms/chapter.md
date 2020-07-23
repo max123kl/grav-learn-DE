@@ -1,13 +1,13 @@
 ---
-title: Forms
+title: Formulare
 taxonomy:
     category: docs
 ---
 
-### Chapter 6
+### Kapitel 6
 
-# Forms
+# Formulare
 
-This chapter explains how to **extend admin forms** and create **custom fields** for your page content.
+In diesem Kapitel erfahren Sie, wie Sie **Admin-Formulare erweitern** und **Custom Fieldsr** für Ihren Seiteninhalt erstellen können.
 
-Also, it digs into creating frontend forms.
+Darüber hinaus wird die Erstellung von Frontend-Formularen beschrieben.

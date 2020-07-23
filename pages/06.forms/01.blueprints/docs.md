@@ -6,77 +6,77 @@ taxonomy:
     category: docs
 ---
 
-## What is a Blueprint?
+## Was ist ein Blueprint?
 
-Blueprints are an important aspect of Grav. They are essentially the foundation of a theme or plugin's interaction with the Grav admin. They tell Grav what a theme or plugin is, its name, where it can be found on GitHub, etc. It also generates the configuration options for that theme or plugin in the Grav admin. 
+Blueprints sind ein wichtiger Bestandteil von Grav. Sie sind im Wesentlichen die Grundlage für die Interaktion eines Themes oder Plugins mit dem Grav-Administrator. Sie informieren Grav über die Eigenschaften eines Themes oder Plugins, seinen Namen, wo es auf GitHub zu finden ist, usw. Sie generieren auch die Konfigurationsoptionen für dieses Theme oder Plugin im Grav-Admin.
 
-A Blueprint is defined in a YAML file, and can generally host properties as well as form definitions.
+Ein Blueprint wird über eine YAML-Datei beschrieben und kann in der Regel sowohl Eigenschaften als auch Formularfelder enthalten.
 
-The vast majority of Grav users will never have to work with Blueprints. Simply put, they determine how plugins and themes appear in the back-end of the site. For most users, this is where they pick up, configuring their themes and plugins using the Grav admin or manipulating options within the theme or plugin's primary YAML file.
+Die große Mehrheit der Grav-Anwender wird nie mit Blueprints arbeiten müssen. Sie bestimmen kurz gesagt, wie Plugins und Themes im Backend der Website angezeigt werden. Für die meisten Benutzer ist das der Punkt, an dem sie ihre Themes und Plugins mit dem Grav-Admin konfigurieren oder Optionen innerhalb der primären YAML-Datei des Themes oder Plugins bearbeiten.
 
-The folks that will work the most with Blueprints are developers that are creating new themes and plugins and customizing a resource's options in the back end. They're a powerful tool that defines what your resource is, where Grav can find updates for it, and what configuration options you should be able to set in the back end.
+Die Leute, die am meisten mit Blueprints arbeiten werden, sind Entwickler, die neue Themes und Plugins erstellen und die Optionen einer Ressource im Backend anpassen wollen. Sie sind ein leistungsstarkes Werkzeug, das den Charakter Ihrer Ressource definiert, wo Grav Updates für sie finden kann und welche Konfigurationsoptionen Sie im Backend vornehmen können sollen.
 
-## Types of Blueprints
+## Blueprint-Typen
 
-Grav uses Blueprints to:
+Grav verwendet Blueprints für:
 
-- define themes and plugins information.
-- define theme/plugin configuration options to be shown in the Admin.
-- define the Pages forms in the Admin.
-- define the options shown in the Configuration Admin section.
+- die Definition von Themes und Plugin-Informationen.
+- die Definition von Theme/Plugin-Konfigurationsoptionen, die im Admin-Bereich angezeigt werden.
+- die Definition der Pages-Formulare des Admin-Bereichs.
+- die Definition, der im Konfigurationsbereich des Admins angezeigten Optionen.
 
-At this point, we will break down additional details about how Blueprints work in Grav.
+Im Folgenden werden wir Ihnen zusätzliche Details über die Arbeitsweise von Blueprints in Grav näher beschreiben.
 
-#### Themes and Plugins
+#### Themes und Plugins
 
-When used with themes and plugins, the convention is to put a **blueprints.yaml** in the package. Doing this tells Grav the metadata of that resource, which introduces it to the Grav admin.
+Bei der Verwendung mit Themes und Plugins ist die Regel, eine Datei **blueprints.yaml** in das Paket einzufügen. Grav erhält auf diese Weise die Metadaten dieser Ressource, die sie dem Grav-Admin zugänglich macht.
 
-A **blueprints.yaml** file is an important part of any theme and plugin. It's essential for the GPM (Grav Package Manager) system. GPM uses the information stored in the blueprint to make the plugin available to users.
+Die Datei **blueprints.yaml** ist ein wichtiger Bestandteil jedes Themes und Plugins. Sie ist für den GPM (Grav Package Manager) unerlässlich. GPM verwendet die im Blueprint gespeicherten Informationen, um das Plugin den Anwendern zur Verfügung zu stellen.
 
-In our [example plugin blueprint](example-plugin-blueprint), we dive into the blueprint of the **Assets** plugin. This blueprint sets the name, author information, keywords, home page, bug report link, and other metadata that not only tells Grav where it can locate updates for the plugin, but to provide a useful resource to the user accessible from the Grav Admin.
+In unserem [Beispiel-Plugin „Blueprint“](example-plugin-blueprint) gehen wir auf das Konzept des **Assets-Plugins** ein. Dieses Blueprint legt den Namen, die Autoreninformationen, Schlüsselwörter, die Homepage, den Link zum Bug-Report und andere Metadaten fest. Diese Metadaten teilen nicht nur Grav mit, wo Updates für das Plugin zu finden sind, sondern stellen eine nützliche Ressource für den Benutzer dar, die über den Grav Admin zugänglich ist.
 
-Once this information is given, further down in the Blueprint's page, you find forms information. This information creates the Admin Forms that are accessible by the user in the backend of Grav. For example, if you wanted to add a toggle that enables or disables a particular feature of that plugin, you would add it here.
+Sobald diese Informationen vorliegen, finden Sie weiter unten auf der Seite des Blueprints Informationen zu den Formularen. Mit diesen Informationen werden die Admin-Formulare erstellt, die für den Backend-Benutzer von Grav verfügbar sind. Wenn Sie beispielsweise einen Schalter einfügen möchten, der eine bestimmte Funktion dieses Plugins aktiviert oder deaktiviert, würden Sie ihn hier anlegen.
 
 ![Admin Forms](blueprints_1.png?classes=shadow)
 
-The **blueprints.yaml** file works with the plugin's named YAML file (example: **assets.yaml**). The blueprint sets what the configurable options are, and the resource's self-named named YAML file sets their values. It's this named YAML file that is then duplicated to the Grav instance's `user/config` section to override these defaults either manually or through the Grav admin.
+Die Datei **blueprints.yaml** arbeitet mit der nach dem Plugin benannten YAML-Datei (Beispiel: **assets.yaml**). Das Blueprint legt die konfigurierbaren Optionen fest und die selbstbenannte YAML-Datei der Ressource setzt deren Werte. Diese benannte YAML-Datei wird dann in die Sektion `user/config` der Grav-Instanz dupliziert, um diese Voreinstellungen entweder manuell oder durch den Grav-Admin zu überschreiben.
 
-So essentially, when it comes to any configuration option for a theme or plugin, the **blueprints.yaml** file defines it, and the named YAML file for that resource tells you what it is set at.
+Im Wesentlichen definiert die Datei **blueprints.yaml** eine beliebige Option für ein Theme oder Plugin. Die genannte YAML-Datei für diese Ressource gibt Auskunft darüber, auf welchen Wert sie gesetzt ist.
 
 #### Pages
 
-Grav Pages can really be anything. A page can be a blog listing, a blog post, a product page, an image gallery, etc.
+Grav Pages können wirklich alles und jedes enthalten. Eine Seite kann beispielsweise eine Blog-Auflistung, ein Blog-Beitrag, eine Produktseite, eine Bildergalerie usw. sein.
 
-What determines what a page should do and how it should appear is the **Page Blueprint**.
+Entscheidend dafür, was eine Seite darstellt und wie sie aussehen soll, das ist das **Page Blueprint**.
 
-Grav provides some basic Page Blueprints: Default and Modular. Those are the two main building blocks of Grav.
+Grav enthält einige einfache Page Blueprints: Standard und Modular. Das sind die beiden Haupt-Bausteine von Grav.
 
-Additional page Blueprints are added and set up by the theme, which might decide to add as many page Blueprints as possible, or focus on some particular Page blueprints focused on what it needs to do.
+Zusätzliche Seiten-Blueprints werden vom Theme hinzugefügt und eingerichtet. Das Theme kann entscheiden, so viele Seiten-Blueprints wie möglich hinzuzufügen oder sich auf bestimmte Seiten-Blueprints zu konzentrieren, die sich auf die zu erledigenden Aufgaben beschränken.
 
-A Grav theme is much more flexible and powerful than what you might be used to on other platforms.
+Ein Grav Theme ist viel flexibler und mächtiger als das, was Sie vielleicht aus anderen Plattformen gewöhnt sind.
 
-This allows themes to be specific application. For example, a theme might specialize in one of those goals:
+Die Themes können so spezifisch angewandt werden. Zum Beispiel könnte sich ein Theme auf eines dieser Ziele spezialisieren:
 
-- building a documentation site, like the one you are reading now.
-- building an e-commerce site.
-- build a blog.
-- build a portfolio site.
+- Aufbau einer Dokumentationsseite, wie die, die Sie gerade lesen
+- Aufbau einer E-Commerce-Website
+- Aufbau eines Blogs
+- Aufbau einer Portfolio-Site
 
-A theme can also allow its users to build all of them, but usually a fine-tuned theme created for a single purpose can satisfy that goal better than a generic theme.
+Ein Theme kann es seinen Benutzern auch ermöglichen, alle diese Funktionen umzusetzen. Normalerweise kann jedoch ein fein abgestimmtes, für einen einzigen Zweck erstelltes Theme eines dieser Ziele besser erfüllen als ein universelles Theme.
 
-A page file is used by a page by setting its markdown file name, e.g. `blog.md`, `default.md` or `form.md`.
+Eine Page-Datei wird von einer Seite verwendet, wenn der Name der Markdown-Datei festgelegt wird, z.B. `blog.md`, `default.md` oder `form.md`.
 
-Each of those files will use a different page file. You can also change the file type by [using the template header property](https://learn.getgrav.org/content/headers#template).
+Jede dieser Dateien wird eine andere Seiten-Datei verwenden. Sie können den Dateityp auch mit Hilfe der [Header-Eigenschaft des Templates](../../content/headers#template) ändern.
 
-The template used by a page not only determines the "look and feel" in the frontend, but also determines how the Admin Plugin will render it, allowing you to add options, select boxes, custom inputs and toggles.
+Das von einer Seite verwendete Template bestimmt nicht nur das „Look and Feel“ im Frontend, sondern auch die Art und Weise, wie das Admin-Plugin die Seite rendert, indem es Ihnen erlaubt, Optionen hinzuzufügen, Boxen auszuwählen, benutzerdefinierte Eingaben zu machen und Schalter zu betätigen.
 
-How to do it: in your theme, add a `blueprints/` folder and add a YAML file with the name of the page template you added. For example if you add a `blog` page template, add a `blueprints/blog.yaml` file. You can find an [example of this directory in the **Antimatter** theme](https://github.com/getgrav/grav-theme-antimatter/tree/develop/blueprints).
+So wird es gemacht: Fügen Sie in Ihrem Theme einen Ordner `blueprints/` hinzu und erstellen dort eine YAML-Datei mit dem Namen des von Ihnen hinzugefügten Seiten-Templates. Beispielsweise können Sie ein Blog-Seiten-Template hinzufügen, indem Sie die Datei `blueprints/blog.yaml` anlegen. Ein [Beispiel für dieses Verzeichnis finden Sie im Theme **Antimatter**](https://github.com/getgrav/grav-theme-antimatter/tree/develop/blueprints).
 
-## Components of a Blueprint
+## Komponenten eines Blueprints
 
-There are two sets of information presented in a **blueprints.yaml** file. The first set of metadata information is the identity of the resource itself, the second set is about the forms. All this information is stored in a single **blueprints.yaml** file stored at the root of each plugin and theme.
+Es gibt zwei Gruppen von Informationen, die in einer **blueprints.yaml** Datei angeboten werden. Die erste Gruppe von Metadaten-Informationen ist die Identität der Ressource selbst, die zweite Gruppe bezieht sich auf die Formulare. Alle diese Informationen werden in einer einzelnen **blueprints.yaml** Datei gespeichert, die im Stammverzeichnis eines jeden Plugins und Theme hinterlegt ist.
 
-Here is an example of the metadata portion of a **blueprints.yaml** file:
+Hier folgt ein Beispiel für den Metadaten-Teil einer **blueprints.yaml** Datei:
 
 ```yaml
 name: GitHub
@@ -95,11 +95,11 @@ bugs: https://github.com/getgrav/grav-plugin-github/issues
 license: MIT
 ```
 
-As you can see here, this area contains a lot of general identifying information about the plugin, including its name, version number, description, author information, license, keywords, and URLs where you can find more information or report bugs. You can see this section in action in the screenshot taken from the Grav Admin below.
+Wie man sehen kann, enthält dieser Bereich viele allgemeine, identifizierende Informationen über das Plugin, einschließlich seines Namens, seiner Versionsnummer, Beschreibung, Autoreninformationen, Lizenz, Schlüsselwörter und URLs, bei denen weitere Informationen gefunden oder Fehler gemeldet werden können. Sie können unten, im Screenshot aus dem Grav Admin, diesen Bereich in Aktion betrachten.
 
 ![Admin Forms](blueprints_2.png?classes=shadow)
 
-The next section is the forms area, which is just a couple spaces below the data listed above. This area of the blueprint generates forms and fields used to configure the plugin from the Grav Admin. Here is a quick example of this area of the **blueprints.yaml** file.
+Der nächste Abschnitt ist der Formularbereich, der sich nur ein paar Leerzeilen unterhalb der oben aufgeführten Daten befindet. Dieser Bereich des Blueprints generiert Formulare und Felder, die zur Konfiguration des Plugins aus dem Grav Admin heraus verwendet werden. Hier folgt ein kurzes Beispiel für diesen Bereich der Datei **blueprints.yaml**.
 
 ```yaml
 form:
@@ -117,6 +117,6 @@ form:
             type: bool
 ```
 
-This area of the file creates any administrative options accessible in the Grav Admin. In this particular instance, we have created a simple **Plugin Status** toggle which lets the user enable or disable the plugin from the admin (pictured below).
+Dieser Teil der Datei erstellt alle administrativen Optionen, auf die im Grav Admin zugegriffen werden kann. In diesem speziellen Fall haben wir einen einfachen **Plugin Status** Schalter erstellt, mit dem der Benutzer das Plugin vom Admin aus aktivieren oder deaktivieren kann (siehe Abbildung unten).
 
 ![Admin Forms](blueprints_3.png?classes=shadow)

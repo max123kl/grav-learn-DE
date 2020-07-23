@@ -1,22 +1,22 @@
 ---
-title: Frontend Forms
+title: Frontend Formulare
 taxonomy:
     category: docs
 ---
 
-The **Form** plugin gives you the ability to create virtually any type of frontend form. It is essentially a form construction kit, available for you to use in your own pages. Before going any further, don't forget to install the [**Form** plugin](https://github.com/getgrav/grav-plugin-form) with `bin/gpm install form` if it's not installed yet.
+Das Plugin **Form** ermöglicht Ihnen die Entwicklung praktisch aller Arten von Frontend-Formularen. Im Grunde genommen ist es ein Formularbaukasten, der Ihnen für Ihre eigenen Seiten zur Verfügung steht. Bevor Sie fortfahren, vergessen Sie nicht, das [**Form-Plugin**](https://github.com/getgrav/grav-plugin-form) mit dem Befehl `bin/gpm install form` zu installieren, falls es noch nicht installiert ist.
 
-To get an understanding of how the **Form** plugin works, let's start by going over how to create a simple form.
+Um zu verstehen, wie das Plugin **Form** funktioniert, beginnen wir damit, wie man ein einfaches Formular erstellt.
 
-!!!! With **Form 2.0** release, it is now required to pass the **name of the form** as a hidden field.  If you are using the form-plugin-provided `forms.html.twig`, this is handled automatically, however, if you have overridden the default `forms.html.twig` in your theme or plugin, you should manually add `{% include "forms/fields/formname/formname.html.twig" %}` in your form-rendering Twig file.
+!!!! Seit der Version **Form 2.0** ist es nun obligatorisch, den **Namen des Formulars** als verborgenes Feld zu übergeben.  Wenn Sie die vom Formular-Plugin bereitgestellte `forms.html.twig` verwenden, wird das automatisch übernommen. Wenn Sie jedoch die Standardeinstellung `forms.html.twig` in Ihrem Theme oder Plugin überschrieben haben, sollten Sie manuell `{% include "forms/fields/formname/formname.html.twig" %}` in Ihre Twig-Datei, die das Formular rendert, einfügen.
 
-## Create a simple single form
+## Ein einfaches, einzelnes Formular erstellen
 
-To add a form to a page of your site, create a page, and set its Page File to "Form". You can do it via the Admin Panel, or via filesystem directly by naming the page `form.md`.
+Um ein Formular auf eine Seite Ihrer Website einzubinden, erstellen Sie eine Seite und stellen Sie deren Seiten-Datei auf "Form" ein. Sie können dies über das Admin-Panel oder direkt über das Dateisystem tun, indem Sie die Seite `form.md` benennen.
 
-So, for example, `user/pages/03.your-form/form.md`.
+So zum Beispiel `user/pages/03.your-form/form.md`.
 
-The contents of this page will be:
+Der Inhalt dieser Seite soll wie folgt sein:
 
 [prism classes="language-yaml line-numbers"]
 ---
@@ -202,12 +202,12 @@ form:
       label: Name
       validate:
         required: true
-        
+
   buttons:
     submit:
       type: submit
       value: Submit
-      
+
   process:
     message: "Thank you from your submission <b>{{ form.value('person.name') }}</b>!"
     reset: true
@@ -216,4 +216,3 @@ form:
 
 ## Modular Form
 [/prism]
-

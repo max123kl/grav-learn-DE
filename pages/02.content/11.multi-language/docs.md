@@ -299,7 +299,7 @@ fr:
 
 ! Die Konvention für Plugins ist, PLUGIN_PLUGINNAME.* als Präfix für alle Sprachstrings zu verwenden, um Namenskonflikte zu vermeiden. Es ist weniger wahrscheinlich, dass Themes Konflikte mit Sprachstrings verursachen. Es ist eine gute Wahl, in Themes hinzugefügte Strings mit dem Präfix THEME_THEMENAME.* zu versehen.
 
-### Übersteuerung der Übersetzung
+### Übersetzung-Overrides
 
 Wenn Sie eine bestimmte Übersetzung übersteuern möchten, legen Sie einfach das modifizierte Schlüssel/Wert-Paar in einer entsprechenden Sprachdatei in Ihrem Ordner `user/languages/` ab. Zum Beispiel könnte eine Datei namens `user/languages/de.yaml` enthalten:
 
