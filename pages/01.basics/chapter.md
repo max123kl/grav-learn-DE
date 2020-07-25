@@ -27,3 +27,5 @@ Zur Zeit sind erst einige wenige Seiten übersetzt.
 Dort, wo die Übersetzung noch nicht fertiggestellt ist, wird der englische Originaltext angezeigt.
 Sie können gerne bei der Übersetzung mithelfen.
 Dazu einfach ein [Issue](https://github.com/max123kl/grav-learn-DE/issues) starten und mitteilen, welche Quelldatei Sie bearbeiten wollen.
+
+Falls es zwischen der deutschen Übersetzung und dem englischen Original-Text zu unterschiedlichen Interpretationen kommem sollte ist **immer** der englische Text verbindlich.
