@@ -4,6 +4,6 @@ taxonomy:
     category: docs
 ---
 
-### ergänzende Übersetzungen
+## ergänzende Übersetzungen
 
-xxx
+Wichtige Themes-Updates
