@@ -107,7 +107,6 @@ Dazu müssen Sie die folgenden Schritte ausführen:
    [/prism]
 
 3. Kopieren Sie die Datei `/user/themes/quark/blueprints.yaml` nach `/user/themes/mytheme/blueprints.yaml`, um die konfigurierbaren Elemente des Themes in das Admin-Panel zu übernehmen.
-
 4. Passen Sie Ihr Standard-Theme an Ihr neues **mytheme** an, indem Sie die Option `pages: theme:` in Ihrer Konfigurationsdatei `user/config/system.yaml` bearbeiten:
 
    [prism classes="language-yaml line-numbers"]
