@@ -1,5 +1,5 @@
 ---
-title: Twig Recipes
+title: Twig-Rezepte
 page-toc:
   active: true
   depth: 1
@@ -67,7 +67,7 @@ In some page templates, the Twig `date` filter is used, and it does not handle l
 
 ##### Solution:
 
-There are two solutions to this problem. 
+There are two solutions to this problem.
 
 ###### First approach
 
@@ -368,6 +368,3 @@ And then you can use the function syntax:
 [prism classes="language-twig line-numbers"]
 {{ chunker("ER27XV3OCCDPRJK5IVSDME6D6OT6QHK5", 8, '|') }}
 [/prism]
-
-
-

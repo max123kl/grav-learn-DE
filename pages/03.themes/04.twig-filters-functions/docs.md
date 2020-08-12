@@ -1,5 +1,5 @@
 ---
-title: Twig Filters & Functions
+title: Twig-Filter und -Funktionen
 page-toc:
   active: true
   depth: 3
@@ -14,116 +14,116 @@ Although Twig already provides an extensive list of [filters, functions, and tag
 !! For information about developing your own custom Twig Filters, check out the [Custom Twig Filter/Function](/cookbook/twig-recipes/#custom-twig-filter-function) example in the **Twig Recipes** section of the **Cookbook** chapter.
 
 
-## Grav Twig Filters
+## Grav Twig-Filter
 
-Twig filters are applied to Twig variables by using the `|` character followed by the filter name.  Parameters can be passed in just like Twig functions using parenthesis.
+Twig-Filter werden in Twig-Variablen eingesetzt. Dabei wird das Zeichen `|` gefolgt vom Filternamen benutzt.  Parameter können genau wie Twig-Funktionen mit Hilfe von geschweiften Klammern übergeben werden.
 
 #### Absolute URL
 
-Take a relative path and convert it to an absolute URL format including hostname
+Nehmen Sie einen relativen Pfad und konvertieren Sie ihn in ein absolutes URL-Format einschließlich des Hostnamens.
 
 `'<img src="/some/path/to/image.jpg" />'|absolute_url` <i class="fa fa-long-arrow-right"></i> `{{ '<img src="/some/path/to/image.jpg" />'|absolute_url }}`
 
 #### Array Unique
 
-Wrapper for PHP `array_unique()` that removes duplicates from an array.
+Wrapper für PHP `array_unique()`, der Duplikate aus einem Array entfernt.
 
 `['foo', 'bar', 'foo', 'baz']|array_unique` <i class="fa fa-long-arrow-right"></i> **{{ print_r(['foo', 'bar', 'foo', 'baz']|array_unique) }}**
 
 #### Base32 Encode
 
-Performs a base32 encoding on variable
+Durchführung einer base32-Kodierung auf der Variable
 `'some variable here'|base32_encode` <i class="fa fa-long-arrow-right"></i> **{{ 'some variable here'|base32_encode }}**
 
 #### Base32 Decode
 
-Performs a base32 decoding on variable
+Durchführung einer base32-Dekodierung auf der Variable
 `'ONXW2ZJAOZQXE2LBMJWGKIDIMVZGK'|base32_decode` <i class="fa fa-long-arrow-right"></i> **{{ 'ONXW2ZJAOZQXE2LBMJWGKIDIMVZGK'|base32_decode }}**
 
 #### Base64 Encode
 
-Performs a base64 encoding on variable
+Durchführung einer base64-Kodierung auf der Variable
 `'some variable here'|base64_encode` <i class="fa fa-long-arrow-right"></i> **{{ 'some variable here'|base64_encode }}**
 
 #### Base64 Decode
 
-Performs a base64 decoding on variable
+Durchführung einer base64-Decodierung auf der Variable
 `'c29tZSB2YXJpYWJsZSBoZXJl'|base64_decode` <i class="fa fa-long-arrow-right"></i> **{{ 'c29tZSB2YXJpYWJsZSBoZXJl'|base64_decode }}**
 
 #### Basename
 
-Return the basename of a path.
+Den Basis-Namen eines Pfades zurückgeben.
 
 `'/etc/sudoers.d'|basename` <i class="fa fa-long-arrow-right"></i> **{{ '/etc/sudoers.d'|basename }}**
 
 #### Camelize
 
-Converts a string into "CamelCase" format
+Konvertiert eine Zeichenfolge in das "CamelCase"-Format
 
 `'send_email'|camelize` <i class="fa fa-long-arrow-right"></i> **{{ 'send_email'|camelize }}**
 
 [version=16]
 #### Chunk Split
 
-Splits a string into smaller chunks of a certain sizeOf
+Teilt eine Zeichenkette in kleinere Stücke einer vorgegebenen Größe auf.
 
 `'ONXW2ZJAOZQXE2LBMJWGKIDIMVZGKA'|chunk_split(6, '-')` <i class="fa fa-long-arrow-right"></i> **{{ 'ONXW2ZJAOZQXE2LBMJWGKIDIMVZGKA'|chunk_split(6, '-') }}**
 [/version]
 
 #### Contains
 
-Determine if a particular string contains another string
+Feststellen, ob eine bestimmte Zeichenfolge eine andere Zeichenfolge enthält.
 
 `'some string with things in it'|contains('things')` <i class="fa fa-long-arrow-right"></i> **{{ 'some string with things in it'|contains('things') }}**
 
-#### Casting Values
+#### Werte übergeben
 
-PHP 7 is getting more strict type checks, which means that passing a value of wrong type may now throw an exception. To avoid this, you should use filters which ensure that the value passed to a method is valid:
+In PHP 7 werden strengere Typprüfungen eingeführt, was bedeutet, dass das Übergeben eines Wertes vom falschen Typ nun eine Exception auslösen kann. Um dies zu vermeiden, sollten Sie Filter verwenden, die sicherstellen, dass der an eine Variable übergebene Wert gültig ist:
 
 **|string**
 
-Cast value to string.
+Wert als Zeichenfolge übergeben
 
 **|int**
 
-Cast value to integer.
+Wert als Integer übergeben
 
 **|bool**
 
-Cast value to boolean.
+Den Wert auf boolean setzen
 
 **|float**
 
-Cast value to floating point number.
+Wert als Fließkommazahl übergeben
 
 **|array**
 
-Cast value to an array.
+Wert in ein Array übertragen
 
 #### Defined
 
-Sometimes you want to check if some variable is defined, and if it's not, provide a default value.  For example:
+Manchmal will man überprüfen, ob eine Variable definiert ist, und wenn dies nicht der Fall ist, einen Standardwert angeben.  Zum Beispiel:
 
 `set header_image_width  = page.header.header_image_width|defined(900)`
 
-This will set the variable `header_image_width` to the value `900` if it's not defined in the page header.
+Das wird die Variable `header_image_width` auf den Wert `900` setzen, wenn sie nicht im Page-Header definiert ist.
 
 #### Dirname
 
-Return the dirname of a path.
+Gibt den Verzeichnisnamen eines Pfades zurück
 
 `'/etc/sudoers.d'|dirname` <i class="fa fa-long-arrow-right"></i> **{{ '/etc/sudoers.d'|dirname }}**
 
 
 #### Ends-With
 
-Takes a needle and a haystack and determines if the haystack ends with the needle.  Also now works with an array of needles and will return `true` if **any** haystack ends with the needle.
+Man nimmt eine Nadel und einen Heuhaufen und ermittelt, ob der Heuhaufen mit der Nadel abschließt. Das funktioniert jetzt auch mit einem Array aus Nadeln und gibt `true` zurück, wenn **ein beliebiger** Heuhaufen mit der Nadel endet.
 
 `'the quick brown fox'|ends_with('fox')` <i class="fa fa-long-arrow-right"></i> {{  'the quick brown fox'|ends_with('fox') ? 'true' : 'false' }}
 
 #### FieldName
 
-Filters field name by changing dot notation into array notation
+Filtert Feldnamen durch Umwandlung von Punktnotation in Array-Notation
 
 `'field.name|fieldName`
 
@@ -131,7 +131,7 @@ Filters field name by changing dot notation into array notation
 [version=16]
 #### Get Type
 
-Gets the type of a variable:
+Ruft den Typ einer Variablen ab:
 
 `page|get_type` <i class="fa fa-long-arrow-right"></i> **{{ page|get_type }}**
 [/version]

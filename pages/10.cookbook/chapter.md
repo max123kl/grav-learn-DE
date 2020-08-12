@@ -1,11 +1,11 @@
 ---
-title: Cookbook
+title: Kochbuch
 taxonomy:
     category: docs
 ---
 
-### Chapter 10
+### Kapitel 10
 
-# Solutions Cookbook
+# Kochbuch für Lösungen
 
-This chapter is dedicated to providing **recipes** and **solutions** to common problems. Please feel free to edit these pages and add your own.
+Dieses Kapitel widmet sich der Erarbeitung von **Rezepten** und **Lösungen** für häufige Aufgaben. Bitte zögern Sie nicht, diese Seiten zu bearbeiten und Ihre eigenen hinzuzufügen.
