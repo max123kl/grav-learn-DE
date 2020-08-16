@@ -9,9 +9,9 @@ taxonomy:
     category: docs
 ---
 
-Although Twig already provides an extensive list of [filters, functions, and tags](http://twig.sensiolabs.org/documentation), Grav also provides a selection of useful additions to make the process of theming easier.
+Obwohl Twig bereits eine umfangreiche Liste von [Filtern, Funktionen und Tags](http://twig.sensiolabs.org/documentation) bereitstellt, bietet auch Grav eine Auswahl nützlicher Ergänzungen, um den Prozess der Theme-Gestaltung zu erleichtern.
 
-!! For information about developing your own custom Twig Filters, check out the [Custom Twig Filter/Function](/cookbook/twig-recipes/#custom-twig-filter-function) example in the **Twig Recipes** section of the **Cookbook** chapter.
+!! Wenn Sie Informationen zur Entwicklung eigener [benutzerdefinierter Twig-Filter](/cookbook/twig-recipes/#custom-twig-filter-function) benötigen, sehen Sie sich das Beispiel für benutzerdefinierte Twig-Filter/Funktionen im Abschnitt **Twig-Rezepte** im **Kochbuch-Kapitel** an.
 
 
 ## Grav Twig-Filter
