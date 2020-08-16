@@ -1,31 +1,31 @@
 ---
-title: Build a Blog
+title: Einen Blog einrichten
 taxonomy:
     category: docs
 ---
 
-!! Download and install locally the Blog Site skeleton from [https://getgrav.org/downloads/skeletons](https://getgrav.org/downloads/skeletons), or at least have ready the [https://github.com/getgrav/grav-skeleton-blog-site](https://github.com/getgrav/grav-skeleton-blog-site) repository to check. This is a sample site that uses the Antimatter theme. Having an up and running Grav site that already works with a Blog structure will surely give a hand if you’re stuck or you don’t understand what to do next.
+!! Laden Sie das Skeleton der Blog-Site von [https://getgrav.org/downloads/skeletons](https://getgrav.org/downloads/skeletons) herunter und installieren Sie es lokal oder laden Sie zumindest das Repository [https://github.com/getgrav/grav-skeleton-blog-site](https://github.com/getgrav/grav-skeleton-blog-site) herunter, um es zu überprüfen. Dies ist eine Beispielseite, die das Thema Antimaterie verwendet. Eine funktionierende Grav-Site zu haben, die bereits mit einer Blog-Struktur arbeitet, wird Ihnen sicherlich eine Hilfe sein, wenn Sie nicht weiterkommen oder nicht wissen, was Sie als nächstes tun sollen.
 
-## Check your theme provides the Blog and Item page templates
+## Überprüfen, ob Ihr Theme die Templates für Blog- und Artikelseiten enthält
 
-Let’s start simple: choose a theme that already provides a blog page template. For example Antimatter, TwentyFifteen, Deliver, Lingonberry, Afterburner2, and many others.
-How do you check if your theme already provides a blog page template? Go in the `/user/themes/[yourtheme]/templates` folder, and check the existence of the `blog.html.twig` and `item.html.twig` files.
+Fangen wir ganz einfach an: Wählen Sie ein Thema, das bereits eine Blog-Seitenvorlage bietet. Zum Beispiel Antimatter, TwentyFifteen, Deliver, Lingonberry, Afterburner2 und viele andere.
+Wie können Sie überprüfen, ob Ihr Theme bereits ein Blog-Seiten-Template enthält? Gehen Sie in den Ordner `/user/themes/[IhrTheme]/templates` und überprüfen Sie die Existenz der Dateien `blog.html.twig` und `item.html.twig`.
 
-If you’ve already chosen a theme, and your theme does not come with those files, then copy them from Antimatter: [https://github.com/getgrav/grav-theme-antimatter/tree/develop/templates](https://github.com/getgrav/grav-theme-antimatter/tree/develop/templates)
+Wenn Sie bereits ein Theme ausgewählt haben und in Ihrem Theme diese Daten nicht enthalten sind, dann kopieren Sie die von Antimatter: [https://github.com/getgrav/grav-theme-antimatter/tree/develop/templates](https://github.com/getgrav/grav-theme-antimatter/tree/develop/templates)
 
-You might need to tweak the markup to suit your theme. The best option if you’re just starting out if to use a theme that already comes with them.
+Möglicherweise müssen Sie das Markup (die „Textauszeichnung“) an Ihr Theme abpassen. Wenn Sie aber gerade erst anfangen, sollten Sie besser ein Theme verwenden, das bereits im Lieferumfang enthalten ist.
 
-## Create the blog pages structure
-There are different ways to structure the pages. The default and simpler one is to have a parent page, of type Blog, and have child pages for the blog posts.
+## Erstellen der Struktur von Blog-Seiten
+Es gibt mehrere Varianten für die Gliederung der Seiten. Die vorgegebene und einfachere ist, eine Hauptseite vom Typ Blog und untergeordnete Seiten für die Blog-Posts zu definieren.
 
-### With the Admin Plugin
-Create a page of type Blog. That page is the blog "Homepage", with the blog posts list.
+### Mit dem Admin Plugin
+Richten Sie eine Seite vom Typ Blog ein. Diese Seite ist der Blog „Homepage“, mit der Liste der Blog-Beiträge.
 
-Create one or more child pages of type `Item`. Those are the blog posts.
+Erstellen Sie eine oder mehrere untergeordnete Seiten vom Typ `Item`. Das sind die Blog-Beiträge.
 
-### Manually
-Go in your pages/ folder, create a `01.blog` page (change the number to reflect your menu structure), add a `blog.md` file in it.
-In this file, add this content:
+### oder manuell
+Wechseln Sie zu Ihrem Ordner pages/, erstellen Sie eine Seite `01.blog` (ändern Sie die Nummer, um Ihre Menüstruktur wiederzugeben) und fügen Sie eine Datei `blog.md` hinzu.
+In dieser Datei sollten Sie diesen Inhalt einfügen:
 
 [prism classes="language-yaml line-numbers"]
 ---
@@ -34,21 +34,21 @@ content:
 ---
 [/prism]
 
-This tells Grav to iterate over the subpages (the blog posts).
+Das weist Grav an, sich durch die Unterseiten (die Blog-Einträge) zu bewegen, zu iterieren.
 
-Create a subfolder for each post you want to add, and add in each folder an `item.md` file, with the content of the blog post.
+Erstellen Sie einen Unterordner für jeden Beitrag, den Sie hinzufügen möchten, und fügen Sie in jedem Ordner eine Datei `item.md` mit dem Inhalt des Blogbeitrags hinzu.
 
 ## URLs
 
-The structure explained above will create blog posts with `/blog/` in the URL. This might not be what you need. For example: If a blog is all you have on your site, and the blog posts listing is the home page. In these cases, you would just want your root domain to access this content rather than referring visitors to a child directory.
+Die oben erläuterte Struktur erzeugt Blog-Einträge mit `/blog/` in der URL. Möglicherweise ist dies nicht das, was Sie benötigen. Zum Beispiel: Wenn ein Blog alles ist, was Sie auf Ihrer Website haben, und die Auflistung der Blog-Beiträge die Startseite ist. In diesem Fall möchten Sie nur, dass Ihre Root-Domain auf diesen Inhalt zugreift, anstatt Besucher auf ein untergeordnetes Verzeichnis zu verweisen.
 
-In this case, in system.yaml (System configuration in Admin) set `home.hide_in_urls` option (Hide Home in URLs in Admin) to true.
+Setzen Sie daher die Option `home.hide_in_urls` (Startseite in URLs ausblenden, im Admin) in der Datei system.yaml (Systemkonfiguration im Admin) auf true.
 
-## The inner workings
+## Die inneren Mechanismen
 
-You might want to know how this works. The Blog template, the content of the `blog.html.twig` file provided in the theme `templates/` folder, simply iterates over its child pages.
+Vielleicht möchten Sie erfahren, wie das Ganze funktionieren soll. Das Blog-Template, der Inhalt der Datei `blog.html.twig`, die im Theme-Ordner `templates/` liegt, iteriert lediglich durch seine Unterseiten.
 
-In its simplest way:
+In seiner einfachsten Form:
 
 [prism classes="language-twig line-numbers"]
 {% set collection = page.collection() %}
@@ -58,9 +58,9 @@ In its simplest way:
 {% endfor %}
 [/prism]
 
-page.collection() by default picks the `content.items` property of the page YAML frontmatter, and returns an array containing the elements that match that definition.
+page.collection() übernimmt standardmäßig aus dem YAML-Frontmatter der Seite die Eigenschaft `content.items` und gibt ein Array mit den Elementen zurück, die dieser Definition entsprechen.
 
-If the page contains:
+Enthält die Seite:
 
 [prism classes="language-yaml line-numbers"]
 ---
@@ -69,11 +69,11 @@ content:
 ---
 [/prism]
 
-then `collection` will be the array of the subpages of the current page.
+dann ist `collection` das Array aus den Unterseiten der aktuellen Seite.
 
-In this case the theme includes the partial `partials/blog_item.html.twig`, responsible for rendering the single blog post, and passes it the `child` object containing the actual blog post to render.
+In diesem Beispiel enthält das Theme `partials/blog_item.html.twig`, das für das Rendern des einzelnen Blog-Posts verantwortlich ist, und übergibt ihm das Objekt `child`, das den aktuellen Blog-Beitrag enthält, zum Rendern.
 
-### To learn more
+### ergänzende Informationen
 
 - Collections: [https://learn.getgrav.org/content/collections](https://learn.getgrav.org/content/collections)
 - Listing Page: [https://learn.getgrav.org/content/content-pages#listing-page](https://learn.getgrav.org/content/content-pages#listing-page)

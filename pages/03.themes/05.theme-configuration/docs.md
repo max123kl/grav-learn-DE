@@ -1,14 +1,14 @@
 ---
-title: Theme Configuration
+title: Theme Konfiguration
 taxonomy:
     category: docs
 ---
 
-As of Grav 1.1, you can easily access theme configuration and blueprint information from your Twig and PHP files.
+Seit Grav 1.1 können Sie leicht auf die Theme-Konfiguration und Blueprint-Informationen aus Ihren Twig- und PHP-Dateien zugreifen.
 
-## Accessing Theme Blueprint Information
+## Abrufen von Informationen zum Theme-Blueprint
 
-Information from the currently active theme's `blueprints.yaml` file can be had from the `theme` object. Let's use the following `blueprints.yaml` file as an example:
+Informationen aus der Datei `blueprints.yaml` des derzeit aktiven Themes können über das Objekt `theme` abgerufen werden. Lassen Sie uns die folgende `blueprints.yaml` Datei als Beispiel benutzen:
 
 [prism classes="language-yaml line-numbers"]
 name: Antimatter
@@ -28,65 +28,65 @@ bugs: https://github.com/getgrav/grav-theme-antimatter/issues
 license: MIT
 [/prism]
 
-You can reach any of these items via `theme` by using the standard **dot-syntax**:
+Sie können jedes dieser Elemente über `theme` erreichen, indem Sie die Standard- **Punkt-Syntax** verwenden:
 
 [prism classes="language-twig line-numbers"]
 Author Email: {{ theme.author.email }}
 Theme License: {{ theme.license }}
 [/prism]
 
-You can also reach these same values from a Grav plugin with PHP syntax:
+Sie können dieselben Werte auch über ein Grav-Plugin mit PHP-Syntax abrufen:
 
 [prism classes="language-php line-numbers"]
 $theme_author_email = $this->grav['theme']['author']['email'];
 $theme_license = $this->grav['theme']['license'];
 [/prism]
 
-## Accessing Theme Configuration
+## Zugriff auf die Theme-Konfiguration
 
-Theme's have configuration files, too. A theme's configuration file is named `<themename>.yaml`. The default file lives in the theme's root folder (`user/themes/<themename>`). 
+Die Themes haben auch Konfigurationsdateien. Die Konfigurationsdatei eines Themes heißt `<themename>.yaml`. Die Standarddatei befindet sich im Stammverzeichnis des Themes (`user/themes/<themename>`).
 
-It is **strongly** recommended not to actually change the theme's default YAML file but to override the settings in the `user/config` folder. This will ensure that the theme's original settings remain intact, allowing you to quickly access the changes and/or revert back whenever necessary.
+Es wird **nachdrücklich** empfohlen, die Standard-YAML-Datei des Themas nicht selbst zu ändern, sondern die Einstellungen im Ordner `user/config` zu modifizieren. Auf diese Weise wird erreicht, dass die ursprünglichen Einstellungen des Themes erhalten bleiben, so dass Sie schnell auf die Änderungen zugreifen und/oder bei Problemen wieder zurückkehren können.
 
-For example, let us consider the Antimatter theme.  By default, there is a file called `antimatter.yaml` in the theme's root folder. The contents of this configuration file look like this:
+Betrachten wir zum Beispiel das Theme Antimatter. Standardmäßig gibt es eine Datei namens `antimatter.yaml` im Stammordner des Themes. Der Inhalt dieser Konfigurationsdatei sieht wie folgt aus:
 
 [prism classes="language-yaml line-numbers"]
 enabled: true
 color: blue
 [/prism]
 
-This is a simple file, but it provides you an idea of what you can do with theme configuration settings. Let us override these settings and add a new one.
+Das ist eine einfache Datei, aber sie gibt Ihnen eine Vorstellung davon, was Sie mit den Einstellungen der Theme-Konfiguration tun können. Lassen Sie uns diese Einstellungen übersteuern und eine neue hinzufügen.
 
-So, create a file in the following location: `user/config/themes/antimatter.yaml`.  In this file put the following contents:
+Erstellen Sie also eine Datei an der folgenden Stelle: `user/config/themes/antimatter.yaml`.  In diese Datei fügen Sie den folgenden Inhalt ein:
 
-> *I note that `enabled` is not repeated here. If the config files are merged and not simply replaced, then that should be explicitly stated.*
+> *Ich weise darauf hin, dass hier `enabled` nicht wiederholt wird. Wenn die Konfigurationsdateien gemergt und nicht einfach ersetzt werden, dann sollte das explizit angegeben werden.*
 
 [prism classes="language-yaml line-numbers"]
 color: red
-info: Grav is awesome!
+info: Grav ist großartig!
 [/prism]
 
-Then in your theme templates you can access these variables using the `grav.theme.config` object:
+In Ihren Theme-Templates können Sie dann über das Objekt `grav.theme.config` auf diese Variablen zugreifen:
 
 ```
 <h1 style="color:{{ grav.theme.config.color }}">{{ grav.theme.config.info }}</h1>
 ```
 
-This should render out as:
+Das sollte folgendermaßen gerendert werden:
 
-<h1 style="color:red">Grav is awesome!</h1>
+<h1 style="color:red">Grav ist großartig!</h1>
 
-In PHP you can access the current theme's configuration with:
+In PHP können Sie auf die Konfiguration des aktuellen Themes zugreifen mit:
 
 [prism classes="language-php line-numbers"]
 $color = $this->grav['theme']->config()['color'];
 [/prism]
 
-Simple! The sky is the limit regarding the configuration of your themes.  You can use them for whatever you like! :)
+Ein Kinderspiel! Ihrer Fantasie sind hier fast keine Grenzen gesetzt.  Sie können die Themes nach Lust und Laune gestalten! :)
 
-### Alternative Notation
+### Alternative Schreibweisen
 
-The following aliases also work:
+Die folgenden alternativen Ausdrücke funktionieren ebenfalls:
 
 [prism classes="language-twig line-numbers"]
 Theme Color Option: {{ config.theme.color_option }}
@@ -96,4 +96,4 @@ Theme Color Option: {{ theme_var(color_option) }}
 Theme Color Option: {{ grav.themes.antimatter.color_option }} [AVOID!]
 [/prism]
 
-**Even though `grav.themes.<themename>` is supported, it should be avoided because it makes it impossible to inherit the theme properly.**
+**Auch wenn `grav.themes.<themename>` unterstützt wird, sollte dies jedoch vermieden werden, da es eine korrekte Vererbung des Themas unmöglich macht.**
