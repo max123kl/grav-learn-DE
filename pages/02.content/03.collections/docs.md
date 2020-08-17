@@ -1,28 +1,28 @@
 ---
-title: Page Collections
+title: Seiten-Kollektionen
 page-toc:
   active: true
 taxonomy:
     category: docs
 ---
 
-Collections have grown considerably since the early betas of Grav. We started off with a very limited set of page-based collections, but with the help of our community, we have increased these capabilities to make them even more powerful!  So much so that they now have their own section in the documentation.
+Die Kollektionen sind seit den ersten Betas von Grav erheblich umfangreicher geworden. Wir haben mit einer sehr begrenzten Anzahl von seitenbasierten Kollektionen begonnen, aber mit der Hilfe unserer Community haben wir diese Fähigkeiten erweitert, um sie noch leistungsfähiger zu machen!  So sehr, dass sie jetzt ein eigenes Kapitel in der Dokumentation haben.
 
-## Basics of Grav Collections
+## Grundlagen der Grav-Kollektionen
 
-In Grav, the most common type of collection is a list of pages that can be defined either in the page's frontmatter or in the twig itself. The most common is to define a collection in the frontmatter. With a collection defined, it is available in the Twig of the page to do with as you wish. By using page collection methods or looping through each [page object](https://learn.getgrav.org/themes/theme-vars#page-object) and using the page methods or properties you can do powerful things. Common examples of this include displaying a list of blog posts or displaying modular sub-pages to render a complex page design.
+In Grav ist die häufigste Art der Kollektion eine Liste von Seiten, die entweder im Frontmatter der Seite oder in Twig selbst definiert werden kann. Der gebräuchlichste Typ ist die Definition einer Kollektion in den Kopfzeilen der Seite. Wenn eine Kollektion definiert ist, steht sie im Twig der Seite zur Verfügung, mit dem Sie nach Belieben arbeiten können. Sie sehr können sehr mächtige Funktionen realisieren mit Hilfe der Page-Collection-Methoden, der Verwendung von Loops für ein [Page-Objekt](/themes/theme-vars#page-object) und mit Hilfe der Page-Methoden oder -Eigenschaften. Gängige Beispiele hierfür sind die Anzeige einer Liste von Blog-Einträgen oder die Anzeige modularer Unterseiten zur Visualisierung eines komplexen Seitendesigns.
 
-## Collection Object
+## Collection-Objekt
 
-When you define a collection in the page header, you are dynamically creating a [Grav Collection](https://github.com/getgrav/grav/blob/develop/system/src/Grav/Common/Page/Collection.php) that is available in the page's Twig.  This Collection object is **iterable** and can be treated like an **array** which allows you to do things such as:
+Wenn Sie eine Kollektion im Page-Header definieren, erstellen Sie dynamisch eine [Grav-Kollektion](https://github.com/getgrav/grav/blob/develop/system/src/Grav/Common/Page/Collection.php), die im Twig der Seite verfügbar ist. Dieses Collection-Objekt ist **iterierbar** und kann wie ein **Array** behandelt werden, mit dem Sie u.a. Aktionen wie die Folgende ausführen können:
 
 [prism classes="language-twig line-numbers"]
 {{ dump(page.collection[page.path]) }}
 [/prism]
 
-## Example Collection Definition
+## Beispiel-Definition einer Kollektion
 
-An example collection defined in the page's frontmatter:
+Eine Beispiel-Kollektion, die im Frontmatter der Seite definiert ist:
 
 [prism classes="language-yaml line-numbers"]
 content:
@@ -34,13 +34,13 @@ content:
     pagination: true
 [/prism]
 
-The `content.items` value in the page's frontmatter tells Grav to gather up a collection of items and information passed to this defines how the collection is to be built.
+Der Wert `content.items` im Frontmatter der Seite weist Grav an, eine Kollektion von Elementen (items) zusammenzustellen. Diese Informationen definieren, wie die Kollektion aufgebaut werden soll.
 
-This definition creates a collection for the page that consists of all **child pages** sorted by **date** in **descending** order with **pagination** showing **10 items** per-page.
+Diese Definition erstellt eine Kollektion für die Seite. Sie enthält alle untergeordneten Seiten (**child pages**), sortiert nach Datum (**date**) in absteigender Reihenfolge (**descending**), wobei 10 Artikel (**10 items**) pro Seite anzeigt werden und die Seitennummerierung **pagination** aktiv ist.
 
-## Accessing Collections in Twig
+## Zugriff auf Kollektionen in Twig
 
-When this collection is defined in the header, Grav creates a collection **page.collection** that you can access in a twig template with:
+Sobald diese Kollektion in den Kopfzeilen definiert ist, erstellt Grav eine Kollektion **page.collection**, auf die Sie in einem Twig-Template zugreifen können:
 
 [prism classes="language-twig line-numbers"]
 {% for p in page.collection %}
@@ -49,9 +49,9 @@ When this collection is defined in the header, Grav creates a collection **page.
 {% endfor %}
 [/prism]
 
-This simply loops over the [pages](https://learn.getgrav.org/themes/theme-vars#page-object) in the collection displaying the title and summary.
+Dadurch wird einfach eine Schleife (loop) über die Seiten ([pages](/themes/theme-vars#page-object)) in der Kollektion gelegt, auf denen Titel und Zusammenfassung angezeigt werden.
 
-You can also include an order parameter to change the default ordering of pages:
+Sie können auch einen Parameter für die Reihenfolge angeben, um die voreingestellte Reihenfolge der Seiten zu ändern:
 
 [prism classes="language-twig line-numbers"]
 {% for p in page.collection.order('folder','asc') %}
@@ -60,72 +60,72 @@ You can also include an order parameter to change the default ordering of pages:
 {% endfor %}
 [/prism]
 
-## Collection Headers
+## Kopfzeilen der Kollektion
 
-To tell Grav that a specific page should be a listing page and contain child-pages, there are a number of variables that can be used:
+Um Grav mitzuteilen, dass eine bestimmte Seite eine Auflistung sein soll und Unterseiten enthält, gibt es eine Reihe von Variablen, die verwendet werden können:
 
 ### Summary of collection options
 
 [div class="table-keycol"]
 |                   String                  |                           Result                          |
 |-------------------------------------------|-----------------------------------------------------------|
-| `'@root'`                                   | Get the root children                                     |
-| `'@root.children'`                          | Get the root children (alternative)                       |
-| `'@root.descendants'`                       | Get the root and recurse through ALL children             |
+| `'@root'`                                   | Abrufen der Unterseiten von root                        |
+| `'@root.children'`                          | Abrufen der Unterseiten von root (Alternative)          |
+| `'@root.descendants'`                       | Abrufen von root und Erfassen **aller** Unterseiten     |
+|                                             |                                                           |
+| `'@self.parent'`                            | Abrufen der Eltern-Seite der aktuellen Seite              |
+| `'@self.siblings'`                          | Eine Kollektion aller anderen Seiten dieser Ebene         |
+| `'@self.modular'`                           | Nur die modularen Unterseiten abrufen                     |
+| `'@self.children'`                          | Nur die *nicht* modularen Unterseiten abrufen             |
+| `'@self.descendants'`                       | Erfassen aller nicht-modularen Unterseiten                |
 |                                           |                                                           |
-| `'@self.parent'`                            | Get the parent of the current page                        |
-| `'@self.siblings'`                          | A collection of all other pages on this level             |
-| `'@self.modular'`                           | Get only the modular children                             |
-| `'@self.children'`                          | Get the non-modular children                              |
-| `'@self.descendants'`                       | Recurse through all the non-modular children              |
+| `'@page': '/fruit'`                         | Abrufen aller Unterseiten der Seite `/fruit`              |
+| `'@page.children': '/fruit'`                | Alternative zu oben                                       |
+| `'@page.self': '/fruit'`                    | Eine Kollektion nur der Seite `/fruit` abrufen            |
+| `'@page.page': '/fruit'`                    | Alternative zu oben                                       |
+| `'@page.descendants': '/fruit'`             | Abrufen und Erfassen aller Unterseiten der Seite `/fruit` |
+| `'@page.modular': '/fruit'`                 | Eine Kollektion aller modularen Unterseiten der Seite `/fruit` abrufen |
 |                                           |                                                           |
-| `'@page': '/fruit'`                         | Get all the children of page `/fruit`                     |
-| `'@page.children': '/fruit'`                | Alternative to above                                      |
-| `'@page.self': '/fruit'`                    | Get a collection with only the page `/fruit`              |
-| `'@page.page': '/fruit'`                    | Alternative to above                                      |
-| `'@page.descendants': '/fruit'`             | Get and recurse through all the children of page `/fruit` |
-| `'@page.modular': '/fruit'`                | Get a collection of all modular subpages of `/fruit`      |
-|                                           |                                                           |
-| `'@taxonomy.tag': photography`              | taxonomy with tag=`photography`                           |
-| `'@taxonomy': {tag: birds, category: blog}` | taxonomy with tag=`birds` && category=`blog`              |
+| `'@taxonomy.tag': photography`              | Taxonomy mit dem Tag=`photography`                        |
+| `'@taxonomy': {tag: birds, category: blog}` | Taxonomy mit dem Tag `birds` und der Kategorie `blog`     |
 [/div]
 
-! This document outlines the use of `@page`, `@taxonomy.category` etc, but a more YAML-safe alternative format is `page@`, `taxonomy@.category`.  All the `@` commands can be written in either prefix or postfix format.
+! In diesem Dokument wird die Verwendung von `@page`, `@taxonomy.category` usw. skizziert, aber ein YAML-sichereres Alternativformat ist `page@`, `taxonomy@.category`.  Alle Kommandos mit `@` können entweder im Präfix- oder Postfix-Format eingegeben werden.
 
-We will cover these more in detail.
+Wir wollen uns detaillierter damit befassen.
 
-## Root Collections
+## Root-Kollektionen
 
-##### @root - Top level children
+##### @root – Unterseiten der obersten Ebene
 
-This can be used to retrieve the top/root level **published non-modular children** of a site. Particular useful for getting the items that make up the primary navigation for example:
+Dies kann verwendet werden, um die Top/Root-Ebene der **veröffentlichten, nicht-modularen Unterseiten** einer Site abzurufen. Dies ist zum Beispiel besonders nützlich, um die Elemente abzurufen, aus denen sich die Primärnavigation zusammensetzt:
 
 [prism classes="language-yaml line-numbers"]
 content:
     items: '@root'
 [/prism]
 
-an alias is also valid:
+ein gültiger Alias ist:
 
 [prism classes="language-yaml line-numbers"]
 content:
     items: '@root.children'
 [/prism]
 
-##### @root - Top level children + all descendants
+##### @root – Top-Level Unterseiten + alle Nachfolge-Seiten
 
-This will effectively get every page in your site as it recursively navigates through all the children from the root page down, and builds a collection of **all** the **published non-modular children** of a site:
+Auf diese Weise wird jede Seite Ihrer Website effektiv erreicht, da sie rekursiv durch alle Unterseiten von der Root-Seite abwärts navigiert und eine Kollektion von **allen** der **veröffentlichten, nicht-modularen Unterseiten** einer Website aufbaut:
 
 [prism classes="language-yaml line-numbers"]
 content:
     items: '@root.descendants'
 [/prism]
 
-## Self Collections
+## Self-Kollektionen
 
-##### @self.children - Children of the current page
+##### @self.children – Children of the current page
 
-This is used to list the **published non-modular children** of the current page:
+Dies wird verwendet, um die **veröffentlichten, nicht-modularen Unterseiten** der aktuellen Seite aufzulisten:
 
 [prism classes="language-yaml line-numbers"]
 content:
