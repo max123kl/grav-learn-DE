@@ -72,6 +72,7 @@ Kommentare sollten HTML-kompatibel sein
 This is a comment
 -->
 [/prism]
+
 Der untenstehende Kommentar sollte **NICHT** sichtbar sein:
 
 <!--
@@ -188,7 +189,7 @@ in HTML:
 
 ## Blockquotes (Zitate)
 
-Zeilenumbruch Zitieren von Inhaltsteilen aus einer anderen Quelle innerhalb Ihres Dokuments:
+Zitieren von Inhaltsteilen aus einer anderen Quelle innerhalb Ihres Dokuments:
 
 Fügen Sie `>` vor den Text ein, den Sie zitieren möchten.
 
