@@ -6,34 +6,33 @@ taxonomy:
     category: docs
 ---
 
-Let's face it: Writing content for the Web is tiresome. WYSIWYG editors help alleviate this task, but they generally result in horrible code, or worse yet, ugly web pages.
+Seien wir ehrlich: Das Schreiben von Web-Inhalten ist ermüdend. WYSIWYG-Editoren helfen, diese Aufgabe zu erleichtern, aber sie führen in der Regel zu schrecklichem Code oder, schlimmer noch, zu hässlichen Webseiten.
 
-**Markdown** is a better way to write **HTML**, without all the complexities and ugliness that usually accompanies it.
+**Markdown** ist eine einfachere Art, um **HTML** zu schreiben. Ganz ohne die ganze grauenhafte Komplexität, die normalerweise damit verbunden ist.
 
-Some of the key benefits are:
+Einige der wesentlichen Vorteile sind:
 
-1. Markdown is simple to learn, with minimal extra characters, so it's also quicker to write content.
-2. Less chance of errors when writing in markdown.
-3. Produces valid XHTML output.
-4. Keeps the content and the visual display separate, so you cannot mess up the look of your site.
-5. Write in any text editor or Markdown application you like.
-6. Markdown is a joy to use!
+1. Markdown ist einfach zu erlernen, mit nur wenigen zusätzlichen Formatierungen, so dass der Inhalt auch schneller geschrieben werden kann.
+2. Geringeres Risiko von Schreibfehlern beim Niederschreiben
+3. Erzeugt gültigen XHTML-Quelltext
+4. Hält den Inhalt und die visuelle Gestaltung getrennt, so dass Sie das Aussehen Ihrer Website nicht verunstalten können.
+5. Kann mit einem beliebigen Texteditor oder einer Markdown-Anwendung geschrieben werden.
+6. Markdown macht Spaß!
 
-John Gruber, the author of Markdown, puts it like this:
+John Gruber, der Autor von Markdown, drückt es so aus:
 
-> The overriding design goal for Markdown’s formatting syntax is to make it as readable as possible. The idea is that a Markdown-formatted document should be publishable as-is, as plain text, without looking like it’s been marked up with tags or formatting instructions. While Markdown’s syntax has been influenced by several existing text-to-HTML filters, the single biggest source of inspiration for Markdown’s syntax is the format of plain text email.
+> Das vorrangige Designziel für die Formatierungssyntax von Markdown ist es, sie so lesbar wie möglich zu gestalten. Die Idee ist, dass ein mit Markdown formatiertes Dokument so veröffentlicht werden kann, wie es ist, als einfacher Text, ohne dass es aussieht, als sei es mit Tags oder Formatierungsanweisungen versehen worden. Während die Syntax von Markdown durch mehrere bestehende Text-zu-HTML-Filter beeinflusst wurde, ist die größte Inspirationsquelle für die Syntax von Markdown das Format von E-Mails im Nur-Text-Format.
 > -- <cite>John Gruber</cite>
 
+Grav verfügt über eine integrierte Schnittstelle für [Markdown](https://daringfireball.net/projects/markdown/) und [Markdown Extra](https://michelf.ca/projects/php-markdown/extra/). Sie können **Markdown Extra** in der Konfigurationsdatei `system.yaml` aktivieren.
 
-Grav ships with built-in support for [Markdown](https://daringfireball.net/projects/markdown/) and [Markdown Extra](https://michelf.ca/projects/php-markdown/extra/). You must enable **Markdown Extra** in your `system.yaml` configuration file.
+Lassen Sie uns ohne große Umschweife die Hauptelemente von Markdown betrachten und uns ansehen, wie das resultierende HTML aussieht:
 
-Without further delay, let us go over the main elements of Markdown and what the resulting HTML looks like:
+!! <i class="fa fa-bookmark"></i> Legen Sie für diese Seite ein Lesezeichen an, um in Zukunft leichter darauf zugreifen zu können!
 
-!! <i class="fa fa-bookmark"></i> Bookmark this page for easy future reference!
+## Überschriften
 
-## Headings
-
-Headings from `h1` through `h6` are constructed with a `#` for each level:
+Überschriften vom Typ `h1` bis `h6` werden mit einem `#` für jede Ebene erzeugt:
 
 [prism classes="language-markdown"]
 # h1 Heading
@@ -44,7 +43,7 @@ Headings from `h1` through `h6` are constructed with a `#` for each level:
 ###### h6 Heading
 [/prism]
 
-Renders to:
+wird gerendert zu:
 
 # h1 Heading
 ## h2 Heading
@@ -64,34 +63,30 @@ HTML:
 <h6>h6 Heading</h6>
 [/prism]
 
+## Kommentare
 
-
-## Comments
-
-Comments should be HTML compatible
+Kommentare sollten HTML-kompatibel sein
 
 [prism classes="language-html"]
 <!--
 This is a comment
 -->
 [/prism]
-Comment below should **NOT** be seen:
+Der untenstehende Kommentar sollte **NICHT** sichtbar sein:
 
 <!--
 This is a comment
 -->
 
+## Horizontale Linien
 
+Das HTML-Element `<hr>` dient dazu, eine „thematische Trennung“ zwischen den Elementen auf Absatzebene zu schaffen. In Markdown können Sie ein `<hr>` mit einem der folgenden Elemente erstellen:
 
-## Horizontal Rules
+* `___`: drei aufeinanderfolgende Unterstriche
+* `---`: drei aufeinanderfolgende Minus-Striche (divis)
+* `***`: drei aufeinanderfolgende Sternchen
 
-The HTML `<hr>` element is for creating a "thematic break" between paragraph-level elements. In markdown, you can create a `<hr>` with any of the following:
-
-* `___`: three consecutive underscores
-* `---`: three consecutive dashes
-* `***`: three consecutive asterisks
-
-renders to:
+wird so angezeigt:
 
 ___
 
@@ -99,122 +94,113 @@ ___
 
 ***
 
+## Body-Text
 
+Der Fließtext wird normal geschrieben, einfacher Text wird im gerenderten HTML mit `<p></p>` Tags umhüllt.
 
-
-
-## Body Copy
-
-Body copy written as normal, plain text will be wrapped with `<p></p>` tags in the rendered HTML.
-
-So this body copy:
+So wird dieser Body-Text:
 
 [prism classes="language-markdown"]
 Lorem ipsum dolor sit amet, graecis denique ei vel, at duo primis mandamus. Et legere ocurreret pri, animal tacimates complectitur ad cum. Cu eum inermis inimicus efficiendi. Labore officiis his ex, soluta officiis concludaturque ei qui, vide sensibus vim ad.
 [/prism]
-renders to this HTML:
+
+zu diesem HTML gerendert:
 
 [prism classes="language-html"]
 <p>Lorem ipsum dolor sit amet, graecis denique ei vel, at duo primis mandamus. Et legere ocurreret pri, animal tacimates complectitur ad cum. Cu eum inermis inimicus efficiendi. Labore officiis his ex, soluta officiis concludaturque ei qui, vide sensibus vim ad.</p>
 [/prism]
 
-A **line break** can be done with 2 spaces followed by 1 return.
-
-
-
-
+Ein **Zeilenumbruch** kann mit 2 Leerzeichen gefolgt von 1 Return erreicht werden.
 
 ## Inline HTML
 
-If you need a certain HTML tag (with a class) you can simply use HTML:
+Wenn Sie einen bestimmten HTML-Tag (mit einer Klasse) benötigen, können Sie auch einfach HTML einsetzen:
 
 [prism classes="language-html"]
-Paragraph in Markdown.
+Absatz in Markdown.
 
 <div class="class">
-    This is <b>HTML</b>
+    Das ist <b>HTML</b>
 </div>
 
-Paragraph in Markdown.
+Absatz in Markdown.
 [/prism]
 
+## Schriftauszeichnung (Hervorhebungen)
 
+### Bold (fett)
 
+Die Hervorhebung eines Textabschnitts mit einer kräftigeren Schriftart.
 
-
-## Emphasis
-
-### Bold
-For emphasizing a snippet of text with a heavier font-weight.
-
-The following snippet of text is **rendered as bold text**.
+Der folgende Textausschnitt wird **als fetter Text** wiedergegeben.
 
 [prism classes="language-markdown"]
-**rendered as bold text**
+**als fetter Text gerendert**
 [/prism]
-renders to:
 
-**rendered as bold text**
+wird gerendert zu:
 
-and this HTML:
+**als fetter Text gerendert**
+
+und so sieht der HTML-Code aus:
 
 [prism classes="language-html"]
-<strong>rendered as bold text</strong>
+<strong>als fetter Text gerendert</strong>
 [/prism]
 
-### Italics
-For emphasizing a snippet of text with italics.
+### Italic (kursiv)
 
-The following snippet of text is _rendered as italicized text_.
+Die Hervorhebung eines Textausschnitts durch Kursivschrift.
+
+Der folgende Textausschnitt wird _als kursivierter Text_ wiedergegeben.
 
 [prism classes="language-markdown"]
-_rendered as italicized text_
+_als Kursivschrift gerendert_
 [/prism]
 
-renders to:
+wird gerendert zu:
 
-_rendered as italicized text_
+_als Kursivschrift gerendert_
 
-and this HTML:
+und so sieht der HTML-Code aus:
 
 [prism classes="language-html"]
-<em>rendered as italicized text</em>
+<em>als Kursivschrift gerendert</em>
 [/prism]
 
+### Durchgestrichen
 
-### Strikethrough
-In GFM (GitHub flavored Markdown) you can do strikethroughs.
+In GFM (GitHub flavored Markdown) können Sie Durchstreichungen vornehmen.
 
 [prism classes="language-markdown"]
-~~Strike through this text.~~
+~~Dieser Text wird durchgestrichen~~
 [/prism]
-Which renders to:
 
-~~Strike through this text.~~
+wird gerendert zu:
 
-HTML:
+~~Dieser Text wird durchgestrichen~~
+
+in HTML:
 
 [prism classes="language-html"]
-<del>Strike through this text.</del>
+<del>Dieser Text wird durchgestrichen</del>
 [/prism]
 
+## Blockquotes (Zitate)
 
+Zeilenumbruch Zitieren von Inhaltsteilen aus einer anderen Quelle innerhalb Ihres Dokuments:
 
-
-## Blockquotes
-For quoting blocks of content from another source within your document.
-
-Add `>` before any text you want to quote.
+Fügen Sie `>` vor den Text ein, den Sie zitieren möchten.
 
 [prism classes="language-markdown"]
 > **Fusion Drive** combines a hard drive with a flash storage (solid-state drive) and presents it as a single logical volume with the space of both drives combined.
 [/prism]
 
-Renders to:
+Wird gerendert zu:
 
 > **Fusion Drive** combines a hard drive with a flash storage (solid-state drive) and presents it as a single logical volume with the space of both drives combined.
 
-and this HTML:
+und so sieht der HTML-Code aus:
 
 [prism classes="language-html"]
 <blockquote>
@@ -222,7 +208,7 @@ and this HTML:
 </blockquote>
 [/prism]
 
-Blockquotes can also be nested:
+Zitate können auch ineinander verschachtelt werden:
 
 [prism classes="language-markdown"]
 > Donec massa lacus, ultricies a ullamcorper in, fermentum sed augue.
@@ -231,28 +217,24 @@ Nunc augue augue, aliquam non hendrerit ac, commodo vel nisi.
 odio non est accumsan facilisis. Aliquam id turpis in dolor tincidunt mollis ac eu diam.
 [/prism]
 
-Renders to:
+Wird gerendert zu:
 
 > Donec massa lacus, ultricies a ullamcorper in, fermentum sed augue.
 Nunc augue augue, aliquam non hendrerit ac, commodo vel nisi.
 >> Sed adipiscing elit vitae augue consectetur a gravida nunc vehicula. Donec auctor
 odio non est accumsan facilisis. Aliquam id turpis in dolor tincidunt mollis ac eu diam.
 
+## Hinweise
 
+! Der alte Mechanismus für Hinweise, welche die Syntax von Zitaten (>>>) außer Kraft setzten, ist veraltet. Hinweise werden jetzt über das spezielle Plugin [„Markdown Notices“](https://github.com/getgrav/grav-plugin-markdown-notices) verarbeitet.
 
+## Listen
 
-## Notices
+### Ungeordnet
 
-! The old mechanism for notices overriding the block quote syntax (`>>>`) has been deprecated.  Notices are now handled via a dedicated plugin called [Markdown Notices](https://github.com/getgrav/grav-plugin-markdown-notices)
+Eine Liste von Punkten, bei denen die Reihenfolge der Elemente nicht unbedingt von Belang ist.
 
-
-
-## Lists
-
-### Unordered
-A list of items in which the order of the items does not explicitly matter.
-
-You may use any of the following symbols to denote bullets for each list item:
+Sie können eines der folgenden Zeichen verwenden, um für jedes Listenelement Aufzählungszeichen zu setzen:
 
 [prism classes="language-markdown"]
 * valid bullet
@@ -260,7 +242,7 @@ You may use any of the following symbols to denote bullets for each list item:
 + valid bullet
 [/prism]
 
-For example
+Zum Beispiel
 
 [prism classes="language-markdown"]
 + Lorem ipsum dolor sit amet
@@ -277,7 +259,7 @@ For example
 + Eget porttitor lorem
 [/prism]
 
-Renders to:
+Wird gerendert zu:
 
 + Lorem ipsum dolor sit amet
 + Consectetur adipiscing elit
@@ -292,7 +274,7 @@ Renders to:
 + Aenean sit amet erat nunc
 + Eget porttitor lorem
 
-And this HTML
+und so sieht der HTML-Code aus:
 
 [prism classes="language-html"]
 <ul>
@@ -314,9 +296,9 @@ And this HTML
 </ul>
 [/prism]
 
-### Ordered
+### Geordnet
 
-A list of items in which the order of items does explicitly matter.
+Eine Liste von Punkten, bei denen die Reihenfolge der Elemente grundsätzlich wichtig ist.
 
 [prism classes="language-markdown"]
 1. Lorem ipsum dolor sit amet
@@ -329,7 +311,7 @@ A list of items in which the order of items does explicitly matter.
 8. Eget porttitor lorem
 [/prism]
 
-Renders to:
+Wird gerendert zu:
 
 1. Lorem ipsum dolor sit amet
 2. Consectetur adipiscing elit
@@ -340,7 +322,7 @@ Renders to:
 7. Aenean sit amet erat nunc
 8. Eget porttitor lorem
 
-And this HTML:
+und so sieht der HTML-Code aus:
 
 [prism classes="language-html"]
 <ol>
@@ -355,7 +337,7 @@ And this HTML:
 </ol>
 [/prism]
 
-**TIP**: If you just use `1.` for each number, Markdown will automatically number each item. For example:
+**Tipp**: Wenn Sie immer nur die `1.` für jede Ziffer verwenden, wird Markdown jedes Element automatisch nummerieren. Zum Beispiel:
 
 [prism classes="language-markdown"]
 1. Lorem ipsum dolor sit amet
@@ -368,7 +350,7 @@ And this HTML:
 1. Eget porttitor lorem
 [/prism]
 
-Renders to:
+Wird gerendert zu:
 
 1. Lorem ipsum dolor sit amet
 2. Consectetur adipiscing elit
@@ -379,32 +361,29 @@ Renders to:
 7. Aenean sit amet erat nunc
 8. Eget porttitor lorem
 
+## Code-Darstellung
 
+### Inline Code
 
-
-
-## Code
-
-### Inline code
-Wrap inline snippets of code with `` ` ``.
+Inline Code-Schnipsel werden mit `` ` `` umschlossen.
 
 [prism classes="language-markdown"]
 In this example, `<section></section>` should be wrapped as **code**.
 [/prism]
 
-Renders to:
+Wird gerendert zu:
 
 In this example, `<section></section>` should be wrapped with **code**.
 
-HTML:
+und so sieht der HTML-Code aus:
 
 [prism classes="language-html"]
 <p>In this example, <code>&lt;section&gt;&lt;/section&gt;</code> should be wrapped with <strong>code</strong>.</p>
 [/prism]
 
-### Indented code
+### Eingerückter Code
 
-Or indent several lines of code by at least four spaces, as in:
+Mehrere Zeilen Code um mindestens vier Leerzeichen einrücken, wie in:
 
 <pre>
   // Some comments
@@ -413,7 +392,7 @@ Or indent several lines of code by at least four spaces, as in:
   line 3 of code
 </pre>
 
-Renders to:
+Wird gerendert zu:
 
 [prism classes="language-txt"]
 // Some comments
@@ -422,7 +401,7 @@ line 2 of code
 line 3 of code
 [/prism]
 
-HTML:
+und so sieht der HTML-Code aus:
 
 [prism classes="language-html"]
 <pre>
@@ -435,28 +414,27 @@ HTML:
 </pre>
 [/prism]
 
+### Codeblock „Einzäunungen“
 
-### Block code "fences"
-
-Use "fences"  ```` ``` ```` to block in multiple lines of code with a language attribute
+Verwenden Sie die „Einzäunungen“ ```` ``` ````, um mehrere Codezeilen in einem Block darzustellen
 
 <pre>
 ```
-Sample text here...
+Hier ist ein Beispiel-Text ...
 ```
 </pre>
 
-HTML:
+in HTML:
 
 [prism classes="language-html"]
 <pre language-html>
-  <code>Sample text here...</code>
+  <code>Hier ist ein Beispiel-Text ...</code>
 </pre>
 [/prism]
 
-### Syntax highlighting
+### Syntax Highlighting
 
-GFM, or "GitHub Flavored Markdown" also supports syntax highlighting. To activate it, simply add the file extension of the language you want to use directly after the first code "fence", ` ```js `, and syntax highlighting will automatically be applied in the rendered HTML. For example, to apply syntax highlighting to JavaScript code:
+GFM oder „GitHub Flavored Markdown“ unterstützt auch Syntax-Highlighting. Um es zu aktivieren, fügen Sie einfach die Dateierweiterung der Sprache, die Sie einsetzen wollen, direkt nach der ersten Codeblock „Einzäunung“ (` ```js `) hinzu. Damit wird die Syntaxhervorhebung automatisch in das gerenderte HTML übernommen. Zum Beispiel, um Syntax-Highlighting auf JavaScript-Code anzuwenden:
 
 <pre>
 ```js
@@ -481,7 +459,7 @@ grunt.initConfig({
 ```
 </pre>
 
-Renders to:
+Wird gerendert zu:
 
 [prism classes="language-js"]
 grunt.initConfig({
@@ -504,15 +482,11 @@ grunt.initConfig({
 };
 [/prism]
 
-!!! For syntax highlighting to work, the [Highlight plugin](https://github.com/getgrav/grav-plugin-highlight) needs to be installed and enabled. It in turn utilizes a jquery plugin, so jquery needs to be loaded in your theme too.
+!!! Damit das Syntax-Highlighting funktioniert, muss das [Highlight-Plugin](https://github.com/getgrav/grav-plugin-highlight) installiert und aktiviert sein. Es verwendet wiederum ein Jquery-Plugin, so dass auch Jquery in Ihr Theme geladen werden muss.
 
+## Tabellen
 
-
-
-
-## Tables
-Tables are created by adding pipes as dividers between each cell, and by adding a line of dashes (also separated by bars) beneath the header. Note that the pipes do not need to be vertically aligned.
-
+Tabellen werden durch Hinzufügen von Pipes (`|`) als Trennlinien zwischen den einzelnen Zellen und durch Hinzufügen einer Linie aus Minus-Strichen unter der Kopfzeile erstellt, ebenfalls durch Pipes getrennt. Beachten Sie, dass die Trennzeichen vertikal nicht ausgerichtet sein müssen.
 
 [prism classes="language-markdown"]
 | Option | Description |
@@ -522,7 +496,7 @@ Tables are created by adding pipes as dividers between each cell, and by adding 
 | ext    | extension to be used for dest files. |
 [/prism]
 
-Renders to:
+Wird gerendert zu:
 
 [div class="table"]
 | Option | Description |
@@ -532,7 +506,7 @@ Renders to:
 | ext    | extension to be used for dest files. |
 [/div]
 
-And this HTML:
+und so sieht der HTML-Code aus:
 
 [prism classes="language-html"]
 <table>
@@ -559,9 +533,9 @@ And this HTML:
 </table>
 [/prism]
 
-### Right aligned text
+### Rechtsbündiger Text
 
-Adding a colon on the right side of the dashes below any heading will right align text for that column.
+Durch Hinzufügen eines Doppelpunkts auf der rechten Seite der Minus-Striche unter der Kopfzeile wird der Text für diese Spalte rechtsbündig ausgerichtet.
 
 [prism classes="language-markdown"]
 | Option | Description |
@@ -579,48 +553,43 @@ Adding a colon on the right side of the dashes below any heading will right alig
 | ext    | extension to be used for dest files. |
 [/div]
 
-
-
-
-
 ## Links
 
-### Basic link
+### Grundlegender Link
 
 [prism classes="language-markdown"]
 [Assemble](https://assemble.io)
 [/prism]
 
-Renders to (hover over the link, there is no tooltip):
+Rendert zu (beim Maus-Over gibt es _keinen_ Tooltip):
 
 [Assemble](https://assemble.io)
 
-HTML:
+in HTML:
 
 [prism classes="language-html"]
 <a href="https://assemble.io">Assemble</a>
 [/prism]
 
-
-### Add a title
+### Titel hinzufügen
 
 [prism classes="language-markdown"]
 [Upstage](https://github.com/upstage/ "Visit Upstage!")
 [/prism]
 
-Renders to (hover over the link, there should be a tooltip):
+Rendert zu (beim Maus-Over _sollte_ ein Tooltip erscheinen):
 
 [Upstage](https://github.com/upstage/ "Visit Upstage!")
 
-HTML:
+in HTML:
 
 [prism classes="language-html"]
 <a href="https://github.com/upstage/" title="Visit Upstage!">Upstage</a>
 [/prism]
 
-### Named Anchors
+### Benannte Anker
 
-Named anchors enable you to jump to the specified anchor point on the same page. For example, each of these chapters:
+Benannte Anker ermöglichen es Ihnen, zum angegebenen Ankerpunkt auf derselben Seite zu springen. Beispielsweise für jedes dieser Kapitel:
 
 [prism classes="language-markdown"]
 # Table of Contents
@@ -628,7 +597,8 @@ Named anchors enable you to jump to the specified anchor point on the same page.
   * [Chapter 2](#chapter-2)
   * [Chapter 3](#chapter-3)
 [/prism]
-will jump to these sections:
+
+wird der Link zu diesen Abschnitten springen:
 
 [prism classes="language-markdown"]
 ## Chapter 1 <a id="chapter-1"></a>
@@ -641,35 +611,32 @@ Content for chapter one.
 Content for chapter one.
 [/prism]
 
-**NOTE** that specific placement of the anchor tag seems to be arbitrary. They are placed inline here since it seems to be unobtrusive, and it works.
+**HINWEIS:**Die genaue Platzierung des Anker-Tags scheint willkürlich zu sein. Sie werden hier inline platziert, da es unauffällig zu sein scheint und auch funktioniert.
 
+## Bilder
 
-
-
-
-## Images
-Images have a similar syntax to links but include a preceding exclamation point.
+Bilder haben eine ähnliche Syntax wie Links, enthalten aber ein vorangestelltes Ausrufezeichen.
 
 [prism classes="language-markdown"]
 ![Minion](https://octodex.github.com/images/minion.png)
 [/prism]
 ![Minion](https://octodex.github.com/images/minion.png)
 
-or:
+oder:
 
 [prism classes="language-markdown"]
 ![Alt text](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
 [/prism]
 ![Alt text](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
 
-Like links, images also have a footnote style syntax:
+Wie Links haben auch Bilder eine Syntax im Stil von Fußnoten:
 
 [prism classes="language-markdown"]
 ![Alt text][id]
 [/prism]
 ![Alt text][id]
 
-With a reference later in the document defining the URL location:
+Mit einem späteren Verweis im Dokument, der den URL-Standort definiert:
 
 [id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
 
