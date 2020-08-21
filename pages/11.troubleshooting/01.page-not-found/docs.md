@@ -4,14 +4,15 @@ taxonomy:
     category: docs
 ---
 
-There are a couple of reasons you might receive a **Not Found** error, and they are each caused by different factors.
+Es gibt eine Reihe von Gründen, warum Sie einen Fehler **Not Found** erhalten können. Sie alle können unterschiedliche Ursachen haben.
 
 ![404 Not Found](404-not-found.png?classes=shadow)
 
-!! The examples below are for the Apache Web Server which is the most common server software used.
+!! Die folgenden Beispiele beziehen sich hauptsächlich auf den Apache-Webserver. Diese Server-Software wird weltweit überwiegend eingesetzt.
 
-### IIS use of .htaccess file
-After adding URL Rewrite to the IIS server using the Web Platform Installer, restart the IIS server. Go to the management interface, IIS, double-click on URL Rewrite, under Inbound Rules, click on Import Rules, under Rules to Import, browse to the Configuration file, choosing the .htaccess file in the root, and then click on Import. Restart the IIS server. Access Grav now.
+### Verwendung der .htaccess-Datei durch den IIS-Server
+
+Nachdem Sie URL Rewrite mit dem Web Platform Installer auf dem IIS-Server hinzugefügt haben, starten Sie den IIS-Server neu. Gehen Sie zur Management-Schnittstelle, IIS.  Doppelklicken Sie auf URL Rewrite und klicken Sie unter Inbound Rules auf Import Rules. Suchen Sie unter Rules to Import die Konfigurationsdatei, wählen Sie die .htaccess-Datei im Stammverzeichnis und klicken Sie dann auf Import. Starten Sie den IIS-Server neu. Jetzt können Sie auf Grav zugreifen.
 
 ### Missing .htaccess File
 
@@ -104,4 +105,3 @@ Another cause could be your page is **not routable**. The routable option for a 
 ### 404 Page Not Found on Nginx
 
 If your site is in a subfolder, make sure your nginx.conf location points to that subfolder. Grav's [sample nginx.conf](https://github.com/getgrav/grav/blob/master/webserver-configs/nginx.conf) has a comment in the code that explains how.
-

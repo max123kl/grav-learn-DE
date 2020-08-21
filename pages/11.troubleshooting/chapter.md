@@ -4,8 +4,8 @@ taxonomy:
     category: docs
 ---
 
-### Chapter 11
+### Kapitel 11
 
-# Troubleshooting
+# Troubleshooting (Fehlersuche und -behebung)
 
-In most cases **Grav** should work out of the box, but at times you may encounter **Server Errors** or some other issues.  In this chapter you can find the answers you may be looking for.
+In den meisten Fällen sollte **Grav** ohne weiteres funktionieren, aber manchmal kann es zu **Server Errors** oder anderen Problemen kommen.  In diesem Kapitel finden Sie die Antworten, nach denen Sie vielleicht suchen.
