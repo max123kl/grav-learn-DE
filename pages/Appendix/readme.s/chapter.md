@@ -4,6 +4,6 @@ taxonomy:
     category: docs
 ---
 
-### Readme’s von ausgewählten Plugins und Themes
+## Readme’s von ausgewählten Plugins und Themes
 
 * Git-Sync
