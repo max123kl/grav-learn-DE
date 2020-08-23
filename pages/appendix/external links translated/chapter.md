@@ -6,4 +6,4 @@ taxonomy:
 
 ## ergänzende Übersetzungen
 
-Wichtige Themes-Updates
+* Wichtige Themes-Updates

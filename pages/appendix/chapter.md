@@ -6,4 +6,4 @@ taxonomy:
 
 ### Appendix
 
-Hier werden Ergänzungen und Tipp zur Grav-Doku vorgestellt
+Hier werden Ergänzungen und Tipps zur Grav-Dokumentation vorgestellt
