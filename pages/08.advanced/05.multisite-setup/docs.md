@@ -1,32 +1,32 @@
 ---
-title: Multisite Setup
+title: Multisite-Setup
 taxonomy:
     category: docs
 ---
 
-!! Preliminary multisite support is now available in Grav 1.0.  However, CLI commands as well as the Admin plugin still need to be updated to fully support multisite configurations.  We will continue to work on this in subsequent releases of Grav.
+!! Erste Unterstützung für den Multisite-Support ist seit Grav 1.0 verfügbar.  Allerdings müssen sowohl die CLI-Befehle als auch das Admin-Plugin noch aktualisiert werden, um Multisite-Konfigurationen vollständig zu unterstützen.  Wir werden in nachfolgenden Grav-Versionen weiter daran arbeiten.
 
 ### What is a Multisite Setup?
 
-> A multisite setup allows you to create and manage a network of multiple websites, all running on a single installation.
+> Eine Multisite-Konfiguration ermöglicht es Ihnen, ein System aus mehreren Websites zu erstellen und zu verwalten, die alle mit einer einzigen Installation laufen.
 
-Grav has built-in multisite support. Unlike the [automatic environment configuration](../environment-config), which lets you define custom environments to support different configurations and scenarios, a multisite setup gives you the power to change the way how and from where Grav loads all its files.
+Grav hat eine integrierte Multisite-Unterstützung. Im Gegensatz zur [automatischen Umgebungs-Konfiguration](../environment-config), bei der Sie benutzerdefinierte Umgebungen definieren können, um verschiedene Konfigurationen und Szenarien zu unterstützen, gibt Ihnen eine Multisite-Konfiguration die Möglichkeit, die Art und Weise zu ändern, wie und von wo Grav alle seine Dateien lädt.
 
-### Requirements for a Grav Multisite Setup
+### Voraussetzungen für ein Grav-Multisite-Setup
 
-The most important thing you will need to run a Grav multisite network is good website hosting. If you are not planning to create many sites and do not expect many visitors, then you can get away with shared hosting. However, due to the nature of multisites, you’d probably need a VPS or dedicated server as your sites grow.
+Das Wichtigste für den Betrieb einer Multi-Website mit Grav ist ein gutes Website-Hosting. Wenn Sie nicht vorhaben, viele Websites zu erstellen und nicht mit vielen Besuchern rechnen, dann können Sie mit Shared Hosting auskommen. Aufgrund der Natur von Multisites werden Sie jedoch wahrscheinlich einen VPS oder einen dedizierten Server benötigen, wenn Ihre Sites größer werden.
 
-### Setup and installation
+### Setup und Installation
 
-Before you begin, you’ll want to be sure your web server is capable of running multiple websites i.e., you have access to your Grav root directory.
+Bevor Sie beginnen, sollten Sie sicher sein, dass Ihr Webserver in der Lage ist, mehrere Websites zu betreiben, d.h. dass Sie Zugriff auf Ihr Grav-Root-Verzeichnis haben.
 
-This is essential since serving multiple websites from the same installation is based on a `setup.php` file located in your Grav root.
+Das ist entscheidend, da die Unterstützung mehrerer Websites aus derselben Installation heraus auf der Datei `setup.php` basiert, die sich in Ihrer Grav-Root befindet.
 
-#### Quickstart (for Beginners)
+#### Schnelleinstieg (für Anfänger)
 
-Once created, the `setup.php` is called every time a user requests a page. In order to serve multiple websites from one single installation, this script (roughly speaking) has to tell Grav where the files (for the configurations, themes, plugins, pages etc.) for a specific subsite are located.
+Einmal angelegt, wird die `setup.php` jedes Mal aufgerufen, wenn ein Benutzer eine Seite aufruft. Um mehrere Websites von einer einzigen Installation aus bedienen zu können, muss dieses Skript (grob gesagt) Grav mitteilen, wo sich die Dateien (für die Konfigurationen, Themes, Plugins, Seiten usw.) für eine bestimmte Subsite befinden.
 
-The provided snippets below setup your Grav installation in such a way that a request like
+Die unten angegebenen Code-Schnipsel richten Ihre Grav-Installation so ein, dass eine Anfrage wie
 
 [prism classes="language-text"]
 http://<subsite>.example.com   -->   user/sites/<subsite>.example.com
@@ -36,19 +36,19 @@ or
 http://example.com/<subsite>   -->   user/sites/<subsite>
 [/prism]
 
-will use the `user/sites` directory as the base "user" path instead of the `user` directory.
+das Verzeichnis `user/sites` als Basispfad für den „User“ anstelle des Verzeichnisses `user` verwendet.
 
-If you choose sub-directories or path based URLs for subsites, then the only thing you need is to create a directory for each subsite in the `user/sites` directory containing at least the required folders `config`, `pages`, `plugins`, and `themes`.
+Wenn Sie Unterverzeichnisse oder pfadbasierte URLs für Unterseiten wählen, dann ist das Einzige, was Sie brauchen, ein Verzeichnis für jede Unterseite im Verzeichnis `user/sites` zu erstellen, das die mindestens erforderlichen Ordner `config`, `pages`, `plugins` und `themes` enthält.
 
-If you choose sub-domains for structuring your website network, then you will have to configure (wildcard) sub-domains on your server in addition to the setup of your subsites in your `user/sites` directory.
+Wenn Sie Sub-Domains für die Strukturierung Ihres Website-Netzwerks wählen, dann müssen Sie zusätzlich zur Einrichtung Ihrer Sub-Sites in Ihrem Verzeichnis `user/sites` Sub-Domains auf Ihrem Server konfigurieren (Wildcard).
 
-Either way, decide which setup suits you best.
+Wie auch immer, entscheiden Sie, welches der beiden Optionen für Sie am besten geeignet ist.
 
 ##### Snippets
 
-For subsites accessible via sub-domains copy the `setup_subdomain.php` file, otherwise for subsites accessible via sub-directories the `setup_subdirectory.php` file into your `setup.php`.
+Für Sub-Sites, die über Sub-Domains erreichbar sind, kopieren Sie die Datei `setup_subdomain.php`, andernfalls für Sub-Sites, die über Unterverzeichnisse erreichbar sind, die Datei `setup_subdirectory.php` in Ihre `setup.php`.
 
-!!! The `setup.php` file must be put in the Grav root folder, the same folder where you can find `index.php`, `README.md` and the other Grav files.
+!!! Die Datei `setup.php` muss in das Grav-Wurzelverzeichnis gelegt werden, in das gleiche Verzeichnis, in dem sich `index.php`, `README.md` und die anderen Grav-Dateien befinden.
 
 **setup_subdomain.php**:
 [prism classes="language-php line-numbers"]
@@ -132,14 +132,16 @@ return [
 ];
 [/prism]
 
-#### Advanced configuration (for Experts)
+#### Erweiterte Konfiguration (für Experten)
 
-Once created a `setup.php` have access to two important variables: (i) `$container`, which is the yet not properly initialized [Grav instance](https://github.com/getgrav/grav/blob/develop/system/src/Grav/Common/Grav.php) and (ii) `$self`, which is an instance of the [ConfigServiceProvider class](https://github.com/getgrav/grav/blob/develop/system/src/Grav/Common/Service/ConfigServiceProvider.php).
+Sobald eine `setup.php` erstellt wurde, haben Sie Zugriff auf zwei wichtige Variablen:  
+1.) `$container`, welche die noch nicht vollständig initialisierte [Grav-Instanz](https://github.com/getgrav/grav/blob/develop/system/src/Grav/Common/Grav.php) ist, und  
+2.) `$self`, welche eine Instanz der [Klasse „ConfigServiceProvider“](https://github.com/getgrav/grav/blob/develop/system/src/Grav/Common/Service/ConfigServiceProvider.php) ist.
 
-Inside this script, you can do anything, but please be aware that the `setup.php` is called every time a user requests a page. This means that memory critical or time-consuming initializations operations lead to a slow-down of your whole system and should therefore be avoided.
+Innerhalb dieses Skripts können Sie eigentlich alles verändern, aber beachten Sie bitte, dass die `setup.php` jedes Mal aufgerufen wird, wenn ein Benutzer eine Seite anfordert. Das bedeutet, dass speicherkritische oder zeitraubende Initialisierungsoperationen zu einer Verlangsamung Ihres gesamten Systems führen und deshalb vermieden werden sollten.
 
-In the end, the `setup.php` has to return an associative array with the optional environment name **environment** and a stream collection **streams**
-(for more informations and in order to set them up correctly, see the section [Streams](#streams)):
+Am Ende muss die `setup.php` ein assoziatives Array mit dem optionalen Umgebungsnamen **environment** und die Stream-Kollektion **streams** zurückgeben
+(mehr Informationen und für die korrekte Einrichtung siehe den Abschnitt [Streams](#streams)):
 
 [prism classes="language-php line-numbers"]
 return [
@@ -167,13 +169,13 @@ return [
 
 [/prism]
 
-!!!! Please be aware that a this very early stage you neither have access to the configuration nor to the URI instance and thus any call to a non-initialized class might end in a freeze of the system, in unexpected errors or in (complete) data loss.
+!!!! Bitte beachten Sie, dass Sie in diesem sehr frühen Stadium weder Zugriff auf die Konfiguration noch auf die URI-Instanz haben und daher jeder Aufruf einer nicht initialisierten Klasse zu einem Einfrieren des Systems, zu unerwarteten Fehlern oder zu einem (vollständigen) Datenverlust führen kann.
 
 #### Streams
 
-In Grav streams are objects, mapping a set of physical directories of the system to a logical device. They are classified via their `type` attribute. For read-only streams that's the `ReadOnlyStream` type and for read-writeable streams that's the `Stream` type. You can register any custom stream type and pointing to it as long as it is an instance of the [StreamInterface](https://github.com/rockettheme/toolbox/blob/develop/StreamWrapper/src/StreamInterface.php) interface class.
+In Grav sind Streams Objekte, die eine Gruppe von physikalischen Verzeichnissen des Systems auf ein logisches Device mappen. Sie werden über ihr `type`-Attribut klassifiziert. Für schreibgeschützte Streams ist das der Typ `ReadOnlyStream` und für schreibgeschützte Streams der Typ `Stream`. Sie können jeden benutzerdefinierten Streamtyp registrieren und auf ihn verweisen, solange es sich um eine Instanz der Schnittstellenklasse [StreamInterface](https://github.com/rockettheme/toolbox/blob/develop/StreamWrapper/src/StreamInterface.php) handelt.
 
-Mapping physical directories to a logical device can be done in two ways, either by setting up `paths` or `prefixes`. The former can be understood as a 1-to-1 mapping, whereas the latter (as the name suggests) allows you to combine several physical paths into one logical stream. Let's say you want to register a stream with the name "image". You can then with the stream `images://` list with
+Die Zuordnung von physischen Verzeichnissen zu einem logischen Device kann auf zwei Arten erfolgen, entweder durch die Einrichtung von „Pfaden“ (`paths`) oder „Präfixen“ (`prefixes`). Erstere kann als eine 1-zu-1 Zuordnung verstanden werden, während letztere, wie es der Name andeutet, Ihnen erlaubt, mehrere physische Pfade zu einem logischen Stream zu kombinieren. Nehmen wir an, Sie möchten einen Stream mit dem Namen "image" definieren. Sie können dann mit dem Stream `images://` mit
 
 [prism classes="language-php line-numbers"]
 'image' => [
@@ -185,7 +187,7 @@ Mapping physical directories to a logical device can be done in two ways, either
 ];
 [/prism]
 
-all images located in the folders `user/images` and `system/images`. For **prefixes** consider the example
+alle Bilder auflisten, die sich in den Ordnern `user/images` und `system/images` befinden. Für **prefixes** betrachten Sie das Beispiel
 
 [prism classes="language-php line-numbers"]
 'cache' => [
@@ -197,9 +199,9 @@ all images located in the folders `user/images` and `system/images`. For **prefi
 ];
 [/prism]
 
-In this case `cache://` resolves to `cache`, but `cache://images` resolves to `images`.
+In diesem Beispiel entspricht `cache://` dem Begriff `cache`, während `cache://images` dem Begriff `images` entspricht.
 
-Last but not least, streams can be used in other streams. For example, provided a stream `user` and a stream `system` exists, the above "image" stream can also be written as
+Nicht zuletzt können Streams auch in anderen Streams eingesetzt werden. Wenn beispielsweise ein Stream `user` und ein Stream `system` existiert, kann der obige „image“-Stream auch wie folgt formuliert werden:
 
 [prism classes="language-php line-numbers"]
 'image' => [
