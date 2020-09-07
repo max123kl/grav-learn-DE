@@ -8,7 +8,7 @@ Es gibt eine Reihe von Gründen, warum Sie einen Fehler **Not Found** erhalten k
 
 ![404 Not Found](404-not-found.png?classes=shadow)
 
-!! Die folgenden Beispiele beziehen sich hauptsächlich auf den Apache-Webserver. Diese Server-Software wird weltweit überwiegend eingesetzt.
+!! Die folgenden Beispiele beziehen sich hauptsächlich auf den Apache-Webserver. Diese Server-Software wird weltweit häufig eingesetzt.
 
 ### Verwendung der .htaccess-Datei durch den IIS-Server
 
