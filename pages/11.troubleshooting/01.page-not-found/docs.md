@@ -14,26 +14,25 @@ Es gibt eine Reihe von Gründen, warum Sie einen Fehler **Not Found** erhalten k
 
 Nachdem Sie URL Rewrite mit dem Web Platform Installer auf dem IIS-Server hinzugefügt haben, starten Sie den IIS-Server neu. Gehen Sie zur Management-Schnittstelle, IIS.  Doppelklicken Sie auf URL Rewrite und klicken Sie unter Inbound Rules auf Import Rules. Suchen Sie unter Rules to Import die Konfigurationsdatei, wählen Sie die .htaccess-Datei im Stammverzeichnis und klicken Sie dann auf Import. Starten Sie den IIS-Server neu. Jetzt können Sie auf Grav zugreifen.
 
-### Missing .htaccess File
+### Fehlende .htaccess Datei
 
-The first thing to check is if you have the provided `.htaccess` file at the root of your Grav installation. Because this is a **hidden** file, you won't normally see this in your explorer or finder windows.  If you have extracted Grav then **selected** and **moved** or **copied** the files, you may well have left this very important file behind.
+Als erstes sollten Sie überprüfen, ob die mitgelieferte `.htaccess`-Datei im Stammverzeichnis Ihrer Grav-Installation abgelegt ist. Da es sich um eine **versteckte** Datei handelt, werden Sie diese normalerweise nicht in Ihrem Explorer- oder Finder-Fenster sehen.  Wenn Sie Grav extrahiert und die Dateien dann **ausgewählt** und **verschoben** oder **kopiert** haben, haben Sie diese sehr wichtige Datei möglicherweise vergessen.
 
-It is **strongly advised** to unzip Grav and move the **entire folder** into place, then simply rename the folder. This will ensure all the files retain their proper positions.
+Es wird **dringend empfohlen**, die Grav-Zipdatei zu entpacken und den **ganzen Ordner** an seinen Platz zu verschieben und den Ordner dann einfach umzubenennen. Dadurch wird sichergestellt, dass alle Dateien ihre richtige Position behalten.
 
 ### AllowOverride All
 
-In order for the Grav-provided `.htaccess` to be able to set the rewrite rules required for routing to work properly, Apache needs to first read the file.  When your `<Directory>` or `<VirtualHost>` directive is setup with `AllowOverride None`, the `.htaccess` file is completely ignored.  The simplest solution is to change this to `AllowOverride All`
-where RewriteRule is used, **FollowSymLinks** or **SymLinksIfOwnerMatch** needs to be set in Options directive. Simply add on the same line '+FollowSymlinks' after 'Options'
+Damit die von Grav bereitgestellte `.htaccess` Datei in der Lage ist, die für ein einwandfreies Routing erforderlichen Rewrite-Regeln zu setzen, muss Apache sie zuerst lesen. Wenn Sie Ihre `<Directory>` oder `<VirtualHost>` Direktive mit `AllowOverride None` eingerichtet haben, wird die `.htaccess` Datei komplett ignoriert. Die einfachste Lösung ist, dies in `AllowOverride All` zu ändern, wobei RewriteRule verwendet wird. **FollowSymLinks** oder **SymLinksIfOwnerMatch** muss in der Options-Direktive gesetzt werden. Fügen Sie einfach in der gleichen Zeile '+FollowSymlinks' nach 'Options' ein.
 
-More details on `AllowOverride` and all the possible configuration options can be found in the [Apache Documentation](http://httpd.apache.org/docs/2.4/mod/core.html#allowoverride).
+Weitere Einzelheiten zu AllowOverride und zu allen verfügbaren Konfigurationsoptionen finden Sie in der [Apache Dokumentation](http://httpd.apache.org/docs/2.4/mod/core.html#allowoverride).
 
-### RewriteBase Issue
+### RewriteBase Fehler
 
-If the homepage of your Grav site loads, but **any other page** displays this very rough _Apache-style_ error, then the most likely cause is that there is a problem with your `.htaccess` file.
+Wenn die Homepage Ihrer Grav-Site geladen wird, aber **jede andere Seite** diesen sehr groben _Apache-style_ Fehler anzeigt, dann ist es am wahrscheinlichsten, daß es ein Problem mit Ihrer `.htaccess` Datei gibt.
 
-The default `.htaccess` that comes bundled with Grav works fine out-of-the-box in most cases.  However, there are certain setups involving virtual hosts where the file system does not match the virtual hosting setup directly.  In these cases you must configure the `RewriteBase` option in the `.htaccess` to point to the correct path.
+Die standardmäßige `.htaccess`, die mit Grav zusammen ausgeliefert wird, funktioniert in den meisten Fällen problemlos Out-of-the-Box.  Es gibt jedoch bestimmte Setups mit virtuellen Hosts, bei denen das Dateisystem nicht direkt mit dem Setup des virtuellen Hosts übereinstimmt. In diesen Fällen müssen Sie die Option `RewriteBase` im `.htaccess` konfigurieren, um auf den korrekten Pfad zu verweisen.
 
-There is a short explanation of this in the `.htaccess` file itself:
+Es gibt dazu in der `.htaccess` Datei selbst eine kurze Beschreibung:
 
 [prism classes="language-apacheconf line-numbers"]
 ##
@@ -46,35 +45,35 @@ There is a short explanation of this in the `.htaccess` file itself:
 # RewriteBase /
 [/prism]
 
-Simply remove the `#` before the `RewriteBase /` directive to uncomment it, and adjust the path to match your server environment.
+Entfernen Sie einfach das `#` vor der Direktive `RewriteBase /`, um sie zu aktivieren, und passen Sie den Pfad an Ihre Serverumgebung an.
 
-We've included additional information to help you locate and troubleshoot your `.htaccess` file in our [htaccess guide](../htaccess).
+Wir haben zusätzliche Informationen in unsere [htaccess-Seite](../htaccess) aufgenommen, die Ihnen helfen sollen, Ihre `.htaccess` Datei zu finden und deren Fehler zu beheben.
 
-### Missing Rewrite Modules
+### Fehlende Rewrite Module
 
-Some webserver packages (I'm looking at your EasyPHP and WAMP!) do not come with the Apache **rewrite** module enabled by default. They usually can be enabled from the configuration settings for Apache, or you can do so manually via the `httpd.conf` by uncommenting this line (or something similar) so they are loaded by Apache:
+Bei einigen Webserver-Paketen (ich denke dabei an EasyPHP und WAMP!) ist das Apache-Modul **rewrite** nicht standardmäßig aktiviert. Sie können normalerweise in den Konfigurationseinstellungen für Apache aktiviert werden oder Sie können das manuell über die `httpd.conf` tun. Dazu müssen Sie (`#`) in dieser Zeile (oder etwas Vergleichbarem) das Kommentar-Zeichen entfernen, damit sie von Apache geladen werden:
 
 [prism classes="language-apacheconf"]
 #LoadModule rewrite_module modules/mod_rewrite.so
 [/prism]
 
-Then restart your Apache server.
+Starten Sie dann Ihren Apache-Server neu.
 
-### .htaccess Test Script
+### .htaccess Test-Skript
 
-To help isolate `.htaccess` and **rewrite** issues, you can download this [htaccess_tester.php](https://gist.githubusercontent.com/rhukster/a727fb70d9341536d49980d1239bd97e/raw/a3078da16b894ba86f9d000bcfc4850e098199fc/htaccess_tester.php) file, and drop it in your Grav root directory.
+Um `.htaccess`- und **rewrite**-Probleme zu isolieren, können Sie die Datei [htaccess_tester.php](https://gist.githubusercontent.com/rhukster/a727fb70d9341536d49980d1239bd97e/raw/a3078da16b894ba86f9d000bcfc4850e098199fc/htaccess_tester.php) herunterladen und in Ihrem Grav-Stammverzeichnis ablegen.
 
-Then point your browser to `http://yoursite.com/htaccess_tester.php`.  You should get a successful message and a copy of the Grav `.htaccess` file displayed.
+Dann rufen Sie in Ihrem Browser `http://yoursite.com/htaccess_tester.php` auf.  Sie sollten eine Erfolgsmeldung erhalten und eine Kopie der Grav `.htaccess` Datei angezeigt bekommen.
 
 ![](htaccess_tester.png?classes=shadow)
 
-Next you can test if rewrites are working by backing up the existing .htaccess file:
+Als nächstes können Sie testen, ob die Rewrites funktionieren, indem Sie die vorhandene .htaccess-Datei sichern:
 
 [prism classes="language-bash command-line"]
 mv .htaccess .htaccess-backup
 [/prism]
 
-And then try this simple `.htaccess` file:
+Dann testen Sie diese einfache `.htaccess` Datei:
 
 [prism classes="language-apacheconf line-numbers"]
 <IfModule mod_rewrite.c>
@@ -83,25 +82,25 @@ And then try this simple `.htaccess` file:
 </IfModule>
 [/prism]
 
-Then try this URL: `http://yoursite.com/test`.  Actually any path you use should display a success message telling you that `mod_rewrite` is working.
+Dann probieren Sie diese URL aus: `http://yoursite.com/test`.  Eigentlich sollte jeder Pfad, den Sie verwenden, eine Erfolgsmeldung anzeigen, die Ihnen mitteilt, dass `mod_rewrite` funktioniert.
 
-After you have finished testing, you should delete the test file and restore your `.htaccess` file:
+Nachdem Sie das Testen beendet haben, sollten Sie die Testdatei löschen und Ihre `.htaccess` Datei wiederherstellen:
 
 [prism classes="language-bash command-line"]
 rm htaccess_tester.php
 mv .htaccess-backup .htaccess
 [/prism]
 
-### Grav Error 404 Page
+### Grav Error-404 Seite
 
 ![404 Not Found](error-404.png?classes=shadow)
 
-If you receive a _Grav-style_ error saying **Error 404** then your `.htaccess` is functioning correctly, but you're trying to reach a page that Grav cannot find.
+Wenn Sie einen Fehler im _Grav-Stil_ mit der Meldung **Error 404** erhalten, dann funktioniert Ihre `.htaccess` korrekt, aber Sie haben versucht, eine Seite zu erreichen, die Grav nicht finden kann.
 
-The most common cause of this is simply that the page has been moved or renamed. Another thing to check is if the page has a `slug` set in the page YAML headers. This overrides the explicit folder name that is used by default to construct the URL.
+Die häufigste Ursache dafür ist einfach, dass die Seite verschoben oder umbenannt wurde. Eine andere Sache, die es zu überprüfen gilt, ist, ob die Seite einen `Slug` in den YAML-Headern der Seite gesetzt hat. Dieser setzt den expliziten Ordnernamen außer Kraft, der standardmäßig zur URL-Konstruktion verwendet wird.
 
-Another cause could be your page is **not routable**. The routable option for a page can be set in the [page headers](../../content/headers).
+Eine andere Ursache könnte sein, dass Ihre Seite **nicht routingfähig** ist. Die Routing-Option für eine Seite kann in den [page headers](../../content/headers) eingestellt werden.
 
-### 404 Page Not Found on Nginx
+### 404 Page Not Found auf Nginx
 
-If your site is in a subfolder, make sure your nginx.conf location points to that subfolder. Grav's [sample nginx.conf](https://github.com/getgrav/grav/blob/master/webserver-configs/nginx.conf) has a comment in the code that explains how.
+Wenn sich Ihre Site in einem Unterordner befindet, stellen Sie sicher, dass Ihrer nginx.conf die Option `location` auf diesen Unterordner verweist. Die [Grav-Beispieldatei nginx.conf](https://github.com/getgrav/grav/blob/master/webserver-configs/nginx.conf) hat einen Kommentar im Code, der erklärt, wie das geht.

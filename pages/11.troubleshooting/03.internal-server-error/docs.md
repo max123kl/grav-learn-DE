@@ -1,5 +1,5 @@
 ---
-title: 500 Internal Server Error
+title: 500 Interner Server-Fehler
 taxonomy:
     category: docs
 ---
@@ -11,13 +11,13 @@ taxonomy:
 > More information about this error may be available in the server error log.
 > <cite>Apache/2.4.7 Server at localhost Port 80</cite>
 
-This error can be triggered by the following:
+Dieser Fehler kann durch Folgendes ausgelöst werden:
 
-- server misconfiguration (httpd.conf)
-- .htaccess issues
-- mod_security or similar
+- Fehlkonfiguration des Servers (httpd.conf)
+- Fehler in der .htaccess Datei
+- mod_security oder Ähnliches
 
-### Test PHP is Working
+### Testen der Funktion von PHP
 
 The first thing you should do is ensure PHP is working properly on your server, and Grav is not the direct cause of the issue.  To test this simply create a temporary file (remove it afterwards for security!) in the root of your Grav folder called `info.php`.  This file should have the following PHP code:
 
@@ -91,4 +91,3 @@ If this error is popping up the chances are you haven't set the correct permissi
 [prism classes="language-bash command-line"]
 sudo chmod 755 cache/ -R
 [/prism]
-
