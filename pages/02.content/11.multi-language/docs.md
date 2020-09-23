@@ -57,7 +57,7 @@ Normalerweise wird in Grav jede Seite durch eine einzelne Markdown-Datei wiederg
 
 Wenn diese Datei nicht gefunden wird, wird die nächste Sprache getestet und nach `default.fr.md` gesucht. Erst wenn auch diese Datei nicht gefunden wird, greift Grav auf den Grav-Standard zurück und sucht nach `default.md`, um die Informationen der Seite anzuzeigen.
 
-Wenn wir die einfachsten Grav-Sites mit einer einzigen `01.home/default.md` Datei haben sollten, dann könnten wir damit beginnen die `default.md` in `default. en.md` umbenennen. Der Inhalt könnte dann so aussehen:
+Wenn wir die einfachsten Grav-Sites mit einer einzigen `01.home/default.md` Datei haben sollten, dann könnten wir damit beginnen die `default.md` in `default.en.md` umbenennen. Der Inhalt könnte dann so aussehen:
 
 [prism classes="language-markdown line-numbers"]
 ---
