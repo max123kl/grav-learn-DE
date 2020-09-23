@@ -402,7 +402,7 @@ Dabei wird das Sprachfeld ausgelesen, das in der yaml-Datei des Benutzers gesetz
 
 #### Sprache übersetzen
 
-Übersetzt eine Zeichenfolge in eine bestimmte Sprache. Weitere Einzelheiten finden Sie in der [Dokumentation für mehrsprachige Sites](../../content/multi-language#Komplexe Übersetzungen).
+Übersetzt eine Zeichenfolge in eine bestimmte Sprache. Weitere Einzelheiten finden Sie in der [Dokumentation für mehrsprachige Sites](../../content/multi-language#Komplexe_Übersetzungen).
 
 `'SIMPLE_TEXT'|tl(['fr'])`
 
@@ -498,7 +498,7 @@ outputs: ** {{ print_r(my_array) }} **
 
 #### Array Key Exists
 
-Wrapper for PHP's `array_key_exists` function that returns whether or not a key exists in an associative array.
+Wrapper für die PHP-Funktion `array_key_exists`, die zurückliefert, ob ein Schlüssel in einem zugehörigen Array existiert oder nicht.
 
 {% verbatim %}
 [prism classes="language-twig line-numbers"]
@@ -508,11 +508,11 @@ Wrapper for PHP's `array_key_exists` function that returns whether or not a key 
 {% endverbatim %}
 
 {% set my_array = {fruit: 'apple', meat: 'steak'} %}
-outputs: **{{ array_key_exists('meat', my_array) }}**
+Ausgabe: **{{ array_key_exists('meat', my_array) }}**
 
-#### Array Intersect
+#### Array-Schnittmenge
 
-The `array_intersect` function provides the intersection of two arrays or Grav collections.
+Die Funktion `array_intersect` liefert die Schnittmenge von zwei Arrays oder Grav-Kollektionen.
 
 {% verbatim %}
 [prism classes="language-twig line-numbers"]
@@ -525,30 +525,30 @@ The `array_intersect` function provides the intersection of two arrays or Grav c
 {% set array_1 = {fruit: 'apple', meat: 'steak'} %}
 {% set array_2 = {fish: 'tuna', meat: 'steak'} %}
 
-outputs: **{{ print_r(array_intersect(array_1, array_2)) }}**
+Ausgabe: **{{ print_r(array_intersect(array_1, array_2)) }}**
 
-#### Array Unique
+#### Eindeutiges Array
 
-Wrapper for PHP `array_unique()` that removes duplicates from an array.
+Wrapper für die PHP-Funktion `array_unique()`, der Duplikate aus einem Array entfernt
 
 `array_unique(['foo', 'bar', 'foo', 'baz'])` <i class="fa fa-long-arrow-right"></i> **{{ print_r(array_unique(['foo', 'bar', 'foo', 'baz'])) }}**
 
-#### Authorize
+#### Authorize (Berechtigung)
 
-Authorizes an authenticated user to see a resource. Accepts a single permission string or an array of permission strings.
+Berechtigt einen authentifizierten Benutzer, eine Ressource aufzurufen. Akzeptiert einen einzelnen Berechtigungs-String oder ein Array von Berechtigungs-Strings
 
 `authorize(['admin.statistics', 'admin.super'])`
 
 [version=16]
-#### Body Class
+#### Body-Klasse
 
-Takes an array of classes, and if they are not set on `body_classes` look to see if they are set in current theme configuration.
+Erfordert ein Array von Klassen und falls sie nicht auf `body_classes` gesetzt sind, wird überprüft ob diese in der aktuellen Theme-Konfiguration definiert sind.
 
 `set body_classes = body_class(['header-fixed', 'header-animated', 'header-dark', 'header-transparent', 'sticky-footer'])`
 
 #### Cron
 
-Create a "Cron" object from cron syntax
+Erstellt ein „Cron“-Objekt aus der Cron-Syntax
 
 `cron("3 * * * *").getNextRunDate()|date(config.date_format.default)`
 
@@ -557,23 +557,23 @@ Create a "Cron" object from cron syntax
 
 #### Dump
 
-Takes a valid Twig variable and dumps it out into the [Grav debugger panel](../../advanced/debugging).  The debugger must be **enabled** to see the values in the messages tab.
+Nimmt eine gültige Twig-Variable und gibt sie im [Grav-Debugger-Panel](../../advanced/debugging) aus. Der Debugger muss **aktiviert** sein, um die Werte in der Nachrichten-Registerkarte sehen zu können.
 
 `dump(page.header)`
 
 #### Debug
 
-Same as `dump()`
+Das Gleiche wie `dump()`
 
-#### Evaluate
+#### Evaluate (Auswertung)
 
-The evaluate function can be used to evaluate a string as Twig:
+Die Auswertefunktion kann verwendet werden, um eine Zeichenfolge als Twig-Code auszuwerten:
 
 `evaluate('grav.language.getLanguage')`
 
 #### Evaluate Twig
 
-Similar to evaluate, but will evaluate and process with Twig
+Ähnlich wie `evaluate`, wird aber mit Twig ausgewertet und verarbeitet
 
 {% verbatim %}
 `evaluate_twig('This is a twig variable: {{ foo }}', {foo: 'bar'})`)  <i class="fa fa-long-arrow-right"></i> **This is a twig variable: bar**
@@ -581,7 +581,7 @@ Similar to evaluate, but will evaluate and process with Twig
 
 #### EXIF
 
-Output the EXIF data from an image based on its filepath. This requires that `media: auto_metadata_exif: true` is set in `system.yaml`. For example, in a Twig-template:
+Ausgabe der EXIF-Daten eines Bildes, basierend auf dessen Dateipfad. Dies erfordert, dass in der Datei `system.yaml` die Option `media: auto_metadata_exif: true` gesetzt ist. Zum Beispiel in einem Twig-Template:
 
 {% verbatim %}
 [prism classes="language-twig line-numbers"]
@@ -591,91 +591,91 @@ Output the EXIF data from an image based on its filepath. This requires that `me
 [/prism]
 {% endverbatim %}
 
-This would write the `MaxApertureValue`-value set in the camera, for example "40/10". You can always use `{% verbatim %}{{ dump(exif)}}{% endverbatim %}` to show all the available data in the debugger.
+Dadurch würde der in der Kamera vorhandene `MaxApertureValue`-Wert (größte Blende, Lichtstärke des Oblektivs) ausgegeben, zum Beispiel „4.0“. Sie können immer `{% verbatim %}{{ dump(exif)}}{% endverbatim %}` verwenden, um alle verfügbaren Daten im Debugger anzuzeigen.
 
 #### Get Cookie
 
-Retrieve the value of a cookie with this function:
+Mit dieser Funktion können Sie den Wert eines Cookies abfragen:
 
 `get_cookie('your_cookie_key')`
 
 [version=16]
-#### Get Type Function
+#### Funktion „Typ“ abrufen
 
-Gets the type of a variable:
+Ruft den Typ einer Variablen ab:
 
 `get_type(page)` <i class="fa fa-long-arrow-right"></i> **{{ get_type(page) }}**
 [/version]
 
 #### Gist
 
-Takes a Github Gist ID and creates appropriate Gist embed code
+Übernimmt eine Github Gist-ID und erstellt den entsprechenden Gist-Einbettungscode
 
 `gist('bc448ff158df4bc56217')` <i class="fa fa-long-arrow-right"></i> {{ gist('bc448ff158df4bc56217')}}
 
 [version=16]
-#### HTTP Response Code
+#### HTTP-Response-Code
 
-If response_code is provided, then the previous status code will be returned. If response_code is not provided, then the current status code will be returned. Both of these values will default to a 200 status code if used in a web server environment.
+Wenn response_code vorhanden ist, dann wird der vorherige Statuscode zurückgegeben. Wenn response_code nicht angegeben wird, dann wird der aktuelle Statuscode zurückgegeben. Beide Werte werden standardmäßig auf einen 200-Statuscode gesetzt, wenn sie in einer Webserver-Umgebung verwendet werden.
 
 `http_response_code(404)`
 
 [/version]
 
-#### Is Ajax Request
+#### Is Ajax Request (Ajax-Abfrage)
 
-the `isajaxrequest()` function can be used to check if `HTTP_X_REQUESTED_WITH` header option is set:
+Man kann die Funktion `isajaxrequest()` verwenden, um zu prüfen, ob die Header-Option `HTTP_X_REQUESTED_WITH` gesetzt ist:
 
 
-#### JSON Decode Function
+#### JSON Decode-Funktion
 
-You can decode JSON by simply applying this filter:
+Man kann JSON dekodieren, indem man diesen Filter anwendet:
 
 `json_decode({"first_name": "Guido", "last_name":"Rossum"})`
 
-#### Media Directory
+#### Medien-Verzeichnis
 
-Returns a media object for an arbitrary directory.  Once obtained you can manipulate images in a similar fashion to pages.
+Gibt ein Medienobjekt für ein beliebiges Verzeichnis zurück.  Einmal erhalten, können Bilder auf ähnliche Weise wie Seiten manipuliert werden.
 
 `media_directory('theme://images')['some-image.jpg'].cropResize(200,200).html`
 
 [version=16]
-#### NiceFilesize Function
+#### NiceFilesize-Funktion
 
-Output a file size in a human readable nice size format
+Ausgabe einer Dateigröße in einem menschenlesbaren Nice-Size-Format
 
 `nicefilesize(612394)` <i class="fa fa-long-arrow-right"></i> **{{ nicefilesize(612394) }}**
 
-#### NiceNumber Function
+#### NiceNumber-Funktion
 
-Output a number in a human readable nice number format
+Ausgabe einer Zahl in einem menschenlesbaren, ansprechenden Zahlenformat
 
 `nicenumnber(12430)` <i class="fa fa-long-arrow-right"></i> **{{ nicenumber(12430)}}**
 
-#### NiceTime Function
+#### NiceTime-Funktion
 
-Output a date in a human readable nice time format
+Ausgabe eines Datums in einem menschenlesbaren, ansprechenden Zeitformat
 
 `nicetime(page.date)` <i class="fa fa-long-arrow-right"></i> **{{ nicetime(page.date) }}**
 [/version]
 
-#### Nonce Field
+#### Nonce-Feld
 
-Generate a Grav security nonce field for a form with a required `action`:
+Generiert das Grav-Sicherheitsfeld __nonce__ für ein Formular mit einer erforderlichen `action`:
 
 `nonce_field('action')` <i class="fa fa-long-arrow-right"></i> **{{ nonce_field('action')|e }}**
 
 [version=16]
-#### Of Type Function
+#### Of-Type-Funktion
 
-Checks the type of a variable to the param:
+Prüft den Typ einer Variablen zum Parameter:
 
 `of_type(page, 'string')` <i class="fa fa-long-arrow-right"></i> **{{ of_type(page, 'string') ? 'true' : 'false' }}**
 [/version]
 
 #### Pathinfo
 
-Parses a path into an array.
+Parst einen Pfad in einem Array
 
 {% verbatim %}
 [prism classes="language-twig"]
@@ -689,9 +689,9 @@ Parses a path into an array.
 outputs: **{{ print_r(parts) }}**
 
 [version=16]
-#### Print Variable Function
+#### Print-Variable-Funktion
 
-Prints a variable in a readable format
+Gibt eine Variable in einem lesbaren Format aus
 
 `print_r(page.header)`
 
@@ -701,22 +701,22 @@ Prints a variable in a readable format
 
 [/version]
 
-#### Random String Generation
+#### Erzeugung zufälliger Strings
 
-Will generate a random string of the required number of characters.  Particularly useful in creating a unique id or key.
+Generiert einen zufälligen String mit der erforderlichen Anzahl von Zeichen.  Besonders nützlich bei der Erstellung einer eindeutigen ID oder eines Schlüssels.
 
 `random_string(10)` <i class="fa fa-long-arrow-right"></i> **{{ random_string(10) }}**
 
-#### Range
+#### Range (Bereich)
 
-Generates an array containing a range of elements, optionally stepped
+Erzeugt ein Array, das eine Gruppe von Elementen enthält, optional abgestuft
 
 `range(25, 300, 50)` <i class="fa fa-long-arrow-right"></i> **{{ print_r(range(25, 300, 50)) }}**
 
 [version=16]
-#### Read File
+#### Read File (Datei auslesen)
 
-Simple function to read a file based on a filepath and output it.
+Einfache Funktion, um eine Datei anhand eines Dateipfades zu lesen und auszugeben.
 
 `read_file('plugins://admin/README.md')|markdown`
 
@@ -730,14 +730,14 @@ This **admin plugin** for [Grav](https://github.com/getgrav/grav) is an HTML use
 
 #### Redirect Me
 
-Redirects to a URL of your choosing
+Leitet zu einer URL Ihrer Wahl weiter
 
 `redirect_me('http://google.com', 304)`
 
 [version=16]
-#### Regex Filter Function
+#### Regex-Filter-Funktion
 
-Performs a `preg_grep` on an array with a regex pattern
+Führt ein `preg_grep` in einem Array mit einem RegEx-Pattern aus
 
 `regex_filter(['pasta', 'fish', 'steak', 'potatoes'], "/p.*/")`
 
@@ -745,9 +745,9 @@ Performs a `preg_grep` on an array with a regex pattern
 {{ var_dump(regex_filter(['pasta', 'fish', 'steak', 'potatoes'], "/p.*/")) }}
 [/prism]
 
-#### Regex Replace Function
+#### Regex-Ersetzen-Funktion
 
-A helpful wrapper for the PHP [preg_replace()](https://php.net/manual/en/function.preg-replace.php) method, you can perform complex Regex replacements on text via this filter:
+Ein nützlicher Wrapper für die PHP-Funktion [`preg_replace()`](https://php.net/manual/en/function.preg-replace.php). Mit diesem Filter können Sie mit regulären Ausdrücken komplexe Ersetzungen am Text vornehmen:
 
 `regex_replace('The quick brown fox jumps over the lazy dog.', ['/quick/','/brown/','/fox/','/dog/'], ['slow','black','bear','turtle'])`
 
@@ -757,57 +757,57 @@ A helpful wrapper for the PHP [preg_replace()](https://php.net/manual/en/functio
 
 [/version]
 
-#### Repeat
+#### Repeat (Wiederholen)
 
-Will repeat whatever is passed in a certain amount of times.
+Wird alles wiederholen, was in einer angegebenen Zeitspanne durchlaufen wird.
 
 `repeat('blah ', 10)` <i class="fa fa-long-arrow-right"></i> **{{ repeat('blah ', 10) }}**
 
 #### String
 
-Returns a string from a value. If the value is array, return it json encoded
+Gibt einen String aus einem Wert zurück. Wenn der Wert ein Array ist, wird er json-kodiert zurückgegeben
 
 `string(23)` => `"23"`
 `string(['test' => 'x'])` => `{"test":"x"}`
 
 [version=16]
-#### Theme Variable
+#### Theme-Variable
 
-Get a theme variable from the page header if it exists, else use the theme config:
+Liest eine Theme-Variable aus dem Seitenkopf aus, falls sie existiert, ansonsten wird die Theme-Konfiguration verwendet:
 
 `theme_var('grid-size')`
 
-This will first try `page.header.grid-size`, if that is not set, it will try `theme.grid-size` from the theme configuration file.  it can optionally take a default:
+Dies wird zuerst `page.header.grid-size` testen. Falls das nicht gesetzt ist, wird `theme.grid-size` aus der Konfigurations-Datei des Themes verwendet. Optional kann eine Voreinstellung gewählt werden:
 
 `theme_var('grid-size', 1024)`
 
 [/version]
 
-#### Translate Function
+#### Übersetzen-Funktion
 
-Translate a string, as the `|t` filter.
+Übersetzt einen String, wie der Filter `|t`
 
 `t('SITE_NAME')` <i class="fa fa-long-arrow-right"></i> **Site Name**
 
-#### Translate Array Function
+#### Array übersetzen Funktion
 
-Function related to the `|ta` filter.
+Diese Funktion bezieht sich auf den `|ta` Filter
 
-#### Translate Language Function
+#### Sprache übersetzen Funktion
 
-Translates a string in a specific language. For more details check out the [multi-language documentation](../../content/multi-language#complex-translations).
+Übersetzt einen String in eine bestimmte Sprache. Weitere Einzelheiten finden Sie in der [Dokumentation für mehrsprachige Sites](../../content/multi-language#Komplexe_Übersetzungen).
 
 `tl('SIMPLE_TEXT', ['fr'])`
 
 #### Url
 
-Will create a URL and convert any PHP URL streams into a valid HTML resources. A default value can be passed in in case the URL cannot be resolved.
+Erstellt eine URL und wandelt alle PHP-URL-Streams in gültige HTML-Ressourcen um. Für den Fall, dass die URL nicht aufgelöst werden kann, kann ein Standardwert übergeben werden.
 
 `url('theme://images/logo.png')|default('http://www.placehold.it/150x100/f4f4f4')` <i class="fa fa-long-arrow-right"></i> **{{ url('theme://images/logo.png')|default('http://www.placehold.it/150x100/f4f4f4') }}**
 
 #### VarDump
 
-The `vardump()` function outputs the current variable to the screen (rather than in the debugger as with `dump()`)
+Die Funktion `vardump()` gibt die aktuelle Variable auf dem Bildschirm aus (und nicht im Debugger wie bei `dump()`)
 
 {% verbatim %}
 [prism classes="language-twig line-numbers"]
@@ -822,7 +822,7 @@ The `vardump()` function outputs the current variable to the screen (rather than
 [version=16]
 #### XSS
 
-Allow a manual check of a string for XSS vulnerabilities
+Ermöglicht eine manuelle Prüfung eines Strings auf XSS-Sicherheitslücken
 
 `xss('this string contains a <script>alert("hello");</script> XSS vulnerability')` <i class="fa fa-long-arrow-right"></i> **{{ xss('this string contains a <script>alert("hello");</script> XSS vulnerability') }}**
 
