@@ -138,25 +138,25 @@ Ruft den Typ einer Variablen ab:
 
 #### Humanize
 
-Converts a string into a more "human readable" format
+Konvertiert eine Zeichenkette in ein „menschenlesbareres“ Format.
 
 `'something_text_to_read'|humanize` <i class="fa fa-long-arrow-right"></i> **{{ 'something_text_to_read'|humanize }}**
 
 #### Hyphenize
 
-Converts a string into a hyphenated version.
+Konvertiert eine Zeichenkette in eine Fassung mit Bindestrich.
 
 `'Something Text to Read'|hyphenize` <i class="fa fa-long-arrow-right"></i> **{{ 'Something Text to Read'|hyphenize }}**
 
 #### JSON Decode
 
-You can decode JSON by simply applying this filter:
+Sie können JSON dekodieren, indem Sie einfach diesen Filter anwenden:
 
 `{"first_name": "Guido", "last_name":"Rossum"}|json_decode`
 
 #### Ksort
 
-Sort an array map by each key
+Eine Array-Map nach den verschiedenen Schlüsseln sortieren
 
 `array|ksort` {% verbatim %}
 [prism classes="language-twig line-numbers"]
@@ -174,14 +174,14 @@ Sort an array map by each key
 
 `'/strip/leading/slash/'|ltrim('/')` <i class="fa fa-long-arrow-right"></i> {{ '/strip/leading/slash/'|ltrim('/') }}
 
-Removes trailing spaces at the beginning of a string. It can also remove other characters by setting the character mask (see [https://php.net/manual/en/function.ltrim.php](https://php.net/manual/en/function.ltrim.php))
+Entfernt Leerzeichen am Anfang einer Zeichenfolge. Er kann auch andere Zeichen entfernen, indem die Zeichen-Maske definiert wird (siehe [https://php.net/manual/de/function.ltrim.php](https://php.net/manual/de/function.ltrim.php))
 
 #### Markdown
 
-Take an arbitrary string containing markdown and convert it to HTML using the markdown parser of Grav. Optional `boolean` parameter:
+Nehmen Sie eine beliebige Zeichenfolge, die Markdown enthält, und konvertieren Sie sie mit dem Markdown-Parser von Grav in HTML. Optionaler `boolean` Parameter:
 
-* `true` (default): process as block (text mode, content will be wrapped in `<p>` tags)
-* `false`: process as line (content will not be wrapped)
+* `true` (Standard): Verarbeitung als Block (Textmodus, Inhalt wird in `<p>` Tags eingebettet).
+* `false`: Verarbeitung als Zeile (Inhalt wird nicht eingebettet)
 
 ```
 string|markdown($is_block)
@@ -205,90 +205,90 @@ string|markdown($is_block)
 
 #### MD5
 
-Creates an md5 hash for the string
+Erzeugt einen md5-Hash für die Zeichenkette
 
 `'anything'|md5` <i class="fa fa-long-arrow-right"></i> **{{ 'anything'|md5 }}**
 
 #### Modulus
 
-Performs the same functionality as the Modulus `%` symbol in PHP. It operates on a number by passing in a numeric divider and an optional array of items to select from.
+Führt die gleiche Funktionalität wie das Modulus `%`-Symbol in PHP aus. Es arbeitet mit einer Zahl, indem es einen numerischen Teiler und ein optionales Array von Elementen zur Auswahl übergibt.
 
 `7|modulus(3, ['red', 'blue', 'green'])` <i class="fa fa-long-arrow-right"></i> **{{ 7|modulus(3, ['red', 'blue', 'green']) }}**
 
 #### Monthize
 
-Converts an integer number of days into the number of months
+Wandelt eine ganzzahlige Anzahl von Tagen in eine Anzahl von Monaten um
 
 `'181'|monthize` <i class="fa fa-long-arrow-right"></i> **{{ '181'|monthize }}**
 
 [version=16]
 #### NiceCron
 
-Gets a human readable output for cron syntax
+Ruft eine menschenlesbare Ausgabe für die Cron-Syntax ab
 
 `"2 * * * *"|nicecron` <i class="fa fa-long-arrow-right"></i> **{{ '2 * * * *'|nicecron }}**
 
 #### NiceFilesize
 
-Output a file size in a human readable nice size format
+Dateigröße in einem menschenlesbaren Nice-Size-Format ausgeben
 
 `612394|nicefilesize` <i class="fa fa-long-arrow-right"></i> **{{ 612394|nicefilesize }}**
 
 #### NiceNumber
 
-Output a number in a human readable nice number format
+Ausgabe einer Zahl in einem menschenlesbaren, ansprechenden Zahlenformat
 
 `12430|nicenumber` <i class="fa fa-long-arrow-right"></i> **{{ 12430|nicenumber }}**
 [/version]
 
 #### NiceTime
 
-Output a date in a human readable nice time format
+Ausgabe eines Datums in einem menschenlesbaren, ansprechenden Zeitformat
 
 `page.date|nicetime(false)` <i class="fa fa-long-arrow-right"></i> **{{ page.date|nicetime(false) }}**
 
 [version=16]
 #### Of Type
 
-Checks the type of a variable to the param:
+Prüft den Typ einer Variablen zum Parameter
 
 `page|of_type('string')` <i class="fa fa-long-arrow-right"></i> **{{ page|of_type('string') ? 'true' : 'false' }}**
 [/version]
 
 #### Ordinalize
 
-Adds an ordinal to the integer (such as 1st, 2nd, 3rd, 4th)
+Wandelt eine Ganzzahl in eine Ordnungszahl (wie 1st, 2nd, 3rd, 4th)
 
 `'10'|ordinalize` <i class="fa fa-long-arrow-right"></i> **{{ '10'|ordinalize }}**
 
 #### Pad
 
-Pads a string to a certain length with another character. This is a wrapper for the PHP [str_pad()](https://php.net/manual/en/function.str-pad.php) function.
+Ergänzt eine Zeichenfolge bis zu einer angebenen Länge mit einem anderen Zeichen. Das ist ein Wrapper für die PHP-Funktion [str_pad()](https://php.net/manual/de/function.str-pad.php)
 
 `'foobar'|pad(10, '-')` <i class="fa fa-long-arrow-right"></i> **{{ 'foobar'|pad(10, '-') }}**
 
 #### Pluralize
 
-Converts a string to the English plural version
+Konvertiert eine Zeichenfolge in die englische Plural-Version
 
 `'person'|pluralize` <i class="fa fa-long-arrow-right"></i> **{{ 'person'|pluralize }}**
 
 [version=17]
 #### Preg Match
 
-Wrapper for PHP [preg_match()](https://www.php.net/manual/en/function.preg-match.php) that matches a text by a pattern given as regular expression. Returns the matche(s) if there is at least one accordance or `false` if not.
+Wrapper für die PHP-Funktion [preg_match()](https://www.php.net/manual/de/function.preg-match.php), die einen Text durch ein Pattern abgleicht, das als regulärer Ausdruck angegeben ist. Gibt die Übereinstimmung(en) zurück, wenn es mindestens eine Übereinstimmung gibt oder andernfalls `false`.
 [/version]
 
 [version=17]
 #### Preg Split
 
-Wrapper for PHP [preg_split()](https://www.php.net/manual/en/function.preg-split.php) that splits a text by a pattern given as regular expression.
+Wrapper für die PHP-Funktion [preg_split()](https://www.php.net/manual/en/function.preg-split.php), die einen Text anhand eines regulären Ausdrucks zerlegt.
 [/version]
 
 [version=16]
 #### Print Variable
 
-Prints human-readable information about a variable
+Gibt menschenlesbare Informationen über eine Variable aus
 
 `page.header|print_r`
 
@@ -299,7 +299,7 @@ Prints human-readable information about a variable
 
 #### Randomize
 
-Randomizes the list provided.  If a value is provided as a parameter, it will skip those values and keep them in order.
+Gibt die bereitgestellte Liste nach dem Zufallsprinzip aus.  Wenn ein Wert als Parameter angegeben wird, überspringt er diese Werte und hält die Reihenfolge ein.
 
 `array|randomize` {% verbatim %}
 [prism classes="language-twig line-numbers"]
@@ -315,31 +315,31 @@ Randomizes the list provided.  If a value is provided as a parameter, it will sk
 
 #### Regex Replace
 
-A helpful wrapper for the PHP [preg_replace()](https://php.net/manual/en/function.preg-replace.php) method, you can perform complex Regex replacements on text via this filter:
+Als hilfreicher Wrapper für die PHP-Funktion [preg_replace()](https://php.net/manual/en/function.preg-replace.php) können Sie über diesen Filter komplexe Regex-Ersetzungen an Text vornehmen:
 
 `'The quick brown fox jumps over the lazy dog.'|regex_replace(['/quick/','/brown/','/fox/','/dog/'], ['slow','black','bear','turtle'])` <i class="fa fa-long-arrow-right"></i> **{{ 'The quick brown fox jumps over the lazy dog.'|regex_replace(['/quick/','/brown/','/fox/','/dog/'], ['slow','black','bear','turtle']) }}**
 
-! Use the `~`-delimiter rather than the `/`-delimiter where possible. Otherwise you'll most likely have to [double-escape certain characters](https://github.com/getgrav/grav/issues/833). Eg. `~\/\#.*~` rather than `'/\\/\\#.*/'`, which conforms more closely to the [PCRE-syntax](https://www.php.net/manual/en/regexp.reference.delimiters.php) used by PHP.
+! Verwenden Sie nach Möglichkeit den `~`-Begrenzer statt des `/`-Begrenzers. Andernfalls müssen Sie höchstwahrscheinlich [<u>bestimmte Zeichen doppelt escapen</u>](https://github.com/getgrav/grav/issues/833). z.B. `~\/\#.*~` statt `'/\\/\\#.*/'`, was besser zu der von PHP verwendeten [PCRE-Syntax](https://www.php.net/manual/de/regexp.reference.delimiters.php) passt.
 
 #### Right Trim
 
 `'/strip/trailing/slash/'|rtrim('/')` <i class="fa fa-long-arrow-right"></i> {{ '/strip/trailing/slash/'|rtrim('/') }}
 
-Removes trailing spaces at the end of a string. It can also remove other characters by setting the character mask (see [https://php.net/manual/en/function.rtrim.php](https://php.net/manual/en/function.rtrim.php))
+Entfernt Leerzeichen am Ende eines Strings. Sie kann auch andere Zeichen entfernen, indem sie die Zeichenmaske einstellen (siehe [https://php.net/manual/de/function.rtrim.php](https://php.net/manual/de/function.rtrim.php))
 
 #### Singularize
 
-Converts a string to the English singular version
+Konvertiert eine Zeichenfolge in die englische Singularversion
 
 `'shoes'|singularize` <i class="fa fa-long-arrow-right"></i> **{{ 'shoes'|singularize }}**
 
 #### Safe Email
 
-The safe email filter converts an email address into ASCII characters to make it harder for email spam bots to recognize and capture.
+Der Safe E-Mail-Filter wandelt eine E-Mail-Adresse in ASCII-Zeichen um, um es für E-Mail-Spam-Bots schwieriger zu machen, sie zu erkennen und zu sammeln.
 
 `"someone@domain.com"|safe_email` <i class="fa fa-long-arrow-right"></i> {{ "someone@domain.com"|safe_email }}
 
-Usage example with a mailto link:
+Anwendungsbeispiel mit einem mailto-Link:
 
 [prism classes="language-html line-numbers"]
 <a href="mailto:{{'your.email@server.com'|safe_email}}">
@@ -347,11 +347,11 @@ Usage example with a mailto link:
 </a>
 [/prism]
 
-You might not notice a difference at first, but examining the page source (not using the Browser Developer Tools, the actual page source) will reveal the underlying characters encoding.
+Möglicherweise bemerken Sie zunächst keinen Unterschied, aber wenn Sie den Seitenquelltext untersuchen (nicht über die Browser-Entwickler-Tools, sondern den eigentlichen Seitenquelltext), können Sie die darunter liegende Zeichenkodierung erkennen.
 
 #### Sort by Key
 
-Sort an array map by a particular key
+Sortieren einer Array-Map nach einem bestimmten Schlüssel
 
 `array|sort_by_key` {% verbatim %}
 [prism classes="language-twig line-numbers"]
@@ -367,85 +367,85 @@ Sort an array map by a particular key
 
 #### Starts-With
 
-Takes a needle and a haystack and determines if the haystack starts with the needle.  Also now works with an array of needles and will return `true` if **any** haystack starts with the needle.
+Man nehme eine Nadel und einen Heuhaufen und fragt ob der Heuhaufen mit der Nadel startet. Das funktioniert jetzt auch mit einer Gruppe von Nadeln und gibt `true` zurück, wenn **irgendein** Heuhaufen mit der Nadel beginnt.
 
 `'the quick brown fox'|starts_with('the')` <i class="fa fa-long-arrow-right"></i> {{  'the quick brown fox'|starts_with('the') ? 'true' : 'false' }}
 
 #### Titleize
 
-Converts a string to "Title Case" format
+Konvertiert eine Zeichenfolge in das Format „Title Case“ (Großschreibung am Anfang aller Wörter)
 
 `'welcome page'|titleize` <i class="fa fa-long-arrow-right"></i> **{{ 'welcome page'|titleize }}**
 
 
-#### Translate
+#### Übersetzung
 
-Translate a string into the current language
+Eine Zeichenfolge in die aktuelle Sprache übersetzen
 
 `'MY_LANGUAGE_KEY_STRING'|t` <i class="fa fa-long-arrow-right"></i> 'Some Text in English'
 
-This assumes you have these language strings translated in your site and have enabled multi-language support.  Please refer to the [multi-language documentation](../../content/multi-language) for more detailed information.
+Dies setzt voraus, dass Sie diese Sprachstrings auf Ihrer Website übersetzt haben und die Mehrsprachigkeit aktiviert haben.  Ausführlichere Informationen finden Sie in der [Dokumentation zur Mehrsprachigkeit](../../content/multi-language).
 
-#### Translate Admin
+#### Admin-Übersetzung
 
-Translate a string into the current language set in the admin interface user preferences
+Übersetzt eine Zeichenfolge in die aktuelle Sprache, die in den Benutzer-Einstellungen der Admin-Oberfläche eingestellt ist
 
 `'MY_LANGUAGE_KEY_STRING'|tu` <i class="fa fa-long-arrow-right"></i> 'Some Text in English'
 
-This uses the language field set in the user yaml.
+Dabei wird das Sprachfeld ausgelesen, das in der yaml-Datei des Benutzers gesetzt ist.
 
-#### Translate Array
+#### Array übersetzen
 
-Translates an array with a language use the `|ta` filter. See the [multi-language documentation](../../content/multi-language) for a detailed example.
+Übersetzt ein Array mit einer Sprache mit Hilfe des `|ta` Filters. Ein ausführliches Beispiel finden Sie in der [Dokumentation für mehrsprachige Sites](../../content/multi-language).
 
 `'MONTHS_OF_THE_YEAR'|ta(post.date|date('n') - 1)` <i class="fa fa-long-arrow-right"></i> **{{ now|date('F') }}**
 
-#### Translate Language
+#### Sprache übersetzen
 
-Translates a string in a specific language. For more details check out the [multi-language documentation](../../content/multi-language#complex-translations).
+Übersetzt eine Zeichenfolge in eine bestimmte Sprache. Weitere Einzelheiten finden Sie in der [Dokumentation für mehrsprachige Sites](../../content/multi-language#Komplexe Übersetzungen).
 
 `'SIMPLE_TEXT'|tl(['fr'])`
 
-#### Truncate a String
+#### Einen String beschneiden
 
-You can easily generate a shortened, truncated, version of a string by using this filter.  It takes a number of characters as the only required field, but has some other options:
+Mit diesem Filter können Sie leicht eine verkürzte, abgeschnittene Version einer Zeichenfolge erzeugen.  Er nimmt eine Anzahl von Zeichen als einziges erforderliches Feld, hat aber noch einige andere Optionen:
 
 `'one sentence. two sentences'|truncate(5)` <i class="fa fa-long-arrow-right"></i> {{ 'one sentence. two sentences'|truncate(5) }}
 
-Simply truncates to 5 characters.
+Wird einfach auf 5 Zeichen gekürzt
 
 `'one sentence. two sentences'|truncate(5, true)` <i class="fa fa-long-arrow-right"></i> {{ 'one sentence. two sentences'|truncate(5, true) }}
 
-Truncates to closest sentence-end after 5 characters.
+Wird nach 5 Zeichen zum nächsten Satzende gekürzt.
 
-You can also truncate HTML text, but should first use the `striptags` filter to remove any HTML formatting that could get broken if you end between tags:
+Sie können HTML-Text auch abschneiden, sollten aber zuerst den Filter `striptags` verwenden, um alle HTML-Formatierungen zu entfernen, die defekt werden könnten, wenn Sie zwischen Tags enden:
 
-`'<p>one <strong>sentence<strong>. two sentences</p>'|striptags|truncate(5)` <i class="fa fa-long-arrow-right"></i> {{ '<p>one <strong>sentence<strong>. two sentences</p>'|striptags|truncate(5) }}
+`'<p>one <strong>sentence</strong>. two sentences</p>'|striptags|truncate(5)` <i class="fa fa-long-arrow-right"></i> {{ '<p>one <strong>sentence</strong>. two sentences</p>'|striptags|truncate(5) }}
 
-##### Specialized versions:
+##### Spezielle Versionen:
 
 **|safe_truncate**
 
-Truncate text by number of characters in a "word-safe" manner.
+Beschneidet den Text nach der Anzahl der Zeichen in einer „wortsicheren“ Form.
 
 **|truncate_html**
 
-Truncate HTML by number of characters. not "word-safe"!
+HTML nach Anzahl der Zeichen kürzen, nicht „wortsicher“!
 
 **|safe_truncate_html**
 
-Truncate HTML by number of characters in a "word-safe" manner.
+HTML nach der Anzahl der Zeichen in einer „wortsicheren“ Form kürzen.
 
 #### Underscoreize
 
-Converts a string into "under_scored" format
+Konvertiert einen String in ein Format mit „Unterstrichen“
 
 `'CamelCased'|underscorize` <i class="fa fa-long-arrow-right"></i> **{{ 'CamelCased'|underscorize }}**
 
 [version=16]
-#### Yaml Encode
+#### Yaml Encode (Yaml kodieren)
 
-Dump/Encode a variable into YAML syntax
+Dump/Kodieren einer Variablen in die YAML-Syntax
 
 `{foo: [0,1,2,3], baz: 'qux' }|yaml_encode`
 
@@ -453,9 +453,9 @@ Dump/Encode a variable into YAML syntax
 {{ {foo: [0,1,2,3], baz: 'qux' }|yaml_encode }}
 [/prism]
 
-#### Yaml Decode
+#### Yaml Decode (Yaml dekodieren)
 
-Decode/Parse a variable from YAML syntax
+Dekodieren/Parsen einer Variablen aus der YAML-Syntax
 
 {% verbatim %}
 `{% set yaml = "foo: [0, 1, 2, 3]\nbaz: qux" %}`
@@ -470,19 +470,19 @@ Decode/Parse a variable from YAML syntax
 [/version]
 
 
-## Grav Twig Functions
+## Grav-Twig-Funktionen
 
-Twig functions are called directly with any parameters being passed in via parenthesis.
+Twig-Funktionen werden direkt aufgerufen, wobei alle Parameter durch Klammern übergeben werden.
 
 #### Array
 
-Cast a value to array
+Einen Wert an ein Array übergeben
 
 `array(value)`
 
 #### Array Key Value
 
-The `array_key_value` function allows you to add a key/value pair to an associate array
+Die Funktion `array_key_value` erlaubt es Ihnen, ein Schlüssel/Werte-Paar einem verknüpften Array beizufügen
 
 {% verbatim %}
 [prism classes="language-twig line-numbers"]
