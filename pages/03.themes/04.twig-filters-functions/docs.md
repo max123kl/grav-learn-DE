@@ -402,7 +402,7 @@ Dabei wird das Sprachfeld ausgelesen, das in der yaml-Datei des Benutzers gesetz
 
 #### Sprache übersetzen
 
-Übersetzt eine Zeichenfolge in eine bestimmte Sprache. Weitere Einzelheiten finden Sie in der [Dokumentation für mehrsprachige Sites](../../content/multi-language#Komplexe_Übersetzungen).
+Übersetzt eine Zeichenfolge in eine bestimmte Sprache. Weitere Einzelheiten finden Sie in der [Dokumentation für mehrsprachige Sites](../../content/multi-language#Komplexe-Übersetzungen).
 
 `'SIMPLE_TEXT'|tl(['fr'])`
 
@@ -795,7 +795,7 @@ Diese Funktion bezieht sich auf den `|ta` Filter
 
 #### Sprache übersetzen Funktion
 
-Übersetzt einen String in eine bestimmte Sprache. Weitere Einzelheiten finden Sie in der [Dokumentation für mehrsprachige Sites](../../content/multi-language#Komplexe_Übersetzungen).
+Übersetzt einen String in eine bestimmte Sprache. Weitere Einzelheiten finden Sie in der [Dokumentation für mehrsprachige Sites](../../content/multi-language#Komplexe-Übersetzungen).
 
 `tl('SIMPLE_TEXT', ['fr'])`
 
