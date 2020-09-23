@@ -1,22 +1,22 @@
 ---
-title: Asset Manager
+title: Asset-Manager
 page-toc:
   active: true
 taxonomy:
     category: docs
 ---
 
-In Grav 1.6, the **Asset Manager** has been completely rewritten to provide a more flexible mechanism for managing **CSS** and **JavaScript** assets in themes. The primary purpose of the Asset Manager is to simplify the process of adding assets from themes and plugins while providing enhanced capabilities such as priority, and providing an **Asset Pipeline** that can be used to **minify**, **compress** and **inline** assets to reduce the number of browser requests, and also the overall size of the assets.
+In Grav 1.6 wurde der **Asset-Manager** vollständig neu geschrieben, um einen flexibleren Mechanismus für die Verwaltung von **CSS**- und **JavaScript**-Assets in Themes zu ermöglichen. Der Hauptzweck des Asset-Managers besteht darin, den Prozess des Hinzufügens von Assets aus Themes und Plugins zu vereinfachen und gleichzeitig erweiterte Funktionen wie Priorität und eine **Asset-Pipeline** bereitzustellen, mit der Assets **minimiert**, **komprimiert** und **inline** verwaltet werden können, um die Anzahl der Browser-Anfragen und auch die Gesamtgröße der Assets zu reduzieren.
 
-It's much more flexible and more reliable than before. Also it's considerably 'cleaner' and easier to follow if you start poking through the code. The Asset Manager is available throughout Grav and can be accessed in plugin event hooks, but also directly in themes via Twig calls.
+Er ist viel flexibler und zuverlässiger als früher. Außerdem ist er wesentlich übersichtlicher und leichter verständlich, wenn man anfängt, sich durch den Code zu kämpfen. Der Asset Manager ist in ganz Grav verfügbar und kann in Plugin-Event-Hooks, aber auch direkt in Themes über Twig-Calls angesprochen werden.
 
-! **Technical Details**: The primary Assets class has been greatly simplified and reduced. Much of the logic has been broken out into 3 traits. A _testing trait_ which contains functions primarily used in our test suite, a _utils trait_ which contains methods that are shared between regular asset types (js, inline_js, css, inline_css) and the assets pipeline which can minify and compress, and lastly a _legacy trait_ which contains methods that are shortcuts or workarounds, and should generally not be used going forward.
+! **Technische Einzelheiten**: Die primäre Asset-Klasse wurde stark vereinfacht und reduziert. Ein Großteil der Logik wurde in 3 Merkmale zerlegt. Eine _Test-Eigenschaft_, die Funktionen enthält, die in erster Linie in unserer Testsuite verwendet werden, eine _Utils-Eigenschaft_, die Methoden enthält, die von den regulären Asset-Typen (js, inline_js, css, inline_css) und der Asset-Pipeline gemeinsam genutzt werden und die minimiert und komprimiert werden können. Schließlich eine _Legacy-Eigenschaft_, die Methoden enthält, bei denen es sich um Abkürzungen oder Workarounds handelt und die künftig nicht mehr verwendet werden sollten.
 
-!!! The Asset manager is fully backwards compatible with syntax used in versions prior to Grav 1.6, however, the documentation below will cover the new **preferred syntax**.
+!!! Der Asset Manager ist vollständig abwärtskompatibel mit der Syntax, die in Versionen vor Grav 1.6 verwendet wurde. Die untenstehende Dokumentation behandelt jedoch die neue **bevorzugte Syntax**.
 
-## Configuration
+## Konfiguration
 
-The Grav Asset Manager has a simple set of configuration options.  The default values are located in the system `system.yaml` file, but you can override any or all of them in your `user/config/system.yaml` file:
+Der Grav Asset-Manager verfügt über einen einfachen Satz von Konfigurations-Optionen.  Die Standardwerte befinden sich in der Systemdatei `system.yaml`, aber Sie können einige oder alle dieser Werte in Ihrer Datei `user/config/system.yaml` überschreiben:
 
 [prism classes="language-yaml line-numbers"]
 assets:                                # Configuration for Assets Manager (JS, CSS)
@@ -35,13 +35,13 @@ assets:                                # Configuration for Assets Manager (JS, C
     jquery: system://assets/jquery/jquery-2.x.min.js
 [/prism]
 
-## Structure
+## Struktur
 
-There are multiple levels of positioning control as outlined in the diagram below.  In order of scope they are:
+Es gibt mehrere Ebenen der Positionskontrolle, wie in der folgenden Abbildung dargestellt.  In der Reihenfolge ihres Anwendungsbereichs sind dies:
 
-* **Group** - allows the grouping of assets such as `head`(default) and `bottom`
-* **Position** - `before`, `pipeline`(default), and `after`.  Basically this allows you to specify where in the group the asset should be loaded.  
-* **Priority** - This controls the **order**, where larger integers (e.g. `100`) will be output before lower integers. `10` is default.
+* **Group** – erlaubt die Gruppierung von Assets wie `head` ( Voreinstellung) und `bottom`
+* **Position** – `before`, `pipeline`(Voreinstellung) und `after`.  Im Prinzip erlaubt das Ihnen die Angabe, wo in der Gruppe die Assets geladen werden sollen.
+* **Priority** – steuert die **Reihenfolge**. Dabei werden größere Integerzahlen (z.B. `100`) vor kleineren Integerzahlen ausgegeben. `10` ist die Standardeinstellung.
 
 [prism classes="language-text"]
  CSS
@@ -88,53 +88,53 @@ There are multiple levels of positioning control as outlined in the diagram belo
 └───────────────────────┘
 [/prism]
 
-By defaults, `CSS` and `JS` default to display in the `pipeline` position when they are output.  While `InlineCSS` and `InlineJS` default to be in the `after` position.  This is configurable though, and you can set any asset to be in any position.
+Standardmäßig werden `CSS` und `JS` in der Position `pipeline` angezeigt, wenn sie erzeugt werden.  Indessen werden `InlineCSS` und `InlineJS` standardmäßig in der Position `after` angezeigt.  Dies ist allerdings konfigurierbar und Sie können jedes Asset in jeder beliebigen Position anzeigen lassen.
 
 ## Assets in Themes
 
-### Overview
+### Beschreibung
 
-In general, you add CSS assets one by one using `assets.addCss()` or `assets.addInlineCss()` calls, then render those assets via `assets.css()`. Options controlling priority, pipelining or inlining can be specified per asset when adding it, or at rendering time for a group of assets.
+Im Allgemeinen fügen Sie CSS-Assets nacheinander mit `assets.addCss()` oder `assets.addInlineCss()` Calls hinzu und rendern diese Assets dann über `assets.css()`. Optionen, welche die Priorität, das Pipelining oder Inlining steuern, können pro Asset beim Hinzufügen oder zur Renderzeit für eine Gruppe von Assets angegeben werden.
 
-JS assets are handled similarly with `assets.addJs()` and `assets.addInlineJs()` calls. There is also a generic `assets.add()` method that tries to guess the type of asset you are adding, but it is recommended to use the more specific method calls.
+JS-Assets werden mit den Aufrufen `assets.addJs()` und `assets.addInlineJs()` auf ähnliche Weise verarbeitet. Es gibt auch eine generische Methode `assets.add()`, die versucht, den Typ des Assets zu ermitteln, das Sie hinzufügen, aber es wird empfohlen, die spezifischeren Methodenaufrufe zu verwenden.
 
-The Asset Manager also supports:
+Der Asset-Manager unterstützt auch:
 
-* adding assets to named groups in order to render such groups at different places and/or with different sets of options,
-* configuring named asset collections, which can be added in a single `assets.add*()` call.
+* das Hinzufügen von Assets zu angegebenen Gruppen mit dem Ziel, solche Gruppen an verschiedenen Orten und/oder mit verschiedenen Optionen zu rendern
+* die Konfiguration von angegebenen Asset-Kollektionen, die mit einem einzigen Aufruf von `assets.add*()` hinzugefügt werden können
 
-### Example
+### Beispiel
 
-An example of how you can add CSS files in your theme can be found in the default **quark** theme that comes bundled with Grav. If you have a look at the [`templates/partials/base.html.twig`](https://github.com/getgrav/grav-theme-quark/blob/develop/templates/partials/base.html.twig) partial, you will see something similar to the following:
+Ein Beispiel dafür, wie Sie CSS-Dateien in Ihr Theme einfügen können, finden Sie im Standardtheme **quark**, das mit Grav zusammen angeboten wird. Wenn Sie einen Blick auf die Datei [`templates/partials/base.html.twig`](https://github.com/getgrav/grav-theme-quark/blob/develop/templates/partials/base.html.twig) werfen, sehen Sie etwas Vergleichbares wie das Folgende:
 
 [prism classes="language-twig line-numbers"]
 <!DOCTYPE html>
 <html>
     <head>
     ...
-    
+
     {% block stylesheets %}
         {% do assets.addCss('theme://css-compiled/spectre.css') %}
         {% do assets.addCss('theme://css-compiled/theme.css') %}
         {% do assets.addCss('theme://css/custom.css') %}
         {% do assets.addCss('theme://css/line-awesome.min.css') %}
     {% endblock %}
-    
+
     {% block javascripts %}
         {% do assets.addJs('jquery', 101) %}
         {% do assets.addJs('theme://js/jquery.treemenu.js', {group:'bottom'}) %}
         {% do assets.addJs('theme://js/site.js', {group:'bottom'}) %}
     {% endblock %}
-    
+
     {% block assets deferred %}
         {{ assets.css()|raw }}
         {{ assets.js()|raw }}
     {% endblock %}
     </head>
-    
+
     <body>    
     ...
-    
+
     {% block bottom %}
         {{ assets.js('bottom')|raw }}
     {% endblock %}
@@ -142,39 +142,39 @@ An example of how you can add CSS files in your theme can be found in the defaul
 </html>
 [/prism]
 
-The `block stylesheets` twig tag just defines a region that can be replaced or appended to in templates that extend the one. Within the block, you will see a number of `do assets.addCss()` calls.
+Der Twig-Tag `block stylesheets` definiert lediglich einen Template-Bereich, die diesen Bereich erweitern, ersetzen oder angehängt werden können. Innerhalb des Blocks sehen Sie eine Reihe von `do assets.addCss()` Aufrufen.
 
-The `{% do %}` tag is actually [one built in to Twig](http://twig.sensiolabs.org/doc/tags/do.html) itself, and it lets you manipulate variables without generating any output.
+Der Tag `{% do %}` ist eigentlich [in Twig integriert](http://twig.sensiolabs.org/doc/tags/do.html) und erlaubt Ihnen, Variablen zu verändern, ohne eine Ausgabe zu generieren.
 
-The `addCss()` method adds CSS assets to the Asset Manager. If you specify a second numeric parameter, that sets the priority of the stylesheet. If you do not specify a priority, the priority that the assets are added will dictate the order they are rendered.  You will notice the use of a **PHP stream wrapper** `theme://` to provide an easy way for Grav to determine the current theme's relative path.
+Die Methode `addCss()` fügt dem Asset-Manager CSS-Assets hinzu. Wenn Sie einen zweiten numerischen Parameter angeben, legt dieser die Priorität des Stylesheets fest. Wenn Sie keine Priorität angeben, bestimmt die Reihenfolge, mit der die Assets hinzugefügt werden, deren Abfolge beim Rendern. Sie werden bemerkt haben, dass ein **PHP-Stream-Wrapper** `theme://` verwendet wird, um Grav eine einfache Möglichkeit zu bieten, den relativen Pfad des aktuellen Themes zu bestimmen.
 
-!! The `assets.addJs('jquery', 101)` will include the `jquery` collection defined in the global Assets configuration. The optional param here of `101` sets the priority to be quite high to ensure it renderes first.  The default priority when not provided is a value of `10`. A more flexible way of writing this would be `assets.addJs('jquery', {priority: 101})`.  This allows you to add other parameters alongside the priority.
+!! Die Option `assets.addJs('jquery', 101)` wird die Kollektion `jquery` enthalten, die in der globalen Asset-Konfiguration definiert ist. Der optionale Parameter `101` setzt die Priorität ziemlich hoch, damit sie vorrangig gerendert wird.  Die Standardpriorität ist `10`, wenn nichts angegeben ist. Eine etwas flexiblere Schreibweise wäre `assets.addJs('jquery', {priority: 101})`.  Das würde Ihnen erlauben, neben der Priorität weitere Parameter hinzuzufügen.
 
-The `assets.css()|raw` call renders the CSS assets as HTML tags. As there is no parameter supplied to this method, the group is by default set to `head`. Note how this is wrapped in an `assets deferred` block.  This is a new feature in Grav 1.6 that allows you to add assets from other Twig templates that are included further down the page (or anywhere really), and still ensure that they can render in this `head` block if required.
+Der Aufruf `assets.css()|raw` rendert die CSS-Assets als HTML-Tags. Da bei dieser Methode kein Parameter angegeben ist, wird die Gruppe standardmäßig auf `head` gesetzt. Beachten Sie, dass diese Gruppe in einen `assets deferred`-Block eingeschlossen wurde. Das ist eine neue Funktion in Grav 1.6, die es Ihnen erlaubt, Assets aus anderen Twig-Templates hinzuzufügen, die weiter unten auf der Seite (oder irgendwo anders auf der Seite) enthalten sind. Trotzdem können Sie so sicherstellen, dass sie bei Bedarf in diesem `head`-Block gerendert werden können.
 
-The `bottom` block at the very end of your theme output, renders JavaScript that has been assigned to the `bottom` group.
+Der Block `bottom` ganz am Ende der Theme-Ausgabe rendert JavaScript, das der Gruppe `bottom` zugewiesen wurde.
 
-## Adding Assets
+## Assets hinzufügen
 
-#### add(asset, [options])
+#### add(asset, [Optionen])
 
-The add method does its best attempt to match an asset based on file extension.  It is a convenience method, it's better to call one of the direct methods for CSS or JS.  See the direct methods for details.
+Die Add-Methode versucht bestmöglich, ein Asset anhand der Dateierweiterung zuzuordnen. Es ist eine bequeme Methode, es ist aber besser, eine der direkten Methoden für CSS oder JS aufzurufen.  Details finden Sie bei den direkten Methoden.
 
-!! The options array is the preferred approach for passing multiple options. However as in the previous example with `jquery`, you can use a shortcut and pass in an integer for the **second argument** in the method if all you wish to set is the **priority**.
+!! Das Optionen-Array ist der bevorzugte Ansatz für die Übergabe mehrerer Optionen. Wie im vorherigen Beispiel mit `jquery` können Sie jedoch eine Abkürzung verwenden und eine Ganzzahl für das **zweite Argument** in der Methode übergeben, wenn Sie nur die **Priorität** setzen wollen.
 
-#### addCss(asset, [options])
+#### addCss(asset, [Optionen])
 
-This method will add assets to the list of CSS assets.  The priority defaults to 10 if not provided.  A higher number means it will display before lower priority assets.  The `pipeline` option controls whether or not this asset should be included in the combination/minify pipeline. If not pipelined, the `loading` option controls whether the asset should be rendered as a link to an external stylesheet or whether its contents should be inlined inside an inline style tag.
+Mit dieser Methode werden Assets in die Liste der CSS-Assets aufgenommen. Die Priorität ist standardmäßig auf 10 gesetzt, wenn sie nicht angegeben wird.  Eine höhere Zahl bedeutet, dass sie vor den Assets mit geringerer Priorität dargestellt werden. Die Option `pipeline` steuert, ob dieses Asset in die Kombination/Minify-Pipeline aufgenommen werden soll oder nicht. Falls keine Pipeline vorhanden ist, steuert die Option `loading`, ob das Asset als Link zu einem externen Style-Sheet dargestellt werden soll oder ob sein Inhalt innerhalb eines Inline-Style-Tags eingefügt werden soll.
 
-#### addInlineCss(css, [options])
+#### addInlineCss(css, [Optionen])
 
-Lets you add a string of CSS inside an inline style tag. Useful for initialization or anything dynamic.  To inline a regular asset file's content, see the `{'loading': 'inline'}` option of the `addCss()` and `css()` methods.
+Erlaubt das Hinzufügen eines CSS-Strings innerhalb eines Inline-Style-Tags. Sinnvoll für die Initialisierung oder für alles, was dynamisch ist.  Um den Inhalt einer regulären Asset-Datei einzufügen, siehe die Option `{'loading': 'inline'}` der Methoden `addCss()` und `css()`.
 
-#### addJs(asset, [options])
+#### addJs(asset, [Optionen])
 
 This method will add assets to the list of JavaScript assets.  The priority defaults to 10 if not provided.  A higher number means it will display before lower priority assets.  The `pipeline` option controls whether or not this asset should be included in the combination/minify pipeline. If not pipelined, the `loading` option controls whether the asset should be rendered as a link to an external script file or whether its contents should be inlined inside an inline script tag.
 
-#### addInlineJs(javascript, [options])
+#### addInlineJs(javascript, [Optionen])
 
 Lets you add a string of JavaScript inside an inline script tag. Useful for initialization or anything dynamic.  To inline a regular asset file's content, see the `{'loading': 'inline'}` option of the `addJs()` and `js()` methods.
 
@@ -182,7 +182,7 @@ Lets you add a string of JavaScript inside an inline script tag. Useful for init
 
 Allows you to register an array of CSS and JavaScript assets with a name for later use by the `add()` method. Particularly useful if you want to register a collection that may be used by multiple themes or plugins, such as jQuery or Bootstrap.
 
-## Options
+## Optionen
 
 Where appropriate, you can pass in an array of asset options. The core options are:
 
@@ -255,7 +255,7 @@ Renders CSS assets that have been added to an Asset Manager's group (default is 
 
 If pipelining is turned **off** in the configuration, the group's assets are rendered individually, ordered by asset priority (high to low), followed by the order in which assets were added.
 
-If pipelining is turned **on** in the configuration, assets in the pipeline position are combined in the order in which assets were added, then processed according to the pipeline configuration. 
+If pipelining is turned **on** in the configuration, assets in the pipeline position are combined in the order in which assets were added, then processed according to the pipeline configuration.
 
 Each asset is rendered either as a stylesheet link or inline, depending on the asset's `loading` option and whether `{'loading': 'inline'}` is used for this group's rendering. CSS added by `addInlineCss()` will be rendered in the `after` position by default, but you can configure it to render before the pipelined output with `position: before`
 
@@ -302,7 +302,7 @@ An example of this action can be found in the [**bootstrapper** plugin](https://
 
 ## Grouped Assets
 
-The Asset manager lets you pass an optional `group` as part of an options array when adding assets.  While this is of marginal use for CSS, it is especially useful for JavaScript where you may need to have some JS files or Inline JS referenced in the header, and some at the bottom of the page. 
+The Asset manager lets you pass an optional `group` as part of an options array when adding assets.  While this is of marginal use for CSS, it is especially useful for JavaScript where you may need to have some JS files or Inline JS referenced in the header, and some at the bottom of the page.
 
 To take advantage of this capability you must specify the group when adding the asset, and should use the options syntax:
 
