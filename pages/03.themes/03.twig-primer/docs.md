@@ -38,11 +38,11 @@ Hier ist ein Basis-Template, das mit Twig erstellt wurde:
         <title>All About Cookies</title>
     </head>
     <body>
-        My name is {{ name }} and I love cookies.
+        My name is {{ name|e }} and I love cookies.
         My favorite flavors of cookies are:
         <ul>
         {% for cookie in cookies %}
-            <li>{{ cookie.flavor }}</li>
+            <li>{{ cookie.flavor|e }}</li>
 		{% endfor %}
         </ul>
         <h1>Cookies are the best!</h1>
@@ -89,10 +89,12 @@ Output-Tags (`{{ hier Output einfügen }}`) werden analysiert und dem generierte
 Hier folgt ein Beispiel für die Verwendung von Ausgabe-Tags in einem Twig-Template:
 
 [prism classes="language-twig"]
-Mein Name ist {{ name }} und ich liebe Cookies.
+Mein Name ist {{ name|e }} und ich liebe Cookies.
 [/prism]
 
 Die Variable `name` wurde in diese Zeile eingefügt und erscheint dem Endbenutzer als `Mein Name ist Jake und ich liebe Cookies.`, denn der Wert der Variable „name“ war `Jake`.
+
+!! Es ist sehr wichtig, entweder die Einstellung `autoescape` in Ihrer [Systemkonfiguration](/basics/grav-configuration#twig) zu aktivieren oder daran zu denken, jede einzelne Variable in Template-Dateien mit Hilfe des `|e` Filters zu escapen, um Ihre Site gegen XSS-Angriffe sicher zu machen. Für einen gesicherten HTML-Inhalt sollten Sie den `|raw`-Filter einsetzen.
 
 #### Action-Tags
 
@@ -122,7 +124,7 @@ Filter sind nützlich, vor allem wenn Sie die Output-Tags verwenden, um Daten an
 Nehmen wir an, der Wert der Variablen `name` würde unerwünschte SGML/XML-Tags enthalten. Sie könnten diese mit Hilfe des folgenden Codes herausfiltern:
 
 [prism classes="language-twig"]
-{{ name|striptags }}
+{{ name|striptags|e }}
 [/prism]
 
 ### Funktionen

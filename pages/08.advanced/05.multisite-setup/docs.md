@@ -175,7 +175,28 @@ return [
 
 In Grav sind Streams Objekte, die eine Gruppe von physikalischen Verzeichnissen des Systems auf ein logisches Device mappen. Sie werden über ihr `type`-Attribut klassifiziert. Für schreibgeschützte Streams ist das der Typ `ReadOnlyStream` und für schreibgeschützte Streams der Typ `Stream`. Sie können jeden benutzerdefinierten Streamtyp registrieren und auf ihn verweisen, solange es sich um eine Instanz der Schnittstellenklasse [StreamInterface](https://github.com/rockettheme/toolbox/blob/develop/StreamWrapper/src/StreamInterface.php) handelt.
 
-Die Zuordnung von physischen Verzeichnissen zu einem logischen Device kann auf zwei Arten erfolgen, entweder durch die Einrichtung von „Pfaden“ (`paths`) oder „Präfixen“ (`prefixes`). Erstere kann als eine 1-zu-1 Zuordnung verstanden werden, während letztere, wie es der Name andeutet, Ihnen erlaubt, mehrere physische Pfade zu einem logischen Stream zu kombinieren. Nehmen wir an, Sie möchten einen Stream mit dem Namen "image" definieren. Sie können dann mit dem Stream `images://` mit
+By default, streams have been configured like this:
+
+* `user://` - Benutzer-Verzeichnis z.B. `user/`
+* `page://` - Seiten-Verzeichnis z.B. `user://pages/`
+* `image://` - Bilder-Verzeichnis z.B. `user://images/`, `system://images/`
+* `account://` - Accounts-Verzeichnis z.B. `user://accounts/`
+* `environment://` - aktueller Multi-Site-Speicherort
+* `asset://` - JS/CSS-Verzeichnis kompiliert z.B. `assets/`
+* `blueprints://` - Blueprints-Verzeichnis z.B. `environment://blueprints/`, `user://blueprints/`, `system://blueprints/`
+* `config://` - Konfigurations-Verzeichnis z.B. `environment://config/`, `user://config/`, `system://config/`
+* `plugins://` - Plugins-Verzeichnis z.B. `user://plugins/`
+* `themes://` - aktuelles Theme z.B. `user://themes/`
+* `theme://` - aktuelles Theme z.B. `themes://antimatter/`
+* `languages://` - Sprachen-Verzeichnis z.B. `environment://languages/`, `user://languages/`, `system://languages/`
+* `user-data://` - Daten-Verzeichnis z.B. `user/data/`
+* `system://` - System-Verzeichnis z.B. `system/`
+* `cache://` - Cache-Verzeichnis z.B. `cache/`, `images/`
+* `log://` - Logdateien-Verzeichnis z.B. `logs/`
+* `backup://` - Backup-Verzeichnis z.B. `backups/`
+* `tmp://` - Temp-Verzeichnis z.B. `tmp/`
+
+Die Zuordnung von physischen Verzeichnissen zu einem logischen Device kann auf zwei Arten erfolgen, entweder durch die Einrichtung von „Pfaden“ (`paths`) oder „Präfixen“ (`prefixes`). Erstere kann als eine 1-zu-1 Zuordnung verstanden werden, während letztere, wie es der Name andeutet, Ihnen erlaubt, mehrere physische Pfade zu einem logischen Stream zu kombinieren. Nehmen wir an, Sie möchten einen Stream mit dem Namen „image“ definieren. Sie können dann mit dem Stream `images://` und
 
 [prism classes="language-php line-numbers"]
 'image' => [

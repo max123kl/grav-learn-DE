@@ -100,6 +100,7 @@ Im Abschnitt **Home** legen Sie den Standardpfad für die Homepage der Site fest
 | **hide_in_urls:** | Ausblenden der Home-Route in URLs, kann `true` oder `false` sein. |
 [/div]
 
+
 ### Pages
 
 [prism classes="language-yaml line-numbers"]
@@ -430,7 +431,6 @@ Der Abschnitt **Images** gibt Ihnen die Möglichkeit, die Standard-Bildqualität
 | **seofriendly:** | SEO-freundlich aufbereitete Namen von Bildern |
 [/div]
 
-
 ### Media
 
 [prism classes="language-yaml line-numbers"]
@@ -505,6 +505,24 @@ Optionen im Abschnitt **GPM** steuern den Grav GPM (Grav Package Manager). Beisp
 | **official_gpm_only:** | Erlaubt URLs für die GPM-Direktinstallation standardmäßig nur über den offiziellen GPM-Proxy, damit die Sicherheit gewährleistet ist; deaktivieren Sie dies, um andere Quellen zuzulassen. |
 [/div]
 
+[version=16]
+### Accounts
+
+[prism classes="language-yaml line-numbers"]
+accounts:
+  type: data
+  storage: file
+[/prism]
+
+Accounts ist eine neue Funktion für 1.6, die es Ihnen ermöglicht, den neuen experimentellen Flex-Benutzer zu testen.  Dies bedeutet im Wesentlichen, dass die Benutzer als Flex-Objekte gespeichert werden, was mehr Leistung und Performance ermöglicht.
+
+[div class="table-keycol"]
+| Eigenschaft | Beschreibung |
+| -------- | ----------- |
+| **type:** | Account-Typ: `data` oder `flex` |
+| **storage:** | Flex-Storage-Typ: `file` oder `folder` |
+[/div]
+
 ### Strict Mode
 
 [prism classes="language-yaml line-numbers"]
@@ -521,27 +539,9 @@ Der Strict-Modus ermöglicht eine sauberere Migration zu zukünftigen Versionen 
 | **yaml_compat:** | Ermöglicht die YAML-Rückwärtskompatibilität |
 | **twig_compat:** | Ermöglicht die veraltete Twig-Autoescape-Einstellung. |
 [/div]
-
-[version=16]
-### Accounts (Konten)
-
-[prism classes="language-yaml line-numbers"]
-accounts:
-  type: data
-  storage: file
-[/prism]
-
-Konten ist eine neue Einstellung für Version 1.6, die es Ihnen ermöglicht, die neuen experimentellen Flex-Benutzer auszuprobieren.  Das bedeutet im Wesentlichen, dass die Benutzer als Flex-Objekte gespeichert werden, was mehr Leistung und Performance ermöglicht.
-
-[div class="table-keycol"]
-| Eigenschaft | Beschreibung |
-| -------- | ----------- |
-| **type:** | Account-Typ: `data` oder `flex` |
-| **storage:** | Flex-Speichertyp: `file` oder `folder` |
-[/div]
+[/version]
 
 !! Sie brauchen nicht die **vollständige** Konfigurationsdatei zu kopieren, um sie zu überschreiben. Sie können so wenig oder so viel überschreiben, wie Sie möchten.  Achten Sie nur darauf, dass Sie die **exakte gleiche Struktur zur Benennung** für die jeweilige Einstellung haben, die Sie überschreiben wollen.
-[/version]
 
 ## Site-Konfiguration
 

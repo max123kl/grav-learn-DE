@@ -50,6 +50,8 @@ Die Variable `{{ theme_dir }}` gibt den Dateiordner für das aktuelle Theme zur�
 
 Die Variable `{{ theme_url }}` gibt die relative URL für das aktuelle Theme zurück.
 
+!! Wenn Sie auf Assets wie Bilder oder JavaScript- und CSS-Dateien verlinken, empfiehlt es sich, die Funktion `url()` in Kombination mit dem Stream `theme://` zu verwenden, wie auf der Seite [Twig-Filter und -Funktionen](/themes/twig-filters-functions#url) beschrieben. Für JavaScript und CSS ist der [Asset-Manager](/themes/asset-manager) noch einfacher zu bedienen, aber in einigen Fällen, wie beim dynamischen oder bedingten Laden von Assets, funktioniert er nicht.
+
 ### Die Variable: html_lang
 
 Die Variable `{{ html_lang }}` gibt die aktive Sprache zurück.
@@ -58,10 +60,24 @@ Die Variable `{{ html_lang }}` gibt die aktive Sprache zurück.
 
 Die Variable `{{ language_codes }}` returns list of available languages of the site.
 
+[version=16,17]
+### Das Objekt: assets
 
-!! Wenn Sie auf Assets wie Bilder oder JavaScript- und CSS-Dateien verlinken, empfiehlt es sich, die Funktion `url()` in Kombination mit dem Stream `theme://` zu verwenden, wie auf der Seite [Twig Filter und Funktionen](/themes/twig-filters-functions#url) beschrieben. Für JavaScript und CSS ist der [Asset Manager](/themes/asset-manager) noch einfacher zu bedienen, aber in einigen Fällen, wie beim dynamischen oder bedingten Laden von Assets, funktioniert er nicht.
+Der **Asset-Manager** bietet eine einfache Möglichkeit, CSS und JavaScript auf Ihrer Website zu verwalten.
 
-### Das Objekt config
+[prism classes="language-twig"]
+{% do assets.addCss('theme://css/foo.css') %}
+{% do assets.addInlineCss('a { color: red; }') %}
+{% do assets.addJs('theme://js/something.js') %}
+{% do assets.addInlineJs('alert("Warming!");') %}
+[/prism]
+
+Lesen Sie dazu mehr unter [Asset-Manager](/themes/asset-manager).
+
+! TIPP: Es wird empfohlen, stattdessen den **[Styles-Tag](/themes/twig-tags#css-styles)** und den **[Script-Tag](/themes/twig-tags#scripts)** zu verwenden.
+[/version]
+
+### Das Objekt: config
 
 Auf jede in den YAML-Dateien unter `/user/config` gesetzte Grav-Konfigurationseinstellung können Sie über das Objekt `config` zugreifen. Zum Beispiel:
 
@@ -69,19 +85,19 @@ Auf jede in den YAML-Dateien unter `/user/config` gesetzte Grav-Konfigurationsei
 {{ config.system.pages.theme }}{# returns the currently configured theme #}
 [/prism]
 
-### Das Objekt site
+### Das Objekt: site
 
 Ein Alias für das Objekt `config.site`. Es ist die in der Datei `site.yaml` festgelegte Konfiguration.
 
-### Das Objekt system
+### Das Objekt: system
 
 Ein Alias für das Objekt `config.system`. Es ist die in der Datei `system.yaml` enthaltene Konfiguration.
 
-### Das Objekt theme
+### Das Objekt: theme
 
 Ein Alias für das Objekt `config.theme`. Es steht für die Konfiguration für das aktuell aktive Theme. Die Einstellungen des Plugins sind über `config.plugins` zugänglich.
 
-### Das Objekt page
+### Das Objekt: page
 
 Aufgrund der Struktur von Grav, die im Ordner `pages/` definiert ist, wird jede Seite durch ein **Seiten-Objekt** abgebildet.
 
@@ -94,13 +110,13 @@ Das **Seiten-Objekt** ist wahrscheinlich _das_ wichtigste Objekt, mit dem Sie ar
 Dadurch wird eine beschnittene oder verkürzte Version Ihres Inhalts angezeigt.  Sie können den optionalen Parameter `size` angeben, um die maximale Länge der Zusammenfassung in Zeichen zu bestimmen.  Wenn keine Größe angegeben wird, kann der Wert alternativ über die site-weite Variable `summary.size` aus Ihrer `site.yaml`-Konfiguration abgerufen werden.
 
 [prism classes="language-twig"]
-{{ page.summary }}
+{{ page.summary|raw }}
 [/prism]
 
 or
 
 [prism classes="language-twig"]
-{{ page.summary(50) }}
+{{ page.summary(50)|raw }}
 [/prism]
 
 Eine dritte Möglichkeit ist die Verwendung eines manuellen Trennzeichens `===` in Ihrem Dokument.  Alles, was vor dem Trennzeichen steht, wird für die Zusammenfassung verwendet.
@@ -110,7 +126,7 @@ Eine dritte Möglichkeit ist die Verwendung eines manuellen Trennzeichens `===` 
 Dadurch wird der gesamte HTML-Inhalt Ihrer Seite angezeigt.
 
 [prism classes="language-twig"]
-{{ page.content }}
+{{ page.content|raw }}
 [/prism]
 
 ##### header()
@@ -125,12 +141,12 @@ author: Joe Bloggs
 könnte so verwendet werden:
 
 [prism classes="language-twig"]
-The author of this page is: {{ page.header.author }}
+The author of this page is: {{ page.header.author|e }}
 [/prism]
 
 ##### media()
 
-Damit wird ein Array zurückgegeben, das alle mit einer Seite verbundenen Medien enthält. Dazu gehören **Bilder**, **Videos** und andere **Dateien**. Sie können auf Medien-Methoden zugreifen, wie in der [Medien-Dokumentation](../../content/media) zum Inhalt beschrieben. Da es sich um ein Array handelt, können Twig-Filter und -Funktionen eingesetzt werden. Hinweis: `.svg` wird als Datei und nicht als Bild behandelt, da sie nicht mit Twig-Bildfiltern manipuliert werden kann.
+Damit wird ein **Medienobjekt** zurückgegeben, das alle mit einer Seite verbundenen Medien enthält. Dazu gehören **Bilder**, **Videos** und andere **Dateien**. Sie können auf Medien-Methoden zugreifen, wie in der [Medien-Dokumentation](../../content/media) im Abschnitt Inhalt beschrieben. Da es wie sich wie ein Array verhält, können Twig-Filter und -Funktionen eingesetzt werden. Hinweis: `.svg`-Dateien werden als Datei und nicht als Bild behandelt, da sie nicht mit Twig-Bildfiltern manipuliert werden können.
 
 Eine bestimmte Datei oder ein bestimmtes Bild aufrufen:
 
@@ -148,7 +164,7 @@ Alle Bilder in eine Schleife legen und den HTML-Tag ausgeben, um sie anzuzeigen:
 
 [prism classes="language-twig"]
 {% for image in page.media.images %}
-   {{ image.html }}
+   {{ image.html|raw }}
 {% endfor %}
 [/prism]
 
@@ -196,13 +212,13 @@ Dies gibt den Namen zurück, wie er in der URL für diese Seite angezeigt wird, 
 Dadurch wird z.B. die URL zur Seite zurückgegeben:
 
 [prism classes="language-twig"]
-{{ page.url }} {# could return /my-section/my-category/my-blog-post #}
+{{ page.url|e }} {# could return /my-section/my-category/my-blog-post #}
 [/prism]
 
 oder
 
 [prism classes="language-twig"]
-{{ page.url(true) }} {# could return http://mysite.com/my-section/my-category/my-blog-post #}
+{{ page.url(true)|e }} {# could return http://mysite.com/my-section/my-category/my-blog-post #}
 [/prism]
 
 ##### permalink()
@@ -224,7 +240,6 @@ Dies gibt `true` oder `false` zurück, je nachdem, ob diese Seite als **Home**-P
 ##### root()
 
 Das Ergebnis ist entweder `true` oder `false`, je nachdem, ob diese Seite die Root-Seite der Baumhierarchie ist oder nicht.
-Wird so verwendet: {{ page.parent.root() }}
 
 ##### active()
 
@@ -378,7 +393,7 @@ Dadurch wird ein Array der mit einer Seite verbundenen Taxonomie ausgegeben.  Da
 {% endfor %}
 [/prism]
 
-### Das Objekt pages
+### Das Objekt: pages
 
 !! Die gesamte Liste der Pages-Objekt-Methoden ist auf der [API-Seite](https://learn.getgrav.org/api#class-gravcommonpagepages) zu finden. Hier ist eine Übersicht der Methoden, die Sie besonders hilfreich finden werden.
 
@@ -400,13 +415,15 @@ So erhalten Sie die Top-Level-Seiten für ein einfaches Menü:
 </ul>
 [/prism]
 
-### Das Objekt media
+### Das Objekt: media
 
 Es gibt ein neues Objekt, mit dem Sie über PHP-Streams von Twig auf [Medien](../../content/media) zugreifen können, die sich außerhalb der Page-Objekte befinden. Dies funktioniert ähnlich wie die [Bildverlinkung im Inhalt](../../content/image-linking#php-streams), bei der Streams verwendet werden, um auf Bilder zuzugreifen und die Medienbearbeitung, um das Theme zu modifizieren.
 
-`media['user://media/bird.png'].resize(50, 50).rotate(90).html()`
+[prism classes="language-twig"]
+{{ media['user://media/bird.png'].resize(50, 50).rotate(90).html()|raw }}
+[/prism]
 
-### Das Objekt uri
+### Das Objekt: uri
 
 !! Die gesamte Liste der Uri-Objekt-Methoden ist auf der [API-Seite](https://learn.getgrav.org/api#class-gravcommonuri) zu finden. Hier ist eine Übersicht der Methoden, die Sie besonders hilfreich finden werden.
 
@@ -464,39 +481,45 @@ Gibt die Root-URL an die Grav-Instanz zurück. (z.B. `uri.rootUrl()` = `http://m
 
 Damit werden die Referrer-Informationen für diese Seite angezeigt.
 
-### Das Objekt header
+### Das Objekt: header
 
 Das Header-Objekt ist ein Alias für `page.header()` auf der Originalseite. Es bietet Ihnen eine bequeme Möglichkeit, auf die Header der Originalseiten zuzugreifen, wenn Sie in einer Schleife durch andere `page`-Objekte von untergeordneten Seiten oder Kollektionen blättern.
 
-### Das Objekt content
+### content string
 
 Das Inhalts-Objekt ist ein Alias für `page.content()` der Originalseite.
 
-### Das Objekt taxonomy
+Um den Seiteninhalt anzuzeigen, benötigen Sie das:
 
-Das ist das globale Taxonomie-Objekt, das alle Taxonomie-Information der Website enthält.
+[prism classes="language-twig"]
+{{ content|raw }}
+[/prism]
 
-### Das Objekt browser
+### Das Objekt: taxonomy
+
+Das ist das globale Taxonomie-Objekt, das alle Taxonomie-Informationen für die Site enthält. Weitere Informationen finden Sie unter [Taxonomie](/content/taxonomy).
+
+### Das Objekt: browser
 
 !! Die gesamte Liste der Browser-Objekt-Methoden ist auf der [API-Seite](https://learn.getgrav.org/api#class-grav-common-browser) verfügbar. Hier ist eine Übersicht der Methoden, die Sie besonders hilfreich finden werden.
 
 Grav verfügt über integrierte Funktionen mit denen die Plattform des Benutzers, sein Browser und die Version programmatisch bestimmt werden können.
 
 [prism classes="language-twig"]
-{{ browser.platform}}   # macintosh
-{{ browser.browser}}    # chrome
-{{ browser.version}}    # 41
+{{ browser.platform|e }}   # macintosh
+{{ browser.browser|e }}    # chrome
+{{ browser.version|e }}    # 41
 [/prism]
 
-### Das Objekt user
+### Das Objekt: user
 
 Sie können indirekt über das Grav-Objekt auf das aktuell angemeldete Benutzer-Objekt zugreifen.  Dies erlaubt Ihnen den Zugriff auf Daten wie `username`, `fullname`, `title`, und `email`:
 
 [prism classes="language-twig"]
-{{ grav.user.username }}  # admin
-{{ grav.user.fullname }}  # Billy Bloggs
-{{ grav.user.title }}     # Administrator
-{{ grav.user.email }}     # billy@bloggs.com
+{{ grav.user.username|e }}  # admin
+{{ grav.user.fullname|e }}  # Billy Bloggs
+{{ grav.user.title|e }}     # Administrator
+{{ grav.user.email|e }}     # billy@bloggs.com
 [/prism]
 
 ## Eigene Variablen hinzufügen
@@ -504,7 +527,7 @@ Sie können indirekt über das Grav-Objekt auf das aktuell angemeldete Benutzer-
 Sie können auf einfache Weise benutzerdefinierte Variablen auf unterschiedliche Weise hinzufügen.  Wenn es sich um eine site-weite Variable handelt, können Sie die Variable in Ihre Datei `user/config/site.yaml` einfügen und darüber darauf zugreifen:
 
 [prism classes="language-twig"]
-{{ site.my_variable }}
+{{ site.my_variable|e }}
 [/prism]
 
 Wird die Variable nur für eine bestimmte Seite benötigt, können Sie die Variable alternativ auch in den YAML-Frontmatter Ihrer Seite einfügen und über das Objekt `page.header` darauf zugreifen.  Zum Beispiel:
@@ -517,7 +540,7 @@ author: Joe Bloggs
 könnte verwendet werden als:
 
 [prism classes="language-twig"]
-The author of this page is: {{ page.header.author }}
+The author of this page is: {{ page.header.author|e }}
 [/prism]
 
 ## Eigene Objekte hinzufügen

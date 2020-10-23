@@ -16,7 +16,10 @@ To fully harness the power of Grav plugins you need to know which event hooks ar
 Most events within Grav fire in a specific order and it is important to understand this order if you are creating plugins:
 
 1. [onFatalException](../event-hooks#onFatalException) _(no order, can occur anytime)_
+1. `PluginsLoadedEvent` class (1.7)
+1. `PluginsLoadedEvent` class (1.7)
 1. [onPluginsInitialized](../event-hooks#onPluginsInitialized)
+1. `FlexRegisterEvent` class (1.7)
 1. onThemeInitialized
 1. onRequestHandlerInit (1.6)
 1. onTask (1.6)
@@ -67,6 +70,9 @@ Misc events:
 1. onFlexCollectionRender (1.6)
 1. onBeforeCacheClear
 1. onImageMediumSaved (ImageFile)
+1. onAfterCacheClear (1.7)
+1. onHttpPostFilter (1.7)
+1. `PermissionsRegisterEvent`class (1.7)
 
 ## Core Grav Event Hooks
 
@@ -209,7 +215,7 @@ The Twig templating engine is now initialized at this point.
 <a name="onTwigExtensions"></a>
 #### onTwigExtensions
 
-The core Twig extensions have been loaded, but if you need to add your own Twig extension, you can do so with this event hook.
+The core Twig extensions have been loaded, but if you need to add [your own Twig extension](https://twig.symfony.com/doc/3.x/advanced.html#id2), you can do so with this event hook.
 
 <a name="onTwigPageVariables"></a>
 #### onTwigPageVariables

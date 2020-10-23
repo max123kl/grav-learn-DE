@@ -36,7 +36,7 @@ Available commands:
 [/prism]
 [/version]
 
-[version=16]
+[version=16,17]
 [prism classes="language-text"]
 Available commands:
   backup       Creates a backup of the Grav instance
@@ -75,7 +75,7 @@ bin/grav backup
 Eine neue Sicherungsdatei `portfolio-20140812174352.zip` wurde im Ordner `backup/` des Projekts erstellt. Die lange Zahl hinter dem Namen ist nur das Datum im Format _Jahr Monat Tag Stunde Minute Sekunde_.
 
 [/version]
-[version=16]
+[version=16,17]
 Das Grav-Backup-System wurde in Grav 1.6 vollständig überarbeitet, um mehrere Backup-Profile zu unterstützen.  Diese Profile werden in der Datei `user/config/backups.yaml` konfiguriert.  Wenn Sie keine benutzerdefinierte Konfigurationsdatei haben, verwendet Grav die Standardkonfigurationsdatei aus `system/config/backups.yaml`.
 
 Wenn Grav mehrere Sicherungsprofile erkennt, werden Sie vom CLI-Befehl gefragt, welches Sie mit dem CLI-Befehl sichern möchten.
@@ -139,7 +139,7 @@ Die Voreinstellung ist der normale Cache-Löschvorgang, Sie können diesen Proze
 [/prism]
 [/version]
 
-[version=16]
+[version=16,17]
 [prism classes="language-bash command-line"]
 $ cd ~/webroot/my-grav-project
 bin/grav cache
@@ -195,7 +195,7 @@ Die Abhängigkeiten sollten nun installiert sein unter:
 * `~/webroot/my-grav-project/user/plugins/problems`
 * `~/webroot/my-grav-project/user/themes/antimatter`
 
-[version=16]
+[version=16,17]
 ## Log Viewer
 
 Als Teil von Grav 1.6 wurde ein neuer CLI-Befehl zur schnellen Anzeige von Grav-Protokollen entwickelt.
@@ -289,7 +289,7 @@ bin/grav sandbox -s ../copy
 
 Erstellt von Ihrem aktuellen Grav-Ordner ein Schwesterverzeichnis namens `copy`, wobei die folgenden Verzeichnisse virtuelle Kopien sind: `/bin, /system, /vendor, /webserver-configs`. Dazu kommen die Standard-Dateien, die sich typischerweise im Wurzelverzeichnis von Grav befinden. Alle Inhalte in /user sind nicht virtuelle, sondern Carbon-Kopien, so dass Sie einfach mit der Anpassung der neuen Installation beginnen können, ohne einen Overhead von Core-Dateien erzeugt zu haben.
 
-[version=16]
+[version=16,17]
 ## Scheduler
 
 Wie im Abschnitt [Erweitert -> Scheduler](/advanced/scheduler) beschrieben, kann der Scheduler über den CLI-Befehl überwacht werden.

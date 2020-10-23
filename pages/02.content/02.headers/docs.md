@@ -27,7 +27,7 @@ Als Beispiel hierfür dient die Verwendung von dynamischen Twig-Variablen in Ihr
 ### Datum
 
 ```yaml
-date: 01/01/2014 3:14pm
+date: 01/01/2020 3:14pm
 ```
 
 Die Variable `date` erlaubt es, spezifisch ein mit dieser Seite verbundenes Datum festzulegen.  Dies wird häufig verwendet, um anzuzeigen, wann ein Beitrag erstellt wurde und kann zur Anzeige oder zum Sortieren verwendet werden.  Wenn diese Variable nicht gesetzt ist, wird die letzte **modifizierte Zeit** der Seite automatisch verwendet.
@@ -104,6 +104,8 @@ cache_control: max-age=604800
 
 Kann leer sein für keine Einstellung oder einen [gültigen](https://developer.mozilla.org/de/docs/Web/HTTP/Headers/Cache-Control) Textwert für `cache-control` haben.
 
+! Achten Sie darauf, dass Sie `no-cache` verwenden, falls die Seite Informationen enthält, die sich je nach Benutzer ändern kann. Andernfalls kann der Inhalt an andere Benutzer weitergegeben werden. Die Einstellung [Expires](/content/headers#expires) hat die gleiche Wirkung, falls Sie `expires: 0` eingestellt haben.
+
 ### Datum-Format
 
 ```yaml
@@ -135,6 +137,8 @@ expires: 604800
 ```
 
 Verfallszeit der Seite in Sekunden (604800 Sekunden = 7 Tage) (`no cache` ist auch möglich).
+
+! Achten Sie darauf, dass Sie die Einstellung `expires: 0` verwenden, falls die Seite Informationen enthält, die sich je nach Benutzer ändern können. Andernfalls kann der Inhalt an andere Benutzer weitergegeben werden.
 
 ### Externe Url
 
@@ -257,7 +261,7 @@ Wenn auf `true` gesetzt, erfolgt die Twig-Verarbeitung vor der Markdown-Verarbei
 ### Datum der Veröffentlichung
 
 ```yaml
-publish_date: 01/23/2015 13:00
+publish_date: 01/23/2020 13:00
 ```
 
 Optionales Feld, man kann ein Datum angeben, um die Veröffentlichung automatisch auszulösen. Gültige Werte sind alle String-Datumswerte, die [strtotime()](https://www.php.net/manual/de/function.strtotime.php) unterstützt.
@@ -382,7 +386,7 @@ Mit Hilfe des Seiten-Headers `template_format` können wir dem Browser sagen, wi
 ### Unpublish Date (Datum der Aufhebung der Veröffentlichung)
 
 ```yaml
-unpublish_date: 05/17/2015 00:32
+unpublish_date: 05/17/2020 00:32
 ```
 
 Optionales Feld, kann aber ein Datum angeben, um automatisch die Aufhebung der Veröffentlichung zu bewirken. Gültige Werte sind alle String-Datumswerte, die [strtotime()](https://php.net/manual/en/function.strtotime.php) unterstützt.
@@ -424,9 +428,9 @@ Von Twig aus könnten Sie dann auf diese Daten zugreifen:
 
 [prism classes="language-twig line-numbers"]
 <section id="author-details">
-    <h2>{{ page.header.author.name }}</h2>
-    <p>{{ page.header.author.bio }}</p>
-    <span>Contact: <a href="https://twitter.com/{{ page.header.author.twitter }}"><i class="fa fa-twitter"></i></a></span>
+    <h2>{{ page.header.author.name|e }}</h2>
+    <p>{{ page.header.author.bio|e }}</p>
+    <span>Contact: <a href="https://twitter.com/{{ page.header.author.twitter|e }}"><i class="fa fa-twitter"></i></a></span>
 </section>
 [/prism]
 
@@ -521,10 +525,6 @@ Das erzeugt das entsprechende HTML:
 Eine vollständige Übersicht über alle Twitter-Metatags, die verwendet werden können, finden Sie in der [offiziellen Dokumentation](https://dev.twitter.com/cards/overview).
 
 Das bietet wirklich eine enorme Flexibilität und Leistungsstärke.
-
-## Header-Zeilen der Kollektionen
-
-Die Kollektionen sind „erwachsen“ geworden! Alle Informationen zu den **Kollektion-Headers** sind jetzt in einen [eigenen Kapitel](../collections) zusammengefasst.
 
 ## Frontmatter.yaml
 

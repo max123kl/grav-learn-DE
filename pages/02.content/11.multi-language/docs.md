@@ -14,7 +14,6 @@ Wenn Sie nur eine Sprache verwenden, aktivieren Sie Übersetzungen und fügen Si
 
 [prism classes="language-yaml line-numbers"]
 languages:
-  translations: true
   supported:
     - fr
 [/prism]
@@ -34,13 +33,20 @@ Ist die Mehrsprachen-Unterstützung aktiviert, sucht Grav nach der entsprechende
 
 ### Sprach-Konfiguration
 
-Zunächst müssen Sie einige grundlegende Einstellungen für die Sprache in Ihrer Datei `user/config/system.yaml` vornehmen.
+Zunächst müssen Sie einige grundlegende Einstellungen für die Sprache in Ihrer Datei `user/config/system.yaml` vornehmen (zur besseren Verständlichkeit mit Kommentaren).
 
 [prism classes="language-yaml line-numbers"]
 languages:
-  supported:
-    - en
-    - fr
+  supported: # Supported languages:
+    - en # English language
+    - fr # French language
+  default_lang: en # Set default language to English
+  include_default_lang: true # If true, use /en/path instead of /path for default English language.
+[version=17]  include_default_lang_file_extension: true # If true, use .en.md file extension instead of .md for default langauge.
+  content_fallback:
+    en: ['en'] # No fallback for English.
+    fr: ['fr', 'en'] #  French falls back to English version of the page.
+[/version]
 [/prism]
 
 Durch die Einrichtung eines `languages` Blocks mit einer Liste der „unterstützten“ (`supported`) Sprachen haben Sie die Mehrsprachen-Unterstützung innerhalb von Grav wirksam aktiviert.
@@ -49,13 +55,27 @@ In diesem Beispiel können Sie sehen, dass zwei unterstützte Sprachen angegeben
 
 Wenn keine Sprache explizit angefordert wird (über die URL oder per Code), verwendet Grav die angegebene Sprachreihenfolge zur Auswahl der richtigen Sprache.  Im vorstehenden Beispiel ist die **Standardsprache** also `en` oder Englisch. Wenn Sie `fr` zuerst angeben hätten, wäre Französisch die Standardsprache.
 
+[version=17]
+Standardmäßig fallen alle Sprachen auf die Standardsprache zurück. Wenn Sie dies nicht wünschen, können Sie die Sprach-Fallbacks mit Hilfe von `content_fallback` überschreiben, wobei der Schlüssel die Sprache und der Wert das Array mit den Sprachen ist.
+[/version]
+
 !! Sie können natürlich so viele Sprachen zur Auswahl anbieten, wie Sie möchten und sogar Gebietsschema-Codes wie `en-GB`, `en-US` und `fr-FR` verwenden.  Wenn Sie diese Gebietsschema-basierte Benennung verwenden, müssen Sie _alle_ kurzen Sprachcodes durch die Gebietsschema-Versionen ersetzen.
 
 ### Seiten in mehreren Sprachen
 
 Normalerweise wird in Grav jede Seite durch eine einzelne Markdown-Datei wiedergegeben, zum Beispiel `default.md`. Wenn Sie die Mehrsprachen-Unterstützung aktivieren, sucht Grav nach der passenden Markdown-Datei mit dem entsprechenden Dateinamen. Da, im Beispiel, Englisch unsere Standardsprache ist, wird zuerst die Datei `default.en.md` erwartet.
 
+[version=15]
 Wenn diese Datei nicht gefunden wird, wird die nächste Sprache getestet und nach `default.fr.md` gesucht. Erst wenn auch diese Datei nicht gefunden wird, greift Grav auf den Grav-Standard zurück und sucht nach `default.md`, um die Informationen der Seite anzuzeigen.
+[/version]
+[version=16]
+Wenn diese Datei nicht gefunden wird, wird die nächste Sprache getestet und nach `default.fr.md` gesucht. Erst wenn auch diese Datei nicht gefunden wird, greift Grav auf den Grav-Standard zurück und sucht nach `default.md`, um die Informationen der Seite anzuzeigen.
+[/version]
+[version=17]
+Wenn diese Datei nicht gefunden wird, greift Grav auf den Grav-Standard zurück und sucht nach `default.md`, um die Informationen der Seite anzuzeigen.
+
+!! Dieses Standardverhalten hat sich in **Grav 1.7** geändert. In der Vergangenheit zeigte Grav nicht existierende englische Seiten in Französisch an, jetzt fallen alle Sprachen nur noch auf die Standardsprache zurück, wenn nicht anderes in `content_fallback` angegeben ist. Wenn die Seite also in keiner der Fallback-Sprachen gefunden werden kann, wird stattdessen die Fehlerseite **404 Error Page** angezeigt.
+[/version]
 
 Wenn wir die einfachsten Grav-Sites mit einer einzigen `01.home/default.md` Datei haben sollten, dann könnten wir damit beginnen die `default.md` in `default.en.md` umbenennen. Der Inhalt könnte dann so aussehen:
 
@@ -79,6 +99,10 @@ Ceci est ma page d'accueil générée par Grav !
 
 Damit haben Sie zwei Seiten für Ihre aktuelle Homepage in verschiedenen Sprachen eingerichtet.
 
+[version=17]
+! Wenn Sie eine bestehende Website für die Verwendung mehrerer Sprachen konvertieren, können Sie alternativ `include_default_lang_file_extension: false` setzen, um die einfache Dateierweiterung `.md` weiterhin für Ihre Hauptsprache verwenden zu können. [Mehr Informationen...](/content/multi-language#default-file-extension).
+[/version]
+
 ### Aktive Sprache über die URL
 
 Da Englisch die Standardsprache ist, würden Sie mit Ihrem Browser, ohne eine Sprache anzugeben, den Inhalt wie in der Datei `default.en.md` beschrieben erhalten. Sie könnten auch explizit Englisch anfordern, indem Sie Ihren Browser auf folgendes richten:
@@ -93,6 +117,8 @@ Um die französische Version aufzurufen, würden Sie folgende Methode verwenden:
 http://yoursite.com/fr
 [/prism]
 
+! Wenn Sie es vorziehen, kein Sprachpräfix für die Standardsprache zu verwenden, setzen Sie `include_default_lang: false`. [Mehr Informationen...](/content/multi-language#default-language-prefix).
+
 ### Aktive Sprache über den Browser
 
 Bei den meisten Browsern können Sie konfigurieren, in welchen Sprachen Sie die Inhalte bevorzugt sehen möchten. Grav hat die Fähigkeit, diese Werte für `http_accept_language` zu lesen und sie mit den aktuell unterstützten Sprachen für die Website zu vergleichen. Falls keine bestimmte Sprache erkannt wurde, zeigt Grav Ihnen den Inhalt in der von Ihnen bevorzugten Sprache an.
@@ -101,8 +127,20 @@ Damit diese Funktion einwandfrei arbeitet, müssten Sie im Abschnitt `languages:
 
 [prism classes="language-yaml line-numbers"]
 languages:
-  http_accept_language: false
+  http_accept_language: true
 [/prism]
+
+
+### Session-Based Active Language
+
+If you wish to remember the active language independently from the URL, you can activate **session-based** storage of the active language.  To enable this, you must ensure you have `session: enabled: true` in [the system.yaml](../../basics/grav-configuration).  Then you need to enable the language setting:
+
+[prism classes="language-yaml line-numbers"]
+languages:
+  session_store_active: true
+[/prism]
+
+Damit wird die aktive Sprache in der Sitzung gespeichert.
 
 ### Gebietsschema auf die aktive Sprache einstellen
 
@@ -122,6 +160,17 @@ languages:
     include_default_lang: false
 [/prism]
 
+[version=17]
+### Standard-Dateierweiterung
+
+Wenn Sie eine bestehende Website für die Verwendung mehrerer Sprachen konvertieren, kann es eine gewaltige Aufgabe sein, alle bestehenden Seiten so zu konvertieren, dass sie die neue Sprachdateierweiterung `.en.md` verwenden (falls Sie Englisch verwenden wollen). Sie sollten in dieser Situation eventuell die Spracherweiterung für Ihre Originalsprache deaktivieren.
+
+[prism classes="language-yaml line-numbers"]
+languages:
+    include_default_lang_file_extension: false
+[/prism]
+[/version]
+
 ### Routing für mehrere Sprachen
 
 Grav verwendet normalerweise die Namen der Ordner, um eine URL-Route für eine bestimmte Seite zu erzeugen.  Auf diese Weise kann die Architektur der Site leicht verstanden und als verschachtelter Satz von Ordnern umgesetzt werden.  Bei einer mehrsprachigen Website kann es jedoch sinnvoll sein, eine URL zu verwenden, die in der jeweiligen Sprache verständlicher ist.
@@ -129,16 +178,16 @@ Grav verwendet normalerweise die Namen der Ordner, um eine URL-Route für eine b
 Angenommen, wir haben die folgende Ordnerstruktur:
 
 [prism classes="language-yaml line-numbers"]
-- 01.Animals
-  - 01.Mammals
-    - 01.Bats
-    - 02.Bears
-    - 03.Foxes
-    - 04.Cats
-  - 02.Reptiles
-  - 03.Birds
-  - 04.Insets
-  - 05.Aquatic
+- 01.animals
+  - 01.mammals
+    - 01.bats
+    - 02.bears
+    - 03.foxes
+    - 04.cats
+  - 02.reptiles
+  - 03.birds
+  - 04.insets
+  - 05.aquatic
 [/prism]
 
 This would produce URLs such as `http://yoursite.com/animals/mammals/bears`.  This is great for an English site, but if you wished to have a French version you would prefer these to be translated appropriately. The easiest way to achieve this is to add a custom [slug](../headers#slug) for each of the `fr.md` page files.  for example, the mammal page might look something like:
@@ -154,7 +203,7 @@ Les mammifères (classe des Mammalia) forment un taxon inclus dans les vertébr�
 
 Zusammen mit den entsprechenden **Slug-Overrides** in den anderen Dateien sollte dies zu der wesentlich „französischer“ aussehenden URL `http://yoursite.com/animaux/mammiferes/ours` führen!
 
-Eine weitere Möglichkeit besteht darin, die neue Unterstützung für [Routen auf Seitenebene](../headers#routes) zu nutzen und einen vollständigen Route-Alias für die Seite anzugeben.
+Eine weitere Möglichkeit besteht darin, die [Routen-Unterstützung auf Seitenebene](../headers#routes) zu nutzen und einen vollständigen Route-Alias für die Seite anzugeben.
 
 ### Sprachbasierte Homepage
 
@@ -194,20 +243,20 @@ Damit haben Sie zwei Möglichkeiten, sprachspezifische Twig-Overrides zur Verfü
 Der einfachste Weg, diese Übersetzungs-Strings in Ihren Twig-Templates zu verwenden, ist die Verwendung des Twig-Filters `|t`.  Sie können auch die Twig-Funktion `t()` verwenden, aber offen gesagt ist der Filter klarer und macht dasselbe:
 
 [prism classes="language-twig line-numbers"]
-<h1 id="site-name">{{ "SITE_NAME"|t }}</h1>
+<h1 id="site-name">{{ "SITE_NAME"|t|e }}</h1>
 <section id="header">
-    <h2>{{ "HEADER.MAIN_TEXT"|t }}</h2>
-    <h3>{{ "HEADER.SUB_TEXT"|t }}</h3>
+    <h2>{{ "HEADER.MAIN_TEXT"|t|e }}</h2>
+    <h3>{{ "HEADER.SUB_TEXT"|t|e }}</h3>
 </section>
 [/prism]
 
 Mit Hilfe der Twig-Funktion `t()` ist die Lösung ähnlich:
 
 [prism classes="language-twig line-numbers"]
-<h1 id="site-name">{{ t("SITE_NAME") }}</h1>
+<h1 id="site-name">{{ t("SITE_NAME")|e }}</h1>
 <section id="header">
-    <h2>{{ t("HEADER.MAIN_TEXT") }}</h2>
-    <h3>{{ t("HEADER.SUB_TEXT") }}</h3>
+    <h2>{{ t("HEADER.MAIN_TEXT")|e }}</h2>
+    <h3>{{ t("HEADER.SUB_TEXT")|e }}</h3>
 </section>
 [/prism]
 
@@ -222,7 +271,7 @@ en:
 Sie könnten die passende Übersetzung für den Monat eines Beitrags mit den folgenden Angaben erhalten:
 
 [prism classes="language-twig line-numbers"]
-{{ 'GRAV.MONTHS_OF_THE_YEAR'|ta(post.date|date('n') - 1) }}
+{{ 'GRAV.MONTHS_OF_THE_YEAR'|ta(post.date|date('n') - 1)|e }}
 [/prism]
 
 Man kann auch die Twig-Funktion mit `ta()` verwenden.
@@ -238,7 +287,7 @@ SIMPLE_TEXT: There are %d monkeys in the %s
 Und dann können Sie diese Variablen mit Twig ergänzen:
 
 [prism classes="language-twig line-numbers"]
-{{ "SIMPLE_TEXT"|t(12, "London Zoo") }}
+{{ "SIMPLE_TEXT"|t(12, "London Zoo")|e }}
 [/prism]
 
 die zur eigentlichen Übersetzung führen:
@@ -252,7 +301,7 @@ There are 12 monkeys in the London Zoo
 Manchmal ist es erforderlich, komplexe Übersetzungen mit Ersetzungen in den einzelnen Sprachen durchzuführen.  Sie können die volle Leistung der `translate()` Methode für Sprachobjekte mit dem `tl` Filter/Funktion ausnutzen.  Zum Beispiel:
 
 [prism classes="language-twig line-numbers"]
-{{ ["SIMPLE_TEXT", 12, 'London Zoo']|tl(['fr']) }}
+{{ ["SIMPLE_TEXT", 12, 'London Zoo']|tl(['fr'])|e }}
 [/prism]
 
 Wird den String `SIMPLE_TEXT` übersetzen und die Platzhalter durch `12` bzw. `London Zoo` ersetzen.  Es wird außerdem ein Array mit Sprachübersetzungen übergeben, das in der Reihenfolge „first-find-first-used“ durchlaufen wird.  Das Ergebnis wird in französischer Sprache ausgegeben:
@@ -390,20 +439,9 @@ languages:
 
 !!! Helfen Sie Grav, einer größeren Anzahl von Benutzern zugänglich zu werden und stellen Sie Übersetzungen in **Ihrer Sprache** zur Verfügung. Wir verwenden die [Crowdin-Übersetzungsplattform](https://crowdin.com/), um die Übersetzung des [Grav-Kerns](https://crowdin.com/project/grav-core) und des [Grav-Admin-Plugins](https://crowdin.com/project/grav-admin) zu ermöglichen. [Melden Sie sich an](https://crowdin.com/join) und beginnen Sie noch heute mit dem Übersetzen!
 
-### Sitzungsbasierte aktive Sprache
-
-Wenn Sie die aktive Sprache unabhängig von der URL beibehalten wollen, können Sie die **sitzungsbasierte** Speicherung der aktiven Sprache aktivieren. Dazu müssen Sie in der [system.yaml](../../basics/grav-configuration) den Eintrag `session: enabled: true` vornehmen. Danach müssen Sie die Spracheinstellung aktivieren:
-
-[prism classes="language-yaml line-numbers"]
-languages:
-  session_store_active: true
-[/prism]
-
-Damit wird die aktive Sprache der Sitzung gespeichert.
-
 ### Language-Switcher für die Sprachumschaltung
 
-Sie können ein einfaches Plugin zur **Sprachumschaltung** über das Admin-Plugin oder über den GPM herunterladen:
+Sie können ein einfaches Plugin zur Sprachumschaltung **Language Switching**  über das Admin-Plugin oder über den GPM herunterladen:
 
 [prism classes="language-bash command-line"]
 bin/gpm install langswitcher
@@ -451,7 +489,7 @@ Häufig besteht die Notwendigkeit, auf den Sprachstatus und die Logik von Twig-T
 Um die richtige Version des Bildes anzeigen zu können, müssten Sie die aktuelle, aktive Sprache kennen.  Unter Grav geschieht das durch Zugriff auf das Objekt `Language` über das Objekt `Grav` und den Aufruf des entsprechenden Verfahrens. Im Beispiel oben könnte dies mit dem folgenden Twig-Code erreicht werden:
 
 [prism classes="language-twig line-numbers"]
-{{ page.media.images['myimage.'~grav.language.getActive~'.jpg'].html }}
+{{ page.media.images['myimage.'~grav.language.getActive~'.jpg'].html()|raw }}
 [/prism]
 
 Der Aufruf `getActive` in Twig bewirkt, dass `Language->getActive()` aufgefordert wird, den aktuellen aktiven Sprachcode zurückzuliefern. Ein paar weitere nützliche Language-Methoden sind:

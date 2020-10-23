@@ -184,8 +184,8 @@ Dadurch können Sie eine große Palette von Funktionen von jeder Seite Ihrer Gra
 [prism classes="language-twig line-numbers"]
 # All Projects
 <ul>
-{% for p in page.find('/projects').children if p != page %}
-<li><a href="{{p.url}}">{{ p.title }}</a></li>
+{% for p in pages.find('/projects').children if p != page %}
+<li><a href="{{ p.url|e }}">{{ p.title|e }}</a></li>
 {% endfor %}
 </ul>
 [/prism]
@@ -203,7 +203,7 @@ Hier kommt `contentMeta()` ins Spiel. Wir verwenden ContentMeta in unserem [Shor
 
 {% verbatim %}
 [prism classes="language-twig line-numbers"]
-<div id="author">{{ page.find('/my/custom/page').contentMeta.shortcodeMeta.shortcode.section.author }}</div>
+<div id="author">{{ page.find('/my/custom/page').contentMeta.shortcodeMeta.shortcode.section.author|e }}</div>
 [/prism]
 {% endverbatim %}
 

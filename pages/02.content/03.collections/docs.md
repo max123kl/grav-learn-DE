@@ -44,8 +44,8 @@ Sobald diese Kollektion in den Kopfzeilen definiert ist, erstellt Grav eine Koll
 
 [prism classes="language-twig line-numbers"]
 {% for p in page.collection %}
-<h2>{{ p.title }}</h2>
-{{ p.summary }}
+<h2>{{ p.title|e }}</h2>
+{{ p.summary|raw }}
 {% endfor %}
 [/prism]
 
@@ -55,8 +55,8 @@ Sie können auch einen Parameter für die Reihenfolge angeben, um die voreingest
 
 [prism classes="language-twig line-numbers"]
 {% for p in page.collection.order('folder','asc') %}
-<h2>{{ p.title }}</h2>
-{{ p.summary }}
+<h2>{{ p.title|e }}</h2>
+{{ p.summary|raw }}
 {% endfor %}
 [/prism]
 
@@ -427,11 +427,11 @@ Here is an example taken from the **Learn2** theme's **docs.html.twig** that def
 {% block navigation %}
         <div id="navigation">
         {% if not progress.isFirst(page.path) %}
-            <a class="nav nav-prev" href="{{ progress.nextSibling(page.path).url }}"> <i class="fa fa-chevron-left"></i></a>
+            <a class="nav nav-prev" href="{{ progress.nextSibling(page.path).url|e }}"> <i class="fa fa-chevron-left"></i></a>
         {% endif %}
 
         {% if not progress.isLast(page.path) %}
-            <a class="nav nav-next" href="{{ progress.prevSibling(page.path).url }}"><i class="fa fa-chevron-right"></i></a>
+            <a class="nav nav-next" href="{{ progress.prevSibling(page.path).url|e }}"><i class="fa fa-chevron-right"></i></a>
         {% endif %}
         </div>
 {% endblock %}
@@ -503,7 +503,7 @@ If you need to programmatically generate a collection, you can do so by calling 
 
 <ul>
 {% for p in my_collection %}
-<li>{{ p.title }}</li>
+<li>{{ p.title|e }}</li>
 {% endfor %}
 </ul>
 [/prism]
@@ -526,9 +526,9 @@ menu: Home
 {% if p.header.menu %}
 	<ul>
 	{% if page.slug == p.slug %}
-		<li class="{{ p.slug }} active"><span>{{ p.menu }}</span></li>
+		<li class="{{ p.slug|e }} active"><span>{{ p.menu|e }}</span></li>
 	{% else %}
-		<li class="{{ p.slug }}"><a href="{{ p.url }}">{{ p.menu }}</a></li>
+		<li class="{{ p.slug|e }}"><a href="{{ p.url|e }}">{{ p.menu|e }}</a></li>
 	{% endif %}
 	</ul>
 {% endif %}
@@ -549,9 +549,9 @@ After we pass the collection and the limit to the `paginate()` function, we also
 {% for p in my_collection %}
     <ul>
         {% if page.slug == p.slug %}
-            <li class="{{ p.slug }} active"><span>{{ p.menu }}</span></li>
+            <li class="{{ p.slug|e }} active"><span>{{ p.menu|e }}</span></li>
         {% else %}
-            <li class="{{ p.slug }}"><a href="{{ p.url }}">{{ p.menu }}</a></li>
+            <li class="{{ p.slug|e }}"><a href="{{ p.url|e }}">{{ p.menu|e }}</a></li>
         {% endif %}
     </ul>
 {% endfor %}
@@ -598,7 +598,7 @@ content:
 ...
 [/prism]
 
-So the collection is simply defined by the `self@.chidren` directive to get all the published children of the current page. So what about those pages that have the `display_in_listing: false` set? We need to do some extra work on that collection before it is returned to ensure we remove any items that we don't want to see.  To do this we can use the `onCollectionProcessed()` event in a custom plugin.  We need to add the listener:
+So the collection is simply defined by the `self@.children` directive to get all the published children of the current page. So what about those pages that have the `display_in_listing: false` set? We need to do some extra work on that collection before it is returned to ensure we remove any items that we don't want to see.  To do this we can use the `onCollectionProcessed()` event in a custom plugin.  We need to add the listener:
 
 [prism classes="language-php line-numbers"]
     public static function getSubscribedEvents()

@@ -29,13 +29,13 @@ This is **bold** and this _underlined_
 
 Der Scripts-Tag ist praktisch gesehen ein Komfort-Tag, der Ihr Twig im Vergleich zum üblichen Ansatz `{% do assets...%}` besser lesbar erhält.  Er ist lediglich eine alternative Art, um Inhalte zu schreiben.
 
-#### File
+#### Script File
 
 [prism classes="language-twig line-numbers"]
 {% script 'theme://js/something.js' in 'bottom' priority: 20 with { defer: true, async: true } %}
 [/prism]
 
-#### Inline
+#### Inline Script
 
 [prism classes="language-twig line-numbers"]
 {% script in 'bottom' priority: 20 %}
@@ -45,13 +45,13 @@ Der Scripts-Tag ist praktisch gesehen ein Komfort-Tag, der Ihr Twig im Vergleich
 
 ### CSS-Styles
 
-#### File
+#### CSS File
 
 [prism classes="language-twig line-numbers"]
 {% style 'theme://css/foo.css' priority: 20 %}
 [/prism]
 
-#### Inline
+#### Inline CSS
 
 [prism classes="language-twig line-numbers"]
 {% style priority: 20 with { media: 'screen' } %}
@@ -74,11 +74,12 @@ In den meisten Programmiersprachen ist die Verwendung einer `switch`-Anweisung d
 {% endswitch %}
 [/prism]
 
+[version=16,17]
 ### Deferred Blocks
 
-Eine große Neuerung in Grav 1.6 ist die Funktion **deferred blocks** (verzögerte Blöcke).  Bei herkömmlichen Blöcken kann ein einmal gerenderter Block nicht mehr manipuliert werden.  Nehmen wir das Beispiel eines `{% block scripts %}`, das einige Einträge für JavaScript-Includes enthalten könnte. Wenn Sie eine untergeordnete Twig-Vorlage haben und Sie eine Basisvorlage erweitern, in der dieser Block definiert ist, können Sie den Block erweitern und Ihre eigenen JavaScript-Einträge hinzufügen.  Partielle Twig-Templates, die von dieser Seite aus eingebunden werden, können den Block jedoch nicht erreichen oder mit ihm interagieren.
+Bei traditionellen Blöcken kann ein einmal gerenderter Block nicht mehr manipuliert werden.  Nehmen wir das Beispiel eines `{%-Block-Skripts %}`, das einige Einträge für JavaScript-Includes enthalten könnte.  Wenn Sie ein untergeordnetes Twig-Template haben und ein Basis-Template erweitern, in dem dieser Block definiert ist, können Sie den Block erweitern und Ihre eigenen JavaScript-Einträge hinzufügen.  Allerdings können partielle Twig-Templates, die von dieser Seite aus eingebunden werden, den Block nicht aufrufen oder mit ihm interagieren.
 
-Das verzögerte Attribut des Blocks, das durch die [Deferred Extension](https://github.com/rybakit/twig-deferred-extension) (verzögerte Erweiterung) aktiviert wird, bedeutet, dass Sie diesen Block in jedem Twig-Template definieren können, aber sein Rendern wird verzögert, so dass er nach allem anderen gerendert wird. Das bedeutet, dass Sie JavaScript-Referenzen über den Aufruf `{% do assets.addJs() %}` von überall in Ihrer Seite aus hinzufügen können, und da das Rendering verzögert ist, enthält die Ausgabe alle Assets, die Grav kennt, unabhängig davon, wann Sie sie hinzugefügt haben.
+Das „verzögerte“ Attribut des Blocks, das durch die [Deferred Extension](https://github.com/rybakit/twig-deferred-extension) (verzögerte Erweiterung) aktiviert wird, bedeutet, dass Sie diesen Block in jedem Twig-Template definieren können, aber sein Rendern wird verzögert, so dass er nach allem anderen gerendert wird. Das bedeutet, dass Sie JavaScript-Referenzen über den Aufruf `{% do assets.addJs() %}` von überall in Ihrer Seite aus hinzufügen können, und da das Rendering verzögert ist, enthält die Ausgabe alle Assets, die Grav kennt, unabhängig davon, wann Sie sie hinzugefügt haben.
 
 [prism classes="language-twig line-numbers"]
 {% block myblock deferred %}
@@ -86,7 +87,6 @@ Das verzögerte Attribut des Blocks, das durch die [Deferred Extension](https://
 {% endblock %}
 [/prism]
 
-[version=16]
 ### Eine Exception auslösen
 
 Es gibt bestimmte Situationen, in denen Sie eine Exception manuell auslösen müssen, daher haben wir auch dafür ein Tag.
@@ -109,9 +109,10 @@ Außerdem ist es nützlich, eine leistungsfähigere Fehlerbehandlung im PHP-Stil
 
 ### Render Object (nur Flex)
 
-Flex-Objekte finden langsam ihren Weg in immer mehr Elemente von Grav.  Dabei handelt es sich um eigenständige Objekte, denen eine Twig-Template-Struktur zugeordnet ist, so dass sie sich selbst zu rendern wissen.  Um diese zu verwenden, haben wir einen neuen Tag `render` implementiert, der ein optionales Layout verwendet, das wiederum steuert, mit welchem der Template-Layouts das Objekt gerendert werden soll.
+Flex-Objekte finden langsam ihren Weg in immer mehr Elemente von Grav.  Dabei handelt es sich um eigenständige Objekte, die über eine zugehörige Twig-Template-Struktur verfügen, so dass sie sich automatisch rendern können.  Für deren Verwendung haben wir den neuen Tag `render` eingeführt, der ein optionales Layout nutzt, das wiederum steuert, mit welchem der Template-Layouts das Objekt gerendert werden soll.
 
 [prism classes="language-twig line-numbers"]
+{% render collection layout: 'list' %}
 {% render object layout: 'default' with { variable: 'value' } %}
 [/prism]
 [/version]

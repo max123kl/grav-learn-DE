@@ -6,7 +6,7 @@ taxonomy:
     category: docs
 ---
 
-In Grav 1.6 wurde der **Asset-Manager** vollständig neu geschrieben, um einen flexibleren Mechanismus für die Verwaltung von **CSS**- und **JavaScript**-Assets in Themes zu ermöglichen. Der Hauptzweck des Asset-Managers besteht darin, den Prozess des Hinzufügens von Assets aus Themes und Plugins zu vereinfachen und gleichzeitig erweiterte Funktionen wie Priorität und eine **Asset-Pipeline** bereitzustellen, mit der Assets **minimiert**, **komprimiert** und **inline** verwaltet werden können, um die Anzahl der Browser-Anfragen und auch die Gesamtgröße der Assets zu reduzieren.
+In Grav 1.6 wurde der **Asset-Manager** vollständig neu programmiert, um einen flexibleren Mechanismus für die Verwaltung von **CSS**- und **JavaScript**-Assets in Themes zu ermöglichen. Der Hauptzweck des Asset-Managers besteht darin, den Prozess des Hinzufügens von Assets aus Themes und Plugins zu vereinfachen und gleichzeitig erweiterte Funktionen wie Priorität und eine **Asset-Pipeline** bereitzustellen, mit der Assets **minimiert**, **komprimiert** und **inline** verwaltet werden können, um die Anzahl der Browser-Anfragen und auch die Gesamtgröße der Assets zu reduzieren.
 
 Er ist viel flexibler und zuverlässiger als früher. Außerdem ist er wesentlich übersichtlicher und leichter verständlich, wenn man anfängt, sich durch den Code zu kämpfen. Der Asset Manager ist in ganz Grav verfügbar und kann in Plugin-Event-Hooks, aber auch direkt in Themes über Twig-Calls angesprochen werden.
 
@@ -24,7 +24,7 @@ assets:                                # Configuration for Assets Manager (JS, C
   css_pipeline_include_externals: true # Include external URLs in the pipeline by default
   css_pipeline_before_excludes: true   # Render the pipeline before any excluded files
   css_minify: true                     # Minify the CSS during pipelining
-  css_minify_windows: false            # Minify Override for Windows platforms. False by default due to ThreadStackSize
+  css_minify_windows: false            # Minify Override for Windows platforms, also applies to js. False by default due to ThreadStackSize
   css_rewrite: true                    # Rewrite any CSS relative URLs during pipelining
   js_pipeline: false                   # The JS pipeline is the unification of multiple JS resources into one file
   js_pipeline_include_externals: true  # Include external URLs in the pipeline by default
@@ -39,8 +39,8 @@ assets:                                # Configuration for Assets Manager (JS, C
 
 Es gibt mehrere Ebenen der Positionskontrolle, wie in der folgenden Abbildung dargestellt.  In der Reihenfolge ihres Anwendungsbereichs sind dies:
 
-* **Group** – erlaubt die Gruppierung von Assets wie `head` ( Voreinstellung) und `bottom`
-* **Position** – `before`, `pipeline`(Voreinstellung) und `after`.  Im Prinzip erlaubt das Ihnen die Angabe, wo in der Gruppe die Assets geladen werden sollen.
+* **Group** – erlaubt die Gruppierung von Assets wie `head` (Vorgabe) und `bottom`
+* **Position** – `before`, `pipeline`(Vorgabe) und `after`.  Im Prinzip erlaubt das Ihnen die Angabe, wo in der Gruppe die Assets geladen werden sollen.
 * **Priority** – steuert die **Reihenfolge**. Dabei werden größere Integerzahlen (z.B. `100`) vor kleineren Integerzahlen ausgegeben. `10` ist die Standardeinstellung.
 
 [prism classes="language-text"]
@@ -132,7 +132,7 @@ Ein Beispiel dafür, wie Sie CSS-Dateien in Ihr Theme einfügen können, finden 
     {% endblock %}
     </head>
 
-    <body>    
+    <body>
     ...
 
     {% block bottom %}
@@ -190,7 +190,7 @@ Where appropriate, you can pass in an array of asset options. The core options a
 
 * **priority**: Integer value (default value is `10`)
 
-* **position**: `pipeline` is default but can also be `before` or `after` the assets in `pipeline` position.  
+* **position**: `pipeline` is default but can also be `before` or `after` the assets in `pipeline` position.
 
 * **loading**: `inline` if this asset should be output inline rather (default: referenced via a link to the stylesheet). Should be used in conjunction with `position: before` or `position: after` as it will have no effect with `position: pipeline` (default).
 
@@ -313,7 +313,7 @@ To take advantage of this capability you must specify the group when adding the 
 Then for these assets in the bottom group to render, you must add the following to your theme:
 
 [prism classes="language-twig"]
-{{ assets.js('bottom') }}
+{{ assets.js('bottom')|raw }}
 [/prism]
 
 If no group is defined for an asset, then `head` is the default group.  If no group is set for rendering, the `head` group will be rendered. This ensures the new functionality is 100% backwards compatible with existing themes.
@@ -328,7 +328,7 @@ and to render:
 
 
 [prism classes="language-twig"]
-{{ assets.css('ie') }}
+{{ assets.css('ie')|raw }}
 [/prism]
 
 ## Change attribute of the rendered CSS/JS assets
@@ -342,7 +342,7 @@ Example of editing the `rel` attribute on a group of assets:
 [prism classes="language-twig line-numbers"]
 {% do assets.addCSS('theme://whatever.css', {'group':'my-alternate-group'}) %}
 ...
-{{ assets.css('my-alternate-group', {'rel': 'alternate'}) }}
+{{ assets.css('my-alternate-group', {'rel': 'alternate'})|raw }}
 [/prism]
 
 ## Inlining Assets
@@ -371,18 +371,18 @@ assets:
 The template inserts each collection into its corresponding group, namely `head` and `head-link` for CSS, `head` and `head-async` for JS. The default group `head` is used for inline loading in each case:
 
 [prism classes="language-twig line-numbers"]
-        {% block stylesheets %}
-            {% do assets.addCss('css-inline') %}
-            {% do assets.addCss('css-link', {'group': 'head-link'}) %}
-        {% endblock %}
-        {{ assets.css('head-link') }}
-        {{ assets.css('head', {'loading': 'inline'}) }}
-        {% block javascripts %}
-            {% do assets.addJs('js-inline') %}
-            {% do assets.addJs('js-async', {'group': 'head-async'}) %}
-        {% endblock %}
-        {{ assets.js('head-async', {'loading': 'async'}) }}
-        {{ assets.js('head', {'loading': 'inline'}) }}
+{% block stylesheets %}
+    {% do assets.addCss('css-inline') %}
+    {% do assets.addCss('css-link', {'group': 'head-link'}) %}
+{% endblock %}
+{{ assets.css('head-link')|raw }}
+{{ assets.css('head', {'loading': 'inline'})|raw }}
+{% block javascripts %}
+    {% do assets.addJs('js-inline') %}
+    {% do assets.addJs('js-async', {'group': 'head-async'}) %}
+{% endblock %}
+{{ assets.js('head-async', {'loading': 'async'})|raw }}
+{{ assets.js('head', {'loading': 'inline'})|raw }}
 [/prism]
 
 
@@ -391,11 +391,11 @@ The template inserts each collection into its corresponding group, namely `head`
 Sometimes there is a need to reference assets without using the Asset Manager.  There is a `url()` helper method available to achieve this.  An example of this could be if you wanted to reference an image from the theme. The syntax for this is:
 
 [prism classes="language-twig"]
-<img src="{{ url("theme://" ~ widget.image) }}" alt="{{ widget.text|e }}" />
+<img src="{{ url("theme://" ~ widget.image)|e }}" alt="{{ widget.text|e }}" />
 [/prism]
 
 The `url()` method takes an optional second parameter of `true` or `false` to enable the URL to include the schema and domain. By default this value is assumed `false` resulting in just the relative URL.  For example:
 
 [prism classes="language-twig"]
-url("theme://some/extra.css", true)
+<script src="{{ url('theme://some/extra.css', true)|e }}"></script>
 [/prism]

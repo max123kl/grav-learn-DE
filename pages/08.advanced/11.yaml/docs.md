@@ -1,5 +1,5 @@
 ---
-title: YAML Syntax
+title: YAML-Syntax
 page-toc:
   active: true
 taxonomy:
@@ -24,7 +24,7 @@ Es gibt einige Regeln, die in YAML festgelegt sind, um Probleme im Zusammenhang 
 
 * YAML-Dateien sollten, wann immer möglich, in Grav auf `.yaml` enden.
 * In YAML wird zwischen Groß- und Kleinschreibung unterschieden.
-* YAML lässt die Verwendung von Tabulatoren nicht zu. Stattdessen werden Leerzeichen verwendet, da Tabulatoren nicht universell unterstützt werden.
+* YAML lässt die Verwendung von Tabulatoren nicht zu.
 
 Basisdaten-Typen
 -----
@@ -33,7 +33,7 @@ YAML eignet sich hervorragend für die Arbeit mit **mappings** (Hashes / Wörter
 
 ## Scalars
 
-Scalars sind ein ziemlich einfaches Konzept. Das sind die Zeichenfolgen und Zahlen, aus denen sich die Daten auf der Seite zusammensetzen. Ein Skalar könnte eine boolesche Eigenschaft wie `Yes`, eine Ganzzahl (Zahl) wie `5` oder eine Zeichenkette, wie ein Satz oder der Titel Ihrer Website, sein.
+Scalars sind ein ziemlich einfaches Konzept. Das sind die Zeichenfolgen und Zahlen, aus denen sich die Daten auf der Seite zusammensetzen. Ein Skalar könnte eine boolesche Eigenschaft wie `true`, eine Ganzzahl (Zahl) wie `5` oder eine Zeichenkette, wie ein Satz oder der Titel Ihrer Website, sein.
 
 Scalars werden in der Programmierung oft als Variablen bezeichnet. Wenn Sie eine Liste von Tierarten erstellen würden, wären dies die Namen, die diesen Tieren gegeben werden.
 
@@ -43,8 +43,10 @@ Die meisten Scalars werden nicht in Anführungszeichen gesetzt, aber wenn Sie ei
 integer: 25
 string: "25"
 float: 25.0
-boolean: Yes
+boolean: true
 [/prism]
+
+! **TIPP:** Die Worte `true`, `false`, `null`, `~` und das Datum haben in YAML eine besondere Bedeutung. Bitte verwenden Sie diese Wörter in Anführungszeichen, falls Sie sie nicht als booleschen Typ, Null oder datetime verwenden möchten. Dasselbe gilt für Versionsnummern, sie sollten in Anführungszeichen gesetzt werden, um sie von Float-Werten zu unterscheiden.
 
 ## Sequences
 

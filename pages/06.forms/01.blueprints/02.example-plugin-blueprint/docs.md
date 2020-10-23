@@ -54,6 +54,7 @@ Es gibt verschiedene Eigenschaften, die Sie verwenden können, um Ihrer Ressourc
 | _bugs_           | _(optional)_ Die URL, unter der Bugs gemeldet werden können, normalerweise ist dies der Link zu den [GitHub-Issues](https://guides.github.com/features/issues/)  |
 | _license_        | _(optional)_ Die Art der Lizenz Ihrer Ressource (MIT, GPL, usw.). Es wird empfohlen, Ihrer Ressource immer eine `LICENSE` Datei mitzugeben   |
 | _dependencies_   | _(optional)_ Eine Liste der Abhängigkeiten, die das Plugin/Theme benötigt. Wenn jedoch eine optionale GIT-Repository-URL angegeben wird, ist die Installation direkt aus dem Repository ebenfalls eine Option. Auch wenn Sie ein Array verwenden, können Sie einen Namen und eine Version explizit über [Paketversionen im Composer-Stil](https://getcomposer.org/doc/articles/versions.md) definieren |
+| _gpm_            | _(optional)_ Aktualisierungen über den GPM erhalten. Falls auf `false` gesetzt, werden GPM-Updates für Nicht-GPM-Ressourcen deaktiviert. |
 [/div][div class="table"]
 
 Hier folgt ein Beispiel für den Identitätsteil der [GitHub-Plugin](https://github.com/getgrav/grav-plugin-github) Blueprints:

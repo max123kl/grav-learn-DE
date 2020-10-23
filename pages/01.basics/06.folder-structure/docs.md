@@ -14,8 +14,9 @@ Da Grav ein auf **Flat-Files basierendes CMS** ist, bedeutet das, dass es von ke
 /images
 /logs
 /system
-/user
+/tmp
 /vendor
+/user
 [/prism]
 
 Lassen Sie uns daher ein wenig tiefer in die einzelnen Top-Level-Ordner eintauchen und ihren Zweck erklären:
@@ -26,13 +27,13 @@ Der Ordner `assets` wird vom neuen Asset-Management-System innerhalb von Grav zu
 
 !! Dieser Ordner sollte nicht zum Speichern von Nutzerdaten verwendet werden, da er routinemäßig von allen Daten bereinigt wird.
 
-### /bin
-
-Der Ordner bin enthält die [Grav CLI-Software](../grav-cli), mit der einige praktische Aufgaben über die Befehlszeile ausgeführt werden können. Dies ist eine relativ fortgeschrittene Funktion, die in erster Linie für Entwickler gedacht ist, daher werden wir dieses Thema erst zu einem späteren Zeitpunkt behandeln.
-
 ### /backup
 
 Der Ordner `backup` ist der Standardspeicherort für die Grav-Backups.
+
+### /bin
+
+Der Ordner `bin` enthält die [Grav CLI-Software](../../cli-console/grav-cli), mit der einige praktische Aufgaben über die Befehlszeile ausgeführt werden können. Dies ist eine relativ fortgeschrittene Funktion, die in erster Linie für Entwickler gedacht ist, daher werden wir dieses Thema erst zu einem späteren Zeitpunkt behandeln.
 
 ### /cache
 
@@ -58,11 +59,17 @@ Wenn Grav ein Problem entdeckt oder wenn Sie eine extra Protokollierung oder Pro
 
 Der Ordner `system` ist der Bereich, in dem die Dateien, die Grav zum Funktionieren verhelfen.  Sie sollten in diesem Ordner nichts bearbeiten, da ein Update der Grav-Software die Änderungen überschreiben würde.  Wenn Sie etwas ändern müssen, das mit der Funktionsweise von Grav zu tun hat, können Sie die Plugins benutzen, die in späteren Kapiteln besprochen werden.
 
+### /tmp
+
+The `tmp` folder is used by Grav and plugins to store temporary files.
+
+!! This folder should not be used to store any user data, as it is routinely flushed of all data.
+
 ### /vendor
 
 Der Ordner `vendor` enthält wichtige Bibliotheken, auf die sich Grav stützt.  Dieser Ordner ist dem Ordner `system` dahingehend ähnlich, dass sein Inhalt nicht verändert werden sollte, es sei denn, Sie sind sich absolut sicher, was Sie tun.
 
-**(v0.9.2+)**  Sollten Sie [Grav direkt aus GitHub installiert](../installation) haben, dann wurde der Ordner `vendor` nicht mitinstalliert. Um diesen Ordner zu erstellen und zu befüllen, müssen Sie `bin/grav install` oder `composer install` aus dem Stammverzeichnis Ihrer Grav-Instanz ausführen. Weitere Einzelheiten finden Sie im Abschnitt [Installation](../installation).
+Wenn Sie Grav aus GitHub heraus [installiert](../installation) haben, wurde der Ordner `vendor` nicht mit installiert. Um diesen Ordner zu erstellen und zu befüllen, müssen Sie `bin/grav install` oder `composer install` aus dem Stammverzeichnis Ihrer Grav-Instanz ausführen. Weitere Einzelheiten finden Sie im Abschnitt [Installation](../installation).
 
 ### /user
 

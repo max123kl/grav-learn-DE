@@ -111,7 +111,7 @@ zu diesem HTML gerendert:
 <p>Lorem ipsum dolor sit amet, graecis denique ei vel, at duo primis mandamus. Et legere ocurreret pri, animal tacimates complectitur ad cum. Cu eum inermis inimicus efficiendi. Labore officiis his ex, soluta officiis concludaturque ei qui, vide sensibus vim ad.</p>
 [/prism]
 
-Ein **Zeilenumbruch** kann mit 2 Leerzeichen gefolgt von 1 Return erreicht werden.
+Einen **Zeilenumbruch** erreicht man mit 2 Leerzeichen gefolgt von 1 Return.
 
 ## Inline HTML
 
@@ -191,7 +191,7 @@ in HTML:
 
 Zitieren von Inhaltsteilen aus einer anderen Quelle innerhalb Ihres Dokuments:
 
-Fügen Sie `>` vor den Text ein, den Sie zitieren möchten.
+Fügen Sie ein `>` vor dem Text ein, den Sie zitieren möchten.
 
 [prism classes="language-markdown"]
 > **Fusion Drive** combines a hard drive with a flash storage (solid-state drive) and presents it as a single logical volume with the space of both drives combined.

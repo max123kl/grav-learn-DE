@@ -85,7 +85,7 @@ Alle unten aufgeführten Befehle sind mit <strong>jedem Betriebssystem</strong> 
 [/version]
 
 
-[version=16]
+[version=16,17]
 [div class="table table-keycol"]
 | Befehl                            | Beschreibung                                                                                                                                      |
 | :----------------                 | :--------------------------------------                                                                                                           |

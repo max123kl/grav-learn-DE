@@ -22,7 +22,7 @@ Twig-Filter werden in Twig-Variablen eingesetzt. Dabei wird das Zeichen `|` gefo
 
 Nehmen Sie einen relativen Pfad und konvertieren Sie ihn in ein absolutes URL-Format einschließlich des Hostnamens.
 
-`'<img src="/some/path/to/image.jpg" />'|absolute_url` <i class="fa fa-long-arrow-right"></i> `{{ '<img src="/some/path/to/image.jpg" />'|absolute_url }}`
+`'<img src="/some/path/to/image.jpg" />'|absolute_url` <i class="fa fa-long-arrow-right"></i> `{{ '<img src="/some/path/to/image.jpg" />'|absolute_url|raw }}`
 
 #### Array Unique
 
@@ -62,7 +62,7 @@ Konvertiert eine Zeichenfolge in das "CamelCase"-Format
 
 `'send_email'|camelize` <i class="fa fa-long-arrow-right"></i> **{{ 'send_email'|camelize }}**
 
-[version=16]
+[version=16,17]
 #### Chunk Split
 
 Teilt eine Zeichenkette in kleinere Stücke einer vorgegebenen Größe auf.
@@ -125,10 +125,10 @@ Man nimmt eine Nadel und einen Heuhaufen und ermittelt, ob der Heuhaufen mit der
 
 Filtert Feldnamen durch Umwandlung von Punktnotation in Array-Notation
 
-`'field.name|fieldName`
+`'field.name'|fieldName` <i class="fa fa-long-arrow-right"></i> **{{ 'field.name'|fieldName }}**
 
 
-[version=16]
+[version=16,17]
 #### Get Type
 
 Ruft den Typ einer Variablen ab:
@@ -152,7 +152,17 @@ Konvertiert eine Zeichenkette in eine Fassung mit Bindestrich.
 
 Sie können JSON dekodieren, indem Sie einfach diesen Filter anwenden:
 
-`{"first_name": "Guido", "last_name":"Rossum"}|json_decode`
+`array|json_decode` {% verbatim %}
+[prism classes="language-twig line-numbers"]
+{% set array = '{"first_name": "Guido", "last_name":"Rossum"}'|json_decode %}
+{{ print_r(array) }}
+[/prism]
+{% endverbatim %}
+
+{% set array = '{"first_name": "Guido", "last_name":"Rossum"}'|json_decode %}
+[prism classes="language-text"]
+{{ print_r(array) }}
+[/prism]
 
 #### Ksort
 
@@ -160,16 +170,15 @@ Eine Array-Map nach den verschiedenen Schlüsseln sortieren
 
 `array|ksort` {% verbatim %}
 [prism classes="language-twig line-numbers"]
-{% set ritems = {'orange':1, 'apple':2, 'peach':3}|ksort %}
-{% for key, value in ritems %}{{ key }}:{{ value }}, {% endfor %}
+{% set items = {'orange':1, 'apple':2, 'peach':3}|ksort %}
+{{ print_r(items) }}
 [/prism]
 {% endverbatim %}
 
-{% set ritems = {'orange':1, 'apple':2, 'peach':3}|ksort %}
-[prism classes="language-twig line-numbers"]
-{% for key, value in ritems %}{{ key }}:{{ value }}, {% endfor %}
+{% set items = {'orange':1, 'apple':2, 'peach':3}|ksort %}
+[prism classes="language-text"]
+{{ print_r(items) }}
 [/prism]
-
 #### Left Trim
 
 `'/strip/leading/slash/'|ltrim('/')` <i class="fa fa-long-arrow-right"></i> {{ '/strip/leading/slash/'|ltrim('/') }}
@@ -197,11 +206,16 @@ string|markdown($is_block)
 [/prism]
 {% endverbatim %}
 
+{% set var %}
 <div class="div">
 {{ 'A paragraph with **markdown** and [a link](http://www.cnn.com)'|markdown }}
 </div>
 
 <p class="paragraph">{{'A line with **markdown** and [a link](http://www.cnn.com)'|markdown(false) }}</p>
+{% endset %}
+[prism classes="language-text"]
+{{ var|e }}
+[/prism]
 
 #### MD5
 
@@ -221,7 +235,7 @@ Wandelt eine ganzzahlige Anzahl von Tagen in eine Anzahl von Monaten um
 
 `'181'|monthize` <i class="fa fa-long-arrow-right"></i> **{{ '181'|monthize }}**
 
-[version=16]
+[version=16,17]
 #### NiceCron
 
 Ruft eine menschenlesbare Ausgabe für die Cron-Syntax ab
@@ -247,7 +261,7 @@ Ausgabe eines Datums in einem menschenlesbaren, ansprechenden Zeitformat
 
 `page.date|nicetime(false)` <i class="fa fa-long-arrow-right"></i> **{{ page.date|nicetime(false) }}**
 
-[version=16]
+[version=16,17]
 #### Of Type
 
 Prüft den Typ einer Variablen zum Parameter
@@ -285,7 +299,7 @@ Wrapper für die PHP-Funktion [preg_match()](https://www.php.net/manual/de/funct
 Wrapper für die PHP-Funktion [preg_split()](https://www.php.net/manual/en/function.preg-split.php), die einen Text anhand eines regulären Ausdrucks zerlegt.
 [/version]
 
-[version=16]
+[version=16,17]
 #### Print Variable
 
 Gibt menschenlesbare Informationen über eine Variable aus
@@ -299,19 +313,19 @@ Gibt menschenlesbare Informationen über eine Variable aus
 
 #### Randomize
 
-Gibt die bereitgestellte Liste nach dem Zufallsprinzip aus.  Wenn ein Wert als Parameter angegeben wird, überspringt er diese Werte und hält die Reihenfolge ein.
+Ordnet die bereitgestellte Liste nach dem Zufallsprinzip. Wenn ein Wert als Parameter angegeben wird, überspringt er die ersten `n` Werte und hält sie in der Reihenfolge.
 
 `array|randomize` {% verbatim %}
 [prism classes="language-twig line-numbers"]
 {% set ritems = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']|randomize(2) %}
-{% for ritem in ritems %}{{ ritem }}, {% endfor %}
+{{ print_r(ritems) }}
 [/prism]
 {% endverbatim %}
 
-<strong>
 {% set ritems = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']|randomize(2) %}
-{% for ritem in ritems %}{{ ritem }}, {% endfor %}
-</strong>
+[prism classes="language-text"]
+{{ print_r(ritems) }}
+[/prism]
 
 #### Regex Replace
 
@@ -337,15 +351,17 @@ Konvertiert eine Zeichenfolge in die englische Singularversion
 
 Der Safe E-Mail-Filter wandelt eine E-Mail-Adresse in ASCII-Zeichen um, um es für E-Mail-Spam-Bots schwieriger zu machen, sie zu erkennen und zu sammeln.
 
-`"someone@domain.com"|safe_email` <i class="fa fa-long-arrow-right"></i> {{ "someone@domain.com"|safe_email }}
+`"someone@domain.com"|safe_email` <i class="fa fa-long-arrow-right"></i> **{{ "someone@domain.com"|safe_email }}**
 
 Anwendungsbeispiel mit einem mailto-Link:
 
+{% verbatim %}
 [prism classes="language-html line-numbers"]
-<a href="mailto:{{'your.email@server.com'|safe_email}}">
+<a href="mailto:{{ 'your.email@server.com'|safe_email }}">
   Email me
 </a>
 [/prism]
+{% endverbatim %}
 
 Möglicherweise bemerken Sie zunächst keinen Unterschied, aber wenn Sie den Seitenquelltext untersuchen (nicht über die Browser-Entwickler-Tools, sondern den eigentlichen Seitenquelltext), können Sie die darunter liegende Zeichenkodierung erkennen.
 
@@ -369,7 +385,7 @@ Sortieren einer Array-Map nach einem bestimmten Schlüssel
 
 Man nehme eine Nadel und einen Heuhaufen und fragt ob der Heuhaufen mit der Nadel startet. Das funktioniert jetzt auch mit einer Gruppe von Nadeln und gibt `true` zurück, wenn **irgendein** Heuhaufen mit der Nadel beginnt.
 
-`'the quick brown fox'|starts_with('the')` <i class="fa fa-long-arrow-right"></i> {{  'the quick brown fox'|starts_with('the') ? 'true' : 'false' }}
+`'the quick brown fox'|starts_with('the')` <i class="fa fa-long-arrow-right"></i> **{{ 'the quick brown fox'|starts_with('the') ? 'true' : 'false' }}**
 
 #### Titleize
 
@@ -382,7 +398,7 @@ Konvertiert eine Zeichenfolge in das Format „Title Case“ (Großschreibung am
 
 Eine Zeichenfolge in die aktuelle Sprache übersetzen
 
-`'MY_LANGUAGE_KEY_STRING'|t` <i class="fa fa-long-arrow-right"></i> 'Some Text in English'
+`'MY_LANGUAGE_KEY_STRING'|t` <i class="fa fa-long-arrow-right"></i> **'Some Text in English'**
 
 Dies setzt voraus, dass Sie diese Sprachstrings auf Ihrer Website übersetzt haben und die Mehrsprachigkeit aktiviert haben.  Ausführlichere Informationen finden Sie in der [Dokumentation zur Mehrsprachigkeit](../../content/multi-language).
 
@@ -390,7 +406,7 @@ Dies setzt voraus, dass Sie diese Sprachstrings auf Ihrer Website übersetzt hab
 
 Übersetzt eine Zeichenfolge in die aktuelle Sprache, die in den Benutzer-Einstellungen der Admin-Oberfläche eingestellt ist
 
-`'MY_LANGUAGE_KEY_STRING'|tu` <i class="fa fa-long-arrow-right"></i> 'Some Text in English'
+`'MY_LANGUAGE_KEY_STRING'|tu` <i class="fa fa-long-arrow-right"></i> **'Some Text in English'**
 
 Dabei wird das Sprachfeld ausgelesen, das in der yaml-Datei des Benutzers gesetzt ist.
 
@@ -410,17 +426,17 @@ Dabei wird das Sprachfeld ausgelesen, das in der yaml-Datei des Benutzers gesetz
 
 Mit diesem Filter können Sie leicht eine verkürzte, abgeschnittene Version einer Zeichenfolge erzeugen.  Er nimmt eine Anzahl von Zeichen als einziges erforderliches Feld, hat aber noch einige andere Optionen:
 
-`'one sentence. two sentences'|truncate(5)` <i class="fa fa-long-arrow-right"></i> {{ 'one sentence. two sentences'|truncate(5) }}
+`'one sentence. two sentences'|truncate(5)` <i class="fa fa-long-arrow-right"></i> **{{ 'one sentence. two sentences'|truncate(5) }}**
 
 Wird einfach auf 5 Zeichen gekürzt
 
-`'one sentence. two sentences'|truncate(5, true)` <i class="fa fa-long-arrow-right"></i> {{ 'one sentence. two sentences'|truncate(5, true) }}
+`'one sentence. two sentences'|truncate(5, true)` <i class="fa fa-long-arrow-right"></i> **{{ 'one sentence. two sentences'|truncate(5, true) }}**
 
 Wird nach 5 Zeichen zum nächsten Satzende gekürzt.
 
 Sie können HTML-Text auch abschneiden, sollten aber zuerst den Filter `striptags` verwenden, um alle HTML-Formatierungen zu entfernen, die defekt werden könnten, wenn Sie zwischen Tags enden:
 
-`'<p>one <strong>sentence</strong>. two sentences</p>'|striptags|truncate(5)` <i class="fa fa-long-arrow-right"></i> {{ '<p>one <strong>sentence</strong>. two sentences</p>'|striptags|truncate(5) }}
+`'<p>one <strong>sentence<strong>. two sentences</p>'|striptags|truncate(5)` <i class="fa fa-long-arrow-right"></i> **{{ '<p>one <strong>sentence<strong>. two sentences</p>'|striptags|truncate(5) }}**
 
 ##### Spezielle Versionen:
 
@@ -442,15 +458,21 @@ Konvertiert einen String in ein Format mit „Unterstrichen“
 
 `'CamelCased'|underscorize` <i class="fa fa-long-arrow-right"></i> **{{ 'CamelCased'|underscorize }}**
 
-[version=16]
+[version=16,17]
 #### Yaml Encode (Yaml kodieren)
 
 Dump/Kodieren einer Variablen in die YAML-Syntax
 
-`{foo: [0,1,2,3], baz: 'qux' }|yaml_encode`
+{% verbatim %}
+[prism classes="language-twig line-numbers"]
+{% set array = {foo: [0, 1, 2, 3], baz: 'qux' } %}
+{{ array|yaml_encode }}
+[/prism]
+{% endverbatim %}
 
-[prism classes="language-twig"]
-{{ {foo: [0,1,2,3], baz: 'qux' }|yaml_encode }}
+{% set array = {foo: [0, 1, 2, 3], baz: 'qux' } %}
+[prism classes="language-yaml"]
+{{ array|yaml_encode|e }}
 [/prism]
 
 #### Yaml Decode (Yaml dekodieren)
@@ -458,17 +480,17 @@ Dump/Kodieren einer Variablen in die YAML-Syntax
 Dekodieren/Parsen einer Variablen aus der YAML-Syntax
 
 {% verbatim %}
-`{% set yaml = "foo: [0, 1, 2, 3]\nbaz: qux" %}`
-
-`yaml|yaml_decode`
+[prism classes="language-twig line-numbers"]
+{% set yaml = "foo: [0, 1, 2, 3]\nbaz: qux" %}
+{{ yaml|yaml_decode|var_dump }}
+[/prism]
 {% endverbatim %}
 
 {% set yaml = "foo: [0, 1, 2, 3]\nbaz: qux" %}
-[prism classes="language-twig"]
-{{ yaml|yaml_decode|var_dump}}
+[prism]
+{{ yaml|yaml_decode|var_dump }}
 [/prism]
 [/version]
-
 
 ## Grav-Twig-Funktionen
 
@@ -478,7 +500,21 @@ Twig-Funktionen werden direkt aufgerufen, wobei alle Parameter durch Klammern ü
 
 Einen Wert an ein Array übergeben
 
-`array(value)`
+{% verbatim %}
+[prism classes="language-twig line-numbers"]
+{% set value = array(value) %}
+[/prism]
+{% endverbatim %}
+
+#### Array Difference
+
+Computes the difference of arrays.
+
+{% verbatim %}
+[prism classes="language-twig line-numbers"]
+{% set diff = array_diff(array1, array2...) %}
+[/prism]
+{% endverbatim %}
 
 #### Array Key Value
 
@@ -539,7 +575,7 @@ Berechtigt einen authentifizierten Benutzer, eine Ressource aufzurufen. Akzeptie
 
 `authorize(['admin.statistics', 'admin.super'])`
 
-[version=16]
+[version=16,17]
 #### Body-Klasse
 
 Erfordert ein Array von Klassen und falls sie nicht auf `body_classes` gesetzt sind, wird überprüft ob diese in der aktuellen Theme-Konfiguration definiert sind.
@@ -599,7 +635,7 @@ Mit dieser Funktion können Sie den Wert eines Cookies abfragen:
 
 `get_cookie('your_cookie_key')`
 
-[version=16]
+[version=16,17]
 #### Funktion „Typ“ abrufen
 
 Ruft den Typ einer Variablen ab:
@@ -611,15 +647,14 @@ Ruft den Typ einer Variablen ab:
 
 Übernimmt eine Github Gist-ID und erstellt den entsprechenden Gist-Einbettungscode
 
-`gist('bc448ff158df4bc56217')` <i class="fa fa-long-arrow-right"></i> {{ gist('bc448ff158df4bc56217')}}
+`gist('bc448ff158df4bc56217')` <i class="fa fa-long-arrow-right"></i> **{{ gist('bc448ff158df4bc56217')|e }}**
 
-[version=16]
+[version=16,17]
 #### HTTP-Response-Code
 
 Wenn response_code vorhanden ist, dann wird der vorherige Statuscode zurückgegeben. Wenn response_code nicht angegeben wird, dann wird der aktuelle Statuscode zurückgegeben. Beide Werte werden standardmäßig auf einen 200-Statuscode gesetzt, wenn sie in einer Webserver-Umgebung verwendet werden.
 
 `http_response_code(404)`
-
 [/version]
 
 #### Is Ajax Request (Ajax-Abfrage)
@@ -639,7 +674,7 @@ Gibt ein Medienobjekt für ein beliebiges Verzeichnis zurück.  Einmal erhalten,
 
 `media_directory('theme://images')['some-image.jpg'].cropResize(200,200).html`
 
-[version=16]
+[version=16,17]
 #### NiceFilesize-Funktion
 
 Ausgabe einer Dateigröße in einem menschenlesbaren Nice-Size-Format
@@ -650,7 +685,7 @@ Ausgabe einer Dateigröße in einem menschenlesbaren Nice-Size-Format
 
 Ausgabe einer Zahl in einem menschenlesbaren, ansprechenden Zahlenformat
 
-`nicenumnber(12430)` <i class="fa fa-long-arrow-right"></i> **{{ nicenumber(12430)}}**
+`nicenumber(12430)` <i class="fa fa-long-arrow-right"></i> **{{ nicenumber(12430)}}**
 
 #### NiceTime-Funktion
 
@@ -665,7 +700,7 @@ Generiert das Grav-Sicherheitsfeld __nonce__ für ein Formular mit einer erforde
 
 `nonce_field('action')` <i class="fa fa-long-arrow-right"></i> **{{ nonce_field('action')|e }}**
 
-[version=16]
+[version=16,17]
 #### Of-Type-Funktion
 
 Prüft den Typ einer Variablen zum Parameter:
@@ -688,14 +723,14 @@ Parst einen Pfad in einem Array
 
 outputs: **{{ print_r(parts) }}**
 
-[version=16]
+[version=16,17]
 #### Print-Variable-Funktion
 
 Gibt eine Variable in einem lesbaren Format aus
 
 `print_r(page.header)`
 
-[prism classes="language-twig"]
+[prism classes="language-text"]
 {{ print_r(page.header) }}
 [/prism]
 
@@ -713,7 +748,7 @@ Erzeugt ein Array, das eine Gruppe von Elementen enthält, optional abgestuft
 
 `range(25, 300, 50)` <i class="fa fa-long-arrow-right"></i> **{{ print_r(range(25, 300, 50)) }}**
 
-[version=16]
+[version=16,17]
 #### Read File (Datei auslesen)
 
 Einfache Funktion, um eine Datei anhand eines Dateipfades zu lesen und auszugeben.
@@ -734,25 +769,29 @@ Leitet zu einer URL Ihrer Wahl weiter
 
 `redirect_me('http://google.com', 304)`
 
-[version=16]
+[version=16,17]
 #### Regex-Filter-Funktion
 
 Führt ein `preg_grep` in einem Array mit einem RegEx-Pattern aus
 
 `regex_filter(['pasta', 'fish', 'steak', 'potatoes'], "/p.*/")`
 
-[prism classes="language-twig"]
-{{ var_dump(regex_filter(['pasta', 'fish', 'steak', 'potatoes'], "/p.*/")) }}
+{% set var = regex_filter(['pasta', 'fish', 'steak', 'potatoes'], "/p.*/") %}
+[prism classes="language-text"]
+{{ print_r(var) }}
 [/prism]
 
 #### Regex-Ersetzen-Funktion
 
 Ein nützlicher Wrapper für die PHP-Funktion [`preg_replace()`](https://php.net/manual/en/function.preg-replace.php). Mit diesem Filter können Sie mit regulären Ausdrücken komplexe Ersetzungen am Text vornehmen:
 
+{% verbatim %}
 `regex_replace('The quick brown fox jumps over the lazy dog.', ['/quick/','/brown/','/fox/','/dog/'], ['slow','black','bear','turtle'])`
+{% endverbatim %}
 
-[prism classes="language-twig"]
-{{ regex_replace('The quick brown fox jumps over the lazy dog.', ['/quick/','/brown/','/fox/','/dog/'], ['slow','black','bear','turtle']) }}
+{% set var = regex_replace('The quick brown fox jumps over the lazy dog.', ['/quick/','/brown/','/fox/','/dog/'], ['slow','black','bear','turtle']) %}
+[prism classes="language-text"]
+{{var }}
 [/prism]
 
 [/version]
@@ -767,10 +806,21 @@ Wird alles wiederholen, was in einer angegebenen Zeitspanne durchlaufen wird.
 
 Gibt einen String aus einem Wert zurück. Wenn der Wert ein Array ist, wird er json-kodiert zurückgegeben
 
-`string(23)` => `"23"`
-`string(['test' => 'x'])` => `{"test":"x"}`
+`string(23)` => **"23"**
 
-[version=16]
+`string(['test' => 'x'])` => **{"test":"x"}**
+
+[version=17]
+#### SVG-Image
+
+Liefert den Inhalt eines SVG-Bildes und fügt bei Bedarf zusätzliche Klassen hinzu.
+
+{% verbatim %}
+`{{ svg_image(path, classes, strip_style) }}`
+{% endverbatim %}
+[/version]
+
+[version=16,17]
 #### Theme-Variable
 
 Liest eine Theme-Variable aus dem Seitenkopf aus, falls sie existiert, ansonsten wird die Theme-Konfiguration verwendet:
@@ -780,7 +830,6 @@ Liest eine Theme-Variable aus dem Seitenkopf aus, falls sie existiert, ansonsten
 Dies wird zuerst `page.header.grid-size` testen. Falls das nicht gesetzt ist, wird `theme.grid-size` aus der Konfigurations-Datei des Themes verwendet. Optional kann eine Voreinstellung gewählt werden:
 
 `theme_var('grid-size', 1024)`
-
 [/version]
 
 #### Übersetzen-Funktion
@@ -812,14 +861,17 @@ Die Funktion `vardump()` gibt die aktuelle Variable auf dem Bildschirm aus (und 
 {% verbatim %}
 [prism classes="language-twig line-numbers"]
 {% set my_array = {foo: 'bar', baz: 'qux'} %}
-{{ vardump(my_array)}}
+{{ vardump(my_array) }}
 [/prism]
 {% endverbatim %}
 
 {% set my_array = {foo: 'bar', baz: 'qux'} %}
-{{ vardump(my_array)}}
 
-[version=16]
+[prism classes="language-twig"]
+{{ vardump(my_array) }}
+[/prism]
+
+[version=16,17]
 #### XSS
 
 Ermöglicht eine manuelle Prüfung eines Strings auf XSS-Sicherheitslücken
