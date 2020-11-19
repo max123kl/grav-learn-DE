@@ -36,7 +36,7 @@ Die Variable `{{ base_url_simple }}` gibt die Basis-URL ohne den Sprachencode an
 
 ### Die Variable: home_url
 
-Die Variable `{{ home_url }}` ist besonders geeignet, um einen Link zurück auf die Startseite Ihrer Website zu setzen. Sie ist ähnlich wie `base_url`, berücksichtigt aber den Fall, dass diese leer ist.
+Die Variable `{{ home_url }}` ist besonders geeignet, um einen Link zurück auf die Startseite Ihrer Website zu setzen. Sie ist ähnlich wie [`base_url`](#base-url-variable), berücksichtigt aber den Fall, dass diese leer ist.
 
 ### Die Variable: html_lang
 

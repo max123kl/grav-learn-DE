@@ -434,6 +434,8 @@ Von Twig aus könnten Sie dann auf diese Daten zugreifen:
 </section>
 [/prism]
 
+Wenn der Variablenname ein [Sonderzeichen (z.B. ein Bindestrich) enthält](https://github.com/getgrav/grav/issues/1957#issuecomment-723236844), sollten Sie die [Twig-Attributfunktion](https://twig.symfony.com/doc/2.x/functions/attribute.html) verwenden:
+
 ## Meta-Seiten-Header
 
 Meta-Header ermöglichen es Ihnen, den [Standardsatz von HTML **<meta> Tags**](http://www.w3schools.com/tags/tag_meta.asp) für jede Seite sowie [OpenGraph](http://ogp.me/), [Facebook](https://developers.facebook.com/docs/sharing/best-practices), und [Twitter](https://dev.twitter.com/cards/overview) festzulegen.

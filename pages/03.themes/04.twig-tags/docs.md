@@ -87,6 +87,16 @@ Das „verzögerte“ Attribut des Blocks, das durch die [Deferred Extension](ht
 {% endblock %}
 [/prism]
 
+Es ist auch möglich, den Inhalt des übergeordneten Blocks mit dem aufgeschobenen Block unter Verwendung von `{{ parent() }}` zusammenzuführen. Dies kann besonders für Themes nützlich sein, wenn zusätzliche CSS- oder Javascript-Dateien hinzugefügt werden.
+
+[prism classes="language-twig line-numbers"]
+{% block stylesheets %}
+    <!-- Additional css library -->
+    {% do assets.addCss('theme://libraries/leaflet/dist/leaflet.css') %}
+    {{ parent() }}
+{% endblock %}
+[/prism]
+
 ### Eine Exception auslösen
 
 Es gibt bestimmte Situationen, in denen Sie eine Exception manuell auslösen müssen, daher haben wir auch dafür ein Tag.

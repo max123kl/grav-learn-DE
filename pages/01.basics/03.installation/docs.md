@@ -8,7 +8,7 @@ Die Installation von Grav ist ein einfacher Prozess. Eigentlich gibt es keine wi
 
 ## Die PHP-Version kontrollieren
 
-Grav ist außerordentlich einfach einzurichten und zum Laufen zu bringen. Vergewissern Sie sich, dass Sie mindestens die PHP-Version [version=15]5.6.3+[/version][version=16/17]7.1.3+[/version] verwenden und geben Sie auf dem Terminal `php -v` ein:
+Grav ist außerordentlich einfach einzurichten und zum Laufen zu bringen. Vergewissern Sie sich, dass Sie mindestens die PHP-Version [version=15]5.6.3+[/version][version=16]7.1.3+[/version][version=17]7.3.6+[/version] verwenden und geben Sie auf dem Terminal `php -v` ein:
 
 [prism classes="language-bash command-line" cl-output="2-10"]
 php -v
@@ -84,7 +84,7 @@ The source code for the package can be found [here](https://git.cloudron.io/clou
 
 #### Apache, IIS oder Nginx
 
-Die Verwendung von Grav mit einem Webserver wie Apache, IIS oder Nginx ist so einfach wie das Extrahieren von Grav in einen Ordner unterhalb der [Webroot](https://www.wordnik.com/words/webroot). Alles, was zum Funktionieren erforderlich ist, ist [version=15]PHP 5.6.3[/version][version=16/17]PHP 7.1.3[/version] oder höher. Sie sollten also überprüfen, ob Ihre Serverinstallation diese Anforderung erfüllt. Weitere Informationen zu den Grav-Anforderungen finden Sie im Kapitel über die [Systemanforderungen](../requirements) in diesem Handbuch.
+Die Verwendung von Grav mit einem Webserver wie Apache, IIS oder Nginx ist so einfach wie das Extrahieren von Grav in einen Ordner unterhalb der [Webroot](https://www.wordnik.com/words/webroot). Alles, was zum Funktionieren erforderlich ist, ist [version=15]PHP 5.6.3[/version][version=16]PHP 7.1.3[/version][version=17]PHP 7.3.6[/version] oder höher. Sie sollten also überprüfen, ob Ihre Serverinstallation diese Anforderung erfüllt. Weitere Informationen zu den Grav-Anforderungen finden Sie im Kapitel über die [Systemanforderungen](../requirements) in diesem Handbuch.
 
 Wenn Ihre Webroot z.B. `~/public_html` ist, können Sie die Datei in dieses Verzeichnis extrahieren, das sie über `http://localhost` erreichen. Wenn Sie es in `~/public_html/grav` extrahieren würden, könnten Sie es über `http://localhost/grav` aufrufen.
 
@@ -92,7 +92,7 @@ Wenn Ihre Webroot z.B. `~/public_html` ist, können Sie die Datei in dieses Verz
 
 #### Grav mit dem integrierten PHP-Webserver mit `router.php` ausführen
 
-Sie können Grav mit einem einfachen Befehl aus dem Terminal bzw. der Eingabeaufforderung über den integrierten PHP-Server ausführen, der auf jedem System mit [version=15]PHP 5.6.3+[/version][version=16/17]PHP 7.1.3+[/version] installiert ist. Alles, was Sie tun müssen, ist mit dem Terminal oder der Eingabeaufforderung zum Stammverzeichnis Ihrer Grav-Installation zu navigieren und `php -S localhost:8000 system/router.php` einzugeben. Sie können die Portnummer, in unserem Beispiel ist es die `8000`, durch einen beliebigen Port ersetzen.
+Sie können Grav mit einem einfachen Befehl aus dem Terminal bzw. der Eingabeaufforderung über den integrierten PHP-Server ausführen, der auf jedem System mit [version=15]PHP 5.6.3+[/version][version=16/]PHP 7.1.3+[/version][version=17]PHP 7.3.6+[/version] installiert ist. Alles, was Sie tun müssen, ist mit dem Terminal oder der Eingabeaufforderung zum Stammverzeichnis Ihrer Grav-Installation zu navigieren und `php -S localhost:8000 system/router.php` einzugeben. Sie können die Portnummer, in unserem Beispiel ist es die `8000`, durch einen beliebigen Port ersetzen.
 
 Wenn Sie diesen Befehl eingeben, erhalten Sie eine ähnliche Ausgabe wie die folgende:
 
