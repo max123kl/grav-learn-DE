@@ -103,4 +103,4 @@ Eine andere Ursache könnte sein, dass Ihre Seite **nicht routingfähig** ist. D
 
 ### 404 Page Not Found auf Nginx
 
-Wenn sich Ihre Site in einem Unterordner befindet, stellen Sie sicher, dass Ihrer nginx.conf die Option `location` auf diesen Unterordner verweist. Die [Grav-Beispieldatei nginx.conf](https://github.com/getgrav/grav/blob/master/webserver-configs/nginx.conf) hat einen Kommentar im Code, der erklärt, wie das geht.
+Wenn Ihre Homepage funktioniert, aber andere Seiten nicht gefunden werden, überprüfen Sie, ob Ihre nginx.conf gemäß dem Beispiel nginx.conf konfiguriert ist.

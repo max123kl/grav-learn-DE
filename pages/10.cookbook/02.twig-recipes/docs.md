@@ -42,7 +42,7 @@ process:
 
 ##### Problem:
 
-You want to display navigation links from non modular pages. 
+You want to display navigation links from non modular pages.
 
 ##### Solution
 
@@ -143,7 +143,7 @@ Use the  `slice` filter to remove the summary from the page content:
 
 [prism classes="language-twig line-numbers"]
 {% set content = page.content|slice(page.summary|length) %}
-{{ content }}
+{{ content|raw }}
 [/prism]
 
 
@@ -241,7 +241,7 @@ header.myimage:
   folder: 'self@'
   label: Select a file
   preview_images: true
-[/prism]    
+[/prism]
 
 The `mediapicker` field store the path to the image as a string such as `/home/background.jpg`
 In order to access this image with the page media functionality, you have to split this string and get:
@@ -255,7 +255,7 @@ You can do this via twig by using the snippet below:
 {% set image_basename = image_parts.basename %}
 {% set image_page = image_parts.dirname == '.' ? page : page.find(image_parts.dirname) %}
 
-{{ image_page.media[image_basename].html() }}
+{{ image_page.media[image_basename].html()|raw }}
 [/prism]
 
 ## Custom Twig Filter/Function
@@ -388,4 +388,48 @@ And then you can use the function syntax:
 
 [prism classes="language-twig line-numbers"]
 {{ chunker("ER27XV3OCCDPRJK5IVSDME6D6OT6QHK5", 8, '|') }}
+[/prism]
+
+## Erweitern des Basis-Templates des vererbten Themes
+
+##### Problem
+
+Manchmal müssen Sie das Basis-Template selbst erweitern. Das kann dann der Fall sein, wenn es keine einfache und offensichtliche Möglichkeit gibt, bereits in einem Template vorhandene Blöcke zu erweitern. Nehmen wir Quark als Beispiel für ein übergeordnetes Template und Sie möchten `themes/quark/templates/partials/base.html.twig` zu Ihrem `myTheme`-Theme erweitern.
+
+##### Lösung
+
+Sie können Quark als Twig-Namespace hinzufügen, indem Sie die `my-theme.php` des Themes verwenden, um auf das Event `onTwigLoader` zu lauschen und das Template-Verzeichnis des Quark-Themes einzufügen. Der entsprechende Klasseninhalt sollte in etwa so aussehen:
+
+[prism classes="language-php line-numbers"]
+    <?php
+    namespace Grav\Theme;
+
+    use Grav\Common\Grav;
+    use Grav\Common\Theme;
+
+    class MyTheme extends Quark {
+        public static function getSubscribedEvents() {
+            return [
+                'onTwigLoader' => ['onTwigLoader', 10]
+            ];
+        }
+
+        public function onTwigLoader() {
+            parent::onTwigLoader();
+
+            // add quark theme as namespace to twig
+            $quark_path = Grav::instance()['locator']->findResource('themes://quark');
+            $this->grav['twig']->addPath($quark_path . DIRECTORY_SEPARATOR . 'templates', 'quark');
+        }
+    }
+[/prism]
+
+In `themes/my-theme/templates/partials/base.html.twig` können Sie nun das Quarks Basis-Template wie folgt erweitern:
+
+[prism classes="language-twig line-numbers"]
+    {% extends '@quark/partials/base.html.twig' %}
+
+    {% block header %}
+    This is a new extended header.
+    {% endblock %}
 [/prism]

@@ -1,56 +1,56 @@
 ---
-title: Multisite-Setup
+title: Multisite Setup
 taxonomy:
     category: docs
 ---
 
-!! In Grav ist eine vorläufige Multisite-Unterstützung verfügbar.  Allerdings müssen die CLI-Befehle sowie das Admin-Plugin noch aktualisiert werden, um Multisite-Konfigurationen vollständig zu unterstützen.  Wir werden in nachfolgenden Versionen von Grav weiter daran arbeiten.
+!! Grav has preliminary multisite support available.  However, the Admin plugin still need to be updated to fully support multisite configurations.  We will continue to work on this in subsequent releases of Grav.
 
 ### What is a Multisite Setup?
 
-> Eine Multisite-Konfiguration ermöglicht es Ihnen, ein System aus mehreren Websites zu erstellen und zu verwalten, die alle mit einer einzigen Installation laufen.
+> A multisite setup allows you to create and manage a network of multiple websites, all running on a single installation.
 
-Grav verfügt über integrierte Multisite-Unterstützung. Diese Funktionalität erweitert die [grundlegende Umgebungskonfiguration](../environment-config), mit der Sie benutzerdefinierte Umgebungen für Ihre Produktions- und Entwicklungssites definieren können.
+Grav has built-in multisite support. This functionality extends the [basic environment configuration](../environment-config), which lets you define custom environments for your production and development sites.
 
-Eine vollständige Multisite-Einrichtung gibt Ihnen die Kontrolle darüber, wie und von wo Grav alle seine Dateien lädt.
+A full multisite setup gives you the power to change the way how and from where Grav loads all its files.
 
-### Voraussetzungen für ein Grav-Multisite-Setup
+### Requirements for a Grav Multisite Setup
 
-Das Wichtigste für den Betrieb einer Multi-Website mit Grav ist ein gutes Website-Hosting. Wenn Sie nicht vorhaben, viele Websites zu erstellen und nicht mit vielen Besuchern rechnen, dann können Sie mit Shared Hosting auskommen. Aufgrund der Natur von Multisites werden Sie jedoch wahrscheinlich einen VPS oder einen dedizierten Server benötigen, wenn Ihre Sites größer werden.
+The most important thing you will need to run a Grav multisite network is good website hosting. If you are not planning to create many sites and do not expect many visitors, then you can get away with shared hosting. However, due to the nature of multisites, you’d probably need a VPS or dedicated server as your sites grow.
 
-### Setup und Installation
+### Setup and installation
 
-Bevor Sie beginnen, sollten Sie sicher sein, dass Ihr Webserver in der Lage ist, mehrere Websites zu betreiben, d.h. dass Sie Zugriff auf Ihr Grav-Root-Verzeichnis haben.
+Before you begin, you’ll want to be sure your web server is capable of running multiple websites i.e., you have access to your Grav root directory.
 
-Das ist entscheidend, da die Unterstützung mehrerer Websites aus derselben Installation heraus auf der Datei `setup.php` basiert, die sich in Ihrer Grav-Root befindet.
+This is essential since serving multiple websites from the same installation is based on a `setup.php` file located in your Grav root.
 
-#### Schnelleinstieg (für Anfänger)
+#### Quickstart (for Beginners)
 
-Einmal angelegt, wird die `setup.php` jedes Mal aufgerufen, wenn ein Benutzer eine Seite aufruft. Um mehrere Websites von einer einzigen Installation aus bedienen zu können, muss dieses Skript (grob gesagt) Grav mitteilen, wo sich die Dateien (für die Konfigurationen, Themes, Plugins, Seiten usw.) für eine bestimmte Subsite befinden.
+Once created, the `setup.php` is called every time a user requests a page. In order to serve multiple websites from one single installation, this script (roughly speaking) has to tell Grav where the files (for the configurations, themes, plugins, pages etc.) for a specific subsite are located.
 
-Die unten angegebenen Code-Schnipsel richten Ihre Grav-Installation so ein, dass eine Anfrage wie
+The provided snippets below setup your Grav installation in such a way that a request like
 
 [prism classes="language-text"]
-http://<subsite>.example.com   -->   user/sites/<subsite>.example.com
+https://<subsite>.example.com   -->   user/env/<subsite>.example.com
 [/prism]
 or
 [prism classes="language-text"]
-http://example.com/<subsite>   -->   user/sites/<subsite>
+https://example.com/<subsite>   -->   user/env/<subsite>
 [/prism]
 
-das Verzeichnis `user/sites` als Basispfad für den „User“ anstelle des Verzeichnisses `user` verwendet.
+will use the `user/env` directory as the base "user" path instead of the `user` directory.
 
-Wenn Sie Unterverzeichnisse oder pfadbasierte URLs für Unterseiten wählen, dann ist das Einzige, was Sie brauchen, ein Verzeichnis für jede Unterseite im Verzeichnis `user/sites` zu erstellen, das die mindestens erforderlichen Ordner `config`, `pages`, `plugins` und `themes` enthält.
+If you choose sub-directories or path based URLs for subsites, then the only thing you need is to create a directory for each subsite in the `user/sites` directory containing at least the required folders `config`, `pages`, `plugins`, and `themes`.
 
-Wenn Sie Sub-Domains für die Strukturierung Ihres Website-Netzwerks wählen, dann müssen Sie zusätzlich zur Einrichtung Ihrer Sub-Sites in Ihrem Verzeichnis `user/sites` Sub-Domains auf Ihrem Server konfigurieren (Wildcard).
+If you choose sub-domains for structuring your website network, then you will have to configure (wildcard) sub-domains on your server in addition to the setup of your subsites in your `user/sites` directory.
 
-Wie auch immer, entscheiden Sie, welches der beiden Optionen für Sie am besten geeignet ist.
+Either way, decide which setup suits you best.
 
 ##### Snippets
 
-Für Sub-Sites, die über Sub-Domains erreichbar sind, kopieren Sie die Datei `setup_subdomain.php`, andernfalls für Sub-Sites, die über Unterverzeichnisse erreichbar sind, die Datei `setup_subdirectory.php` in Ihre `setup.php`.
+For subsites accessible via sub-domains copy the `setup_subdomain.php` file, otherwise for subsites accessible via sub-directories the `setup_subdirectory.php` file into your `setup.php`.
 
-!!! Die Datei `setup.php` muss in das Grav-Wurzelverzeichnis gelegt werden, in das gleiche Verzeichnis, in dem sich `index.php`, `README.md` und die anderen Grav-Dateien befinden.
+!!! The `setup.php` file must be put in the Grav root folder, the same folder where you can find `index.php`, `README.md` and the other Grav files.
 
 **setup_subdomain.php**:
 [prism classes="language-php line-numbers"]
@@ -69,7 +69,7 @@ $environment = isset($_SERVER['HTTP_HOST'])
     : (isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : 'localhost');
 // Remove port from HTTP_HOST generated $environment
 $environment = strtolower(Utils::substrToString($environment, ':'));
-$folder = "sites/{$environment}";
+$folder = "env/{$environment}";
 
 if ($environment === 'localhost' || !is_dir(ROOT_DIR . "user/{$folder}")) {
     return [];
@@ -109,7 +109,7 @@ $path = isset($_SERVER['PATH_INFO'])
 
 // Extract name of subsite from path
 $name = Folder::shift($path);
-$folder = "sites/{$name}";
+$folder = "env/{$name}";
 $prefix = "/{$name}";
 
 if (!$name || !is_dir(ROOT_DIR . "user/{$folder}")) {
@@ -134,9 +134,9 @@ return [
 ];
 [/prism]
 
-Wenn Sie Unterverzeichnisse zum Umschalten von Sprachen benutzen, müssen Sie möglicherweise je nach Sprache unterschiedliche Konfigurationen laden.
-Sie können Ihre sprachspezifischen Konfigurationen in `config/<lang-context>/site.yaml` platzieren, indem Sie das Beispiel für `setup_subdir_config_switch.php` unten verwenden.
-Auf diese Weise würde `yoursite.com/de-AT/index.html` `config/de-AT/site.yaml` laden, `yoursite.com/de-CH/index.html` würde `config/de-CH/site.yaml` laden und so weiter.
+When using subdirectories to switch language contexts you might need to load different configs depending on the language.
+You can place your language specific configs in `config/<lang-context>/site.yaml` using the example for `setup_subdir_config_switch.php` below.
+This way `yoursite.com/de-AT/index.html` would load `config/de-AT/site.yaml`, `yoursite.com/de-CH/index.html` would load `config/de-CH/site.yaml` and so on.
 
 **setup_subdir_config_switch.php**:
 [prism classes="language-php line-numbers"]
@@ -155,12 +155,12 @@ $languageContexts = [
     'de-DE',
 ];
 
-// Relativen Pfad von der Grav-Root abfragen.
+// Get relative path from Grav root.
 $path = isset($_SERVER['PATH_INFO'])
     ? $_SERVER['PATH_INFO']
     : Folder::getRelativePath($_SERVER['REQUEST_URI'], ROOT_DIR);
 
-// Name des Unterverzeichnisses aus dem Pfad extrahieren
+// Extract name of subdir from path
 $name = Folder::shift($path);
 
 if (in_array($name, $languageContexts)) {
@@ -186,16 +186,14 @@ if (in_array($name, $languageContexts)) {
 return [];
 [/prism]
 
-#### Erweiterte Konfiguration (für Experten)
+#### Advanced configuration (for Experts)
 
-Sobald eine `setup.php` erstellt wurde, haben Sie Zugriff auf zwei wichtige Variablen:  
-1.) `$container`, welche die noch nicht vollständig initialisierte [Grav-Instanz](https://github.com/getgrav/grav/blob/develop/system/src/Grav/Common/Grav.php) ist, und  
-2.) `$self`, welche eine Instanz der [Klasse „ConfigServiceProvider“](https://github.com/getgrav/grav/blob/develop/system/src/Grav/Common/Service/ConfigServiceProvider.php) ist.
+Once created a `setup.php` have access to two important variables: (i) `$container`, which is the yet not properly initialized [Grav instance](https://github.com/getgrav/grav/blob/develop/system/src/Grav/Common/Grav.php) and (ii) `$self`, which is an instance of the [ConfigServiceProvider class](https://github.com/getgrav/grav/blob/develop/system/src/Grav/Common/Service/ConfigServiceProvider.php).
 
-Innerhalb dieses Skripts können Sie eigentlich alles verändern, aber beachten Sie bitte, dass die `setup.php` jedes Mal aufgerufen wird, wenn ein Benutzer eine Seite anfordert. Das bedeutet, dass speicherkritische oder zeitraubende Initialisierungsoperationen zu einer Verlangsamung Ihres gesamten Systems führen und deshalb vermieden werden sollten.
+Inside this script, you can do anything, but please be aware that the `setup.php` is called every time a user requests a page. This means that memory critical or time-consuming initializations operations lead to a slow-down of your whole system and should therefore be avoided.
 
-Am Ende muss die `setup.php` ein assoziatives Array mit dem optionalen Umgebungsnamen **environment** und die Stream-Kollektion **streams** zurückgeben
-(mehr Informationen und für die korrekte Einrichtung siehe den Abschnitt [Streams](#streams)):
+In the end, the `setup.php` has to return an associative array with the optional environment name **environment** and a stream collection **streams**
+(for more informations and in order to set them up correctly, see the section [Streams](#streams)):
 
 [prism classes="language-php line-numbers"]
 return [
@@ -223,71 +221,73 @@ return [
 
 [/prism]
 
-!!!! Bitte beachten Sie, dass Sie in diesem sehr frühen Stadium weder Zugriff auf die Konfiguration noch auf die URI-Instanz haben und daher jeder Aufruf einer nicht initialisierten Klasse zu einem Einfrieren des Systems, zu unerwarteten Fehlern oder zu einem (vollständigen) Datenverlust führen kann.
+!!!! Please be aware that a this very early stage you neither have access to the configuration nor to the URI instance and thus any call to a non-initialized class might end in a freeze of the system, in unexpected errors or in (complete) data loss.
 
 #### Streams
 
-In Grav sind Streams Objekte, die eine Gruppe von physikalischen Verzeichnissen des Systems auf ein logisches Device mappen. Sie werden über ihr `type`-Attribut klassifiziert. Für schreibgeschützte Streams ist das der Typ `ReadOnlyStream` und für schreibgeschützte Streams der Typ `Stream`. Sie können jeden benutzerdefinierten Streamtyp registrieren und auf ihn verweisen, solange es sich um eine Instanz der Schnittstellenklasse [StreamInterface](https://github.com/rockettheme/toolbox/blob/develop/StreamWrapper/src/StreamInterface.php) handelt.
+Grav uses URI like streams to define all the file paths in Grav. Using streams makes it really easy to customize lookup paths for any file.
 
 By default, streams have been configured like this:
 
-* `user://` - Benutzer-Verzeichnis z.B. `user/`
-* `page://` - Seiten-Verzeichnis z.B. `user://pages/`
-* `image://` - Bilder-Verzeichnis z.B. `user://images/`, `system://images/`
-* `account://` - Accounts-Verzeichnis z.B. `user://accounts/`
-* `environment://` - aktueller Multi-Site-Speicherort
-* `asset://` - JS/CSS-Verzeichnis kompiliert z.B. `assets/`
-* `blueprints://` - Blueprints-Verzeichnis z.B. `environment://blueprints/`, `user://blueprints/`, `system://blueprints/`
-* `config://` - Konfigurations-Verzeichnis z.B. `environment://config/`, `user://config/`, `system://config/`
-* `plugins://` - Plugins-Verzeichnis z.B. `user://plugins/`
-* `themes://` - aktuelles Theme z.B. `user://themes/`
-* `theme://` - aktuelles Theme z.B. `themes://antimatter/`
-* `languages://` - Sprachen-Verzeichnis z.B. `environment://languages/`, `user://languages/`, `system://languages/`
-* `user-data://` - Daten-Verzeichnis z.B. `user/data/`
-* `system://` - System-Verzeichnis z.B. `system/`
-* `cache://` - Cache-Verzeichnis z.B. `cache/`, `images/`
-* `log://` - Logdateien-Verzeichnis z.B. `logs/`
-* `backup://` - Backup-Verzeichnis z.B. `backups/`
-* `tmp://` - Temp-Verzeichnis z.B. `tmp/`
+* `user://` - user folder. e.g. `user/`
+* `page://` - pages folder. e.g. `user://pages/`
+* `image://` - images folder. e.g. `user://images/`, `system://images/`
+* `account://` - accounts folder. e.g. `user://accounts/`
+* `environment://` - current multi-site location.
+* `asset://` - compiled JS/CSS folder. e.g. `assets/`
+* `blueprints://` - blueprints folder. e.g. `environment://blueprints/`, `user://blueprints/`, `system://blueprints/`
+* `config://` - configuration folder. e.g. `environment://config/`, `user://config/`, `system://config/`
+* `plugins://` - plugins folder.  e.g. `user://plugins/`
+* `themes://` - current theme.  e.g. `user://themes/`
+* `theme://` - current theme.  e.g. `themes://antimatter/`
+* `languages://` - languages folder. e.g. `environment://languages/`, `user://languages/`, `system://languages/`
+* `user-data://` - data folder.  e.g. `user/data/`
+* `system://` - system folder. e.g. `system/`
+* `cache://` - cache folder. e.g. `cache/`, `images/`
+* `log://` - log folder. e.g. `logs/`
+* `backup://` - backup folder. e.g. `backups/`
+* `tmp://` - temporary folder. e.g. `tmp/`
 
-Die Zuordnung von physischen Verzeichnissen zu einem logischen Device kann auf zwei Arten erfolgen, entweder durch die Einrichtung von „Pfaden“ (`paths`) oder „Präfixen“ (`prefixes`). Erstere kann als eine 1-zu-1 Zuordnung verstanden werden, während letztere, wie es der Name andeutet, Ihnen erlaubt, mehrere physische Pfade zu einem logischen Stream zu kombinieren. Nehmen wir an, Sie möchten einen Stream mit dem Namen „image“ definieren. Sie können dann mit dem Stream `images://` und
+In multi-site setups, some of these default settings may not be what you want. Grav provides easy way to customize streams from the environment configuration using `config/streams.yaml`. Additionally you can create and use your own streams when needed.
 
-[prism classes="language-php line-numbers"]
-'image' => [
-    'type' => 'ReadOnlyStream',
-    'paths' => [
-        'user/images',
-        'system/images'
-    ]
-];
+Mapping physical directories to a logical device can be done by setting up `prefixes`. Here is an example where we separate pages, images, accounts, data, cache and logs from the rest of the sites, but make everything else to look up from the default locations:
+
+`user/env/domain.com/config/streams.yaml`:
+[prism classes="language-yaml line-numbers"]
+schemes:
+  account:
+    type: ReadOnlyStream
+    prefixes:
+      '': ['environment://accounts']
+  page:
+    type: ReadOnlyStream
+    prefixes:
+      '': ['environment://user']
+  image:
+    type: Stream
+    prefixes:
+      '': ['environment://images', 'system://images/']
+  'user-data':
+    type: Stream
+    prefixes:
+      '': ['environment://data']
+  cache:
+    type: Stream
+    prefixes:
+      '': ['cache/domain.com']
+      images: ['images/domain.com']
+  log:
+    type: Stream
+    prefixes:
+      '': ['logs/domain.com']
 [/prism]
 
-alle Bilder auflisten, die sich in den Ordnern `user/images` und `system/images` befinden. Für **prefixes** betrachten Sie das Beispiel
+In Grav streams are objects, mapping a set of physical directories of the system to a logical device. They are classified via their `type` attribute. For read-only streams that's the `ReadOnlyStream` type and for read-writeable streams that's the `Stream` type.
 
-[prism classes="language-php line-numbers"]
-'cache' => [
-    'type' => 'Stream',
-    'prefixes' => [
-        '' => ['cache'],
-        'images' => ['images']
-    ]
-];
-[/prism]
+For example, if you use `image://mountain.jpg` stream, Grav looks up `environment://images` (`user/env/domain.com/images`) and `system://images` (`system/images`). This means that streams can be used to define other streams.
 
-In diesem Beispiel entspricht `cache://` dem Begriff `cache`, während `cache://images` dem Begriff `images` entspricht.
 
-Nicht zuletzt können Streams auch in anderen Streams eingesetzt werden. Wenn beispielsweise ein Stream `user` und ein Stream `system` existiert, kann der obige „image“-Stream auch wie folgt formuliert werden:
-
-[prism classes="language-php line-numbers"]
-'image' => [
-    'type' => 'ReadOnlyStream',
-    'paths' => [
-        'user://images',
-        'system://images'
-    ]
-];
-
-[/prism]
+Prefixes allows you to combine several physical paths into one logical stream. If you look carefully at `cache` stream definition, it is a bit different. In this case `cache://` resolves to `cache`, but `cache://images` resolves to `images`.
 
 [version=17]
 ### Server Based Multi-Site Configuration

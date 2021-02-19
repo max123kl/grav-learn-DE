@@ -25,7 +25,7 @@ Mögliche Gründe sind unter anderem:
 Als erstes sollten Sie den Cache leeren, um sicherzustellen, dass die Konfiguration auf dem aktuellen Stand ist:
 
 [prism classes="language-bash command-line"]
-bin/grav clear-cache
+bin/grav clearcache
 [/prism]
 
 !! Bevor Sie weitermachen, vergewissern Sie sich, dass Sie keine anderen Probleme mit den Dateiberechtigungen, wie die folgenden haben.

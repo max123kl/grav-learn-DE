@@ -395,9 +395,9 @@ Dadurch wird ein Array der mit einer Seite verbundenen Taxonomie ausgegeben.  Da
 
 ### Das Objekt: pages
 
-!! Die gesamte Liste der Pages-Objekt-Methoden ist auf der [API-Seite](https://learn.getgrav.org/api#class-gravcommonpagepages) zu finden. Hier ist eine Übersicht der Methoden, die Sie besonders hilfreich finden werden.
+Das **pages-Objekt** ist die **Root-Seite**, die einen verschachtelten Baum aus allen **page-Objekten** darstellt, die Grav kennt.  Das ist besonders nützlich für die Erstellung einer **Sitemap**, **Navigation** oder wenn Sie eine bestimmte **Seite** finden möchten.
 
-Das **Pages-Objekt** stellt einen ineinander verschachtelten Baum jedes **Page-Objekts** dar, von dem Grav Kenntnis hat.  Das ist besonders nützlich für die Erstellung einer **Sitemap**, einer **Navigation** oder wenn Sie eine bestimmte **Seite** finden wollen.
+!! Dieses Objekt ist nicht dasselbe wie `grav.pages`, das eine Instanz der Klasse `Pages` ist.
 
 ##### children method
 

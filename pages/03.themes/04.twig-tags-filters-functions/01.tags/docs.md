@@ -1,9 +1,10 @@
 ---
 title: Twig-Tags
+body_classes: twig__headers
 page-toc:
   active: true
   start: 3
-
+  depth: 1
 process:
     twig: false
 taxonomy:
@@ -12,7 +13,7 @@ taxonomy:
 
 Grav bietet auch eine große Auswahl an individuellen Twig-Tags, welche die bereits vorhandenen Fähigkeiten zur Erstellung von Twig-Templates um einige neue nützliche Tags erweitern.
 
-### Markdown
+### `markdown`
 
 Das Markdown-Tag bietet eine effiziente neue Methode zur Einbettung von Markdown in das Twig-Template.  Sie könnten eine Variable einsetzen und diese Variable mit dem Filter `|markdown` abbilden, aber die Syntax `{% markdown %}` macht das Erstellen von Markdown-Textblöcken noch einfacher.
 
@@ -25,25 +26,26 @@ This is **bold** and this _underlined_
 {% endmarkdown %}
 [/prism]
 
-### Scripts
+[version=17]
+### `script`
 
 Der Scripts-Tag ist praktisch gesehen ein Komfort-Tag, der Ihr Twig im Vergleich zum üblichen Ansatz `{% do assets...%}` besser lesbar erhält.  Er ist lediglich eine alternative Art, um Inhalte zu schreiben.
 
 #### Script File
 
 [prism classes="language-twig line-numbers"]
-{% script 'theme://js/something.js' in 'bottom' priority: 20 with { defer: true, async: true } %}
+{% script 'theme://js/something.js' at 'bottom' priority: 20 with { defer: true, async: true } %}
 [/prism]
 
 #### Inline Script
 
 [prism classes="language-twig line-numbers"]
-{% script in 'bottom' priority: 20 %}
+{% script at 'bottom' priority: 20 %}
     alert('Warning!');
 {% endscript %}
 [/prism]
 
-### CSS-Styles
+### `style`
 
 #### CSS File
 
@@ -58,8 +60,9 @@ Der Scripts-Tag ist praktisch gesehen ein Komfort-Tag, der Ihr Twig im Vergleich
     a { color: red; }
 {% endstyle %}
 [/prism]
+[/version]
 
-### Switch
+### `switch`
 
 In den meisten Programmiersprachen ist die Verwendung einer `switch`-Anweisung der übliche Weg, um eine Reihe von `is else`-Anweisungen sauberer und lesbarer zu machen.  Sie könnten sich auch als geringfügig schneller erweisen.  Wir stellen lediglich eine einfache Möglichkeit zur Verfügung, um diese zu erstellen, da sie in der Basisfunktionalität von Twig fehlten.
 
@@ -75,7 +78,7 @@ In den meisten Programmiersprachen ist die Verwendung einer `switch`-Anweisung d
 [/prism]
 
 [version=16,17]
-### Deferred Blocks
+### `deferred`
 
 Bei traditionellen Blöcken kann ein einmal gerenderter Block nicht mehr manipuliert werden.  Nehmen wir das Beispiel eines `{%-Block-Skripts %}`, das einige Einträge für JavaScript-Includes enthalten könnte.  Wenn Sie ein untergeordnetes Twig-Template haben und ein Basis-Template erweitern, in dem dieser Block definiert ist, können Sie den Block erweitern und Ihre eigenen JavaScript-Einträge hinzufügen.  Allerdings können partielle Twig-Templates, die von dieser Seite aus eingebunden werden, den Block nicht aufrufen oder mit ihm interagieren.
 
@@ -97,7 +100,7 @@ Es ist auch möglich, den Inhalt des übergeordneten Blocks mit dem aufgeschoben
 {% endblock %}
 [/prism]
 
-### Eine Exception auslösen
+### `throw`
 
 Es gibt bestimmte Situationen, in denen Sie eine Exception manuell auslösen müssen, daher haben wir auch dafür ein Tag.
 
@@ -105,7 +108,7 @@ Es gibt bestimmte Situationen, in denen Sie eine Exception manuell auslösen mü
 {% throw 404 'Not Found' %}
 [/prism]
 
-### Try / Catch Exceptions
+### `try` & `catch`
 
 Außerdem ist es nützlich, eine leistungsfähigere Fehlerbehandlung im PHP-Stil in Ihren Twig-Templates vorzusehen, daher haben wir den neuen Tag `try/catch` eingebaut.
 
@@ -117,7 +120,7 @@ Außerdem ist es nützlich, eine leistungsfähigere Fehlerbehandlung im PHP-Stil
 {% endcatch %}
 [/prism]
 
-### Render Object (nur Flex)
+### `render`
 
 Flex-Objekte finden langsam ihren Weg in immer mehr Elemente von Grav.  Dabei handelt es sich um eigenständige Objekte, die über eine zugehörige Twig-Template-Struktur verfügen, so dass sie sich automatisch rendern können.  Für deren Verwendung haben wir den neuen Tag `render` eingeführt, der ein optionales Layout nutzt, das wiederum steuert, mit welchem der Template-Layouts das Objekt gerendert werden soll.
 

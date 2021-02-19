@@ -117,8 +117,6 @@ Jetzt haben wir ein neues Basis-Theme geschaffen, das modifiziert und weiterentw
 │   ├── error.html.twig
 │   └── partials
 │       ├── base.html.twig
-│       ├── header.html.twig
-│       ├── metadata.html.twig
 │       └── navigation.html.twig
 └── thumbnail.jpg
 [/prism]
@@ -155,7 +153,7 @@ Mit dem Tag Twig [Extends](http://twig.sensiolabs.org/doc/tags/extends.html) kö
 {% extends 'partials/base.html.twig' %}
 
 {% block content %}
-    {{ page.content }}
+    {{ page.content|raw }}
 {% endblock %}
 [/prism]
 
@@ -261,7 +259,7 @@ Bitte lesen Sie sich den Code in der Datei `base.html.twig` (siehe oben) durch. 
 
 1. Der Tag `<title>` (Zeile 7) wird dynamisch auf der Grundlage der Variablen `title` der Seite gesetzt, wie sie im Header der Seite steht.  Der `header.title` ist eine Kurzform von `page.header.title`.
 
-1. Nachdem ein paar Standard-Meta-Tags gesetzt sind, gibt es eine Referenz zum Einbinden von `partials/metadata.html.twig` (Zeile 11). Diese Datei enthält einen Loop, der die Metadaten der Seite durchläuft. Sie ist (eigentlich) eine Zusammenführung von Metadaten aus `site.yaml` und allen seitenspezifischen Overrides.
+1. Nachdem ein paar Standard-Meta-Tags gesetzt sind, gibt es eine Referenz zum Einbinden von `partials/metadata.html.twig` (Zeile 11). Diese Datei befindet sich im Verzeichnis `systems/templates/partials` und enthält einen Loop, der die Metadaten der Seite in einer Schleife durchläuft. Sie ist (eigentlich) eine Zusammenführung von Metadaten aus `site.yaml` und allen seitenspezifischen Overrides.
 
 1. Der Punkt `<link rel="icon"...` (Zeile 13) wird durch den Verweis auf ein spezifisches Bild des Themes gesetzt. In diesem Fall befindet es sich im Theme-Verzeichnis unter `images/logo.png`. Die Syntax hierfür lautet `{{ url('theme://images/logo.png') }}`.
 

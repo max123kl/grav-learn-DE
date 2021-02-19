@@ -199,8 +199,8 @@ my_field:
     type: checkboxes
     label: A couple of checkboxes
     default:
-        option1: true
-        option2: true
+        - option1
+        - option2
     options:
         option1: Option 1
         option2: Option 2
@@ -232,6 +232,8 @@ my_field:
 | [validate.pattern](#common-fields-attributes)  |
 | [validate.message](#common-fields-attributes)  |
 [/div]
+
+!! NOTE: The checkboxes field does not support the `remember` process action.
 
 ---
 ### Conditional Field
@@ -375,6 +377,8 @@ test:
 
 The `email` field type is used to present a text input field that accepts an email, using the [email HTML5 input](http://html5doctor.com/html5-forms-input-types/#input-email).
 
+!! Emails are case-insensitive by design. Ensure that your application logic handles upper-, lower- or mixed case emails properly.
+
 Example:
 [prism classes="language-yaml line-numbers"]
 header.email:
@@ -382,6 +386,15 @@ header.email:
   autofocus: true
   label: Email
 [/prism]
+
+[div class="table table-keycol"]
+| Attribute | Description                                       |
+| :-----    | :-----                                            |
+| `minlength` | minimum text length |
+| `maxlength`  | maximum text length  |
+| `validate.min` | same as minlength |
+| `validate.max`  | same as maxlength  |
+[/div]
 
 [div class="table"]
 | Common Attributes Allowed                      |
@@ -416,7 +429,7 @@ With the `file` field type, you can let users upload files through the form. The
 my_files:
   type: file
   multiple: false
-  destination: '@self'
+  destination: 'self@'
   accept:
     - image/*
 [/prism]
@@ -427,7 +440,6 @@ my_files:
 | `multiple`    | Can be `true` or `false`, when set to **true**, multiple files can be selected at the same time                                                                                                                                                                                                                                                                                                                                                                                          |
 | `destination` | Can be either **@self**, **@page:/route** or **local/rel/path/**. <br>Set to **@self**, the files will be uploaded where the form has been declared (current .md). <br>Using **@page:/route** will upload to the specified route of a page, if exists (e.g., **@page:/blog/a-blog-post**). <br>Set to **'local/rel/path'**: Can be any path relative to the Grav instance. For instance, `user/data/files`. If the path doesn't exist, it will get created, so make sure it is writable. |
 | `accept`      | Takes an array of MIME types that are allowed. For instance to allow only gifs and mp4 files: `accept: ['image/gif', 'video/mp4']`                                                                                                                                                                                                                                                                                                                                                       |
-
 [/div]
 
 !!! The File field in the admin is a bit different, allowing also to delete a file uploaded to a form, because the use-case in admin is to upload and then associate a file to a field.
@@ -666,6 +678,34 @@ header.choose_a_number_in_range:
 
 ---
 
+### Section Field
+
+The `Section` field type is used to divide a setting page into sections.
+
+Example:
+
+[prism classes="language-yaml line-numbers"]
+content:
+    type: section
+    title: PLUGIN_ADMIN.DEFAULTS
+    underline: true
+
+    fields:
+
+        #..... subfields
+[/prism]
+
+[div class="table table-keycol"]
+| Attribute     | Description                                                    |
+| :-----        | :-----                                                         |
+| `title`       | A heading title                                                |
+| `text`        | A text to show beneath                                         |
+| `security`    | An array of credentials a user needs to visualize this section |
+| `title_level` | Set a custom headline tag. Default: `h3`                       |
+[/div]
+
+---
+
 ### Select Field
 
 ![Select Field](select_field.gif)
@@ -843,6 +883,15 @@ header.phone:
   label: 'Your Phone Number'
 [/prism]
 
+[div class="table table-keycol"]
+| Attribute | Description                                       |
+| :-----    | :-----                                            |
+| `minlength` | minimum text length |
+| `maxlength`  | maximum text length  |
+| `validate.min` | same as minlength |
+| `validate.max`  | same as maxlength  |
+[/div]
+
 [div class="table"]
 | Common Attributes Allowed                      |
 | :-----                                         |
@@ -880,6 +929,8 @@ header.title:
   type: text
   autofocus: true
   label: PLUGIN_ADMIN.TITLE
+  minlength: 10
+  maxlength: 255
 [/prism]
 
 [div class="table table-keycol"]
@@ -887,6 +938,10 @@ header.title:
 | :-----    | :-----                                            |
 | `prepend` | prepend some text or HTML to the front of a field |
 | `append`  | append some text or HTML to the end of a field  |
+| `minlength` | minimum text length |
+| `maxlength`  | maximum text length  |
+| `validate.min` | same as minlength |
+| `validate.max`  | same as maxlength  |
 [/div]
 
 [div class="table"]
@@ -925,6 +980,8 @@ header.content:
   type: textarea
   autofocus: true
   label: PLUGIN_ADMIN.CONTENT
+  minlength: 10
+  maxlength: 255
 [/prism]
 
 [div class="table table-keycol"]
@@ -932,7 +989,13 @@ header.content:
 | :-----    | :-----                                                          |
 | `rows`    | Add a rows attribute with the value associated with this property |
 | `cols`    | Add a cols attribute with the value associated with this property |
+| `minlength` | minimum text length |
+| `maxlength`  | maximum text length  |
+| `validate.min` | same as minlength |
+| `validate.max`  | same as maxlength  |
+[/div]
 
+[div class="table"]
 | Common Attributes Allowed                      |
 | :-----                                         |
 | [autofocus](#common-fields-attributes)         |
@@ -952,6 +1015,7 @@ header.content:
 | [validate.required](#common-fields-attributes) |
 | [validate.pattern](#common-fields-attributes)  |
 | [validate.message](#common-fields-attributes)  |
+[/div]
 
 ---
 
@@ -982,7 +1046,9 @@ summary.enabled:
 | :-----      | :-----                                                       |
 | `highlight` | The key of the option to highlight (set green when selected) |
 | `options`   | The list of key-value options                              |
+[/div]
 
+[div class="table"]
 | Common Attributes Allowed                      |
 | :-----                                         |
 | [default](#common-fields-attributes)           |
@@ -994,6 +1060,7 @@ summary.enabled:
 | [validate.required](#common-fields-attributes) |
 | [validate.type](#common-fields-attributes)     |
 | [disabled](#common-fields-attributes)          |
+[/div]
 
 ---
 
@@ -1007,6 +1074,15 @@ header.phone:
   type: url
   label: 'Your Phone Number'
 [/prism]
+
+[div class="table table-keycol"]
+| Attribute | Description                                       |
+| :-----    | :-----                                            |
+| `minlength` | minimum text length |
+| `maxlength`  | maximum text length  |
+| `validate.min` | same as minlength |
+| `validate.max`  | same as maxlength  |
+[/div]
 
 [div class="table"]
 | Common Attributes Allowed                      |
